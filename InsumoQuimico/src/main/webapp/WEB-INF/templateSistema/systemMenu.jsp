@@ -1,4 +1,3 @@
-
 <%@ include file="/WEB-INF/views/include.jsp"%>
 
 <div class="sidebar active open" id="sidebar">
@@ -10,26 +9,12 @@
 				class="arrow icon-angle-down"></b>
 		</a>
 
-			<ul class="submenu">
-
-
-				<li id="productos"><a href="listarproductos.htm"><i
+			<ul class="submenu" style="display: block;">
+				<li id="productos" class="<c:if test="${index==1}">active</c:if>"><a href="../producto/verProductos.htm"><i
 						class="icon-align-justify"></i> Productos </a></li>
-
-				<li id="marcas"><a href="listarmarcas.htm"><i
-						class="icon-align-justify"></i> Marca </a></li>
-				<li id="categoria"><a href="listacategoria.htm"><i
-						class="icon-align-justify"></i> Categoría </a></li>
-				<li id="proveedor"><a href="listarproveedor.htm"><i
-						class="icon-align-justify"></i> Proveedor </a></li>
-
-				<li id="pedido"><a href="pedidopanel.htm"><i
-						class="icon-align-justify"></i> Orden Pedido </a></li>
-				<li id="venta"><a href="ventapanel.htm"><i
-						class="icon-align-justify"></i> Orden Venta </a></li>
+				<li id="marcas" class="<c:if test="${index==2}">active</c:if>"><a href="../marca/verMarcas.htm"><i
+						class="icon-align-justify"></i> Marcas </a></li>
 			</ul></li>
-
-
 	</ul>
 
 

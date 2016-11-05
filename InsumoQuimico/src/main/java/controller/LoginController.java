@@ -29,7 +29,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/list.htm", method=RequestMethod.GET )
 	public String processSubmit() {
-		return "redirect:/sistema/listarproductos.htm";
+		return "redirect:/producto/verProductos.htm";
 	}
 	
 	
@@ -46,12 +46,5 @@ public class LoginController {
 
 		return new ModelAndView("error404");
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

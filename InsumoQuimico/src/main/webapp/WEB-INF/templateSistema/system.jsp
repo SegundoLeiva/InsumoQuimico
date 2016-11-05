@@ -14,7 +14,7 @@
 
 		<!-- ##########################  HEAD ######################  -->
 		<tiles:insertAttribute name="css"/>
-		<tiles:insertAttribute name="css2"/>
+<%-- 		<tiles:insertAttribute name="css2"/> --%>
 		<!-- ########################  END HEAD ######################  -->
 		
 </head>

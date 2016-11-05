@@ -28,10 +28,17 @@
 		<put-attribute name="footer" value="/WEB-INF/templateLogin/container/c_footer.jsp" />
 	</definition>
 	
+	<!-- CAMBIARCONTRASEÑA.HTM -->
 
+	<definition name="cambiarContra" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/home/configuracion/cambiarContraJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/home/configuracion/cambiarContra.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/home/configuracion/cambiarContraJs.jsp" />
+	</definition>
 
-	
-	
 	
 </tiles-definitions>
 

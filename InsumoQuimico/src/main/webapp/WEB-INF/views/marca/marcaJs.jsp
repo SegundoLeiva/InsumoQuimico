@@ -8,10 +8,8 @@
 //----------- Lista de alumnos registrados en la historia social-----------------------------------
 
 	$(function() {
-		var oTable1 = $('#listamarcas').dataTable({
-			"aoColumns" : [ {
-				"bSortable" : false
-			}, null,null,null ]
+		var oTable1 = $('#tablaMarca').dataTable({
+			"aoColumns" : [null,null,null,null]
 		});
 
 		$('table th input:checkbox').on(
@@ -48,4 +46,3 @@
 
 	
 </script>
-
