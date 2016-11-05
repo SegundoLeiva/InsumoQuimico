@@ -1,0 +1,1 @@
+select sp.problematica,asist.nombres ||' ' || asist.apellidoPaterno ||' '|| asist.apellidoMaterno,sp.fecha from SocProblematica sp join sp.perfil pas join pas.persona asist join sp.servicioSocial ss join ss.perfil p join p.persona per where per.docIdentidad = '47180885'

@@ -1,0 +1,1 @@
+select distinct u.departamento,u.nombreDepartamento from UbigeoReniec u order by u.nombreDepartamento
