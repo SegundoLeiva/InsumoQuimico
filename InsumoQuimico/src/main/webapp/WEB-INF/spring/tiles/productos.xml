@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+    "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+    "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+
+	<!-- CAMBIARCONTRASEÑA.HTM -->
+
+	<definition name="cambiarContra" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/home/configuracion/cambiarContraJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/home/configuracion/cambiarContra.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/home/configuracion/cambiarContraJs.jsp" />
+	</definition>
+
+
+	<!-- ################################ REGISTRO DE PRODUCTOS ############################## -->
+
+
+	<definition name="listarproductos" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/producto/fichamedicaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/producto/lista_productos.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/producto/fichamedicaJs.jsp" />
+	</definition>
+	<definition name="nuevoproducto" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/producto/fichamedicaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/producto/registrarproducto.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/producto/fichamedicaJs.jsp" />
+	</definition>
+	<definition name="modificarproducto" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/producto/fichamedicaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/producto/modificarproducto.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/producto/fichamedicaJs.jsp" />
+	</definition>
+
+	<!-- ################################ REGISTRO DE MARCAS ############################## -->
+
+
+	<definition name="listarmarcas" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/marca/marcaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/marca/lista_marcas.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/marca/marcaJs.jsp" />
+	</definition>
+	<definition name="nuevamarca" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/marca/marcaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/marca/registrarmarca.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/marca/marcaJs.jsp" />
+	</definition>
+	<definition name="modificarmarca" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/marca/marcaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/marca/modificarmarca.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/marca/marcaJs.jsp" />
+	</definition>
+	
+	<!-- ################################ REGISTRO DE CATEGORIAS ############################## -->
+
+
+	<definition name="listacategoria" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/categoria/categoriaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/categoria/lista_categoria.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/categoria/categoriaJs.jsp" />
+	</definition>
+	<definition name="nuevacategoria" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/categoria/categoriaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/categoria/registrarcategoria.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/categoria/categoriaJs.jsp" />
+	</definition>
+	<definition name="modificarcategoria" extends="templateSistema">
+		<put-attribute name="css2" value="/WEB-INF/views/categoria/categoriaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/categoria/modificarcategoria.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/categoria/categoriaJs.jsp" />
+	</definition>
+
+	<!-- ################################ REGISTRO DE PROVEEDOR ############################## -->
+
+
+	<definition name="listarproveedor" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/proveedor/proveedorCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/proveedor/lista_proveedor.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/proveedor/proveedorJs.jsp" />
+	</definition>
+	<definition name="nuevoproveedor" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/proveedor/proveedorCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/proveedor/registrarproveedor.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/proveedor/proveedorJs.jsp" />
+	</definition>
+	<definition name="modificarproveedor" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/proveedor/proveedorCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/proveedor/modificarproveedor.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/proveedor/proveedorJs.jsp" />
+	</definition>
+	
+	<!-- ################################ ORDEN DE PEDIDOS ############################## -->
+
+
+	<definition name="pedidopanel" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/pedido/pedidoCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/pedido/pedidopanel.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/pedido/pedidoJs.jsp" />
+	</definition>
+	
+	<definition name="pedidolista" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/pedido/pedidoCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/pedido/pedidolista.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/pedido/pedidoJs.jsp" />
+	</definition>
+	
+		<!-- ################################ ORDEN DE VENTAS ############################## -->
+
+
+	<definition name="ventapanel" extends="templateSistema">
+		<put-attribute name="css2"
+			value="/WEB-INF/views/venta/ventaCss.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/venta/ventapanel.jsp" />
+		<put-attribute name="js2"
+			value="/WEB-INF/views/venta/ventaJs.jsp" />
+	</definition>
+
+
+</tiles-definitions>

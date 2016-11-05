@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="docIdentidad" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cba406b-93aa-42e7-8ea9-fb56ca3c6951">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="dni" class="java.lang.String"/>
+	<parameter name="ROOT_DIR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from persona p
+ inner join perfil pe on pe.id_persona = p.id_persona 
+  inner join dependencia d on d.dep_id = pe.dep_id
+where doc_identidad = $P{dni}]]>
+	</queryString>
+	<field name="id_persona" class="java.lang.Long"/>
+	<field name="doc_identidad" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellido_paterno" class="java.lang.String"/>
+	<field name="apellido_materno" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.Integer"/>
+	<field name="estado_civil" class="java.lang.Integer"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<field name="id_lugar_nacim" class="java.lang.Long"/>
+	<field name="domicilio_actual" class="java.lang.String"/>
+	<field name="domicilio_familiar" class="java.lang.String"/>
+	<field name="lugar_actual" class="java.lang.Long"/>
+	<field name="lugar_procedencia" class="java.lang.Long"/>
+	<field name="lugar_nacimiento" class="java.lang.String"/>
+	<field name="estado" class="java.lang.Integer"/>
+	<field name="id_perfil" class="java.lang.Long"/>
+	<field name="dep_id" class="java.lang.Long"/>
+	<field name="sede_id" class="java.lang.Long"/>
+	<field name="rol_id" class="java.lang.Long"/>
+	<field name="cod_usuario" class="java.lang.String"/>
+	<field name="tde_id" class="java.lang.Long"/>
+	<field name="dep_depende" class="java.lang.Long"/>
+	<field name="dep_nombre" class="java.lang.String"/>
+	<field name="dep_abrev" class="java.lang.String"/>
+	<field name="dep_siglas" class="java.lang.String"/>
+	<field name="dep_representante" class="java.lang.String"/>
+	<field name="dep_cargo" class="java.lang.String"/>
+	<field name="dep_fcreacion" class="java.sql.Timestamp"/>
+	<field name="dep_recibe_tramite" class="java.lang.Integer"/>
+	<field name="dep_estado" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="79" y="10" width="435" height="20" uuid="d7bbf174-3369-4bc6-97c9-03f7b000f525"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL DE TRUJILLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="79" y="30" width="435" height="20" forecolor="#050505" uuid="e33d7326-7398-4663-b5ec-e81dc7c057bb"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[OFICINA GENERAL DE BIENESTAR UNIVERSITARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="79" y="46" width="435" height="20" forecolor="#050505" uuid="9bca2a57-6200-499b-8e0c-68438d8d9027"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[OFICINA TECNICA DE SERVICIO SOCIAL]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="-1" y="80" width="555" height="1" uuid="c697667b-9438-495f-810c-445869995595"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="50" y="0" width="75" height="74" uuid="e6fccc18-12c7-4aa4-851c-f7bfa3541cb7"/>
+				<imageExpression><![CDATA[$P{ROOT_DIR}+"/logo.gif"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="122" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="42" uuid="924d7e63-96fe-43bb-a1e7-4379fa8bc0c0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Trujillo,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="555" height="40" uuid="880a7bc4-04b2-4c8f-ab6e-e7c59c8bc18e"/>
+				<text><![CDATA[DE SU CONSIDERACION:
+
+	Agradecemos su participacion en el completado de la ficha de servicio social ONLINE.]]></text>
+			</staticText>
+			<textField pattern="EEEE dd &apos;de&apos; MMMM &apos;del&apos; yyyy">
+				<reportElement x="41" y="1" width="200" height="40" uuid="ee9f9d0c-cc10-4d03-87f8-666b517f0112"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="330" splitType="Stretch">
+			<staticText>
+				<reportElement x="81" y="17" width="100" height="20" uuid="afa2ba90-d9a3-4dc1-ace7-fcfea65650cb"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[DNI :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="47" width="100" height="20" uuid="3df944d7-6687-417c-af37-1e729c8e7602"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[NOMBRES :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="77" width="100" height="20" uuid="b387dc3b-a7bc-43a2-bf95-9eba5e4740ab"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="113" width="150" height="20" uuid="3cad558a-eb7d-481d-9858-7690945bf492"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[FECHA DE NACIMIENTO :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="17" width="279" height="20" uuid="c734194d-f52f-4484-90e9-4564ea128aed"/>
+				<textFieldExpression><![CDATA[$F{doc_identidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="47" width="279" height="20" uuid="7574ca7d-7931-4cdc-84d3-474777e333e0"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="77" width="280" height="20" uuid="a9b8d42b-4792-4937-af39-f37bd609f5fd"/>
+				<textFieldExpression><![CDATA[$F{apellido_paterno}+' '+ $F{apellido_materno}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="202" y="113" width="279" height="20" uuid="aa6527ed-4cb6-42dd-a423-2b511bda34b0"/>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="140" width="150" height="20" uuid="7d41fd27-92d1-4d9d-9606-ee888275a18f"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[EMAIL :]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="200" y="140" width="279" height="20" uuid="c3003237-72c8-4c05-a1e8-85e044e3c386"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="170" width="150" height="20" uuid="61afcc48-575d-433c-a965-08556a976fda"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[ESCUELA :]]></text>
+			</staticText>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement x="200" y="170" width="279" height="20" uuid="418cf850-2fac-4e60-9e38-a025a438867b"/>
+				<textFieldExpression><![CDATA[$F{dep_nombre}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="280" y="230" width="250" height="90" uuid="ba622c2e-dae7-4808-b6f1-335daa642d3d"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$P{ROOT_DIR}+"/servicio_social0001.png"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="108" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="033f091c-5817-48f5-b05b-831edfb20b5f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<componentElement>
+				<reportElement x="0" y="30" width="160" height="40" uuid="66508fef-a0d6-479f-8ec9-68296f61e463"/>
+				<jr:UPCA xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA["001"+$F{doc_identidad}.toString()]]></jr:codeExpression>
+				</jr:UPCA>
+			</componentElement>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#9DB1B8" uuid="2501887b-955a-47b8-8725-1a493cc5300b"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="-1" width="40" height="13" forecolor="#FFFFFF" uuid="1702eb12-0bc5-4eed-a167-df952dca65d7"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="-1" width="80" height="13" forecolor="#FFFFFF" uuid="6bdb9687-76fd-4eed-9cc6-137ad5691c5c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField pattern="M/d/yy h:mm a">
+					<reportElement style="Column header" x="20" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="64ce5378-8007-4a2f-9e56-da1203a1287b"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+	<noData>
+		<band height="50"/>
+	</noData>
+</jasperReport>

@@ -1,0 +1,1 @@
+select count(p.id) from SocPrestacionAsistencial p join p.servicioSocial ss where ss.id=68

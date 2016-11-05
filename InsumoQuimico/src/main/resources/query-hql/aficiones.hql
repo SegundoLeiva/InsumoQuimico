@@ -1,0 +1,1 @@
+select a from SocAficion a join a.servicioSocial ss join ss.perfil p join p.persona per where per.docIdentidad = '47180885'
