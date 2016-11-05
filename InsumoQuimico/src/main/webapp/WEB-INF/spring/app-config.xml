@@ -20,7 +20,6 @@
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/spring/tiles/tiles.xml</value>
-				<value>/WEB-INF/spring/tiles/productos.xml</value>
 			</list>
 		</property>
 	</bean>

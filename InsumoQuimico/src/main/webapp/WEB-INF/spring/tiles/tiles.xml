@@ -38,6 +38,25 @@
 		<put-attribute name="js2"
 			value="/WEB-INF/views/home/configuracion/cambiarContraJs.jsp" />
 	</definition>
+	
+	<!-- ################################ REGISTRO DE PRODUCTOS ############################## -->
+
+	<definition name="verProductos" extends="templateSistema">
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/producto/verProductos.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
+	</definition>
+	<definition name="nuevoProducto" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/producto/nuevoProducto.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
+	</definition>
+	
+	<!-- ################################ REGISTRO DE MARCAS ############################## -->
+	<definition name="verMarcas" extends="templateSistema">
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/marca/verMarcas.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/marca/marcaJs.jsp" />
+	</definition>
 
 	
 </tiles-definitions>
