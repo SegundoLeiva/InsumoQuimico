@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Login - UNT</title>
+<title>::Hochschild Mining:: Sistema Insumos Químicos</title>
 
 <meta name="description" content="User login page" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,7 +56,7 @@
 		<div class="navbar-inner">
 			<div class="container-fluid">
 				<a href="#" class="brand"> <small> <i class="icon-book"></i>
-						Sistema de Inventario Computienda
+						Sistema Insumos Químicos
 				</small>
 				</a>
 				<!--/.brand-->
@@ -142,71 +142,17 @@
 														<div class="clearfix">
 															<input type="submit"
 																class="width-35 pull-right btn btn-small btn-primary"
-																value="Ingresar" /> <i class="icon-key"></i>
+																value="Ingresar" />
 														</div>
 														<div class="space-4"></div>
 													</form>
 												</fieldset>
 											</div>
 											<!--/widget-main-->
-
-											<div class="toolbar clearfix">
-												<div>
-													<a href="#" onclick="show_box('forgot-box'); return false;"
-														class="forgot-password-link"> <i
-														class="icon-arrow-left"></i> Olvidaste tu contraseña?
-													</a>
-												</div>
-
-
-											</div>
 										</div>
 										<!--/widget-body-->
 									</div>
 									<!--/login-box-->
-
-									<div id="forgot-box" class="forgot-box widget-box no-border">
-										<div class="widget-body">
-											<div class="widget-main">
-												<h4 class="header red lighter bigger">
-													<i class="icon-key"></i> Recuperar Contraseña
-												</h4>
-
-												<div class="space-6"></div>
-												<p>Ingrese su correo para recibir instrucciones</p>
-
-												<form>
-													<fieldset>
-														<label> <span
-															class="block input-icon input-icon-right"> <input
-																type="email" class="span12" placeholder="Email" /> <i
-																class="icon-envelope"></i>
-														</span>
-														</label>
-
-														<div class="clearfix">
-															<button onclick="return false;"
-																class="width-35 pull-right btn btn-small btn-danger">
-																<i class="icon-lightbulb"></i> Enviar
-															</button>
-														</div>
-													</fieldset>
-												</form>
-											</div>
-											<!--/widget-main-->
-
-											<div class="toolbar center">
-												<a href="#" onclick="show_box('login-box'); return false;"
-													class="back-to-login-link"> Regresar <i
-													class="icon-arrow-right"></i>
-												</a>
-											</div>
-										</div>
-										<!--/widget-body-->
-									</div>
-									<!--/forgot-box-->
-
-									<!--/signup-box-->
 								</div>
 								<!--/position-relative-->
 							</div>
