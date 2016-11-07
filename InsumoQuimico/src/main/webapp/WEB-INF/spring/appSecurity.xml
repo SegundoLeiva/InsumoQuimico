@@ -23,7 +23,7 @@
 		access-denied-page="/accessDenied.htm">
 		
 		<security:intercept-url pattern="/login.htm"	access="permitAll" />
-		<security:intercept-url pattern="/sistema/*"	access="isAuthenticated()" />
+		<security:intercept-url pattern="/**"	access="isAuthenticated()" />
 
 
 		<security:form-login login-page="/login.htm"
