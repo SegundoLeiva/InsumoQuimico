@@ -14,6 +14,8 @@
 						class="icon-align-justify"></i> Productos </a></li>
 				<li id="marcas" class="<c:if test="${index==2}">active</c:if>"><a href="../marca/verMarcas.htm"><i
 						class="icon-align-justify"></i> Marcas </a></li>
+				<li id="areas" class="<c:if test="${index==3}">active</c:if>"><a href="../area/verAreas.htm"><i
+						class="icon-align-justify"></i> Áreas </a></li>
 			</ul></li>
 	</ul>
 
