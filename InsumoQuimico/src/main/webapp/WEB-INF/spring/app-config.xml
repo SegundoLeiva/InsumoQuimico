@@ -11,7 +11,7 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="controller" />
-	<bean class="controller.ValidatorProveedor" />
+<!-- 	<bean class="controller.ValidatorProveedor" /> -->
 
 	<mvc:annotation-driven />
 

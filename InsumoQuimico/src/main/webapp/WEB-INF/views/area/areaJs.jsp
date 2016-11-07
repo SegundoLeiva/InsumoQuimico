@@ -7,7 +7,11 @@
 
 $(document).ready(function() {
     $('#tablaArea').DataTable({
-		"aoColumns" : [ null,null,null]
+		"aoColumns" : [ {
+			"bSortable" : false
+		},null,null,null,{
+			"bSortable" : false
+		}]
 	});
 } );
 	

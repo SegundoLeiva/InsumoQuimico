@@ -2,9 +2,9 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
 
-<security:authorize access="isAuthenticated()">
-	<c:redirect url="/home/bienvenida.htm" />
-</security:authorize>
+<%-- <security:authorize access="isAuthenticated()"> --%>
+<%-- 	<c:redirect url="/home/bienvenida.htm" /> --%>
+<%-- </security:authorize> --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -123,9 +123,7 @@
 
 												<fieldset>
 
-													<form action="<c:url value='j_spring_security_check.htm'/>"
-														method="POST">
-
+													<form action="<c:url value='../InsumoQuimico/list.htm'/>" method="GET">
 														<label> <span
 															class="block input-icon input-icon-right"> <input
 																type="text" name="j_username" class="span12"
@@ -140,9 +138,15 @@
 
 														<div class="space"></div>
 														<div class="clearfix">
-															<input type="submit"
-																class="width-35 pull-right btn btn-small btn-primary"
-																value="Ingresar" />
+														<button type="submit"
+															class="width-35 pull-right btn btn-small btn-primary">
+															Ingresar</button>
+				
+				
+				
+<!-- 															<input type="submit" -->
+<!-- 																class="width-35 pull-right btn btn-small btn-primary" -->
+<!-- 																value="Ingresar" /> -->
 														</div>
 														<div class="space-4"></div>
 													</form>

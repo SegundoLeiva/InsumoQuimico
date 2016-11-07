@@ -15,7 +15,8 @@
 		<a data-toggle="dropdown" href="#" class="dropdown-toggle"> 
 			<img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> 
 			<span class="user-info"> 
-				<small>Bienvenido,</small>	<security:authentication property="principal.usuario" />
+				<small>Bienvenido,Segv</small>	
+<%-- 				<security:authentication property="principal.usuario" /> --%>
 			</span> 
 			<i class="icon-caret-down"></i>
 		</a>

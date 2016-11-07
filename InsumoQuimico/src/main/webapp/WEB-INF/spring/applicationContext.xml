@@ -27,7 +27,13 @@
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    <bean id="dataSourceInsumoQuimico" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.insumoQuimico.driverClassName}"/>
+        <property name="url" value="${jdbc.insumoQuimico.url}"/>
+        <property name="username" value="${jdbc.insumoQuimico.username}"/>
+        <property name="password" value="${jdbc.insumoQuimico.password}"/>
+    </bean>
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
         	<list>
@@ -41,9 +47,27 @@
             </props>
         </property>	
     </bean>
+     <bean id="sessionFactoryInsumoQuimico" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceInsumoQuimico"/>
+        <property name="packagesToScan">
+        	<list>
+        		<value>com.hochschild.insumoQuimico.domain</value>
+        	</list>
+        </property>
+        <property name="hibernateProperties" >
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+            </props>
+        </property>	
+    </bean>
     
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
+    </bean> 
+    <bean id="hibernateTemplateInsumoQuimico" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactoryInsumoQuimico"/>
     </bean>  
     
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -53,5 +77,8 @@
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	<context:component-scan base-package="repository" />
 	<context:component-scan base-package="service" />
+	
+	<context:component-scan base-package="com.hochschild.insumoQuimico.dao" />
+	<context:component-scan base-package="com.hochschild.insumoQuimico.service" />
 
 </beans>
