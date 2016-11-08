@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="security"%>
+<%-- <%@ taglib uri="http://www.springframework.org/security/tags" --%>
+<%-- 	prefix="security"%> --%>
 
 <%-- <security:authorize access="isAuthenticated()"> --%>
 <%-- 	<c:redirect url="/home/bienvenida.htm" /> --%>
@@ -83,12 +83,10 @@
 										Universitario</span>
 								</h1> -->
 
-								<c:if test="${not empty param.error}">
+								<c:if test="${not empty mensajeError}">
 									<div class="alert alert-error">
 										No se pudo INICIAR SESSION. <br />
-										<fmt:message key="error.badCredentials" />
-										<%-- 										<fmt:message --%>
-										<%-- 											key="AbstractUserDetailsAuthenticationProvider.badCredentials" /> --%>
+										${mensajeError}
 									</div>
 
 								</c:if>
@@ -123,26 +121,26 @@
 
 												<fieldset>
 
-													<form action="<c:url value='../InsumoQuimico/list.htm'/>" method="GET">
+													<form id="formularioLogin" action="login2.htm" method="POST">
 														<label> <span
 															class="block input-icon input-icon-right"> <input
-																type="text" name="j_username" class="span12"
+																type="text" name="idUsuario" class="span12"
 																placeholder="Usuario" /> <i class="icon-user"></i>
 														</span>
 														</label> <label> <span
 															class="block input-icon input-icon-right"> <input
-																type="password" name="j_password" class="span12"
+																type="password" name="clave" class="span12"
 																placeholder="Contraseña" /> <i class="icon-lock"></i>
 														</span>
 														</label>
 
 														<div class="space"></div>
 														<div class="clearfix">
-														<button type="submit"
-															class="width-35 pull-right btn btn-small btn-primary">
-															Ingresar</button>
+<!-- 														<button type="submit" -->
+<!-- 															class="width-35 pull-right btn btn-small btn-primary"> -->
+<!-- 															Ingresar</button> -->
 				
-				
+				 <a class="btn" onclick="fn_loguea();">Ingresar</a>
 				
 <!-- 															<input type="submit" -->
 <!-- 																class="width-35 pull-right btn btn-small btn-primary" -->
@@ -214,6 +212,7 @@
 
 	<script src="assets/js/ace-elements.min.js"></script>
 	<script src="assets/js/ace.min.js"></script>
+	<script src="assets/js/login.js"></script>
 
 	<!--inline scripts related to this page-->
 

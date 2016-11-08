@@ -18,15 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginController {
 	protected final Log logger = LogFactory.getLog(getClass());
 
-
-	@RequestMapping(value = "/login.htm")
-	public ModelAndView login(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		return new ModelAndView("templatelogin");
-	}
-	
-	
 	@RequestMapping(value="/list.htm", method=RequestMethod.GET )
 	public String processSubmit() {
 		return "redirect:/producto/verProductos.htm";

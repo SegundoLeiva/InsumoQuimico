@@ -20,7 +20,7 @@
 
 	<!-- enabling annotation driven configuration / -->
 	<context:annotation-config />
-	
+		
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
@@ -32,6 +32,12 @@
         <property name="url" value="${jdbc.insumoQuimico.url}"/>
         <property name="username" value="${jdbc.insumoQuimico.username}"/>
         <property name="password" value="${jdbc.insumoQuimico.password}"/>
+    </bean>
+    <bean id="dataSourceSCA" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.sca.url}"/>
+        <property name="username" value="${jdbc.sca.username}"/>
+        <property name="password" value="${jdbc.sca.password}"/>
     </bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -52,6 +58,7 @@
         <property name="packagesToScan">
         	<list>
         		<value>com.hochschild.insumoQuimico.domain</value>
+        		<value>com.hochschild.sca.local.domain</value>
         	</list>
         </property>
         <property name="hibernateProperties" >
@@ -62,6 +69,17 @@
             </props>
         </property>	
     </bean>
+    <bean id="sessionFactoryGestionSCA" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceSCA"/>
+        <property name="packagesToScan" value="com.hochschild.sca.domain"/>
+        <property name="hibernateProperties" >
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">false</prop>
+            </props>
+        </property>
+    </bean>
     
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -69,6 +87,9 @@
     <bean id="hibernateTemplateInsumoQuimico" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactoryInsumoQuimico"/>
     </bean>  
+    <bean id="hibernateTemplateSCA" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactoryGestionSCA"/>
+    </bean>
     
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
@@ -78,7 +99,6 @@
 	<context:component-scan base-package="repository" />
 	<context:component-scan base-package="service" />
 	
-	<context:component-scan base-package="com.hochschild.insumoQuimico.dao" />
-	<context:component-scan base-package="com.hochschild.insumoQuimico.service" />
+	<context:component-scan base-package="com.hochschild" />
 
 </beans>
