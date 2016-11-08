@@ -6,15 +6,14 @@
 		<div class="table-header"
 			style="background: #2283c5; padding-left: 5px; padding-bottom: 2px;">
 
-			<a href="../sistema/nuevoProducto.htm" data-toggle="modal"
-				title="Nueva Marca" class="btn btn-small btn-primary"
+			<a href="#" onclick="agregarArea()"
+				title="Nueva Área" class="btn btn-small btn-primary"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar
 				Área</a>
 
 		</div>
-		<form id="verMarcasForm" action="../sistema/eliminarMarca.htm" method="POST">
-		<input type="hidden" id="idMarca" name="idMarca">
-
+		<form id="formVerUnidadMineraArea" action="../area/eliminarUnidadMineraArea.htm" method="POST">
+		<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraAreaEliminar">		
 				<table id="tablaArea"
 					class="table table-striped table-bordered table-hover">
 					<thead>
@@ -23,17 +22,17 @@
 							<th class="center">Código</th>
 							<th class="center">Descripción</th>
 							<th class="center">Estado</th>
-							<th class="center">Opciones</th>
+							<th class="center" width="10%">Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="jbean" items="${listaAreas}"
+						<c:forEach var="jbean" items="${listaUnidadMineraArea}"
 							varStatus="contador">
 							<tr>
 								<td class="center"><c:out value="${contador.count}" /></td>
-								<td class="center"><a
-									href="#"
-									title="Modificar Producto"><c:out value="${jbean.idUnidadMineraArea}"></c:out></a></td>
+								<td class="center"><a id="modificarArea"
+									href="#" onclick="modificarArea('${jbean.idUnidadMineraArea}')"
+									title="Modificar Área"><c:out value="${jbean.idUnidadMineraArea}"></c:out></a></td>
 								<td class="center"><c:out value="${jbean.area.area}"></c:out></td>
 								<td class="center"><c:choose>
 										<c:when test="${jbean.vigencia=='S'}">
@@ -43,7 +42,7 @@
 											<span class="label label-warning">No Vigente</span>
 										</c:otherwise>
 									</c:choose></td>
-								<td class="center"><a class="red" href="#" onclick=""> <i
+								<td class="center"><a class="red" href="#" onclick="eliminarUnidadMineraArea('${jbean.idUnidadMineraArea}')"> <i
 										class="icon-trash bigger-130"></i>
 								</a></td>
 
@@ -58,14 +57,4 @@
 </div>
 <!--/.row-fluid-->
 
-<script type="text/javascript">
-
-	function eliminarMarca(idMarca) {
-		$("#idMarca").val(idMarca);
-		alertify.confirm("Eliminar","¿Seguro que desea eliminar esta marca?",
-				function(){
-					$("#verMarcasForm").submit();
-				 },
-				function(){});
-	}
-</script>
+<%@ include file="/WEB-INF/views/area/nuevaArea.jsp"%>

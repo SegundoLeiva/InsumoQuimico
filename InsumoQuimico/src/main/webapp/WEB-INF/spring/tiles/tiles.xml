@@ -60,9 +60,10 @@
 	
 	<!-- ################################ REGISTRO DE AREAS ############################## -->
 	<definition name="verAreas" extends="templateSistema">
+	<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/area/verAreas.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
+		
 	</definition>
 
 	

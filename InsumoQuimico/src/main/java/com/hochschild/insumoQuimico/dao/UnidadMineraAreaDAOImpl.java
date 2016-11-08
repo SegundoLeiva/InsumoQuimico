@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 
@@ -16,6 +17,22 @@ public class UnidadMineraAreaDAOImpl implements UnidadMineraAreaDAO {
     @Qualifier(value="hibernateTemplateInsumoQuimico")
     private HibernateTemplate hibernateTemplate;
 
+    @Transactional
+	public void insertarUnidadMineraArea(UnidadMineraArea data){
+    	hibernateTemplate.persist(data);   	
+    }
+    
+    @Transactional
+	public void actualizarUnidadMineraArea(UnidadMineraArea data){
+		hibernateTemplate.update(data);
+    }
+    
+    @Transactional
+	public void eliminarUnidadMineraArea(String idUnidadMineraArea) {		
+    	hibernateTemplate.bulkUpdate("DELETE UnidadMineraArea where "
+    			+ "idUnidadMineraArea=? ", idUnidadMineraArea);
+	}
+    
     @SuppressWarnings("unchecked")
 	public List<UnidadMineraArea> listaUnidadMineraArea() {
     	String query = "from UnidadMineraArea";
