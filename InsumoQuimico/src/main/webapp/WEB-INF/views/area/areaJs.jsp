@@ -35,20 +35,31 @@ function eliminarUnidadMineraArea(idUnidadMineraArea) {
 			 },
 			function(){});
 }
+
 $("#agregarArea").click(function(){
 	if(validarCamposRequeridos("formUnidadMineraArea")){
 		alertify.confirm("Confirmar","¿Esta seguro realizar esta operación?",
 				function(){
-			$("#formUnidadMineraArea").submit();
+					var url = '${pageContext.request.contextPath}/area/agregarArea.htm';
+				    $.ajax({
+				           type: "POST",
+				           url: url,
+				           data: $("#formUnidadMineraArea").serialize(),
+				           success: function(data)
+				           {	
+				        	   if($("#idUnidadMineraArea").val()==""){limpiarArea()};
+				        	   mensajeTransaccion(data);
+				           }
+				    });
 						  },
-				function(){});	
+				function(){});
 	}
+
 });
 
-function agregarArea(){
-	$("#idUnidadMineraArea").val("");
+function limpiarArea(){
+// 	$("#idUnidadMineraArea").val("");
 	$("#formUnidadMineraArea select").val("");
-	$("#nuevaArea").modal("show");
 }
 
 function modificarArea(idUnidadMineraArea){

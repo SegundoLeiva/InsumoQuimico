@@ -70,8 +70,11 @@
 	<definition name="verAreas" extends="templateSistema">
 	<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
 		<put-attribute name="contenido"
-			value="/WEB-INF/views/area/verAreas.jsp" />
-		
+			value="/WEB-INF/views/area/verAreas.jsp" />		
+	</definition>
+	<definition name="nuevoArea" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/area/nuevaArea.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
 	</definition>
 
 	

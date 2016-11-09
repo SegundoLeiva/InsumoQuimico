@@ -1,6 +1,7 @@
 package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 

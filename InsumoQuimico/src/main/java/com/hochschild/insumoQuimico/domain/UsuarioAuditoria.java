@@ -3,11 +3,8 @@ package com.hochschild.insumoQuimico.domain;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Embeddable
 public class UsuarioAuditoria implements Serializable {

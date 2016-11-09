@@ -1,13 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hochschild.insumoQuimico.domain.Usuario;
+import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
+import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.service.AreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
+import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/area")
@@ -28,17 +31,19 @@ public class AreaController extends BaseController{
 	private UnidadMineraAreaService unidadMineraAreaService;
 	@Autowired
 	private AreaService areaService;
+	@Autowired
+    private ValorOrganizacionalService valorOrganizacionalService;
 	
 	@RequestMapping(value = "/verAreas.htm")
 	public String verAreas(Model model,HttpServletRequest req) {
 		model.addAttribute("listaUnidadMineraArea", this.unidadMineraAreaService.listaUnidadMineraArea());
-		model.addAttribute("listaAreas", this.areaService.listaArea());
 		model.addAttribute(Constantes.FLAG_TRANSACCION, req.getAttribute(Constantes.FLAG_TRANSACCION));
 		model.addAttribute("index", "3");
 		return "verAreas";
 	}
 	
 	@RequestMapping(value = "/agregarArea.htm", method = RequestMethod.POST)
+	@ResponseBody
 	public String agregarArea(AreaParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
 		String mensaje = Constantes.TRANSACCION_GUARDAR;
 		try {
@@ -53,7 +58,17 @@ public class AreaController extends BaseController{
 			mensaje = Constantes.TRANSACCION_ERROR;
 		}		
 		req.setAttribute(Constantes.FLAG_TRANSACCION, mensaje);
-		return this.verAreas(model,req);
+		return mensaje;
+	}
+	
+	@RequestMapping(value = "/nuevaArea.htm")
+	public String nuevaArea(Model model,HttpSession sesion) {
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+        List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
+        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
+		model.addAttribute("listaAreas", this.areaService.listaArea());
+		model.addAttribute("index", "3");
+		return "nuevoArea";
 	}
 
 	@RequestMapping(value = "/eliminarUnidadMineraArea.htm", method = RequestMethod.POST)
@@ -65,13 +80,16 @@ public class AreaController extends BaseController{
 		return this.verAreas(model,req);
 	}
 	
-	@RequestMapping(value = "/obtenerUnidadMineraArea.htm", method = RequestMethod.POST)
-	public @ResponseBody String obtenerUnidadMineraArea(
-			@RequestParam("idUnidadMineraArea") String idUnidadMineraArea) throws JsonGenerationException, JsonMappingException, IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		String resultado = objectMapper.writeValueAsString(unidadMineraAreaService.obtieneUnidadMineraAreaPorId(idUnidadMineraArea));
-
-		return resultado;
+	@RequestMapping(value = "/modificarArea.htm")
+	public String modificarArea(Model model,HttpSession sesion ,@RequestParam("idUnidadMineraArea") String idUnidadMineraArea) {
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		UnidadMineraArea unidadMineraArea = unidadMineraAreaService.obtieneUnidadMineraAreaPorId(idUnidadMineraArea);
+		List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
+	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
+		model.addAttribute("unidadMineraArea", unidadMineraArea);
+		model.addAttribute("listaAreas", this.areaService.listaArea());
+		model.addAttribute("index", "3");
+		return "nuevoArea";
 	}
 
 }

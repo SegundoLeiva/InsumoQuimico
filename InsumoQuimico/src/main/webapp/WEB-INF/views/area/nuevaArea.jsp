@@ -1,20 +1,27 @@
-<form id="formUnidadMineraArea" method="POST" action="<c:url value='agregarArea.htm'/>" >
-<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraArea" >
-<div id="nuevaArea" class="modal hide fade" tabindex="-1"
-	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal"
-			aria-hidden="true">×</button>
-		<h3 id="tituloText">Agregar Área</h3>
-	</div>
-	<div class="modal-body">		
-				<div class="row-fluid">
-						<div class="span6">
+<%@ include file="/WEB-INF/views/include.jsp"%>
+<div class="page-header">
+	<h1>
+		Registrar Área <small> <i class="icon-double-angle-right"></i>
+			Descripcion
+		</small> <a href="../area/verAreas.htm" title="Lista de Áreas"
+			class="btn btn-success btn-small pull-right"
+			style="font-size: 20px; margin-right: 5px"><i class="icon-tasks"></i></a>
+	</h1>
+</div>
+<div class="page-header position-relative">
+	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
+	<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraArea" value="${unidadMineraArea.idUnidadMineraArea}">
+	<input type="hidden" name="idUnidadMinera" value="${listaUnidadesMineras[0].valorOrganizacional}">
+		<div class="row-fluid">
+			<div class="page-content">
+				<div class="span10">
 
+					<div class="row-fluid">
+						<div class="span6">
 							<div class="control-group codigoDisabled">
 								<label class="control-label" for="idUnidadMinera">Código</label>
 								<div class="controls">
-									<input type="text" name="idUnidadMinera" id="idUnidadMinera" value="1303" readonly>
+									<input type="text" value="${listaUnidadesMineras[0].descripcion}" readonly>
 								</div>
 							</div>
 							<div class="control-group">
@@ -24,7 +31,7 @@
 										data-msg-required="El campo Área es obligatorio.">
 										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaAreas}">
-											<option value="${item.idArea}">${item.area}</option>
+											<option value="${item.idArea}" ${item.idArea == unidadMineraArea.area.idArea ? 'selected' : ' '}>${item.area}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -37,8 +44,8 @@
 									<select name="vigencia" id="vigencia" required
 										data-msg-required="El campo Estado es obligatorio.">
 										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
+										<option value="S" ${unidadMineraArea.vigencia == 'S' ? 'selected' : ' '}>VIGENTE</option>
+										<option value="N" ${unidadMineraArea.vigencia == 'N' ? 'selected' : ' '}>NO VIGENTE</option>
 									</select>
 								</div>
 							</div>
@@ -46,12 +53,22 @@
 
 						</div>
 					</div>
-	</div>
-	<div class="modal-footer">
-		<a title="Agregar Área" id="agregarArea"
-				class="btn btn-small btn-success">Agregar
+				</div>
+			</div>
+
+		</div>
+
+		<div class="form-actions">
+
+			<a title="Agregar Área" id="agregarArea"
+				class="btn btn-success">
+				<i class="icon-save bigger-110"></i>${!empty unidadMineraArea.idUnidadMineraArea ? 'Modificar' : 'Agregar'}
 			</a>
-		<button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-	</div>
+			<a href="../area/verAreas.htm" title="Regresar"
+				class="btn btn-info"> <i
+				class="icon-undo bigger-110"></i>Regresar
+			</a>
+
+		</div>
+	</form>
 </div>
-</form>

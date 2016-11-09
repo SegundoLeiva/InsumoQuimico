@@ -6,7 +6,7 @@
 		<div class="table-header"
 			style="background: #2283c5; padding-left: 5px; padding-bottom: 2px;">
 
-			<a href="#" onclick="agregarArea()"
+			<a href="../area/nuevaArea.htm"
 				title="Nueva Área" class="btn btn-small btn-primary"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar
 				Área</a>
@@ -30,8 +30,8 @@
 							varStatus="contador">
 							<tr>
 								<td class="center"><c:out value="${contador.count}" /></td>
-								<td class="center"><a id="modificarArea"
-									href="#" onclick="modificarArea('${jbean.idUnidadMineraArea}')"
+								<td class="center"><a
+									href="modificarArea.htm?idUnidadMineraArea=<c:out value="${jbean.idUnidadMineraArea}" />"
 									title="Modificar Área"><c:out value="${jbean.idUnidadMineraArea}"></c:out></a></td>
 								<td class="center"><c:out value="${jbean.area.area}"></c:out></td>
 								<td class="center"><c:choose>
@@ -56,5 +56,3 @@
 	<!--/.span-->
 </div>
 <!--/.row-fluid-->
-
-<%@ include file="/WEB-INF/views/area/nuevaArea.jsp"%>

@@ -1,10 +1,11 @@
-package controller;
+package com.hochschild.insumoQuimico.controller;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hochschild.insumoQuimico.domain.Usuario;
+
 import service.UsuarioService;
 
 @Controller
-@RequestMapping(value = "/sistema")
+@RequestMapping(value = "/home")
 public class HomeController {
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -51,5 +54,16 @@ public class HomeController {
 	            return new ModelAndView("redirect:/sistema/configuracion.htm?error=true");
 	        }
 
+	    }
+	    
+	    @RequestMapping(value = "/bienvenida.htm")
+	    public String bienvenida(HttpSession sesion){
+	    	 Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+	         if (usuarioSession != null){  
+	        	 
+	        	 return "panelPrincipal";
+	         }else{
+	             return "redirect:/logout.htm";
+	         }        
 	    }
 }

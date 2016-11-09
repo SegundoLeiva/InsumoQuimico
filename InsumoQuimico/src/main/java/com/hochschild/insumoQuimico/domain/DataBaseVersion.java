@@ -1,8 +1,10 @@
 package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import org.hibernate.annotations.NamedNativeQuery;
 
 @NamedNativeQuery(name = "getDataBaseVersion",

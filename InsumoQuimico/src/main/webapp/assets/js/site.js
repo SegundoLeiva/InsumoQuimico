@@ -13,7 +13,7 @@ function validarCamposRequeridos(idFormulario){
 
 function inputRequeridos(idFormulario){
 	var rpta = true;
-	var formInput = $("#"+idFormulario+" input[type=text]");
+	var formInput = $("#"+idFormulario+" input");
 	$.each( formInput, function(index, value ) {
 		  if($(formInput[index]).prop("required")){
 			  if($(this).val()==""){
@@ -39,4 +39,19 @@ function selectRequeridos(idFormulario){
 			}
 	});
 	return rpta;
+}
+
+function mensajeTransaccion(respuesta){
+	if(respuesta=='error'){
+		alertify.error("Se produjo un error");
+	}
+	if(respuesta=='eliminar'){
+		alertify.success("Se elimin\u00f3 correctamente");
+	}
+	if(respuesta=='guardar'){
+		alertify.success("Se guard\u00f3 correctamente");
+	}
+	if(respuesta=='modificar'){
+		alertify.success("Se modific\u00f3 correctamente");
+	}
 }

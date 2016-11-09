@@ -23,7 +23,8 @@
 	rel="stylesheet" />
 <link href="<c:url value="/assets/css/font-awesome.min.css"/>"
 	rel="stylesheet" />
-
+<link rel="stylesheet" href="<c:url value="/assets/css/alertify/alertify.min.css"/>" />
+<link rel="stylesheet" href="<c:url value="/assets/css/alertify/themes/bootstrap.min.css"/>" />
 <!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -59,11 +60,6 @@
 						Sistema Insumos Químicos
 				</small>
 				</a>
-				<!--/.brand-->
-
-				<!-- ---------------- VENTANAS EMERGENTES ---------------- -->
-
-
 			</div>
 			<!--/.container-fluid-->
 		</div>
@@ -78,10 +74,6 @@
 							<div class="center">
 								<span> <br />
 								</span>
-								<!-- <h1>
-									<span class="red"></span> <span class="blue">Bienestar
-										Universitario</span>
-								</h1> -->
 
 								<c:if test="${not empty mensajeError}">
 									<div class="alert alert-error">
@@ -121,30 +113,23 @@
 
 												<fieldset>
 
-													<form id="formularioLogin" action="login2.htm" method="POST">
+													<form id="formularioLogin" action="login.htm" method="POST">
 														<label> <span
 															class="block input-icon input-icon-right"> <input
-																type="text" name="idUsuario" class="span12"
-																placeholder="Usuario" /> <i class="icon-user"></i>
+																type="text" name="idUsuario" id="idUsuario" class="span12" data-msg-required="Ingrese su código de usuario por favor."
+																placeholder="Usuario" required onkeydown="if(event.keyCode == 13){fn_loguea();}"/> <i class="icon-user"></i>
 														</span>
 														</label> <label> <span
 															class="block input-icon input-icon-right"> <input
-																type="password" name="clave" class="span12"
-																placeholder="Contraseña" /> <i class="icon-lock"></i>
+																type="password" name="clave" id="clave" class="span12" data-msg-required="Ingrese su clave por favor."
+																placeholder="Contraseña" required onkeydown="if(event.keyCode == 13){fn_loguea();}"/> <i class="icon-lock"></i>
 														</span>
 														</label>
 
 														<div class="space"></div>
-														<div class="clearfix">
-<!-- 														<button type="submit" -->
-<!-- 															class="width-35 pull-right btn btn-small btn-primary"> -->
-<!-- 															Ingresar</button> -->
-				
-				 <a class="btn" onclick="fn_loguea();">Ingresar</a>
-				
-<!-- 															<input type="submit" -->
-<!-- 																class="width-35 pull-right btn btn-small btn-primary" -->
-<!-- 																value="Ingresar" /> -->
+														<div class="clearfix">			
+ 															<input type="text" class="width-35 pull-right btn btn-small btn-primary"
+ 																value="Ingresar" onclick="fn_loguea();"/>
 														</div>
 														<div class="space-4"></div>
 													</form>
@@ -166,22 +151,6 @@
 			</div>
 		</div>
 	</div>
-	<!--/.main-container-->
-
-	<!--basic scripts-->
-
-	<!--[if !IE]>-->
-
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-	<!--<![endif]-->
-
-	<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
-	<!--[if !IE]>-->
 
 	<script type="text/javascript">
 		window.jQuery
@@ -190,37 +159,19 @@
 								+ "<"+"/script>");
 	</script>
 
-	<!--<![endif]-->
-
-	<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-
 	<script type="text/javascript">
 		if ("ontouchend" in document)
 			document
 					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
 							+ "<"+"/script>");
 	</script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/alertify/alertify.min.js"></script>
+<script src="assets/js/site.js"></script>
 
-	<!--page specific plugin scripts-->
 
-	<!--ace scripts-->
 
-	<script src="assets/js/ace-elements.min.js"></script>
-	<script src="assets/js/ace.min.js"></script>
-	<script src="assets/js/login.js"></script>
-
-	<!--inline scripts related to this page-->
-
-	<script type="text/javascript">
-		function show_box(id) {
-			$('.widget-box.visible').removeClass('visible');
-			$('#' + id).addClass('visible');
-		}
-	</script>
 </body>
 </html>

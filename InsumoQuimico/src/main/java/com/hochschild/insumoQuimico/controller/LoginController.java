@@ -1,9 +1,11 @@
 package com.hochschild.insumoQuimico.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +31,7 @@ import com.hochschild.sca.service.PuestoPorUsuarioService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
-public class LoginController2 {
+public class LoginController {
     
     private LdapSeguridad ldapSeguridad = new LdapSeguridad();
     
@@ -49,13 +51,12 @@ public class LoginController2 {
 //        return "login";
 //    }
     
-    @RequestMapping(value="/login2.htm", method=RequestMethod.POST)
-    public ModelAndView login2(HttpServletRequest req) {  
+    @RequestMapping(value="/login.htm", method=RequestMethod.POST)
+    public ModelAndView login(HttpServletRequest req) {  
     	ModelAndView model = new ModelAndView();
     	String idUsuario = req.getParameter("idUsuario");
         String clave = req.getParameter("clave");
     	String mensaje = "";
-    	String pagina = "redirect:/producto/verProductos.htm";
         if(idUsuario != null){
             try{
                 Integer resultado = -1;
@@ -96,8 +97,7 @@ public class LoginController2 {
                                 cargaValoresOrganizacionales(idAplicacion,usuario,idUnidadMinera);                                                             
                                 session.setAttribute("puestoPorUsuario", puestoPorUsuario);                                
                                 session.setAttribute("session_usuario", usuario);
-//                                model.setViewName("panelPrincipal");
-                                return new ModelAndView("redirect:/area/verAreas.htm");
+                                return new ModelAndView("redirect:/home/bienvenida.htm");
                             }else{
                                 mensaje = "Ud. no tiene acceso al sistema."; 
                             }
@@ -170,4 +170,28 @@ public class LoginController2 {
         }        
         usuario.setLst_valoresOrganizacionales(listaValoresOrganizaciones);
     }
+	
+	
+	@RequestMapping(value = "/accessDenied.htm")
+	public ModelAndView accessDenied(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		return new ModelAndView("error403");
+	}
+	
+	@RequestMapping(value = "/noFound.htm")
+	public ModelAndView noFound(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		return new ModelAndView("error404");
+	}
+	
+	@RequestMapping(value="/logout.htm", method={RequestMethod.GET})
+    public String logout(HttpServletRequest req, HttpServletResponse res) {
+    	HttpSession session = req.getSession();
+    	session.invalidate();
+//    	req.setAttribute("cerrar", "true");
+    	return "templatelogin";
+    }
+    
 }

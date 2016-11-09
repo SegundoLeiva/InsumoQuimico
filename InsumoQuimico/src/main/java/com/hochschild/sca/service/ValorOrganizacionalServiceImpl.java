@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hochschild.insumoQuimico.dao.UnidadMineraDao;
+import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.sca.dao.ValorOrganizacionalDAO;
 import com.hochschild.sca.domain.ValorOrganizacional;
@@ -15,8 +17,8 @@ import com.hochschild.sca.domain.ValorOrganizacional;
 public class ValorOrganizacionalServiceImpl implements ValorOrganizacionalService {
     @Autowired
     private ValorOrganizacionalDAO valorOrganizacionalDAO;
-//    @Autowired
-//    private UnidadMineraDao unidadMineraDAO;
+    @Autowired
+    private UnidadMineraDao unidadMineraDAO;
 
     public List<ValorOrganizacionalSesion> getValores(String idAplicacion, String idUsuario, String idEstructura) {
         List<ValorOrganizacional> valores = valorOrganizacionalDAO.getValoresOrganizacionales(Integer.parseInt(idAplicacion), idUsuario, idEstructura);
@@ -53,16 +55,16 @@ public class ValorOrganizacionalServiceImpl implements ValorOrganizacionalServic
         if (tipoValorIsUnidadMinera(tipoValorOrganizacional)) {
 
             List<String> idUnidadesMineras = cargaListaId(valores);
-//            List<UnidadMinera> unidades = unidadMineraDAO.getListaVigentesPorIds(idUnidadesMineras);
-//            
-//            if (!unidades.isEmpty()) {
-//                HashMap<String, ValorOrganizacionalSesion> mapaValores = creaMapaValoresOrganizacionales(valores);
-//                for (UnidadMinera unidad : unidades) {
-//                    ValorOrganizacionalSesion item = mapaValores.get(unidad.getIdUnidadMinera());
-//                    item.setDescripcion(unidad.getAbreviaturaUnidadMinera());
-//                    listaOrdenada.add(item);
-//                }
-//            }
+            List<UnidadMinera> unidades = unidadMineraDAO.getListaVigentesPorIds(idUnidadesMineras);
+            
+            if (!unidades.isEmpty()) {
+                HashMap<String, ValorOrganizacionalSesion> mapaValores = creaMapaValoresOrganizacionales(valores);
+                for (UnidadMinera unidad : unidades) {
+                    ValorOrganizacionalSesion item = mapaValores.get(unidad.getIdUnidadMinera());
+                    item.setDescripcion(unidad.getAbreviaturaUnidadMinera());
+                    listaOrdenada.add(item);
+                }
+            }
         }
         return listaOrdenada;
     }

@@ -27,7 +27,7 @@
 
 
 		<security:form-login login-page="/login.htm"
-			default-target-url="/list.htm" login-processing-url="/j_spring_security_check.htm"
+			default-target-url="/home/bienvenida.htm" login-processing-url="/j_spring_security_check.htm"
 			authentication-failure-url="/login.htm?error=true" />
 
 		<security:logout logout-success-url="/login.htm"

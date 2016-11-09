@@ -2,6 +2,7 @@ package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

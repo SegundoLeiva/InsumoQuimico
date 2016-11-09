@@ -13,6 +13,5 @@
 }
 
 .codigoDisabled input[readonly] {
-    font-weight: bold !important;
     background-color: #FFFF99!important;
 }
