@@ -47,25 +47,6 @@
 		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
 	</definition>
 	
-	<!-- ################################ REGISTRO DE PRODUCTOS ############################## -->
-
-	<definition name="verProductos" extends="templateSistema">
-		<put-attribute name="contenido"
-			value="/WEB-INF/views/producto/verProductos.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
-	</definition>
-	<definition name="nuevoProducto" extends="templateSistema">
-		<put-attribute name="contenido" value="/WEB-INF/views/producto/nuevoProducto.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
-	</definition>
-	
-	<!-- ################################ REGISTRO DE MARCAS ############################## -->
-	<definition name="verMarcas" extends="templateSistema">
-		<put-attribute name="contenido"
-			value="/WEB-INF/views/marca/verMarcas.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/marca/marcaJs.jsp" />
-	</definition>
-	
 	<!-- ################################ REGISTRO DE AREAS ############################## -->
 	<definition name="verAreas" extends="templateSistema">
 	<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
@@ -76,7 +57,24 @@
 		<put-attribute name="contenido" value="/WEB-INF/views/area/nuevaArea.jsp" />
 		<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
 	</definition>
-
 	
+	<!-- ################################ REGISTRO DE INSUMOS ############################## -->
+	<definition name="verInsumos" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/insumo/insumoJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/insumo/verInsumos.jsp" />		
+	</definition>
+	<definition name="nuevoInsumo" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/insumo/nuevoInsumo.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/insumo/insumoJs.jsp" />
+	</definition>
+	
+	<!-- ################################ INGRESO DE MERCADERIAS ############################## -->
+	<definition name="verMercaderias" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/mercaderia/mercaderiaJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/mercaderia/verMercaderias.jsp" />		
+	</definition>
+
 </tiles-definitions>
 

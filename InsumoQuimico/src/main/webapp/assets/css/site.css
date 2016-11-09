@@ -15,3 +15,7 @@
 .codigoDisabled input[readonly] {
     background-color: #FFFF99!important;
 }
+
+.tamanioTextMenu {
+    font-size: 11px;
+}

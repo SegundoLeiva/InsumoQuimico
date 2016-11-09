@@ -58,28 +58,27 @@ $("#agregarArea").click(function(){
 });
 
 function limpiarArea(){
-// 	$("#idUnidadMineraArea").val("");
 	$("#formUnidadMineraArea select").val("");
 }
 
-function modificarArea(idUnidadMineraArea){
-	$.ajax({
-		type : 'post',
-		data: {
-			'idUnidadMineraArea':idUnidadMineraArea
-			},
-		url : '${pageContext.request.contextPath}/area/obtenerUnidadMineraArea.htm',
-		success : function(data) {	
-			obj = JSON.parse(data);
-			$("#idUnidadMineraArea").val(obj.idUnidadMineraArea);
-			$("#idUnidadMinera").val(obj.idUnidadMinera);
-			$("#idArea").val(obj.area.idArea);
-			$("#vigencia").val(obj.vigencia);
-			$("#tituloText").html("Modificar Área");
-			$("#agregarArea").html("Modificar");
-			$("#nuevaArea").modal("show");
-		}
-	});
-}
+// function modificarArea(idUnidadMineraArea){
+// 	$.ajax({
+// 		type : 'post',
+// 		data: {
+// 			'idUnidadMineraArea':idUnidadMineraArea
+// 			},
+// 		url : '${pageContext.request.contextPath}/area/obtenerUnidadMineraArea.htm',
+// 		success : function(data) {	
+// 			obj = JSON.parse(data);
+// 			$("#idUnidadMineraArea").val(obj.idUnidadMineraArea);
+// 			$("#idUnidadMinera").val(obj.idUnidadMinera);
+// 			$("#idArea").val(obj.area.idArea);
+// 			$("#vigencia").val(obj.vigencia);
+// 			$("#tituloText").html("Modificar Área");
+// 			$("#agregarArea").html("Modificar");
+// 			$("#nuevaArea").modal("show");
+// 		}
+// 	});
+// }
 	
 </script>

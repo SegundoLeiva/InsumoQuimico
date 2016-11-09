@@ -1,18 +1,11 @@
 <script src="../assets/js/jquery.dataTables.min.js"></script>
 <script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
-
-<!--inline scripts related to this page-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
-    $('#tablaProducto').DataTable({
-		"aoColumns" : [ {
-			"bSortable" : false
-		}, null,null,null,{
-			"bSortable" : false
-		} ]
-	});
+
 } );
-	
+
 </script>
