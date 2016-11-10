@@ -24,8 +24,6 @@
 		</a>
 
 			<ul class="submenu" style="display: block;">
-				<li id="productos" class="<c:if test="${index==1}">active</c:if>"><a href="../producto/verProductos.htm"
-				class="tamanioTextMenu"><i class="icon-align-justify tamanioTextMenu"></i> Productos </a></li>
 
 				<li id="ingresarMercaderia" class="<c:if test="${index==4}">active</c:if>"><a href="../ingresarMercaderia/verMercaderias.htm"
 				class="tamanioTextMenu"><i class="icon-align-justify "></i> Ingresar Mercadería </a></li>

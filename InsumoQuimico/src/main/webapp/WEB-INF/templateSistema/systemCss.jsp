@@ -3,8 +3,8 @@
 <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap-responsive.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/font-awesome.min.css"/>"  />
-
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+<%-- <link rel="stylesheet" href="<c:url value="/assets/css/dataTables.min.css"/>"  /> --%>
+<link rel="stylesheet" href="<c:url value="/assets/css/fontFamily.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/jquery-ui-1.10.3.custom.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/ace.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/chosen.css"/>" />

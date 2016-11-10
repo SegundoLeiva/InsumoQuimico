@@ -44,7 +44,7 @@
 	<definition name="panelPrincipal" extends="templateSistema">
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/home/panelPrincipal.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/producto/productoJs.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/home/panelPrincipalJs.jsp" />
 	</definition>
 	
 	<!-- ################################ REGISTRO DE AREAS ############################## -->
@@ -71,9 +71,14 @@
 	
 	<!-- ################################ INGRESO DE MERCADERIAS ############################## -->
 	<definition name="verMercaderias" extends="templateSistema">
-		<put-attribute name="js2" value="/WEB-INF/views/mercaderia/mercaderiaJs.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/mercaderia/verMercaderiasJs.jsp" />
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/mercaderia/verMercaderias.jsp" />		
+	</definition>
+	<definition name="nuevaMercaderia" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/mercaderia/nuevaMercaderiaJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/mercaderia/nuevaMercaderia.jsp" />		
 	</definition>
 
 </tiles-definitions>

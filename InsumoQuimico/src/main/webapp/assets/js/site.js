@@ -1,5 +1,11 @@
+var INDICADOR_NUEVO = '0';
+var INDICADOR_CREADO = '1';
+var INDICADOR_MODIFICADO = '2';
+var INDICADOR_ELIMINADO = '3';
+
 $(document).on("ready", function() {
-		alertify.set('notifier','position', 'top-right');
+	alertify.set('notifier','position', 'top-right');
+	$(".date-picker").datepicker();
 });
 function validarCamposRequeridos(idFormulario){
 	if(!inputRequeridos(idFormulario)){

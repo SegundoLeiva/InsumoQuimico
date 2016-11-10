@@ -3,9 +3,7 @@
 <div class="row-fluid">
 	<div class="span12">
 
-		<div class="table-header"
-			style="background: #2283c5; padding-left: 5px; padding-bottom: 2px;">
-
+		<div class="header table-header">
 			<a href="../area/nuevaArea.htm"
 				title="Nueva Área" class="btn btn-small btn-primary"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar

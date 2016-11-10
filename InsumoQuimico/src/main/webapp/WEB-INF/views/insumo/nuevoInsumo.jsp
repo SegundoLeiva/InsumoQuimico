@@ -11,17 +11,20 @@
 <div class="page-header position-relative">
 	<form id="formUnidadMineraInsumo" method="POST" class="form-horizontal">
 	<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" value="${unidadMineraInsumo.idUnidadMineraInsumo}">
-	<input type="hidden" name="idUnidadMinera" value="${listaUnidadesMineras[0].valorOrganizacional}">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span10">
 
 					<div class="row-fluid">
 						<div class="span6">
-							<div class="control-group codigoDisabled">
-								<label class="control-label" for="idUnidadMinera">Código</label>
+							<div class="control-group">
+								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<input type="text" value="${listaUnidadesMineras[0].descripcion}" readonly>
+									<select name="idUnidadMinera" id="idUnidadMinera">
+										<c:forEach var="item" items="${listaUnidadesMineras}">
+											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="control-group">
