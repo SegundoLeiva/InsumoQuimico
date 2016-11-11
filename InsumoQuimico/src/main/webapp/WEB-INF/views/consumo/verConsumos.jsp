@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <div class="page-header">
 	<h1>
-		Ingresar Mercadería <span> <i class="icon-double-angle-right"></i>
+		Registrar Consumo <span> <i class="icon-double-angle-right"></i>
 		</span><a href="#" title="Buscar"
 			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
 	</h1>
@@ -25,22 +25,12 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="idProveedor">Proveedor</label>
-								<div class="controls">									
-									<select name="idProveedor" id="idProveedor" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="guiaRemision">Guía Remisión</label>
+								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly">
 								</div>
 							</div>
+							
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -55,16 +45,16 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Inicio</label>
+								<label class="control-label" for="fecha">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly">
 								</div>
 							</div>
 
 						</div>
 						<div class="span4">
 						<div class="control-group">
-								<label class="control-label" for="idProveedor">Proveedor</label>
+								<label class="control-label" for="idProveedor">Área</label>
 								<div class="controls">									
 									<select name="idProveedor" id="idProveedor" required
 										data-msg-required="El campo Estado es obligatorio.">
@@ -73,13 +63,7 @@
 										<option value="N">NO VIGENTE</option>
 									</select>
 								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Fin</label>
-								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly">
-								</div>
-							</div>
+							</div>						
 						</div>
 					</div>
 				</div>
@@ -89,7 +73,7 @@
 
 	</form>
 	<div class="header table-header">
-			<a href="../ingresarMercaderia/nuevaMercaderia.htm"
+			<a href="../registrarConsumo/nuevoConsumo.htm"
 				title="Nuevo Ingreso" class="btn btn-small btn-primary"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Nuevo</a>
 

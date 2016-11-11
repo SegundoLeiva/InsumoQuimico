@@ -2,9 +2,8 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
+import com.hochschild.insumoQuimico.controller.InsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
-
-import controller.InsumoParametrosEntrada;
 
 public interface UnidadMineraInsumoService {
 

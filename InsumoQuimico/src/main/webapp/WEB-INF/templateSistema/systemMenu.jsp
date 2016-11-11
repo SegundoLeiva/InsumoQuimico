@@ -27,6 +27,8 @@
 
 				<li id="ingresarMercaderia" class="<c:if test="${index==4}">active</c:if>"><a href="../ingresarMercaderia/verMercaderias.htm"
 				class="tamanioTextMenu"><i class="icon-align-justify "></i> Ingresar Mercadería </a></li>
+				<li id="ingresarMercaderia" class="<c:if test="${index==6}">active</c:if>"><a href="../registrarConsumo/verConsumos.htm"
+				class="tamanioTextMenu"><i class="icon-align-justify "></i> Registrar Consumo </a></li>
 			</ul>
 		</li>
 

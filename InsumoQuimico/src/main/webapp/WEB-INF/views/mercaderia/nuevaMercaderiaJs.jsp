@@ -4,24 +4,17 @@
 
 <script type="text/javascript">
 var mercaderiaJSONArray = [];
-var table;
 
 $(document).ready(function() {
-
-	 $('#tablaMercaderiaDetalle').DataTable({
-		 	"bSort" : false,
-			"bFilter": false, 
-			"bLengthChange": false,
-			"bInfo": false,
-			"bPaginate": false,
-			"columnDefs": [
-			                { className: "center", "targets": [0,1,2,3] }
-			              ]
-	 });
+	var data = {
+			tabla:"#tablaMercaderiaDetalle"
+			};
+	
+	inicializarParametros(data);
+	
 	 $("#tablaMercaderiaDetalle_wrapper").removeClass("dataTables_wrapper");
 	 $("#tablaMercaderiaDetalle_wrapper div.row-fluid").remove();
 	 $('#tablaMercaderiaDetalle tbody').find("tr.odd").remove();
-	 table = $('#tablaMercaderiaDetalle').DataTable();
 
 } );
 
@@ -34,23 +27,21 @@ $("#agregarMercaderiaDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleMercaderia")){		 
  		 	agregarJsonMercaderiaDetalle();	
 			var agregarFila = '<tr>'+
-				  '<td class="center"><label><input type="checkbox" class="checkMercaderia"><span class="lbl"></span></label></td>'+
+				  '<td class="center"><label><input type="checkbox" class="checkDetalle"><span class="lbl"></span></label></td>'+
 				  '<td class=" center">'+$("#idInsumo option:selected").text()+'</td>'+
 				  '<td class=" center">'+$("#cantidad").val()+'</td>'+
 				  '<td class=" center">Kg</td>'+
 				  '<tr>';
 
-			$('#tablaMercaderiaDetalle tBody').append(agregarFila)
+			$('#tablaMercaderiaDetalle tBody').append(agregarFila);
 		 	$("#modalDetalleMercaderia").modal("hide");
 	 }
 	
 });
 
-
-
 function agregarJsonMercaderiaDetalle(){
 	 var mercaderiaJSON = {
-			    idMercaderiaDetalle:'',
+			    idDetalle:'',
 			    codigoMaterial: $("#idInsumo").val(),
 			    cantidad:$("#cantidad").val(),
 			    unidadmedida:'Kg',
@@ -59,40 +50,6 @@ function agregarJsonMercaderiaDetalle(){
 }
 
 $("#eliminarMercaderiaDetalle").click(function(){
-	var arrayCheckbox = $('#tablaMercaderiaDetalle .checkMercaderia:checked');
-	var dimCheck = arrayCheckbox.length;
-	var indexArray=0;
-	if(dimCheck > 0) {
-		alertify.confirm("Eliminar","¿Está seguro en eliminar los items seleccionados?",
-				function(){
-			//Eliminando la fila en vista
-  		  		for(var i = 0;i<dimCheck;i++){	  
-		        	var obtenerFila=$(arrayCheckbox[i]).closest("tr");
-		        	if(arrayCheckbox[i].checked){		        		
-		        		if(mercaderiaJSONArray[indexArray].idMercaderiaDetalle==""){
-		        			arrayCheckbox[i].closest("tr").remove();
-		        			mercaderiaJSONArray.splice(indexArray,1);		        			
-		        		}else{
-		        			mercaderiaJSONArray[i].indicadorBD=INDICADOR_ELIMINADO;
-		        			obtenerFila.hide();
-		        			indexArray++;
-		        		}
-		        		
-		        	}	            
-		        }	
-						  },
-				function(){});
-	}else{
-		alertify.alert("Alerta","Seleccione un registro para eliminar");
-	}
+	eliminarDetalle(mercaderiaJSONArray);
 });
-
-
-$(".checkSelectedAll").click(function(){
-	 $('#tablaMercaderiaDetalle input:checkbox').not(this).prop('checked', this.checked);
-});
-	
-
-
-
 </script>

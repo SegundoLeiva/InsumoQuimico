@@ -20,7 +20,11 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<input type="text" class="form-control" >
+									<select name="idUnidadMinera" id="idUnidadMinera">
+										<c:forEach var="item" items="${listaUnidadesMineras}">
+											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+										</c:forEach>
+									</select>
 								</div>
 							</div>
 							<div class="control-group">
@@ -33,13 +37,14 @@
 										<option value="N">NO VIGENTE</option>
 									</select>
 								</div>
-							</div>
+							</div>	
 							<div class="control-group">
-								<label class="control-label" for="guiaRemision">Guía Remisión</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision">
+								<label class="control-label" for="fecha">Código Mercadería</label>
+								<div class="controls codigoDisabled">
+									<input type="text" class="form-control" name="codigoMercaderia" id="codigoMercaderia" 
+									readonly="readonly" >
 								</div>
-							</div>
+							</div>					
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -58,14 +63,13 @@
 								<div class="controls">
 									<input type="text" class="form-control" name="transporte" id="transporte">
 								</div>
-							</div>
+							</div>	
 							<div class="control-group">
-								<label class="control-label" for="guiaInterna">Guía Interna</label>
+								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision">
 								</div>
-							</div>
-
+							</div>					
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -75,12 +79,18 @@
 								</div>
 							</div>
 							<div class="control-group">
+								<label class="control-label" for="guiaInterna">Guía Interna</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna">
+								</div>
+							</div>
+							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha</label>
 								<div class="controls">
 									<input type="text" class="form-control" name="fecha" id="fecha" 
 									readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
 								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
 				</div>

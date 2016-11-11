@@ -1,4 +1,4 @@
-package controller;
+package com.hochschild.insumoQuimico.controller;
 
 import java.io.IOException;
 import java.util.List;
