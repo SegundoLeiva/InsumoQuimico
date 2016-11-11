@@ -98,7 +98,7 @@
 								<label><input type="checkbox" class="checkSelectedAll">
 								<span class="lbl"></span></label>
 							</th>
-							<th class="center" width="40%">Material</th>
+							<th class="center" width="40%">Insumo</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Unidad Medida</th>
 						</tr>

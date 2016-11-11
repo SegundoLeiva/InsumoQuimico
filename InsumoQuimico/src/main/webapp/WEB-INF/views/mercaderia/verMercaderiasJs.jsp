@@ -5,15 +5,26 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+	<c:if test="${flagTransaccion=='eliminar'}">
+		alertify.success("Se eliminó correctamente");
+	</c:if>
+
+	$('#tablaMercaderia').DataTable({
+	 	"bSort" : false,
+		"columnDefs": [
+		                { className: "center"}
+		              ]
+ });
 	
-	 $('#tablaMercaderia').DataTable({
-			"aoColumns" : [ {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false}
-			               ]
-	 });
 } );
+
+function eliminarMercaderia(idMercaderia) {
+	$("#idMercaderia").val(idMercaderia);
+	alertify.confirm("Eliminar","¿Seguro que desea eliminar esta mercadería?",
+			function(){
+				$("#formVerMercaderias").submit();
+			 },
+			function(){});
+}
 
 </script>

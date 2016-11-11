@@ -5,12 +5,14 @@
 <div class="page-header">
 	<h1>
 		Registrar Ingreso de Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../area/verAreas.htm" title="Guardar Mercadería"
+		</span><a href="../ingresarMercaderia/verMercaderias.htm" title="Ver Mercaderías" style="margin-left: 5px"
+			class="btn btn-success btn-small pull-right"><i class="icon-tasks"></i>Listar</a>
+			<a href="#" id="guardarMercaderia" title="Guardar Mercadería"
 			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>
 	</h1>
 </div>
 <div class="page-header position-relative">
-	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
+	<form id="formMercaderia" method="POST" class="form-horizontal">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -41,7 +43,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Código Mercadería</label>
 								<div class="controls codigoDisabled">
-									<input type="text" class="form-control" name="codigoMercaderia" id="codigoMercaderia" 
+									<input type="text" class="form-control" name="idMercaderia" id="idMercaderia" 
 									readonly="readonly" >
 								</div>
 							</div>					
@@ -50,11 +52,10 @@
 							<div class="control-group">
 								<label class="control-label" for="idAlmacen">Almacén</label>
 								<div class="controls">									
-									<select name="idAlmacen" id="idAlmacen" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
+									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
+										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
+											<option value="${item.idUnidadMineraAlmacen}">${item.almacen.almacen}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -87,7 +88,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="fecha" id="fecha" 
+									<input type="text" class="form-control" name="fechaMercaderia" id="fechaMercaderia" 
 									readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
 								</div>
 							</div>							
@@ -99,18 +100,13 @@
 		</div>
 
 	</form>
-<!-- 	<div class="actions form-actions"> -->
-
-<!-- 			<a title="Agregar Detalle" id="agregarDetalle" -->
-<!-- 				class="btn btn-small btn-success"> -->
-<!-- 				<i class="icon-save bigger-110"></i>Agregar -->
-<!-- 			</a> -->
-<!-- 		</div> -->
 	<div class="header table-header">
 			<a href="#" title="Agregar Detalle" class="btn btn-small btn-primary" id="abrirDetalleMercaderia"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar</a>
 			<a href="#" title="Eliminar Detalle" class="btn btn-small btn-primary" id="eliminarMercaderiaDetalle"
 				style="border: 1px solid #c4e7ff;"><i class="icon-trash"></i>Eliminar</a>
+			<a href="#" title="Editar Detalle" class="btn btn-small btn-primary" id="abrirDetalleEditar"
+				style="border: 1px solid #c4e7ff;"><i class="icon-edit"></i>Editar</a>
 
 	</div>
 	<table id="tablaMercaderiaDetalle"
@@ -121,7 +117,8 @@
 								<label><input type="checkbox" class="checkSelectedAll">
 								<span class="lbl"></span></label>
 							</th>
-							<th class="center" width="40%">Material</th>
+							<th class="center" width="10%">Código</th>
+							<th class="center" width="50%">Descripcion</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Unidad Medida</th>
 						</tr>

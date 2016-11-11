@@ -25,7 +25,7 @@
 							<div class="control-group">
 								<label class="control-label" for="cantidad">Cantidad</label>
 								<div class="controls">
-									<input type="text" id="cantidad" required data-msg-required="El campo Cantidad es obligatorio.">
+									<input type="number" id="cantidad" required data-msg-required="El campo Cantidad es obligatorio.">
 								</div>
 							</div>
 							
@@ -36,7 +36,10 @@
 	<div class="modal-footer">
 		<a title="Agregar" id="agregarMercaderiaDetalle"
 				class="btn btn-small btn-success">Agregar
-			</a>
+		</a>
+		<a title="Editar" id="editarMercaderiaDetalle"
+				class="btn btn-small btn-success">Editar
+		</a>
 		<button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 	</div>
 </div>

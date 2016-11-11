@@ -9,6 +9,7 @@ $(document).on("ready", function() {
 	alertify.set('notifier','position', 'top-right');
 	$(".date-picker").datepicker();
 });
+
 function validarCamposRequeridos(idFormulario){
 	if(!inputRequeridos(idFormulario)){
 		return false;
@@ -98,15 +99,22 @@ function eliminarDetalle(arrayJson){
 		        			arrayJson.splice(indexArray,1);		        			
 		        		}else{
 		        			arrayJson[i].indicadorBD=INDICADOR_ELIMINADO;
-		        			obtenerFila.hide();
+		        			obtenerFila.addClass("hidden");
 		        			indexArray++;
 		        		}
 		        		
 		        	}	            
 		        }	
+  		  	    $(".checkSelectedAll").removeAttr("checked");
 						  },
 				function(){});
 	}else{
 		alertify.alert("Alerta","Seleccione un registro para eliminar");
 	}
+}
+
+function inicializarStyleTablaDetalle(){
+	 $(tabla+"_wrapper").removeClass("dataTables_wrapper");
+	 $(tabla+"_wrapper div.row-fluid").remove();
+	 $(tabla+" tbody").find("tr.odd").remove();
 }
