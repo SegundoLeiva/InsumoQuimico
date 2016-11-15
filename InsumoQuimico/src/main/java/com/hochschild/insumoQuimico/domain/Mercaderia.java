@@ -1,6 +1,7 @@
 package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Mercaderia")
-public class Mercaderia extends BaseAuditoria implements Serializable {
+public class Mercaderia implements Serializable {
 
 	/**
 	 * 
@@ -33,6 +34,11 @@ public class Mercaderia extends BaseAuditoria implements Serializable {
     private String guiaRemision;
     private String comprobanteVenta;
     private String guiaInterna;
+    private String idUsuarioCreacion;
+	private Date fechaCreacion;
+	private String idUsuarioModificacion;
+	private Date fechaModificacion;
+	
 	public String getIdMercaderia() {
 		return idMercaderia;
 	}
@@ -75,5 +81,28 @@ public class Mercaderia extends BaseAuditoria implements Serializable {
 	public void setGuiaInterna(String guiaInterna) {
 		this.guiaInterna = guiaInterna;
 	}
-  
+	public String getIdUsuarioCreacion() {
+		return idUsuarioCreacion;
+	}
+	public void setIdUsuarioCreacion(String idUsuarioCreacion) {
+		this.idUsuarioCreacion = idUsuarioCreacion;
+	}
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	public String getIdUsuarioModificacion() {
+		return idUsuarioModificacion;
+	}
+	public void setIdUsuarioModificacion(String idUsuarioModificacion) {
+		this.idUsuarioModificacion = idUsuarioModificacion;
+	}
+	public Date getFechaModificacion() {
+		return fechaModificacion;
+	}
+	public void setFechaModificacion(Date fechaModificacion) {
+		this.fechaModificacion = fechaModificacion;
+	}
 }

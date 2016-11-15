@@ -13,6 +13,7 @@
 </div>
 <div class="page-header position-relative">
 	<form id="formMercaderia" method="POST" class="form-horizontal">
+	<input type="hidden" value="${flagEditar}" id="flagEditar">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -44,7 +45,7 @@
 								<label class="control-label" for="fecha">Código Mercadería</label>
 								<div class="controls codigoDisabled">
 									<input type="text" class="form-control" name="idMercaderia" id="idMercaderia" 
-									readonly="readonly" >
+									readonly="readonly" value="${mercaderia.idMercaderia}">
 								</div>
 							</div>					
 						</div>
@@ -54,7 +55,7 @@
 								<div class="controls">									
 									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}">${item.almacen.almacen}</option>
+											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == mercaderia.unidadMineraAlmacen.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -62,13 +63,13 @@
 							<div class="control-group">
 								<label class="control-label" for="transporte">Transporte</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="transporte" id="transporte">
+									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}">
 								</div>
 							</div>	
 							<div class="control-group">
 								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}">
 								</div>
 							</div>					
 						</div>
@@ -76,13 +77,13 @@
 							<div class="control-group">
 								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta">
+									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="guiaInterna">Guía Interna</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna">
+									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}">
 								</div>
 							</div>
 							<div class="control-group">

@@ -14,6 +14,37 @@ $(document).ready(function() {
 	
 	inicializarParametros(data);
 	inicializarStyleTablaDetalle();
+	
+	if($("#flagEditar").val()=="flagEditar"){
+//		$(loading).show();
+
+
+		$.ajax({
+			type : 'post',
+			data: {'idMercaderia': $("#idMercaderia").val()},
+			url : '${pageContext.request.contextPath}/ingresarMercaderia/listaMercaderiaDetalle.htm',
+			success : function(data) {	
+				var jsonData = JSON.parse(data);
+				for (var i = 0; i < jsonData.length; i++) {
+					agregarJsonMercaderiaDetalle();	
+					var agregarFila = "<tr>"+
+						  "<td class='center'><label><input type='checkbox' class='checkDetalle'><span class='lbl'></span></label></td>"+
+						  "<td class='center idInsumo'>"+jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo+"</td>"+
+						  "<td class='center descripcion'>"+jsonData[i].unidadMineraInsumo.insumo.insumo+"</td>"+
+						  "<td class='center cantidad'>"+jsonData[i].cantidad+"</td>"+
+						  "<td class='center'>Kg</td>"+
+						  "</tr>";
+					 $('#tablaMercaderiaDetalle tBody').append(agregarFila);
+					 mercaderiaJSONArray[i].idDetalle=(jsonData[i].id.idMercaderiaDetalle).toString();
+					 mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;
+					
+				}		
+				
+				index = (jsonData[jsonData.length-1].id.idSolicitudPedidoDetalle+1).toString();
+
+			}
+		});
+	}
 
 } );
 
@@ -103,7 +134,7 @@ function agregarJsonMercaderiaDetalle(){
 			    idDetalle:'',
 			    idUnidadMineraInsumo: $("#idInsumo").val(),
 			    cantidad:$("#cantidad").val(),
-			    unidadmedida:'Kg',
+			    unidadMedida:'Kg',
 			    indicadorBD: INDICADOR_NUEVO};
 	 mercaderiaJSONArray.push(mercaderiaJSON);
 }
@@ -122,50 +153,62 @@ function setearCampo(clase,data){
 }
 
 $("#guardarMercaderia").click(function(){
-	alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
-			function(){
-		$.ajax({
-			type : 'post',
-			data: {
-				idMercaderia:$("#idMercaderia").val(),
-				idUnidadMinera:$("#idUnidadMinera").val(),
-				idUnidadMineraAlmacen:$("#idUnidadMineraAlmacen").val(),
-				transporte:$("#idUnidadMinera").val(),
-				guiaRemision:$("#guiaRemision").val(),
-				comprobanteVenta:$("#comprobanteVenta").val(),
-				guiaInterna:$("#guiaInterna").val(),
- 				mercaderiaJSONArray: JSON.stringify(mercaderiaJSONArray)
-				
-			},
-			url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
-			success : function(data) {
-				if(data!=""){					
-					for (var j = 0; j < mercaderiaJSONArray.length; j++) {
-						if(mercaderiaJSONArray[j].indicadorBD==INDICADOR_ELIMINADO){
-							mercaderiaJSONArray.splice(j,1);
-							$("#tablaMercaderiaDetalle > tbody").find("tr.hidden").remove();
-						}
-					}
-
-					for (var i = 0; i < mercaderiaJSONArray.length; i++) {
-						if(mercaderiaJSONArray[i].idDetalle==""){
-							mercaderiaJSONArray[i].idDetalle=(index).toString();
-							mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;								
-							index++;
-						}
-					}
-// 					index = (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
-					$("#idMercaderia").val(data);
-
-					mensajeTransaccion("guardar");					
+	if(fnValidarGuardarMercaderia()){
+		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
+				function(){
+			$.ajax({
+				type : 'post',
+				data: {
+					idMercaderia:$("#idMercaderia").val(),
+					idUnidadMinera:$("#idUnidadMinera").val(),
+					idUnidadMineraAlmacen:$("#idUnidadMineraAlmacen").val(),
+					transporte:$("#transporte").val(),
+					guiaRemision:$("#guiaRemision").val(),
+					comprobanteVenta:$("#comprobanteVenta").val(),
+					guiaInterna:$("#guiaInterna").val(),
+					index:index,
+	 				mercaderiaJSONArray: JSON.stringify(mercaderiaJSONArray)
 					
-				}else{
-					mensajeTransaccion("error");
+				},
+				url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
+				success : function(data) {
+					if(data!=""){					
+						for (var j = 0; j < mercaderiaJSONArray.length; j++) {
+							if(mercaderiaJSONArray[j].indicadorBD==INDICADOR_ELIMINADO){
+								mercaderiaJSONArray.splice(j,1);
+								$("#tablaMercaderiaDetalle > tbody").find("tr.hidden").remove();
+							}
+						}
+	
+						for (var i = 0; i < mercaderiaJSONArray.length; i++) {
+							if(mercaderiaJSONArray[i].idDetalle==""){
+								mercaderiaJSONArray[i].idDetalle=(index).toString();
+								mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;								
+								index++;
+							}
+						}
+						index = (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
+						$("#idMercaderia").val(data);
+	
+						mensajeTransaccion("guardar");					
+						
+					}else{
+						mensajeTransaccion("error");
+					}
+					
 				}
-				
-			}
-		});
-					  },
-			function(){});
+			});
+						  },
+				function(){});
+	}
 });
+
+function fnValidarGuardarMercaderia(){
+	if(mercaderiaJSONArray.length==0){
+		alertify.error("Mínimo debe registrar un detalle");
+		return false;
+	}
+	
+	return true;
+}
 </script>

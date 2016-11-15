@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.domain.Mercaderia;
+import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
+import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
@@ -35,6 +38,8 @@ public class IngresarMercaderiaController extends BaseController{
     private UnidadMineraAlmacenService unidadMineraAlmacenService;
 	@Autowired
     private MercaderiaService mercaderiaService;
+	@Autowired
+    private MercaderiaDetalleService mercaderiaDetalleService;
 	
 	@RequestMapping(value = "/verMercaderias.htm")
 	public String verMercaderias(Model model,HttpSession sesion,HttpServletRequest req) {
@@ -78,5 +83,40 @@ public class IngresarMercaderiaController extends BaseController{
 		mercaderiaService.eliminarMercaderia(idMercaderia);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
 		return this.verMercaderias(model,sesion,req);
+	}
+	
+	@RequestMapping(value = { "/modificarMercaderia.htm" }, method = {RequestMethod.POST, RequestMethod.GET })
+	public String modificarMercaderia(HttpSession sesion,
+			@RequestParam String idMercaderia, Model model) throws IOException {
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
+		model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
+		List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
+		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
+		Mercaderia mercaderia = mercaderiaService.obtieneMercaderiaPorId(idMercaderia);
+		model.addAttribute("mercaderia", mercaderia);
+		model.addAttribute("index", "4");
+		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
+		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumo());
+		return "nuevaMercaderia";
+	}
+	
+	@RequestMapping(value = "/listaMercaderiaDetalle.htm", method = { RequestMethod.POST })
+	@ResponseBody
+	public String listaMercaderiaDetalle(@RequestParam("idMercaderia") String idMercaderia) {
+
+		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(idMercaderia);
+
+		String resultado = "";
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			resultado = mapper.writer().writeValueAsString(listaMercaderiaDetalle);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return resultado;
+
 	}
 }

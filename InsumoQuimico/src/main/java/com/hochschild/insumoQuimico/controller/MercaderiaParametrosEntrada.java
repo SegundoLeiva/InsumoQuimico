@@ -2,7 +2,7 @@ package com.hochschild.insumoQuimico.controller;
 
 import java.io.Serializable;
 
-import org.json.simple.JSONArray;
+import org.json.JSONArray;
 
 public class MercaderiaParametrosEntrada implements Serializable{
 	/**
