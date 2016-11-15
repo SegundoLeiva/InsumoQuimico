@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
-import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.service.AreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
+import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -38,7 +39,7 @@ public class AreaController extends BaseController{
 	public String verAreas(Model model,HttpServletRequest req) {
 		model.addAttribute("listaUnidadMineraArea", this.unidadMineraAreaService.listaUnidadMineraArea());
 		model.addAttribute(Constantes.FLAG_TRANSACCION, req.getAttribute(Constantes.FLAG_TRANSACCION));
-		model.addAttribute("index", "3");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "verAreas";
 	}
 	
@@ -67,7 +68,7 @@ public class AreaController extends BaseController{
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listaAreas", this.areaService.listaArea());
-		model.addAttribute("index", "3");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "nuevoArea";
 	}
 
@@ -88,7 +89,7 @@ public class AreaController extends BaseController{
 	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("unidadMineraArea", unidadMineraArea);
 		model.addAttribute("listaAreas", this.areaService.listaArea());
-		model.addAttribute("index", "3");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "nuevoArea";
 	}
 

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.hochschild.insumoQuimico.controller.Constantes;
 import com.hochschild.insumoQuimico.controller.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.dao.MercaderiaDAO;
 import com.hochschild.insumoQuimico.dao.MercaderiaDetalleDAO;
@@ -19,6 +18,7 @@ import com.hochschild.insumoQuimico.domain.MercaderiaDetalle.IdMercaderia;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
 public class MercaderiaServiceImpl implements MercaderiaService {

@@ -25,6 +25,7 @@ import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -50,7 +51,7 @@ public class IngresarMercaderiaController extends BaseController{
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<Mercaderia> listaMercaderias = mercaderiaService.listaMercaderia();
         model.addAttribute("listaMercaderias", listaMercaderias);
-		model.addAttribute("index", "4");
+		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		return "verMercaderias";
 	}
 	
@@ -61,7 +62,7 @@ public class IngresarMercaderiaController extends BaseController{
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        model.addAttribute("index", "4");
+        model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		return "nuevaMercaderia";
 	}
@@ -95,13 +96,13 @@ public class IngresarMercaderiaController extends BaseController{
 		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
 		Mercaderia mercaderia = mercaderiaService.obtieneMercaderiaPorId(idMercaderia);
 		model.addAttribute("mercaderia", mercaderia);
-		model.addAttribute("index", "4");
+		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
 		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		return "nuevaMercaderia";
 	}
 	
-	@RequestMapping(value = "/listaMercaderiaDetalle.htm", method = { RequestMethod.POST })
+	@RequestMapping(value = "/listaMercaderiaDetalle.htm", method = RequestMethod.POST)
 	@ResponseBody
 	public String listaMercaderiaDetalle(@RequestParam("idMercaderia") String idMercaderia) {
 

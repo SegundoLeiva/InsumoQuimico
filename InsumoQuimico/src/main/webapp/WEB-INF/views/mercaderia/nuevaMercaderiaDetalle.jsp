@@ -1,4 +1,4 @@
-<div id="modalDetalleMercaderia" class="modal hide fade" tabindex="-1"
+<div id="modalDetalleForm" class="modal hide fade" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
@@ -34,10 +34,10 @@
 					</div>
 	</div>
 	<div class="modal-footer">
-		<a title="Agregar" id="agregarMercaderiaDetalle"
+		<a title="Agregar" id="btnAgregarDetalle"
 				class="btn btn-small btn-success">Agregar
 		</a>
-		<a title="Editar" id="editarMercaderiaDetalle"
+		<a title="Editar" id="btnEditarDetalle"
 				class="btn btn-small btn-success">Editar
 		</a>
 		<button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancelar</button>

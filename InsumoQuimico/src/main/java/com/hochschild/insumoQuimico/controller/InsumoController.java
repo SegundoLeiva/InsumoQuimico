@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.service.InsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -38,7 +39,7 @@ public class InsumoController extends BaseController{
 	public String verInsumos(Model model,HttpServletRequest req) {
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		model.addAttribute(Constantes.FLAG_TRANSACCION, req.getAttribute(Constantes.FLAG_TRANSACCION));
-		model.addAttribute("index", "5");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "verInsumos";
 	}
 	
@@ -67,7 +68,7 @@ public class InsumoController extends BaseController{
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
-		model.addAttribute("index", "5");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "nuevoInsumo";
 	}
 
@@ -88,7 +89,7 @@ public class InsumoController extends BaseController{
 	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("unidadMineraInsumo", unidadMineraInsumo);
 		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
-		model.addAttribute("index", "5");
+		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "nuevoInsumo";
 	}
 

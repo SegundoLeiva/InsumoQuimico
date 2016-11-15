@@ -3,7 +3,7 @@ var INDICADOR_CREADO = '1';
 var INDICADOR_MODIFICADO = '2';
 var INDICADOR_ELIMINADO = '3';
 var tabla;
-var arrayJson = [];
+var claseColumna=[];
 
 $(document).on("ready", function() {
 	alertify.set('notifier','position', 'top-right');
@@ -76,7 +76,8 @@ function inicializarParametros(data){
 		"columnDefs": [
 		                { className: "center"}
 		              ]
- });
+	});
+	claseColumna=data.claseColumna;
 }
 
 $(".checkSelectedAll").click(function(){
@@ -98,7 +99,7 @@ function eliminarDetalle(arrayJson){
 		        			arrayCheckbox[i].closest("tr").remove();
 		        			arrayJson.splice(indexArray,1);		        			
 		        		}else{
-		        			arrayJson[i].indicadorBD=INDICADOR_ELIMINADO;
+		        			arrayJson[obtenerFila.index()].indicadorBD=INDICADOR_ELIMINADO;
 		        			obtenerFila.addClass("hidden");
 		        			indexArray++;
 		        		}
@@ -117,4 +118,30 @@ function inicializarStyleTablaDetalle(){
 	 $(tabla+"_wrapper").removeClass("dataTables_wrapper");
 	 $(tabla+"_wrapper div.row-fluid").remove();
 	 $(tabla+" tbody").find("tr.odd").remove();
+}
+
+function agregarFila(data){
+	var text = "<tr>"+
+	  "<td class='center'><label><input type='checkbox' class='checkDetalle'><span class='lbl'></span></label></td>";
+	for (var i = 0; i < data.length; i++) {
+		text+="<td class='center "+claseColumna[i]+"'>"+data[i]+"</td>";
+	}
+	$(tabla+' tBody').append(text);
+}
+
+function actualizarDetalleGrabar(arrayJson,index){
+	for (var j = 0; j < arrayJson.length; j++) {
+		if(arrayJson[j].indicadorBD==INDICADOR_ELIMINADO){
+			arrayJson.splice(j,1);
+			$(tabla+" > tbody").find("tr.hidden").remove();
+		}
+	}
+
+	for (var i = 0; i < arrayJson.length; i++) {
+		if(arrayJson[i].idDetalle==""){
+			arrayJson[i].idDetalle=(index).toString();
+			arrayJson[i].indicadorBD=INDICADOR_CREADO;								
+		}
+	}
+	return (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
 }

@@ -9,38 +9,36 @@ var index = 1;
 
 $(document).ready(function() {
 	var data = {
-			tabla:"#tablaMercaderiaDetalle"
+			tabla:"#tablaMercaderiaDetalle",
+			claseColumna:["idInsumo","descripcion","cantidad","unidadMedida"]
 			};
 	
 	inicializarParametros(data);
 	inicializarStyleTablaDetalle();
 	
-	if($("#flagEditar").val()=="flagEditar"){
+	if($("#flagEditar").val()=="editar"){
 //		$(loading).show();
-
-
 		$.ajax({
 			type : 'post',
-			data: {'idMercaderia': $("#idMercaderia").val()},
 			url : '${pageContext.request.contextPath}/ingresarMercaderia/listaMercaderiaDetalle.htm',
+			data: {'idMercaderia': $("#idMercaderia").val()},
+			
 			success : function(data) {	
 				var jsonData = JSON.parse(data);
 				for (var i = 0; i < jsonData.length; i++) {
-					agregarJsonMercaderiaDetalle();	
-					var agregarFila = "<tr>"+
-						  "<td class='center'><label><input type='checkbox' class='checkDetalle'><span class='lbl'></span></label></td>"+
-						  "<td class='center idInsumo'>"+jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo+"</td>"+
-						  "<td class='center descripcion'>"+jsonData[i].unidadMineraInsumo.insumo.insumo+"</td>"+
-						  "<td class='center cantidad'>"+jsonData[i].cantidad+"</td>"+
-						  "<td class='center'>Kg</td>"+
-						  "</tr>";
-					 $('#tablaMercaderiaDetalle tBody').append(agregarFila);
+							
+					 var data = [jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo,
+					             jsonData[i].unidadMineraInsumo.insumo.insumo,
+					             jsonData[i].cantidad,"Kg"];
+					 agregarDetalle(data); 
 					 mercaderiaJSONArray[i].idDetalle=(jsonData[i].id.idMercaderiaDetalle).toString();
+					 mercaderiaJSONArray[i].idUnidadMineraInsumo=jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo;
+					 mercaderiaJSONArray[i].cantidad=jsonData[i].cantidad;
+					 mercaderiaJSONArray[i].unidadMedida="Kg";
 					 mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;
-					
 				}		
 				
-				index = (jsonData[jsonData.length-1].id.idSolicitudPedidoDetalle+1).toString();
+				index = (jsonData[jsonData.length-1].id.idMercaderiaDetalle+1).toString();
 
 			}
 		});
@@ -48,45 +46,46 @@ $(document).ready(function() {
 
 } );
 
-$("#abrirDetalleMercaderia").click(function(){
-	$("#editarMercaderiaDetalle").hide();
-	$("#agregarMercaderiaDetalle").show();
+$("#abrirDetalleAgregar").click(function(){
+	$("#btnEditarDetalle").hide();
+	$("#btnAgregarDetalle").show();
 	$("#cantidad").val("");
 	$("#idInsumo").val($("#idInsumo option:first").val());
-	$("#modalDetalleMercaderia").modal("show");
+	$("#modalDetalleForm").modal("show");
 });
 
-$("#agregarMercaderiaDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleMercaderia") && validarInsumoAgregar()){	
- 		 	agregarJsonMercaderiaDetalle();	
-			var agregarFila = "<tr>"+
-				  "<td class='center'><label><input type='checkbox' class='checkDetalle'><span class='lbl'></span></label></td>"+
-				  "<td class='center idInsumo'>"+$("#idInsumo").val()+"</td>"+
-				  "<td class='center descripcion'>"+$("#idInsumo option:selected").text()+"</td>"+
-				  "<td class='center cantidad'>"+$("#cantidad").val()+"</td>"+
-				  "<td class='center'>Kg</td>"+
-				  "</tr>";
-
-			$('#tablaMercaderiaDetalle tBody').append(agregarFila);
-		 	$("#modalDetalleMercaderia").modal("hide");
+$("#btnAgregarDetalle").click(function(){
+	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
+ 		 	var data = [$("#idInsumo").val(),$("#idInsumo option:selected").text(),
+ 		 	         	 $("#cantidad").val(),"Kg"];
+ 		 	agregarDetalle(data);
+ 		 	var fila = mercaderiaJSONArray.length-1;
+ 		 	mercaderiaJSONArray[fila].idUnidadMineraInsumo=$("#idInsumo").val();
+			mercaderiaJSONArray[fila].cantidad=$("#cantidad").val();
+		 	$("#modalDetalleForm").modal("hide");
 	 }
 	
 });
 
-$("#editarMercaderiaDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleMercaderia") && validarInsumoEditar()){	
+function agregarDetalle(data){
+	agregarJsonDetalle();	
+	agregarFila(data);
+}
+
+$("#btnEditarDetalle").click(function(){
+	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoEditar()){	
 		 setearCampo("idInsumo",$("#idInsumo").val());
 		 setearCampo("descripcion",$("#idInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
 		 mercaderiaJSONArray[filaIndex].indicadorBD=INDICADOR_MODIFICADO;
-		 $("#modalDetalleMercaderia").modal("hide");
+		 $("#modalDetalleForm").modal("hide");
 	 }
 	
 });
 
 $("#abrirDetalleEditar").click(function(){
-	$("#agregarMercaderiaDetalle").hide();
-	$("#editarMercaderiaDetalle").show();
+	$("#btnAgregarDetalle").hide();
+	$("#btnEditarDetalle").show();
 	var checkDetalle = $('#tablaMercaderiaDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
 		var idInsumo = checkDetalle.closest("tr").find("td.idInsumo").text();
@@ -98,7 +97,7 @@ $("#abrirDetalleEditar").click(function(){
 				filaIndex = i;
 			}
 		}
-		$("#modalDetalleMercaderia").modal("show");
+		$("#modalDetalleForm").modal("show");
 	}else{
 		alertify.error("Seleccione un Item.");
 	}	
@@ -129,17 +128,14 @@ function validarInsumoEditar(){
 	}
 	return rpta;
 }
-function agregarJsonMercaderiaDetalle(){
+function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
-			    idDetalle:'',
-			    idUnidadMineraInsumo: $("#idInsumo").val(),
-			    cantidad:$("#cantidad").val(),
-			    unidadMedida:'Kg',
-			    indicadorBD: INDICADOR_NUEVO};
+			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
+			    unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
 	 mercaderiaJSONArray.push(mercaderiaJSON);
 }
 
-$("#eliminarMercaderiaDetalle").click(function(){
+$("#eliminarDetalle").click(function(){
 	eliminarDetalle(mercaderiaJSONArray);
 });
 
@@ -172,26 +168,10 @@ $("#guardarMercaderia").click(function(){
 				},
 				url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
 				success : function(data) {
-					if(data!=""){					
-						for (var j = 0; j < mercaderiaJSONArray.length; j++) {
-							if(mercaderiaJSONArray[j].indicadorBD==INDICADOR_ELIMINADO){
-								mercaderiaJSONArray.splice(j,1);
-								$("#tablaMercaderiaDetalle > tbody").find("tr.hidden").remove();
-							}
-						}
-	
-						for (var i = 0; i < mercaderiaJSONArray.length; i++) {
-							if(mercaderiaJSONArray[i].idDetalle==""){
-								mercaderiaJSONArray[i].idDetalle=(index).toString();
-								mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;								
-								index++;
-							}
-						}
-						index = (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
-						$("#idMercaderia").val(data);
-	
-						mensajeTransaccion("guardar");					
-						
+					if(data!=""){	
+						index = actualizarDetalleGrabar(mercaderiaJSONArray,index);						
+						$("#idMercaderia").val(data);	
+						mensajeTransaccion("guardar");											
 					}else{
 						mensajeTransaccion("error");
 					}

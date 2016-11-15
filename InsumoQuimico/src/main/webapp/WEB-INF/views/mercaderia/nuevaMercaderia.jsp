@@ -102,9 +102,9 @@
 
 	</form>
 	<div class="header table-header">
-			<a href="#" title="Agregar Detalle" class="btn btn-small btn-primary" id="abrirDetalleMercaderia"
+			<a href="#" title="Agregar Detalle" class="btn btn-small btn-primary" id="abrirDetalleAgregar"
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar</a>
-			<a href="#" title="Eliminar Detalle" class="btn btn-small btn-primary" id="eliminarMercaderiaDetalle"
+			<a href="#" title="Eliminar Detalle" class="btn btn-small btn-primary" id="eliminarDetalle"
 				style="border: 1px solid #c4e7ff;"><i class="icon-trash"></i>Eliminar</a>
 			<a href="#" title="Editar Detalle" class="btn btn-small btn-primary" id="abrirDetalleEditar"
 				style="border: 1px solid #c4e7ff;"><i class="icon-edit"></i>Editar</a>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -27,7 +28,7 @@ public class RegistrarConsumoController extends BaseController{
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        model.addAttribute("index", "6");
+        model.addAttribute("index", Constantes.REGISTRAR_CONSUMO);
 		return "verConsumos";
 	}
 	
@@ -36,7 +37,7 @@ public class RegistrarConsumoController extends BaseController{
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-		model.addAttribute("index", "6");
+        model.addAttribute("index", Constantes.REGISTRAR_CONSUMO);
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		return "nuevoConsumo";
 	}
