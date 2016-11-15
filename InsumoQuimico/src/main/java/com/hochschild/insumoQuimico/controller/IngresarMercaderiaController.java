@@ -99,6 +99,12 @@ public class IngresarMercaderiaController extends BaseController{
 		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
 		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumo());
+		
+		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(idMercaderia);
+		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
+		
+
+		
 		return "nuevaMercaderia";
 	}
 	

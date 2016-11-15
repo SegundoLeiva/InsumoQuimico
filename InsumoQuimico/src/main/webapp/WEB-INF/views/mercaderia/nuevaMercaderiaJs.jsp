@@ -12,36 +12,25 @@ $(document).ready(function() {
 			tabla:"#tablaMercaderiaDetalle",
 			claseColumna:["idInsumo","descripcion","cantidad","unidadMedida"]
 			};
-	
 	inicializarParametros(data);
 	inicializarStyleTablaDetalle();
 	
 	if($("#flagEditar").val()=="editar"){
-//		$(loading).show();
-		$.ajax({
-			type : 'post',
-			url : '${pageContext.request.contextPath}/ingresarMercaderia/listaMercaderiaDetalle.htm',
-			data: {'idMercaderia': $("#idMercaderia").val()},
-			
-			success : function(data) {	
-				var jsonData = JSON.parse(data);
-				for (var i = 0; i < jsonData.length; i++) {
-							
-					 var data = [jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo,
-					             jsonData[i].unidadMineraInsumo.insumo.insumo,
-					             jsonData[i].cantidad,"Kg"];
-					 agregarDetalle(data); 
-					 mercaderiaJSONArray[i].idDetalle=(jsonData[i].id.idMercaderiaDetalle).toString();
-					 mercaderiaJSONArray[i].idUnidadMineraInsumo=jsonData[i].unidadMineraInsumo.idUnidadMineraInsumo;
-					 mercaderiaJSONArray[i].cantidad=jsonData[i].cantidad;
-					 mercaderiaJSONArray[i].unidadMedida="Kg";
-					 mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;
-				}		
-				
-				index = (jsonData[jsonData.length-1].id.idMercaderiaDetalle+1).toString();
-
-			}
-		});
+//		$(loading).show();	
+		var i=0;
+		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
+		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
+		             "${jbean.unidadMineraInsumo.insumo.insumo}",
+		             "${jbean.cantidad}","Kg"];
+			agregarDetalle(data); 
+			mercaderiaJSONArray[i].idDetalle="${jbean.id.idMercaderiaDetalle}";
+			mercaderiaJSONArray[i].idUnidadMineraInsumo="${jbean.unidadMineraInsumo.idUnidadMineraInsumo}";
+			mercaderiaJSONArray[i].cantidad="${jbean.cantidad}";
+			mercaderiaJSONArray[i].unidadMedida="Kg";
+			mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;
+			i++;
+		</c:forEach>
+		index = "${listaMercaderiaDetalle.get(listaMercaderiaDetalle.size()-1).id.idMercaderiaDetalle+1}";
 	}
 
 } );
