@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
-<link rel="stylesheet" href="<c:url value="../assets/select2/select2.min.css"/>" />
 <!-- <script src="../assets/select2/select2.min.js"></script> -->
 
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />

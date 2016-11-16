@@ -14,4 +14,5 @@
 <link rel="stylesheet" href="<c:url value="/assets/css/site.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/alertify/alertify.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/alertify/themes/bootstrap.min.css"/>" />
+<link rel="stylesheet" href="<c:url value="/assets/select2/select2.min.css"/>" />
 

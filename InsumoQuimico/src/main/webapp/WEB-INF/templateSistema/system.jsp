@@ -46,13 +46,13 @@
 				<ul class="breadcrumb">
 					<li class="active">
 						<i class="icon-home home-icon"></i>
-						<a href="#">Inicio</a>
+						<a href="../home/bienvenida.htm">Inicio</a>
 
 						<span class="divider">
 							<i class="icon-angle-right arrow-icon"></i>
 						</span>
 					</li>
-					<li >Bienvenida</li>
+					<li><a href="#" id="menuDescripcion"></a></li>
 				</ul>
 
 				<div class="nav-search" id="nav-search">
@@ -66,11 +66,6 @@
 			</div>
 
 			<div class="page-content">
-<!-- 				<div class="page-header position-relative"> -->
-<!-- 					<h1> -->
-<!-- 						Bienvenida <small><i class="icon-double-angle-right"></i> Bienvenida</small> -->
-<!-- 					</h1> -->
-<!-- 				</div>/.page-header -->
 
 				<!-- ##########################  CONTENIDO ######################  -->
 				<tiles:insertAttribute name="contenido"/>
@@ -91,4 +86,13 @@
 	<!-- ############################# END SCRIPT ############################### -->
 
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+	if($("#sidebar").find("li.active").length==1){
+		$("#menuDescripcion").html($("#sidebar li.active").text());
+	}else{
+		$("#menuDescripcion").html("Bienvenido");
+	}
+});
+</script>
 </html>

@@ -1,6 +1,5 @@
 <script src="../assets/js/jquery.dataTables.1.3.1.min.js"></script>
 <script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
-<%-- <link rel="stylesheet" href="<c:url value="../assets/select2/select2.min.css"/>" /> --%>
 <script src="../assets/select2/select2.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -10,7 +9,7 @@ var filaIndex = 0;
 var index = 1;
 
 $(document).ready(function() {
-	var data2 = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+	var data2 = [{ id: -1, text: 'Seleccionar' },{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
 
 	var data = {
 			tabla:"#tablaMercaderiaDetalle",
