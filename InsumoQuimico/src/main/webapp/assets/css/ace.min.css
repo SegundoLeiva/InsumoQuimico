@@ -9798,9 +9798,9 @@ th .lbl:only-child, td .lbl:only-child {
 	display: inline;
 	content: "\f002";
 	color: #777;
-	position: relative;
-	top: 2px;
-	left: -20px;
+	position: absolute;
+	top: 10px;
+ 	right: 10px; 
 	z-index: 0
 }
 

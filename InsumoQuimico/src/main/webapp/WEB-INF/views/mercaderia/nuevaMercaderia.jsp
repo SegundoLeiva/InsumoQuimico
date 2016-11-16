@@ -1,6 +1,9 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
+<link rel="stylesheet" href="<c:url value="../assets/select2/select2.min.css"/>" />
+<!-- <script src="../assets/select2/select2.min.js"></script> -->
+
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />
 <div class="page-header">
 	<h1>
@@ -32,13 +35,8 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="idProveedor">Proveedor</label>
-								<div class="controls">									
-									<select name="idProveedor" id="idProveedor" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
-									</select>
+								<div class="controls">		
+									<select id="idProveedor"></select>							
 								</div>
 							</div>	
 							<div class="control-group">
