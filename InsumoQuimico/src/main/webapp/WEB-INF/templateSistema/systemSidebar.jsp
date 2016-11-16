@@ -1,12 +1,10 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<a href="#" class="brand">
-	<small>
-		<img src="../assets/images/logo.png" style="max-width: 10%;">
-		Sistema Insumos Químicos
-	</small>
-</a>
+<a href="#" class="brand"> <small> <i class="ace-icon icon-beaker"></i>
+						Sistema Insumos Químicos
+				</small>
+				</a>
 
 <ul class="nav ace-nav pull-right">
 

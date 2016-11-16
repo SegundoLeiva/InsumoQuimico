@@ -11,10 +11,8 @@ $(document).ready(function() {
 
 	$('#tablaMercaderia').DataTable({
 	 	"bSort" : false,
-		"columnDefs": [
-		                { className: "center"}
-		              ]
- });
+		"columnDefs": [{ className: "center"}]
+ 	});
 	
 } );
 

@@ -6,14 +6,19 @@
 
 $(document).ready(function() {
 	
-	 $('#tablaMercaderia').DataTable({
-			"aoColumns" : [ {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false},
-			                {"bSortable" : false}
-			               ]
-	 });
+	$('#tablaConsumo').DataTable({
+	 	"bSort" : false,
+		"columnDefs": [{ className: "center"}]
+ 	});
 } );
+
+function eliminarConsumo(idConsumo) {
+	$("#idConsumo").val(idConsumo);
+	alertify.confirm("Eliminar","¿Seguro que desea eliminar este Consumo?",
+			function(){
+				$("#formVerConsumos").submit();
+			 },
+			function(){});
+}
 
 </script>

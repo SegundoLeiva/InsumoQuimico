@@ -7,8 +7,8 @@
 <div class="page-header">
 	<h1>
 		Registrar Ingreso de Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../ingresarMercaderia/verMercaderias.htm" title="Ver Mercaderías" style="margin-left: 5px"
-			class="btn btn-success btn-small pull-right"><i class="icon-tasks"></i>Listar</a>
+		</span><a href="../ingresarMercaderia/verMercaderias.htm" title="Regresar" style="margin-left: 5px"
+			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i>Regresar</a>
 			<a href="#" id="guardarMercaderia" title="Guardar Mercadería"
 			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>
 	</h1>
@@ -25,7 +25,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera">
+									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
 										</c:forEach>
@@ -105,7 +105,6 @@
 				style="border: 1px solid #c4e7ff;"><i class="icon-trash"></i>Eliminar</a>
 			<a href="#" title="Editar Detalle" class="btn btn-small btn-primary" id="abrirDetalleEditar"
 				style="border: 1px solid #c4e7ff;"><i class="icon-edit"></i>Editar</a>
-
 	</div>
 	<table id="tablaMercaderiaDetalle"
 					class="table table-striped table-bordered table-hover">
@@ -127,4 +126,4 @@
 </div>
 
 
-<%@ include file="/WEB-INF/views/mercaderia/nuevaMercaderiaDetalle.jsp"%>
+<%@ include file="/WEB-INF/views/mercaderia/nuevoInsumoDetalle.jsp"%>

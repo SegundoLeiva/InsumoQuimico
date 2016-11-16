@@ -26,7 +26,7 @@ import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/area")
-public class AreaController extends BaseController{
+public class AreaController {
 	
 	@Autowired
 	private UnidadMineraAreaService unidadMineraAreaService;

@@ -21,7 +21,6 @@ import com.hochschild.insumoQuimico.domain.DivisionesCIA;
 import com.hochschild.insumoQuimico.domain.OpcionApp;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
-import com.hochschild.insumoQuimico.service.DataBaseService;
 import com.hochschild.insumoQuimico.service.DivisionesCIAService;
 import com.hochschild.insumoQuimico.service.OpcionesAppService;
 import com.hochschild.insumoQuimico.util.Constantes;
@@ -34,8 +33,7 @@ public class LoginController {
     
     private LdapSeguridad ldapSeguridad = new LdapSeguridad();
     
-    @Autowired
-    private DataBaseService dataBaseService;
+
     @Autowired
     private OpcionesAppService opcionesAppService;
     @Autowired
@@ -66,10 +64,8 @@ public class LoginController {
                 String idAplicacion = bundle.getString("aplicacion.idAplicacion");
                 String seguridadAutentica = bundle.getString("aplicacion.usarAutenticacionLDAP");
                 String idUnidadMinera = bundle.getString("idUnidadMinera.aplicacion.central");
-                String versionBD = dataBaseService.getBDVersion();
 
                 req.setAttribute("idUnidadMinera", idUnidadMinera);
-                req.setAttribute("versionBD",versionBD);
                 req.setAttribute("versionBD", "1.0");
 
                 if(seguridadAutentica.equals("1")){

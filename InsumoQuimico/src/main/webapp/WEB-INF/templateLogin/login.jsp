@@ -56,7 +56,7 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a href="#" class="brand"> <small> <i class="icon-book"></i>
+				<a href="#" class="brand"> <small> <i class="ace-icon icon-beaker"></i>
 						Sistema Insumos Químicos
 				</small>
 				</a>

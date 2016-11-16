@@ -30,7 +30,7 @@ import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/ingresarMercaderia")
-public class IngresarMercaderiaController extends BaseController{
+public class IngresarMercaderiaController {
 	@Autowired
 	private UnidadMineraInsumoService unidadMineraInsumoService;
 	@Autowired

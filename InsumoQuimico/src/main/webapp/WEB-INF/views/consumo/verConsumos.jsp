@@ -7,7 +7,8 @@
 	</h1>
 </div>
 <div class="page-header position-relative">
-	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
+	<form id="formVerConsumos" method="POST" class="form-horizontal">
+	<input type="hidden" name="idConsumo" id="idConsumo">	
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -36,11 +37,10 @@
 							<div class="control-group">
 								<label class="control-label" for="idAlmacen">Almacén</label>
 								<div class="controls">									
-									<select name="idAlmacen" id="idAlmacen" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
+									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
+										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
+											<option value="${item.idUnidadMineraAlmacen}">${item.almacen.almacen}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -53,17 +53,16 @@
 
 						</div>
 						<div class="span4">
-						<div class="control-group">
-								<label class="control-label" for="idProveedor">Área</label>
+							<div class="control-group">
+								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls">									
-									<select name="idProveedor" id="idProveedor" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
+									<select name="idUnidadMineraArea" id="idUnidadMineraArea">
+										<c:forEach var="item" items="${listaUnidadMineraArea}">
+											<option value="${item.idUnidadMineraArea}">${item.area.area}</option>
+										</c:forEach>
 									</select>
 								</div>
-							</div>						
+							</div>					
 						</div>
 					</div>
 				</div>
@@ -78,14 +77,14 @@
 				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Nuevo</a>
 
 	</div>
-	<table id="tablaMercaderia"
+	<table id="tablaConsumo"
 					class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
-							<th class="center">Material</th>
-							<th class="center">Cantidad</th>
-							<th class="center">Unidad Medida</th>
+							<th class="center">Código</th>
+							<th class="center">Almacén</th>
+							<th class="center">Área</th>
 							<th class="center" width="10%">Opciones</th>
 						</tr>
 					</thead>

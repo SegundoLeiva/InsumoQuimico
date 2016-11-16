@@ -1,11 +1,7 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <div class="page-header">
 	<h1>
-		Registrar Insumo <small> <i class="icon-double-angle-right"></i>
-			Descripcion
-		</small> <a href="../insumo/verInsumos.htm" title="Lista de Áreas"
-			class="btn btn-success btn-small pull-right"
-			style="font-size: 20px; margin-right: 5px"><i class="icon-tasks"></i></a>
+		Registrar Insumo <i class="icon-double-angle-right"></i>
 	</h1>
 </div>
 <div class="page-header position-relative">
@@ -13,7 +9,7 @@
 	<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" value="${unidadMineraInsumo.idUnidadMineraInsumo}">
 		<div class="row-fluid">
 			<div class="page-content">
-				<div class="span10">
+				<div class="span8">
 
 					<div class="row-fluid">
 						<div class="span6">
@@ -64,11 +60,11 @@
 		<div class="form-actions">
 
 			<a title="Agregar Insumo" id="agregarInsumo"
-				class="btn btn-success">
+				class="btn btn-small btn-success">
 				<i class="icon-save bigger-110"></i>${!empty unidadMineraInsumo.idUnidadMineraInsumo ? 'Modificar' : 'Agregar'}
 			</a>
 			<a href="../insumo/verInsumos.htm" title="Regresar"
-				class="btn btn-info"> <i
+				class="btn btn-small btn-info"> <i
 				class="icon-undo bigger-110"></i>Regresar
 			</a>
 

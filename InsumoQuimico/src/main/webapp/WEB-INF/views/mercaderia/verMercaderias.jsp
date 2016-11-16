@@ -18,7 +18,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera">
+									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
 										</c:forEach>

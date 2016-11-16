@@ -2,9 +2,7 @@
 <div class="page-header">
 	<h1>
 		Registrar Área <span><i class="icon-double-angle-right"></i>
-		</span><a href="../area/verAreas.htm" title="Lista de Áreas"
-			class="btn btn-success btn-small pull-right"
-			style="font-size: 20px; margin-right: 5px"><i class="icon-tasks"></i></a>
+		</span>
 	</h1>
 </div>
 <div class="page-header position-relative">
@@ -12,7 +10,7 @@
 	<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraArea" value="${unidadMineraArea.idUnidadMineraArea}">
 		<div class="row-fluid">
 			<div class="page-content">
-				<div class="span10">
+				<div class="span8">
 
 					<div class="row-fluid">
 						<div class="span6">

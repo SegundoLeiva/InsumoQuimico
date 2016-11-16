@@ -26,7 +26,7 @@ import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/insumo")
-public class InsumoController extends BaseController{
+public class InsumoController {
 	
 	@Autowired
 	private UnidadMineraInsumoService unidadMineraInsumoService;
