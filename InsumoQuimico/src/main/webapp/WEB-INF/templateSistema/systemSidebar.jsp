@@ -13,7 +13,7 @@
 		<a data-toggle="dropdown" href="#" class="dropdown-toggle"> 
 			<img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> 
 			<span class="user-info"> 
-				<small>Bienvenido,Segv</small>	
+				<small>Bienvenido,<br>${session_usuario.nombre}</small>	
 <%-- 				<security:authentication property="principal.usuario" /> --%>
 			</span> 
 			<i class="icon-caret-down"></i>
