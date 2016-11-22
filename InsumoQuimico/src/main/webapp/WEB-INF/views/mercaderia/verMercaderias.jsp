@@ -1,4 +1,8 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
+
+
+
+
 <div class="page-header">
 	<h1>
 		Ingresar Mercadería <span> <i class="icon-double-angle-right"></i>

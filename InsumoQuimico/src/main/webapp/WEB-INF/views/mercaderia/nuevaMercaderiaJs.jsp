@@ -18,8 +18,7 @@ $(document).ready(function() {
 	inicializarParametros(data);
 	inicializarStyleTablaDetalle();
 	
-	if($("#flagEditar").val()=="editar"){
-//		$(loading).show();	
+	if($("#flagEditar").val()=="editar"){	
 		var i=0;
 		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
@@ -148,6 +147,7 @@ $("#guardarMercaderia").click(function(){
 	if(fnValidarGuardarMercaderia()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){
+			$("#loading").removeClass("hidden");
 			$.ajax({
 				type : 'post',
 				data: {
@@ -164,6 +164,7 @@ $("#guardarMercaderia").click(function(){
 				},
 				url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
 				success : function(data) {
+					$("#loading").addClass("hidden");
 					if(data!=""){	
 						index = actualizarDetalleGrabar(mercaderiaJSONArray,index);						
 						$("#idMercaderia").val(data);	
