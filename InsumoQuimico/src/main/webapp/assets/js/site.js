@@ -145,3 +145,11 @@ function actualizarDetalleGrabar(arrayJson,index){
 	}
 	return (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
 }
+
+function showLoading(){
+	$("#loading").removeClass("hidden");
+}
+
+function hideLoading(){
+	$("#loading").addClass("hidden");
+}

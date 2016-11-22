@@ -147,7 +147,7 @@ $("#guardarMercaderia").click(function(){
 	if(fnValidarGuardarMercaderia()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){
-			$("#loading").removeClass("hidden");
+			showLoading();
 			$.ajax({
 				type : 'post',
 				data: {
@@ -164,7 +164,7 @@ $("#guardarMercaderia").click(function(){
 				},
 				url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
 				success : function(data) {
-					$("#loading").addClass("hidden");
+					hideLoading();
 					if(data!=""){	
 						index = actualizarDetalleGrabar(mercaderiaJSONArray,index);						
 						$("#idMercaderia").val(data);	

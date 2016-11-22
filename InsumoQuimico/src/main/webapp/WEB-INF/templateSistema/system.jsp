@@ -47,6 +47,7 @@
 		  <div class="sk-circle11 sk-child"></div>
 		  <div class="sk-circle12 sk-child"></div>
 		</div>
+<!-- 		<div style="color: #FFF;position: absolute;text-align: center;width: 100%;font-size: 16px;margin-top: -30px">cargando</div> -->
 	</div>
 
 	<div class="main-container container-fluid">

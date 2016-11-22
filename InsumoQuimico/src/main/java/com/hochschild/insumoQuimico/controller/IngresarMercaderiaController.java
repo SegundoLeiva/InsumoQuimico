@@ -102,9 +102,7 @@ public class IngresarMercaderiaController {
 		
 		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(idMercaderia);
 		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
-		
 
-		
 		return "nuevaMercaderia";
 	}
 	
