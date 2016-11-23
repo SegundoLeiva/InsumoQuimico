@@ -181,6 +181,7 @@ $("#guardarMercaderia").click(function(){
 });
 
 function fnValidarGuardarMercaderia(){
+	return validarCamposRequeridos("formMercaderia");
 	if(mercaderiaJSONArray.length==0){
 		alertify.error("Mínimo debe registrar un detalle");
 		return false;

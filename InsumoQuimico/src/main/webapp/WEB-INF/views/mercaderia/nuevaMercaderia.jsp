@@ -60,13 +60,13 @@
 							<div class="control-group">
 								<label class="control-label" for="transporte">Transporte</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}">
+									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio.">
 								</div>
 							</div>	
 							<div class="control-group">
 								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
 								</div>
 							</div>					
 						</div>
@@ -74,13 +74,13 @@
 							<div class="control-group">
 								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}">
+									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="guiaInterna">Guía Interna</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}">
+									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
 								</div>
 							</div>
 							<div class="control-group">
