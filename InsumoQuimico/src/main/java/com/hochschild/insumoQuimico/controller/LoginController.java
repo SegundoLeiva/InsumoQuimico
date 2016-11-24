@@ -185,7 +185,14 @@ public class LoginController {
     public String logout(HttpServletRequest req, HttpServletResponse res) {
     	HttpSession session = req.getSession();
     	session.invalidate();
-//    	req.setAttribute("cerrar", "true");
+    	return "templatelogin";
+    }
+	
+	@RequestMapping(value="/expirarSession.htm", method={RequestMethod.GET})
+    public String expirarSession(HttpServletRequest req, HttpServletResponse res) {
+    	HttpSession session = req.getSession();
+    	session.invalidate();
+    	req.setAttribute("expiro", "true");
     	return "templatelogin";
     }
     

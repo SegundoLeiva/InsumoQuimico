@@ -89,7 +89,7 @@
 										permite una sesión activa por usuario).</div>
 								</c:if>
 
-								<c:if test="${param.timeout != null}">
+								<c:if test="${expiro != null}">
 									<div class="alert alert-error">Tiempo de Sessión
 										Terminado</div>
 								</c:if>

@@ -8,9 +8,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			/WEB-INF/spring/applicationContext.xml
-<!-- 		    /WEB-INF/spring/appSecurity.xml  -->
-		
+			/WEB-INF/spring/applicationContext.xml		
 		</param-value>
 	</context-param>
 
@@ -22,18 +20,6 @@
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
-
-<!-- 	<filter> -->
-<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
-<!-- 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
-<!-- 	</filter> -->
-
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
-<!-- 		<url-pattern>*.htm</url-pattern> -->
-<!-- 	</filter-mapping> -->
-
-
 
 	<display-name>Application</display-name>
 
@@ -62,9 +48,7 @@
 	</error-page>
 	
 	<session-config>
-		<session-timeout>60</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config> 
-
-
 
 </web-app>
