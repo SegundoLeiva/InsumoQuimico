@@ -24,7 +24,10 @@ public class ApplicationSessionInterceptor implements HandlerInterceptor {
 			Object arg2) throws Exception {
 		HttpSession session = request.getSession(true);
 		Usuario usuarioSession = (Usuario) session.getAttribute("session_usuario");
-		if(usuarioSession==null)return false;			
+		if(usuarioSession==null){
+			response.sendRedirect("../expirarSession.htm");
+			return false;
+		}			
 		return true;
 	}
 

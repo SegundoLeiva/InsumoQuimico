@@ -28,8 +28,11 @@
 		
 	<mvc:interceptors>	
 		<mvc:interceptor>
-			<mvc:mapping  path="/**"/>
-			<mvc:exclude-mapping path="/login.htm"/>
+			<mvc:mapping  path="/ingresarMercaderia/*"/> 
+			<mvc:mapping  path="/registrarConsumo/*"/> 
+			<mvc:mapping  path="/area/*"/> 
+			<mvc:mapping  path="/insumo/*"/> 
+			<mvc:exclude-mapping path="/login.htm" />
 			<bean class="com.hochschild.insumoQuimico.session.ApplicationSessionInterceptor" />
 		</mvc:interceptor>      
 	</mvc:interceptors> 
