@@ -34,9 +34,9 @@ $(document).ready(function() {
 		</c:forEach>
 		index = "${listaMercaderiaDetalle.get(listaMercaderiaDetalle.size()-1).id.idMercaderiaDetalle+1}";
 	}
-	$("#transporte").select2({
-		  data: data2
-	});
+// 	$("#transporte").select2({
+// 		  data: data2
+// 	});
 
 
 } );
@@ -158,6 +158,8 @@ $("#guardarMercaderia").click(function(){
 					guiaRemision:$("#guiaRemision").val(),
 					comprobanteVenta:$("#comprobanteVenta").val(),
 					guiaInterna:$("#guiaInterna").val(),
+					rucProveedor:$("#rucProveedor").val(),
+					descripcionProveedor:$("#descripcionProveedor").val(),
 					index:index,
 	 				mercaderiaJSONArray: JSON.stringify(mercaderiaJSONArray)
 					
@@ -188,5 +190,33 @@ function fnValidarGuardarMercaderia(){
 	}
 	
 	return true;
+}
+
+function getProveedorDescripcion(){
+	var rucProveedor = $("#rucProveedor").val();
+	if(rucProveedor!=""){	
+		showLoading();
+			$.ajax({
+				type : 'post',
+				data: {'rucProveedor': rucProveedor},
+				url : '${pageContext.request.contextPath}/ingresarMercaderia/getProveedorDescripcion.htm',
+				success : function(data) {	
+					hideLoading();
+					if(data==""){
+						alertify.error("No existe proveedor.");
+						$("#rucProveedor").val("");
+						$("#spanDescripcionProveedor").html("");
+					}else{
+						$("#descripcionProveedor").val(data);
+						$("#spanDescripcionProveedor").html(data);
+					}
+					
+				}
+			});
+	}else{
+		$("#rucProveedor").val("");
+		$("#spanDescripcionProveedor").html("");
+	}
+		
 }
 </script>

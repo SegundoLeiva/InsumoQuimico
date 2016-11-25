@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hochschild.insumoQuimico.domain.CorrelativoBD;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 
 @Repository(value="MercaderiaDAO")
 public class MercaderiaDAOImpl implements MercaderiaDAO {
@@ -31,12 +32,16 @@ public class MercaderiaDAOImpl implements MercaderiaDAO {
 		hibernateTemplate.persist(data);
     }
 
-	@SuppressWarnings("unchecked")
-	public List<Mercaderia> listaMercaderia() {
-		String query="from Mercaderia";
-        List<Mercaderia> resultado= hibernateTemplate.find(query);
-        return resultado;
-	}
+    @SuppressWarnings("unchecked")
+	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsulta mercaderiaConsulta,String fechaInicio,String fechaFin){		
+        String[] paramNames = {"idUnidadMinera","idMercaderia","idUnidadMineraAlmacen","rucProveedor","guiaRemision","fechaInicio","fechaFin","idUsuarioCreacion"};        
+        String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdMercaderia(),
+        		mercaderiaConsulta.getIdUnidadMineraAlmacen(),mercaderiaConsulta.getRucProveedor(),
+        		mercaderiaConsulta.getGuiaRemision(),fechaInicio,fechaFin, mercaderiaConsulta.getIdUsuarioCreacion()};
+        List<MercaderiaConsulta> listaMercaderiaConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaMercaderia",paramNames,values);
+        return listaMercaderiaConsulta;
+    }
+    
 	
 	@Transactional
 	public void eliminarMercaderia(String idMercaderia) {

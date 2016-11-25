@@ -25,4 +25,14 @@ function eliminarMercaderia(idMercaderia) {
 			function(){});
 }
 
+function fn_buscar(){
+
+	var form = document.forms[0];
+	form.method = "GET";
+    form.idUnidadMinera.disabled=false;
+    form.action="buscarMercaderia.htm"
+    form.submit();
+    form.idUnidadMinera.disabled=true;
+}
+
 </script>

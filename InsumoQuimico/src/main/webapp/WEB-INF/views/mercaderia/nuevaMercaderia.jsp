@@ -33,11 +33,11 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="idProveedor">Proveedor</label>
-								<div class="controls">		
-									<input type="text" class="form-control" name="idProveedor" id="idProveedor" value="${mercaderia.idProveedor}" required="required" data-msg-required="El campo Proveedor es obligatorio.">
+								<label class="control-label" for="guiaInterna">Guía Interna</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
 								</div>
-							</div>	
+							</div>								
 							<div class="control-group">
 								<label class="control-label" for="fecha">Código Mercadería</label>
 								<div class="controls codigoDisabled">
@@ -60,8 +60,8 @@
 							<div class="control-group">
 								<label class="control-label" for="transporte">Transporte</label>
 								<div class="controls">
-									<select id="transporte"></select>
-<%-- 									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio."> --%>
+<!-- 									<select id="transporte"></select> -->
+									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio.">
 								</div>
 							</div>	
 							<div class="control-group">
@@ -77,20 +77,15 @@
 								<div class="controls">
 									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
 								</div>
-							</div>
+							</div>	
 							<div class="control-group">
-								<label class="control-label" for="guiaInterna">Guía Interna</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
+								<label class="control-label" for="rucProveedor">Ruc Proveedor</label>
+								<div class="controls">		
+									<input type="text" class="form-control" name="rucProveedor" id="rucProveedor" value="${mercaderia.rucProveedor}" required="required" data-msg-required="El campo Ruc Proveedor es obligatorio." onblur="getProveedorDescripcion();">
+									<input type="hidden" name="descripcionProveedor" id="descripcionProveedor" value="${mercaderia.descripcionProveedor}">								
+									<span id="spanDescripcionProveedor">${mercaderia.descripcionProveedor}</span>
 								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="fechaMercaderia" id="fechaMercaderia" 
-									readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
-								</div>
-							</div>							
+							</div>												
 						</div>
 					</div>
 				</div>

@@ -1,13 +1,15 @@
 package com.hochschild.insumoQuimico.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.domain.Mercaderia;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.Usuario;
@@ -53,9 +56,42 @@ public class IngresarMercaderiaController {
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        List<Mercaderia> listaMercaderias = mercaderiaService.listaMercaderia();
-        model.addAttribute("listaMercaderias", listaMercaderias);
+        
+        SimpleDateFormat fechaActualSDF = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaActual = fechaActualSDF.format(new Date());
+    	
+        String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);
+        
+        MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta(idUnidadMinera);
+        mercaderiaConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
+        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaActual,fechaActual);         
+        model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
+        
 		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
+		return "verMercaderias";
+	}
+	
+	@RequestMapping(value = { "/buscarMercaderia.htm" }, method = { RequestMethod.GET })
+	public String buscarMercaderia(HttpSession sesion,
+			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req,
+			HttpServletResponse res, Model model) {
+
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+        List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
+        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
+        List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
+        model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
+        
+		String fechaInicio = req.getParameter("fechaInicio");
+		String fechaFin = req.getParameter("fechaFin");
+
+		
+
+        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaInicio,fechaFin);         
+		model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
+		model.addAttribute("mercaderiaConsulta", mercaderiaConsulta);
+		model.addAttribute("fechaInicio", fechaInicio);
+		model.addAttribute("fechaFin", fechaFin);
 		return "verMercaderias";
 	}
 	
@@ -108,6 +144,16 @@ public class IngresarMercaderiaController {
 		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
 
 		return "nuevaMercaderia";
+	}
+	
+	@RequestMapping(value="/getProveedorDescripcion.htm", method = {RequestMethod.POST})
+	@ResponseBody
+	public String getProveedorDescripcion(@RequestParam("rucProveedor") String rucProveedor) {
+		
+		String resultado = funcionesSAPService.getProveedorDescripcion(rucProveedor, Constantes.SOCIEDAD_PROVEEDOR);
+
+		return resultado;
+
 	}
 
 }

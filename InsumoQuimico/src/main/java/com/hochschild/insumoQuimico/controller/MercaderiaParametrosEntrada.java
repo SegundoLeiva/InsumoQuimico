@@ -13,7 +13,8 @@ public class MercaderiaParametrosEntrada implements Serializable{
 	private String idUnidadMinera;
 	private String idUnidadMineraAlmacen;
 	private String comprobanteVenta;
-	private String idProveedor;
+	private String rucProveedor;
+	private String descripcionProveedor;
 	private String transporte;
 	private String guiaInterna;
 	private String idMercaderia;
@@ -52,11 +53,17 @@ public class MercaderiaParametrosEntrada implements Serializable{
 	public void setComprobanteVenta(String comprobanteVenta) {
 		this.comprobanteVenta = comprobanteVenta;
 	}
-	public String getIdProveedor() {
-		return idProveedor;
+	public String getRucProveedor() {
+		return rucProveedor;
 	}
-	public void setIdProveedor(String idProveedor) {
-		this.idProveedor = idProveedor;
+	public void setRucProveedor(String rucProveedor) {
+		this.rucProveedor = rucProveedor;
+	}
+	public String getDescripcionProveedor() {
+		return descripcionProveedor;
+	}
+	public void setDescripcionProveedor(String descripcionProveedor) {
+		this.descripcionProveedor = descripcionProveedor;
 	}
 	public String getTransporte() {
 		return transporte;

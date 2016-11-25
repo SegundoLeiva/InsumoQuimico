@@ -7,7 +7,10 @@ var claseColumna=[];
 
 $(document).on("ready", function() {
 	alertify.set('notifier','position', 'top-right');
-	$(".date-picker").datepicker();
+	$('.date-picker').datepicker({
+	    format: 'dd/mm/yyyy'
+	});
+	$(".numeroEntero").attr("onkeypress","return fn_validaEntero(event)");
 });
 
 function validarCamposRequeridos(idFormulario){
@@ -152,4 +155,12 @@ function showLoading(){
 
 function hideLoading(){
 	$("#loading").addClass("hidden");
+}
+
+function fn_validaEntero(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla==8 || tecla==0) return true; //Tecla de retroceso (para poder borrar)
+    patron = /[0-9]/;
+    te = String.fromCharCode(tecla);
+    return patron.test(te);
 }

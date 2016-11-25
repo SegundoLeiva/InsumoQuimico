@@ -23,4 +23,6 @@ public class Constantes {
     public static final String MANTENIMIENTO_INSUMO = "3";
     public static final String INGRESAR_MERCADERIA = "5";
     public static final String REGISTRAR_CONSUMO = "6";
+    
+    public static final String SOCIEDAD_PROVEEDOR = "1013";
 }

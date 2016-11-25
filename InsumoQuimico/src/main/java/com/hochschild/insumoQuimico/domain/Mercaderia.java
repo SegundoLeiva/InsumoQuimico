@@ -9,6 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
+
+@NamedNativeQueries({
+@NamedNativeQuery(name = "listaMercaderia",
+callable = true,
+query = "{call dbo.stpr_ListaMercaderia(:idUnidadMinera,:idMercaderia,:idUnidadMineraAlmacen,:rucProveedor,:guiaRemision,:fechaInicio,:fechaFin,:idUsuarioCreacion)}",
+readOnly = true,
+cacheable = false,
+resultClass = MercaderiaConsulta.class),
+
+})
 
 @Entity
 @Table(name = "Mercaderia")
@@ -34,6 +46,8 @@ public class Mercaderia implements Serializable {
     private String guiaRemision;
     private String comprobanteVenta;
     private String guiaInterna;
+    private String rucProveedor;
+    private String descripcionProveedor;
     private String idUsuarioCreacion;
 	private Date fechaCreacion;
 	private String idUsuarioModificacion;
@@ -105,4 +119,16 @@ public class Mercaderia implements Serializable {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+	public String getRucProveedor() {
+		return rucProveedor;
+	}
+	public void setRucProveedor(String rucProveedor) {
+		this.rucProveedor = rucProveedor;
+	}
+	public String getDescripcionProveedor() {
+		return descripcionProveedor;
+	}
+	public void setDescripcionProveedor(String descripcionProveedor) {
+		this.descripcionProveedor = descripcionProveedor;
+	}	
 }

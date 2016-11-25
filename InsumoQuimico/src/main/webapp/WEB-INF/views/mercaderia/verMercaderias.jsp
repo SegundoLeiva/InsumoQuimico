@@ -6,7 +6,7 @@
 <div class="page-header">
 	<h1>
 		Ingresar Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="#" title="Buscar"
+		</span><a href="#" title="Buscar" onclick="fn_buscar()"
 			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
 	</h1>
 </div>
@@ -32,13 +32,13 @@
 							<div class="control-group">
 								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderiaConsulta.guiaRemision}">
 								</div>
 							</div>
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idAlmacen">Almacén</label>
+								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
 								<div class="controls">									
 									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
@@ -48,29 +48,24 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Inicio</label>
+								<label class="control-label" for="fechaInicio">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${fechaInicio}">
 								</div>
 							</div>
 
 						</div>
 						<div class="span4">
 						<div class="control-group">
-								<label class="control-label" for="idProveedor">Proveedor</label>
+								<label class="control-label" for="proveedor">Proveedor</label>
 								<div class="controls">									
-									<select name="idProveedor" id="idProveedor" required
-										data-msg-required="El campo Estado es obligatorio.">
-										<option value="">Seleccionar</option>
-										<option value="S">VIGENTE</option>
-										<option value="N">NO VIGENTE</option>
-									</select>
+									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${mercaderiaConsulta.rucProveedor}">
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Fin</label>
+								<label class="control-label" for="fechaFin">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${fechaFin}">
 								</div>
 							</div>
 						</div>
@@ -93,13 +88,14 @@
 						<th class="center" width="5%">Nro</th>
 						<th class="center">Código</th>
 						<th class="center">Transporte</th>
+						<th class="center">Proveedor</th>
 						<th class="center">Guía Remisión</th>
 						<th class="center">Comprobante de Venta</th>
 						<th class="center" width="10%">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
-						<c:forEach var="jbean" items="${listaMercaderias}"
+						<c:forEach var="jbean" items="${listaMercaderiaConsulta}"
 							varStatus="contador">
 							<tr>
 								<td class="center">${contador.count}</td>
@@ -107,6 +103,7 @@
 									href="modificarMercaderia.htm?idMercaderia=<c:out value="${jbean.idMercaderia}" />"
 									title="Modificar Mercadería">${jbean.idMercaderia}</a></td>
 								<td class="center">${jbean.transporte}</td>
+								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>
 								<td class="center"><a class="red" href="#" onclick="eliminarMercaderia('${jbean.idMercaderia}')"> <i

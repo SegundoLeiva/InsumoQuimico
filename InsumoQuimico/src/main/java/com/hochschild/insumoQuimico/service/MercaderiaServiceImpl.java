@@ -15,6 +15,7 @@ import com.hochschild.insumoQuimico.dao.MercaderiaDetalleDAO;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle.IdMercaderia;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
@@ -54,6 +55,8 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				mercaderia.setGuiaRemision(mercaderiaParametrosEntrada.getGuiaRemision());
 				mercaderia.setComprobanteVenta(mercaderiaParametrosEntrada.getComprobanteVenta());
 				mercaderia.setGuiaInterna(mercaderiaParametrosEntrada.getGuiaInterna());
+				mercaderia.setRucProveedor(mercaderiaParametrosEntrada.getRucProveedor());
+				mercaderia.setDescripcionProveedor(mercaderiaParametrosEntrada.getDescripcionProveedor());
 				mercaderia.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());		
 				mercaderia.setFechaModificacion(new Date());
 				
@@ -112,10 +115,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 	public void eliminarMercaderia(String idMercaderia) {
 		mercaderiaDAO.eliminarMercaderia(idMercaderia);
 	}
-
-	public List<Mercaderia> listaMercaderia() {
-		return mercaderiaDAO.listaMercaderia();
-	}
 	
 	public Mercaderia obtieneMercaderiaPorId(String id) {
 		// TODO Auto-generated method stub
@@ -137,9 +136,14 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		mercaderia.setGuiaRemision(data.getGuiaRemision());
 		mercaderia.setComprobanteVenta(data.getComprobanteVenta());
 		mercaderia.setGuiaInterna(data.getGuiaInterna());
+		mercaderia.setRucProveedor(data.getRucProveedor());
+		mercaderia.setDescripcionProveedor(data.getDescripcionProveedor());
 		mercaderia.setIdUsuarioCreacion(data.getNombreUsuario());		
 		mercaderia.setFechaCreacion(new Date());
 		mercaderiaDAO.insertarMercaderia(mercaderia);
+	}
+	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsulta mercaderiaConsulta, String fechaInicio, String fechaFin){
+		return mercaderiaDAO.listaMercaderiaConsulta(mercaderiaConsulta, fechaInicio, fechaFin);
 	}
 }
 

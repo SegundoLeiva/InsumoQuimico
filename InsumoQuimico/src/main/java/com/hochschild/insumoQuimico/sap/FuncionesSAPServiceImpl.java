@@ -18,7 +18,6 @@ public class FuncionesSAPServiceImpl implements FuncionesSAPService {
             conSAP.IngresarDatosInput(ruc, "I_STCD1");
             conSAP.IngresarDatosInput(sociedad, "I_BUKRS");
             conSAP.EjecutarRFC();
-            ParameterList dd = conSAP.rFC.getExportParameterList();
             descripcion = conSAP.rFC.getExportParameterList().getString("E_NAME1");
         } catch (Exception e) {
             e.printStackTrace();
