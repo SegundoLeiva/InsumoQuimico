@@ -81,7 +81,7 @@
 							<div class="control-group">
 								<label class="control-label" for="rucProveedor">Ruc Proveedor</label>
 								<div class="controls">		
-									<input type="text" class="form-control" name="rucProveedor" id="rucProveedor" value="${mercaderia.rucProveedor}" required="required" data-msg-required="El campo Ruc Proveedor es obligatorio." onblur="getProveedorDescripcion();">
+									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" value="${mercaderia.rucProveedor}" required="required" maxlength="11" data-msg-required="El campo Ruc Proveedor es obligatorio." onblur="getProveedorDescripcion();">
 									<input type="hidden" name="descripcionProveedor" id="descripcionProveedor" value="${mercaderia.descripcionProveedor}">								
 									<span id="spanDescripcionProveedor">${mercaderia.descripcionProveedor}</span>
 								</div>
