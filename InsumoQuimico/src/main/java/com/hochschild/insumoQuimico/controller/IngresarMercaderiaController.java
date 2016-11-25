@@ -21,6 +21,7 @@ import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
+import com.hochschild.insumoQuimico.sap.FuncionesSAPService;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
@@ -41,9 +42,12 @@ public class IngresarMercaderiaController {
     private MercaderiaService mercaderiaService;
 	@Autowired
     private MercaderiaDetalleService mercaderiaDetalleService;
+	@Autowired
+	private FuncionesSAPService funcionesSAPService;
 	
 	@RequestMapping(value = "/verMercaderias.htm")
 	public String verMercaderias(Model model,HttpSession sesion,HttpServletRequest req) {
+
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
@@ -105,23 +109,5 @@ public class IngresarMercaderiaController {
 
 		return "nuevaMercaderia";
 	}
-	
-	@RequestMapping(value = "/listaMercaderiaDetalle.htm", method = RequestMethod.POST)
-	@ResponseBody
-	public String listaMercaderiaDetalle(@RequestParam("idMercaderia") String idMercaderia) {
 
-		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(idMercaderia);
-
-		String resultado = "";
-		ObjectMapper mapper = new ObjectMapper();
-
-		try {
-			resultado = mapper.writer().writeValueAsString(listaMercaderiaDetalle);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		return resultado;
-
-	}
 }

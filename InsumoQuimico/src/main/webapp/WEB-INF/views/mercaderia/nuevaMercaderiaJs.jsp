@@ -34,7 +34,7 @@ $(document).ready(function() {
 		</c:forEach>
 		index = "${listaMercaderiaDetalle.get(listaMercaderiaDetalle.size()-1).id.idMercaderiaDetalle+1}";
 	}
-	$("#idProveedor").select2({
+	$("#transporte").select2({
 		  data: data2
 	});
 

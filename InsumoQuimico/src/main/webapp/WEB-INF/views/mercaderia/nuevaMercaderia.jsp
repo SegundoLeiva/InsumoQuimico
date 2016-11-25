@@ -35,7 +35,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idProveedor">Proveedor</label>
 								<div class="controls">		
-									<select id="idProveedor"></select>							
+									<input type="text" class="form-control" name="idProveedor" id="idProveedor" value="${mercaderia.idProveedor}" required="required" data-msg-required="El campo Proveedor es obligatorio.">
 								</div>
 							</div>	
 							<div class="control-group">
@@ -60,7 +60,8 @@
 							<div class="control-group">
 								<label class="control-label" for="transporte">Transporte</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio.">
+									<select id="transporte"></select>
+<%-- 									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio."> --%>
 								</div>
 							</div>	
 							<div class="control-group">
