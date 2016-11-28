@@ -8,7 +8,7 @@ public class ConsumoConsulta {
 	
 	public ConsumoConsulta(String idUnidadMinera) {
         this.idUnidadMinera = idUnidadMinera;
-		this.idMercaderia = "";
+		this.idConsumo = "";
 		this.idUnidadMineraAlmacen = "";
 		this.idUnidadMineraArea = "";
 	}
@@ -17,7 +17,7 @@ public class ConsumoConsulta {
 	}
 	
 	@Id
-	private String idMercaderia;
+	private String idConsumo;
 	private String idUnidadMinera;
 	private String transporte;
     private String guiaRemision;
@@ -27,12 +27,14 @@ public class ConsumoConsulta {
     private String area;
     private String fechaCreacion;
 	private String idUsuarioCreacion;
-	public String getIdMercaderia() {
-		return idMercaderia;
+	
+
+	public String getIdConsumo() {
+		return idConsumo;
 	}
 
-	public void setIdMercaderia(String idMercaderia) {
-		this.idMercaderia = idMercaderia;
+	public void setIdConsumo(String idConsumo) {
+		this.idConsumo = idConsumo;
 	}
 
 	public String getIdUnidadMinera() {

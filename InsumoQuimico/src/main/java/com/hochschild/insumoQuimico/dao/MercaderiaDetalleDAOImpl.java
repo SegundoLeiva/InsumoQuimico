@@ -43,9 +43,9 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public MercaderiaDetalle obtenerMercaderiaDetalle(String idSolPed,String idSolPedDetalle){
-		String sql = "from MercaderiaDetalle WHERE idMercaderia = '"+idSolPed+"' "
-				+ "and idMercaderiaDetalle='"+idSolPedDetalle+"'";
+	public MercaderiaDetalle obtenerMercaderiaDetalle(String idMercaderia,String idMercaderiaDetalle){
+		String sql = "from MercaderiaDetalle WHERE idMercaderia = '"+idMercaderia+"' "
+				+ "and idMercaderiaDetalle='"+idMercaderiaDetalle+"'";
 		 List<MercaderiaDetalle> resultado= hibernateTemplate.find(sql);
 	      
 	     return resultado.get(0);

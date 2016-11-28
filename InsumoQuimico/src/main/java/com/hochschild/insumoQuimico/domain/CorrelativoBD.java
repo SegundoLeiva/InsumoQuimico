@@ -8,11 +8,17 @@ import org.hibernate.annotations.NamedNativeQuery;
 
 @Entity
 @NamedNativeQueries({
-   
-   
+
     @NamedNativeQuery(name="correlativoMercaderia",
     callable = true,
     query = "{call stpr_CorrelativoMercaderia(:idUnidadMinera)}",
+    readOnly = true,
+    cacheable = false,
+    resultClass = CorrelativoBD.class),
+    
+    @NamedNativeQuery(name="correlativoConsumo",
+    callable = true,
+    query = "{call stpr_CorrelativoConsumo(:idUnidadMinera)}",
     readOnly = true,
     cacheable = false,
     resultClass = CorrelativoBD.class)
