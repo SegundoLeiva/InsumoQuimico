@@ -5,7 +5,9 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
+	<c:if test="${flagTransaccion=='eliminar'}">
+		alertify.success("Se eliminó correctamente");
+	</c:if>
 	$('#tablaConsumo').DataTable({
 	 	"bSort" : false,
 		"columnDefs": [{ className: "center"}]
