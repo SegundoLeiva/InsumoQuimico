@@ -30,6 +30,7 @@ import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.insumoQuimico.util.Constantes;
+import com.hochschild.insumoQuimico.util.FechasUtil;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -52,16 +53,13 @@ public class IngresarMercaderiaController {
 	public String verMercaderias(Model model,HttpSession sesion,HttpServletRequest req) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		String fechaActual = FechasUtil.getFechaActual();
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        
-        SimpleDateFormat fechaActualSDF = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaActual = fechaActualSDF.format(new Date());
     	
-        String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);
-        
+        String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
         MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta(idUnidadMinera);
         mercaderiaConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
         List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaActual,fechaActual);         
@@ -84,8 +82,6 @@ public class IngresarMercaderiaController {
         
 		String fechaInicio = req.getParameter("fechaInicio");
 		String fechaFin = req.getParameter("fechaFin");
-
-		
 
         List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaInicio,fechaFin);         
 		model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
@@ -110,8 +106,7 @@ public class IngresarMercaderiaController {
     @ResponseBody
 	public String guardarMercaderia(HttpSession sesion,MercaderiaParametrosEntrada mercaderiaParametrosEntrada) throws IllegalStateException, IOException{
 		
-    	Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-	
+    	Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");	
     	mercaderiaParametrosEntrada.setNombreUsuario(usuarioSession.getIdUsuario());
     	String rpta = mercaderiaService.guardarMercaderia(mercaderiaParametrosEntrada);
 		return rpta;

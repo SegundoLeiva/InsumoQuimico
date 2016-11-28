@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class FechasUtil {
     
-    public static String getFechaActual(String format) {
-        SimpleDateFormat formatter = new SimpleDateFormat(format);
+    public static String getFechaActual() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         return formatter.format(new Date(System.currentTimeMillis()));
     }
     
