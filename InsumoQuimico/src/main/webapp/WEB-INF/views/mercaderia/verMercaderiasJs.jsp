@@ -28,7 +28,6 @@ function eliminarMercaderia(idMercaderia) {
 function fn_buscar(){
 
 	var form = document.forms[0];
-// 	form.method = "GET";
     form.idUnidadMinera.disabled=false;
     form.action="buscarMercaderia.htm"
     form.submit();

@@ -2,12 +2,12 @@
 <div class="page-header">
 	<h1>
 		Registrar Consumo <span> <i class="icon-double-angle-right"></i>
-		</span><a href="#" title="Buscar"
+		</span><a href="#" title="Buscar" onclick="fn_buscar()"
 			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
 	</h1>
 </div>
 <div class="page-header position-relative">
-	<form id="formVerConsumos" method="POST" class="form-horizontal">
+	<form id="formVerConsumos"  action="../registrarConsumo/eliminarConsumo.htm" method="POST" class="form-horizontal">
 	<input type="hidden" name="idConsumo" id="idConsumo">	
 		<div class="row-fluid">
 			<div class="page-content">
@@ -28,18 +28,19 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${fechaInicio}">
 								</div>
 							</div>
 							
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idAlmacen">Almacén</label>
+								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
 								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
+									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
+										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}">${item.almacen.almacen}</option>
+											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == consumoConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -47,7 +48,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${fechaFin}">
 								</div>
 							</div>
 
@@ -56,13 +57,14 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls">									
-									<select name="idUnidadMineraArea" id="idUnidadMineraArea">
+									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
+										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}">${item.area.area}</option>
+											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == consumoConsulta.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
 										</c:forEach>
 									</select>
 								</div>
-							</div>					
+							</div>				
 						</div>
 					</div>
 				</div>
@@ -88,5 +90,22 @@
 							<th class="center" width="10%">Opciones</th>
 						</tr>
 					</thead>
+					<tbody>
+						<c:forEach var="jbean" items="${listaConsumoConsulta}"
+							varStatus="contador">
+							<tr>
+								<td class="center">${contador.count}</td>
+								<td class="center"><a
+									href="modificarConsumo.htm?idConsumo=<c:out value="${jbean.idConsumo}" />"
+									title="Modificar Consumo">${jbean.idConsumo}</a></td>
+								<td class="center">${jbean.almacen}</td>
+								<td class="center">${jbean.area}</td>
+								<td class="center"><a class="red" href="#" onclick="eliminarConsumo('${jbean.idConsumo}')"> <i
+										class="icon-trash bigger-130"></i>
+								</a></td>
+
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 </div>

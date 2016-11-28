@@ -19,8 +19,6 @@ public class ConsumoConsulta {
 	@Id
 	private String idConsumo;
 	private String idUnidadMinera;
-	private String transporte;
-    private String guiaRemision;
     private String idUnidadMineraAlmacen;
     private String idUnidadMineraArea;
     private String almacen;
@@ -43,22 +41,6 @@ public class ConsumoConsulta {
 
 	public void setIdUnidadMinera(String idUnidadMinera) {
 		this.idUnidadMinera = idUnidadMinera;
-	}
-
-	public String getTransporte() {
-		return transporte;
-	}
-
-	public void setTransporte(String transporte) {
-		this.transporte = transporte;
-	}
-
-	public String getGuiaRemision() {
-		return guiaRemision;
-	}
-
-	public void setGuiaRemision(String guiaRemision) {
-		this.guiaRemision = guiaRemision;
 	}
 
 	public String getIdUnidadMineraAlmacen() {

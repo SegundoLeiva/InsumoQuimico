@@ -17,7 +17,7 @@ $(document).ready(function() {
 	inicializarStyleTablaDetalle();
 	
 	if($("#flagEditar").val()=="editar"){
-//		$(loading).show();	
+
 		var i=0;
 		<c:forEach var="jbean" items="${listaConsumoDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",

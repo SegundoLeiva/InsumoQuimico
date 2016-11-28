@@ -13,6 +13,7 @@
 </div>
 <div class="page-header position-relative">
 	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
+	<input type="hidden" value="${flagEditar}" id="flagEditar">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -30,10 +31,10 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fecha">Código Consumo</label>
+								<label class="control-label" for="idConsumo">Código Consumo</label>
 								<div class="controls codigoDisabled">
-									<input type="text" class="form-control" name="codigoInsumo" id="codigoInsumo" 
-									readonly="readonly" >
+									<input type="text" class="form-control" name="idConsumo" id="idConsumo" 
+									readonly="readonly" value="${consumo.idConsumo}">
 								</div>
 							</div>
 						</div>
@@ -49,7 +50,7 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="idAlmacen">Almacén</label>
+								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
 								<div class="controls">									
 									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">

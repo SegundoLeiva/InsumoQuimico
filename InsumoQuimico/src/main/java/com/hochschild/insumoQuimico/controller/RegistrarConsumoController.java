@@ -146,6 +146,6 @@ public class RegistrarConsumoController {
 		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetallePorIdConsumo(idConsumo);
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);
 
-		return "nuevaConsumo";
+		return "nuevoConsumo";
 	}
 }

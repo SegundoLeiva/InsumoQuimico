@@ -21,4 +21,13 @@ function eliminarConsumo(idConsumo) {
 			function(){});
 }
 
+function fn_buscar(){
+
+	var form = document.forms[0];
+    form.idUnidadMinera.disabled=false;
+    form.action="buscarConsumo.htm"
+    form.submit();
+    form.idUnidadMinera.disabled=true;
+}
+
 </script>

@@ -15,7 +15,7 @@ import org.hibernate.annotations.NamedNativeQuery;
 @NamedNativeQueries({
 @NamedNativeQuery(name = "listaConsumo",
 callable = true,
-query = "{call dbo.stpr_ListaConsumo(:idUnidadMinera,:idMercaderia,:idUnidadMineraAlmacen,:idUnidadMineraArea,:fechaInicio,:fechaFin,:idUsuarioCreacion)}",
+query = "{call dbo.stpr_ListaConsumo(:idUnidadMinera,:idConsumo,:idUnidadMineraAlmacen,:idUnidadMineraArea,:fechaInicio,:fechaFin,:idUsuarioCreacion)}",
 readOnly = true,
 cacheable = false,
 resultClass = ConsumoConsulta.class),

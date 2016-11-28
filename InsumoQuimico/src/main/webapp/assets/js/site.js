@@ -146,7 +146,7 @@ function actualizarDetalleGrabar(arrayJson,index){
 			arrayJson[i].indicadorBD=INDICADOR_CREADO;								
 		}
 	}
-	return (parseInt(mercaderiaJSONArray[mercaderiaJSONArray.length-1].idDetalle)+1).toString();
+	return (parseInt(arrayJson[arrayJson.length-1].idDetalle)+1).toString();
 }
 
 function showLoading(){
