@@ -39,7 +39,6 @@ public class AreaController {
 	public String verAreas(Model model,HttpServletRequest req) {
 		model.addAttribute("listaUnidadMineraArea", this.unidadMineraAreaService.listaUnidadMineraArea());
 		model.addAttribute(Constantes.FLAG_TRANSACCION, req.getAttribute(Constantes.FLAG_TRANSACCION));
-		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "verAreas";
 	}
 	
@@ -68,16 +67,19 @@ public class AreaController {
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listaAreas", this.areaService.listaArea());
-		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "nuevoArea";
 	}
 
 	@RequestMapping(value = "/eliminarUnidadMineraArea.htm", method = RequestMethod.POST)
 	public String eliminarUnidadMineraArea(Model model,HttpServletRequest req,
 			@RequestParam("idUnidadMineraArea") String idUnidadMineraArea) throws ServletException, IOException {
-
-		unidadMineraAreaService.eliminarUnidadMineraArea(idUnidadMineraArea);
-		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
+		try {
+			unidadMineraAreaService.eliminarUnidadMineraArea(idUnidadMineraArea);
+			req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
+		} catch (Exception e) {
+			req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ERROR);
+		}
+		
 		return this.verAreas(model,req);
 	}
 	
@@ -89,7 +91,6 @@ public class AreaController {
 	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("unidadMineraArea", unidadMineraArea);
 		model.addAttribute("listaAreas", this.areaService.listaArea());
-		model.addAttribute("index", Constantes.MANTENIMIENTO_AREA);
 		return "nuevoArea";
 	}
 

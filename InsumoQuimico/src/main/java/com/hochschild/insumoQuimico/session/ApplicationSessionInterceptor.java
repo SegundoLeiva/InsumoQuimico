@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hochschild.insumoQuimico.domain.Usuario;
+import com.hochschild.insumoQuimico.util.Constantes;
 
 public class ApplicationSessionInterceptor implements HandlerInterceptor {
 
@@ -27,11 +28,17 @@ public class ApplicationSessionInterceptor implements HandlerInterceptor {
 		if(usuarioSession==null){
 			response.sendRedirect("../expirarSession.htm");
 			return false;
-		}			
+		}else{
+			String controller = request.getRequestURI().split("/")[2];
+			if(controller.equals("area"))session.setAttribute("index", Constantes.MANTENIMIENTO_AREA);
+			if(controller.equals("insumo"))session.setAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
+			if(controller.equals("ingresarMercaderia"))session.setAttribute("index", Constantes.INGRESAR_MERCADERIA);
+			if(controller.equals("registrarConsumo"))session.setAttribute("index", Constantes.REGISTRAR_CONSUMO);
+		}	
 		return true;
 	}
 
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
+	public void postHandle(HttpServletRequest request, HttpServletResponse arg1,
 			Object arg2, ModelAndView arg3) throws Exception {	
 	}
 

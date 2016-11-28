@@ -16,7 +16,6 @@ import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
-import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -40,7 +39,6 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        model.addAttribute("index", Constantes.REGISTRAR_CONSUMO);
 		return "verConsumos";
 	}
 	
@@ -54,7 +52,6 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        model.addAttribute("index", Constantes.REGISTRAR_CONSUMO);	
 		return "nuevoConsumo";
 	}
 }

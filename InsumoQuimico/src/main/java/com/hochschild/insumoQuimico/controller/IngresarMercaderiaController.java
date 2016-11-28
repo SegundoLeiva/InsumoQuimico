@@ -66,8 +66,8 @@ public class IngresarMercaderiaController {
         mercaderiaConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
         List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaActual,fechaActual);         
         model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
-        
-		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
+        model.addAttribute("fechaInicio", fechaActual);
+		model.addAttribute("fechaFin", fechaActual);
 		return "verMercaderias";
 	}
 	
@@ -102,7 +102,6 @@ public class IngresarMercaderiaController {
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		return "nuevaMercaderia";
 	}
@@ -136,7 +135,6 @@ public class IngresarMercaderiaController {
 		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
 		Mercaderia mercaderia = mercaderiaService.obtieneMercaderiaPorId(idMercaderia);
 		model.addAttribute("mercaderia", mercaderia);
-		model.addAttribute("index", Constantes.INGRESAR_MERCADERIA);
 		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
 		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		

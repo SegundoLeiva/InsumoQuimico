@@ -40,9 +40,10 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
 								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
+									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
+										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}">${item.almacen.almacen}</option>
+											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == mercaderiaConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
 										</c:forEach>
 									</select>
 								</div>

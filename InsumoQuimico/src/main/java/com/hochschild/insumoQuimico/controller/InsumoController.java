@@ -39,7 +39,6 @@ public class InsumoController {
 	public String verInsumos(Model model,HttpServletRequest req) {
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
 		model.addAttribute(Constantes.FLAG_TRANSACCION, req.getAttribute(Constantes.FLAG_TRANSACCION));
-		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "verInsumos";
 	}
 	
@@ -68,16 +67,19 @@ public class InsumoController {
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
-		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "nuevoInsumo";
 	}
 
 	@RequestMapping(value = "/eliminarUnidadMineraInsumo.htm", method = RequestMethod.POST)
 	public String eliminarUnidadMineraInsumo(Model model,HttpServletRequest req,
 			@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo) throws ServletException, IOException {
-
-		unidadMineraInsumoService.eliminarUnidadMineraInsumo(idUnidadMineraInsumo);
-		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
+		try {
+			unidadMineraInsumoService.eliminarUnidadMineraInsumo(idUnidadMineraInsumo);
+			req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
+		} catch (Exception e) {
+			req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ERROR);
+		}
+		
 		return this.verInsumos(model,req);
 	}
 	
@@ -89,7 +91,6 @@ public class InsumoController {
 	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("unidadMineraInsumo", unidadMineraInsumo);
 		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
-		model.addAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 		return "nuevoInsumo";
 	}
 
