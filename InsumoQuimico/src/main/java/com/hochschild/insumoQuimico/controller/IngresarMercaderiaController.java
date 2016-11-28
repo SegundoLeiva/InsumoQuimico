@@ -71,7 +71,7 @@ public class IngresarMercaderiaController {
 		return "verMercaderias";
 	}
 	
-	@RequestMapping(value = { "/buscarMercaderia.htm" }, method = { RequestMethod.GET })
+	@RequestMapping(value = { "/buscarMercaderia.htm" }, method = { RequestMethod.POST })
 	public String buscarMercaderia(HttpSession sesion,
 			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req,
 			HttpServletResponse res, Model model) {
