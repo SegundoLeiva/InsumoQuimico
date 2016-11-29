@@ -58,7 +58,7 @@ $("#agregarInsumo").click(function(){
 });
 
 function limpiarInsumo(){
-	$("#formUnidadMineraInsumo select").val("");
+// 	$("#formUnidadMineraInsumo select").val("");
 }
 	
 </script>

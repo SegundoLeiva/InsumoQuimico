@@ -113,7 +113,7 @@ function eliminarDetalle(arrayJson){
 						  },
 				function(){});
 	}else{
-		alertify.alert("Alerta","Seleccione un registro para eliminar");
+		alertify.error("Seleccione un registro para eliminar");
 	}
 }
 

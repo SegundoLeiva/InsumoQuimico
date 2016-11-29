@@ -58,7 +58,7 @@ $("#agregarArea").click(function(){
 });
 
 function limpiarArea(){
-	$("#formUnidadMineraArea select").val("");
+// 	$("#formUnidadMineraArea select").val("");
 }
 
 // function modificarArea(idUnidadMineraArea){
