@@ -2,9 +2,9 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
-import com.hochschild.insumoQuimico.controller.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
+import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 
 public interface MercaderiaService {
 

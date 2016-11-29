@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hochschild.insumoQuimico.controller.AreaParametrosEntrada;
 import com.hochschild.insumoQuimico.dao.UnidadMineraAreaDAO;
 import com.hochschild.insumoQuimico.domain.Area;
+import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 
 @Service

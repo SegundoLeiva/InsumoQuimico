@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.hochschild.insumoQuimico.controller.ConsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.dao.ConsumoDAO;
 import com.hochschild.insumoQuimico.dao.ConsumoDetalleDAO;
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle.IdConsumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;

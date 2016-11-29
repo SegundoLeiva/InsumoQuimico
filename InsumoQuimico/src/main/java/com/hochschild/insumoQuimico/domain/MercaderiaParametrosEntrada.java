@@ -1,4 +1,4 @@
-package com.hochschild.insumoQuimico.controller;
+package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
 

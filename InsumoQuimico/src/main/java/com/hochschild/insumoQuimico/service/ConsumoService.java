@@ -2,9 +2,9 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
-import com.hochschild.insumoQuimico.controller.ConsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
 
 public interface ConsumoService {
 

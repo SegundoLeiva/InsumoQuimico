@@ -2,7 +2,7 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
-import com.hochschild.insumoQuimico.controller.AreaParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 
 public interface UnidadMineraAreaService {
