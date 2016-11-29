@@ -32,6 +32,7 @@
 			<mvc:mapping  path="/registrarConsumo/*"/> 
 			<mvc:mapping  path="/area/*"/> 
 			<mvc:mapping  path="/insumo/*"/> 
+			<mvc:mapping  path="/home/*"/> 
 			<mvc:exclude-mapping path="/login.htm" />
 			<bean class="com.hochschild.insumoQuimico.session.ApplicationSessionInterceptor" />
 		</mvc:interceptor>      

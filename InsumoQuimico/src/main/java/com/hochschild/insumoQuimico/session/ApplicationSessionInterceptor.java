@@ -34,6 +34,7 @@ public class ApplicationSessionInterceptor implements HandlerInterceptor {
 			if(controller.equals("insumo"))session.setAttribute("index", Constantes.MANTENIMIENTO_INSUMO);
 			if(controller.equals("ingresarMercaderia"))session.setAttribute("index", Constantes.INGRESAR_MERCADERIA);
 			if(controller.equals("registrarConsumo"))session.setAttribute("index", Constantes.REGISTRAR_CONSUMO);
+			if(controller.equals("home"))session.setAttribute("index", null);
 		}	
 		return true;
 	}
