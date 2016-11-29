@@ -47,7 +47,7 @@ $("#agregarInsumo").click(function(){
 				           data: $("#formUnidadMineraInsumo").serialize(),
 				           success: function(data)
 				           {	
-				        	   if($("#idUnidadMineraInsumo").val()==""){limpiarInsumo()};
+				        	   if($("#idUnidadMineraInsumo").val()==""){limpiarCampos("formUnidadMineraInsumo")};
 				        	   mensajeTransaccion(data);
 				           }
 				    });
@@ -56,9 +56,5 @@ $("#agregarInsumo").click(function(){
 	}
 
 });
-
-function limpiarInsumo(){
-// 	$("#formUnidadMineraInsumo select").val("");
-}
 	
 </script>

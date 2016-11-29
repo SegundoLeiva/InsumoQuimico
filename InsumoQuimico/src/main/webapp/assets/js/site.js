@@ -164,3 +164,20 @@ function fn_validaEntero(e) {
     te = String.fromCharCode(tecla);
     return patron.test(te);
 }
+
+$("#abrirDetalleAgregar").click(function(){
+	$("#btnEditarDetalle").hide();
+	$("#btnAgregarDetalle").show();
+	limpiarCampos("modalDetalleForm");
+	$("#modalDetalleForm").modal("show");
+});
+
+function limpiarCampos(idFormulario){
+	$("#"+idFormulario+" input").val("");
+	
+	var formSelect = $("#"+idFormulario+" select");
+	$.each( formSelect, function(index, value ) {
+		var id = $(formSelect[index]).attr("id");
+		$("#"+id).val($("#"+id+" option:first").val());
+	});
+}

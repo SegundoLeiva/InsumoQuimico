@@ -47,7 +47,7 @@ $("#agregarArea").click(function(){
 				           data: $("#formUnidadMineraArea").serialize(),
 				           success: function(data)
 				           {	
-				        	   if($("#idUnidadMineraArea").val()==""){limpiarArea()};
+				        	   if($("#idUnidadMineraArea").val()==""){limpiarCampos("formUnidadMineraArea");};
 				        	   mensajeTransaccion(data);
 				           }
 				    });
@@ -56,10 +56,6 @@ $("#agregarArea").click(function(){
 	}
 
 });
-
-function limpiarArea(){
-// 	$("#formUnidadMineraArea select").val("");
-}
 
 // function modificarArea(idUnidadMineraArea){
 // 	$.ajax({

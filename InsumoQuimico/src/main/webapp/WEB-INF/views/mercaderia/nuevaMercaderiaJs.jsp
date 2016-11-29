@@ -41,14 +41,6 @@ $(document).ready(function() {
 
 } );
 
-$("#abrirDetalleAgregar").click(function(){
-	$("#btnEditarDetalle").hide();
-	$("#btnAgregarDetalle").show();
-	$("#cantidad").val("");
-	$("#idInsumo").val($("#idInsumo option:first").val());
-	$("#modalDetalleForm").modal("show");
-});
-
 $("#btnAgregarDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
  		 	var data = [$("#idInsumo").val(),$("#idInsumo option:selected").text(),
