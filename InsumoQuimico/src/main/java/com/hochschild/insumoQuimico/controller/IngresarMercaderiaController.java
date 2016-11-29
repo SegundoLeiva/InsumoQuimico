@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +57,8 @@ public class IngresarMercaderiaController {
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
     	
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
-        MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta(idUnidadMinera);
+        MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta();
+        mercaderiaConsulta.setIdUnidadMinera(idUnidadMinera);
         mercaderiaConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
         List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaActual,fechaActual);         
         model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
@@ -69,14 +69,14 @@ public class IngresarMercaderiaController {
 	
 	@RequestMapping(value = { "/buscarMercaderia.htm" }, method = { RequestMethod.POST })
 	public String buscarMercaderia(HttpSession sesion,
-			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req,
-			HttpServletResponse res, Model model) {
+			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
+        sesion.setAttribute("mercaderiaConsulta", mercaderiaConsulta);
         
 		String fechaInicio = req.getParameter("fechaInicio");
 		String fechaFin = req.getParameter("fechaFin");
@@ -115,7 +115,7 @@ public class IngresarMercaderiaController {
 			@RequestParam("idMercaderia") String idMercaderia) throws ServletException, IOException {
 		mercaderiaService.eliminarMercaderia(idMercaderia);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.verMercaderias(model,sesion,req);
+		return this.buscarMercaderia(sesion, (MercaderiaConsulta)sesion.getAttribute("mercaderiaConsulta"),req,model);
 	}
 	
 	@RequestMapping(value = { "/modificarMercaderia.htm" }, method = {RequestMethod.POST, RequestMethod.GET })

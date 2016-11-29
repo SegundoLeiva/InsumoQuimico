@@ -5,17 +5,7 @@ import javax.persistence.Id;
 
 @Entity
 public class ConsumoConsulta {
-	
-	public ConsumoConsulta(String idUnidadMinera) {
-        this.idUnidadMinera = idUnidadMinera;
-		this.idConsumo = "";
-		this.idUnidadMineraAlmacen = "";
-		this.idUnidadMineraArea = "";
-	}
-	
-	public ConsumoConsulta() {
-	}
-	
+
 	@Id
 	private String idConsumo;
 	private String idUnidadMinera;

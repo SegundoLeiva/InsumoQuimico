@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +59,8 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
         
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
-        ConsumoConsulta consumoConsulta = new ConsumoConsulta(idUnidadMinera);
+        ConsumoConsulta consumoConsulta = new ConsumoConsulta();
+        consumoConsulta.setIdUnidadMinera(idUnidadMinera);
         consumoConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
         List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsulta,fechaActual,fechaActual);         
         model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
@@ -72,8 +72,7 @@ public class RegistrarConsumoController {
 	
 	@RequestMapping(value = { "/buscarConsumo.htm" }, method = { RequestMethod.POST })
 	public String buscarConsumo(HttpSession sesion,
-			ConsumoConsulta consumoConsulta, HttpServletRequest req,
-			HttpServletResponse res, Model model) {
+			ConsumoConsulta consumoConsulta, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
@@ -82,7 +81,8 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        
+        sesion.setAttribute("consumoConsulta", consumoConsulta);
+
 		String fechaInicio = req.getParameter("fechaInicio");
 		String fechaFin = req.getParameter("fechaFin");
 
@@ -122,7 +122,8 @@ public class RegistrarConsumoController {
 			@RequestParam("idConsumo") String idConsumo) throws ServletException, IOException {
 		consumoService.eliminarConsumo(idConsumo);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.verConsumos(model,sesion,req);
+		return this.buscarConsumo(sesion, (ConsumoConsulta)sesion.getAttribute("consumoConsulta"),req,model);
+
 	}
 	
 	@RequestMapping(value = { "/modificarConsumo.htm" }, method = {RequestMethod.POST, RequestMethod.GET })

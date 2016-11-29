@@ -6,17 +6,6 @@ import javax.persistence.Id;
 @Entity
 public class MercaderiaConsulta {
 	
-	public MercaderiaConsulta(String idUnidadMinera) {
-        this.idUnidadMinera = idUnidadMinera;
-		this.idMercaderia = "";
-		this.idUnidadMineraAlmacen = "";
-		this.rucProveedor = "";
-		this.guiaRemision = "";
-	}
-	
-	public MercaderiaConsulta() {
-	}
-	
 	@Id
 	private String idMercaderia;
 	private String idUnidadMinera;

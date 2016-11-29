@@ -5,7 +5,7 @@
 <div class="page-header">
 	<h1>
 		Registrar Consumo <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../registrarConsumo/verConsumos.htm" title="Regresar" style="margin-left: 5px"
+		</span><a href="javascript:window.history.back();" title="Regresar" style="margin-left: 5px"
 			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i>Regresar</a>
 			<a href="#" id="guardarConsumo" title="Guardar Consumo"
 			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>

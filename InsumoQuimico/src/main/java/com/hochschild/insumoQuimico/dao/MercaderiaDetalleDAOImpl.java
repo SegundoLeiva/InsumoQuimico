@@ -29,7 +29,7 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
     	hibernateTemplate.bulkUpdate("DELETE MercaderiaDetalle where idMercaderiaDetalle=? and idMercaderia=?", idMercaderiaDetalle,idMercaderia);
    	}
     
-	
+    @Transactional
 	public void modificarMercaderiaDetalle(MercaderiaDetalle data){
     	hibernateTemplate.update(data);   	
     }
