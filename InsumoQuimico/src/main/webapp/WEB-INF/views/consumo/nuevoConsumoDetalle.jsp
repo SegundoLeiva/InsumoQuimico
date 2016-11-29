@@ -25,7 +25,7 @@
 							<div class="control-group">
 								<label class="control-label" for="cantidad">Cantidad</label>
 								<div class="controls">
-									<input type="number" id="cantidad" required data-msg-required="El campo Cantidad es obligatorio.">
+									<input type="text" id="cantidad" class="numeroEntero" required data-msg-required="El campo Cantidad es obligatorio.">
 								</div>
 							</div>
 							
