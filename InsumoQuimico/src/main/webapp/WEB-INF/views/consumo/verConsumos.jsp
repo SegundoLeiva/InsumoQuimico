@@ -87,6 +87,7 @@
 							<th class="center">Código</th>
 							<th class="center">Almacén</th>
 							<th class="center">Área</th>
+							<th class="center">Cantidad Total</th>
 							<th class="center" width="10%">Opciones</th>
 						</tr>
 					</thead>
@@ -100,6 +101,7 @@
 									title="Modificar Consumo">${jbean.idConsumo}</a></td>
 								<td class="center">${jbean.almacen}</td>
 								<td class="center">${jbean.area}</td>
+								<td class="center">${jbean.cantidad}</td>
 								<td class="center"><a class="red" href="#" onclick="eliminarConsumo('${jbean.idConsumo}')"> <i
 										class="icon-trash bigger-130"></i>
 								</a></td>

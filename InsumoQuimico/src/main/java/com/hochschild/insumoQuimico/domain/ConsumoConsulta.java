@@ -13,6 +13,7 @@ public class ConsumoConsulta {
     private String idUnidadMineraArea;
     private String almacen;
     private String area;
+    private String cantidad;
     private String fechaCreacion;
 	private String idUsuarioCreacion;
 	
@@ -79,5 +80,13 @@ public class ConsumoConsulta {
 
 	public void setIdUsuarioCreacion(String idUsuarioCreacion) {
 		this.idUsuarioCreacion = idUsuarioCreacion;
+	}
+
+	public String getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 }
