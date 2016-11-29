@@ -57,7 +57,6 @@ public class AreaController {
 		} catch (Exception e) {
 			mensaje = Constantes.TRANSACCION_ERROR;
 		}		
-		req.setAttribute(Constantes.FLAG_TRANSACCION, mensaje);
 		return mensaje;
 	}
 	
