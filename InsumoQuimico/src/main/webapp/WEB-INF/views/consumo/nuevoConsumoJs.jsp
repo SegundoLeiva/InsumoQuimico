@@ -93,6 +93,10 @@ function validarInsumoAgregar(){
 			rpta=false;
 		}
 	}
+	if(parseFloat($("#cantidad").val())==0){
+		alertify.error("La cantidad debe ser mayor a 0.");
+		rpta=false;
+	}
 	return rpta;
 }
 function validarInsumoEditar(){
