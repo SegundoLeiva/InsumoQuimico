@@ -11,29 +11,13 @@
 
 	<li class="light-blue">
 		<a data-toggle="dropdown" href="#" class="dropdown-toggle"> 
-			<img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" /> 
 			<span class="user-info"> 
 				<small>Bienvenido,<br>${session_usuario.nombre}</small>	
-<%-- 				<security:authentication property="principal.usuario" /> --%>
 			</span> 
 			<i class="icon-caret-down"></i>
 		</a>
 
 		<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-			<li>
-				<a href="<c:out value="configuracion.htm" />"> 
-					<i class="icon-cog"></i> Configuración
-				</a>
-			</li>
-
-			<li>
-				<a href="../home/perfil.htm" > 
-					<i class="icon-user"></i> Perfil
-				</a>
-			</li>
-
-			<li class="divider"></li>
-
 			<li>
 				<a href="#cerrar" data-toggle="modal"> 
 					<i class="icon-off"></i> Cerrar Sesión

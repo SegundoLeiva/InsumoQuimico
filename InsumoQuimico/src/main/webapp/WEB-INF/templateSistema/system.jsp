@@ -70,7 +70,7 @@
 							<i class="icon-angle-right arrow-icon"></i>
 						</span>
 					</li>
-					<li><a href="#" id="menuDescripcion"></a></li>
+					<li id="menuDescripcion"></li>
 				</ul>
 			</div>
 
