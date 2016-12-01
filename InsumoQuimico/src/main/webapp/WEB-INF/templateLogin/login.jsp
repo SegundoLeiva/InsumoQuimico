@@ -53,23 +53,11 @@
 </head>
 
 <body class="login-layout" style="background: #FFF;">
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a href="#" class="brand"> <small> <i class="ace-icon icon-beaker"></i>
-						Sistema Insumos Químicos
-				</small>
-				</a>
-			</div>
-			<!--/.container-fluid-->
-		</div>
-		<!--/.navbar-inner-->
-	</div>
 	<div class="main-container container-fluid">
 		<div class="main-content">
 			<div class="row-fluid">
 				<div class="span12">
-					<div class="login-container">
+					<div class="login-container" style="margin-top: 50px">
 						<div class="row-fluid">
 							<div class="center">
 								<span> <br />
@@ -103,9 +91,9 @@
 									<div id="login-box"
 										class="login-box visible widget-box no-border">
 										<div class="widget-body">
-											<div class="widget-main">
-												<h4 class="header blue lighter bigger">
-													<i class="icon-coffee green"></i> Inicie Sesi&oacute;n
+											<div class="widget-main center">
+												<h4 class="header blue">
+													<i class="ace-icon icon-beaker green"></i> Sistema Insumos Químicos
 												</h4>
 
 												<div class="space-6"></div>
@@ -169,6 +157,7 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/login.js"></script>
 <script src="assets/js/alertify/alertify.min.js"></script>
+<script src="assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="assets/js/site.js"></script>
 
 
