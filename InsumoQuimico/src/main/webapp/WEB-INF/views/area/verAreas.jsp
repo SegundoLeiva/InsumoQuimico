@@ -1,15 +1,13 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-
+<div class="page-header">
+	<h1>
+		Mantenimiento de 햞ea <span> <i class="icon-double-angle-right"></i>
+		</span><a href="../area/nuevaArea.htm" title="Nueva 햞ea"
+			class="btn btn-success btn-small pull-right"><i class="icon-inbox"></i>Agregar 햞ea</a>
+	</h1>
+</div>
 <div class="row-fluid">
 	<div class="span12">
-
-		<div class="header table-header">
-			<a href="../area/nuevaArea.htm"
-				title="Nueva 햞ea" class="btn btn-small btn-primary"
-				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar
-				햞ea</a>
-
-		</div>
 		<form id="formVerUnidadMineraArea" action="../area/eliminarUnidadMineraArea.htm" method="POST">
 		<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraAreaEliminar">		
 				<table id="tablaArea"

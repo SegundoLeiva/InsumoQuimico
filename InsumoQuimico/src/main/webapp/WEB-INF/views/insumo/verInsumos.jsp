@@ -1,15 +1,13 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-
+<div class="page-header">
+	<h1>
+		Mantenimiento de Insumos <span> <i class="icon-double-angle-right"></i>
+		</span><a href="../insumo/nuevoInsumo.htm" title="Nuevo Insumo"
+			class="btn btn-success btn-small pull-right"><i class="icon-inbox"></i>Agregar Insumo</a>
+	</h1>
+</div>
 <div class="row-fluid">
 	<div class="span12">
-
-		<div class="header table-header">
-			<a href="../insumo/nuevoInsumo.htm"
-				title="Nueva Área" class="btn btn-small btn-primary"
-				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Agregar
-				Insumo</a>
-
-		</div>
 		<form id="formVerUnidadMineraInsumo" action="../insumo/eliminarUnidadMineraInsumo.htm" method="POST">
 		<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumoEliminar">		
 				<table id="tablaInsumo"
