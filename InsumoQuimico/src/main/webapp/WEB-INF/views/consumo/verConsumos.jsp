@@ -2,7 +2,9 @@
 <div class="page-header">
 	<h1>
 		Registrar Consumo <span> <i class="icon-double-angle-right"></i>
-		</span><a href="#" title="Buscar" onclick="fn_buscar()"
+		</span><a href="../registrarConsumo/nuevoConsumo.htm" title="Nuevo Consumo" style="margin-left: 5px"
+			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i>Nuevo</a>
+			<a href="#" title="Buscar" onclick="fn_buscar()"
 			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
 	</h1>
 </div>
@@ -73,12 +75,7 @@
 		</div>
 
 	</form>
-	<div class="header table-header">
-			<a href="../registrarConsumo/nuevoConsumo.htm"
-				title="Nuevo Ingreso" class="btn btn-small btn-primary"
-				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Nuevo</a>
-
-	</div>
+	<hr>
 	<table id="tablaConsumo"
 					class="table table-striped table-bordered table-hover">
 					<thead>

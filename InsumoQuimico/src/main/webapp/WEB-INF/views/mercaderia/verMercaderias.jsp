@@ -1,12 +1,10 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-
-
-
-
 <div class="page-header">
 	<h1>
 		Ingresar Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="#" title="Buscar" onclick="fn_buscar()"
+		</span><a href="../ingresarMercaderia/nuevaMercaderia.htm" title="Nueva mercadería" style="margin-left: 5px"
+			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i>Nuevo</a>
+			<a href="#" title="Buscar" onclick="fn_buscar()"
 			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
 	</h1>
 </div>
@@ -32,7 +30,7 @@
 							<div class="control-group">
 								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderiaConsulta.guiaRemision}">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderiaConsulta.guiaRemision}" placeholder="Guía Remisión...">
 								</div>
 							</div>
 						</div>
@@ -58,9 +56,9 @@
 						</div>
 						<div class="span4">
 						<div class="control-group">
-								<label class="control-label" for="proveedor">Proveedor</label>
+								<label class="control-label" for="proveedor">Ruc Proveedor</label>
 								<div class="controls">									
-									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${mercaderiaConsulta.rucProveedor}">
+									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${mercaderiaConsulta.rucProveedor}" placeholder="Proveedor...">
 								</div>
 							</div>
 							<div class="control-group">
@@ -77,12 +75,7 @@
 		</div>
 
 	</form>
-	<div class="header table-header">
-			<a href="../ingresarMercaderia/nuevaMercaderia.htm"
-				title="Nuevo Ingreso" class="btn btn-small btn-primary"
-				style="border: 1px solid #c4e7ff;"><i class="icon-inbox"></i>Nuevo</a>
-
-	</div>
+	<hr>
 	<table id="tablaMercaderia" class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
