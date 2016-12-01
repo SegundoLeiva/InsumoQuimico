@@ -116,8 +116,8 @@
 
 														<div class="space"></div>
 														<div class="clearfix">			
- 															<input type="text" class="width-35 pull-right btn btn-small btn-primary"
- 																value="Ingresar" onclick="fn_loguea();"/>
+ 															<button class="width-35 btn btn-success"
+ 																onclick="fn_loguea();">Ingresar</button>
 														</div>
 														<div class="space-4"></div>
 													</form>
