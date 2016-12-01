@@ -3,7 +3,7 @@
 	<h1>
 		Mantenimiento de Área <span> <i class="icon-double-angle-right"></i>
 		</span><a href="../area/nuevaArea.htm" title="Nueva Área"
-			class="btn btn-success btn-small pull-right"><i class="icon-inbox"></i>Agregar Área</a>
+			class="btn btn-success btn-small pull-right"><i class="icon-plus"></i>Agregar</a>
 	</h1>
 </div>
 <div class="row-fluid">

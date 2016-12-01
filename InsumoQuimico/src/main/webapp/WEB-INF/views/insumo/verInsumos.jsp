@@ -3,7 +3,7 @@
 	<h1>
 		Mantenimiento de Insumos <span> <i class="icon-double-angle-right"></i>
 		</span><a href="../insumo/nuevoInsumo.htm" title="Nuevo Insumo"
-			class="btn btn-success btn-small pull-right"><i class="icon-inbox"></i>Agregar Insumo</a>
+			class="btn btn-success btn-small pull-right"><i class="icon-plus"></i>Agregar</a>
 	</h1>
 </div>
 <div class="row-fluid">
