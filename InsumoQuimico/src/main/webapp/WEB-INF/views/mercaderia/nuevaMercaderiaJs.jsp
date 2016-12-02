@@ -68,7 +68,6 @@ $("#btnEditarDetalle").click(function(){
 $("#abrirDetalleEditar").click(function(){
 	$("#btnAgregarDetalle").hide();
 	$("#btnEditarDetalle").show();
-	debugger;
 	var checkDetalle = $('#tablaMercaderiaDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
 		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumo").text();
