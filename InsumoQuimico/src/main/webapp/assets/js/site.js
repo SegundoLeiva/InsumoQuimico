@@ -3,7 +3,9 @@ var INDICADOR_CREADO = '1';
 var INDICADOR_MODIFICADO = '2';
 var INDICADOR_ELIMINADO = '3';
 var tabla;
+var filaIndexDetalle=0;
 var claseColumna=[];
+var arrayJsonDetalle=[];
 
 $(document).on("ready", function() {
 	alertify.set('notifier','position', 'top-right');
@@ -50,8 +52,7 @@ function mensajeTransaccion(respuesta){
 	}
 }
 
-function inicializarParametros(data){
-	tabla = data.tabla;
+function inicializarParametros(){
 	$(tabla).DataTable({
 	 	"bSort" : false,
 		"bFilter": false, 
@@ -62,14 +63,13 @@ function inicializarParametros(data){
 		                { className: "center"}
 		              ]
 	});
-	claseColumna=data.claseColumna;
 }
 
 $(".checkSelectedAll").click(function(){
 	 $(tabla+' input:checkbox').not(this).prop('checked', this.checked);
 });
 
-function eliminarDetalle(arrayJson){
+function eliminarDetalle(){
 	var arrayCheckbox = $(tabla+' .checkDetalle:checked');
 	var dimCheck = arrayCheckbox.length;
 	var indexArray=0;
@@ -80,11 +80,11 @@ function eliminarDetalle(arrayJson){
   		  		for(var i = 0;i<dimCheck;i++){	  
 		        	var obtenerFila=$(arrayCheckbox[i]).closest("tr");
 		        	if(arrayCheckbox[i].checked){		        		
-		        		if(arrayJson[indexArray].idDetalle==""){
+		        		if(arrayJsonDetalle[indexArray].idDetalle==""){
 		        			arrayCheckbox[i].closest("tr").remove();
-		        			arrayJson.splice(indexArray,1);		        			
+		        			arrayJsonDetalle.splice(indexArray,1);		        			
 		        		}else{
-		        			arrayJson[obtenerFila.index()].indicadorBD=INDICADOR_ELIMINADO;
+		        			arrayJsonDetalle[obtenerFila.index()].indicadorBD=INDICADOR_ELIMINADO;
 		        			obtenerFila.addClass("hidden");
 		        			indexArray++;
 		        		}
@@ -100,6 +100,7 @@ function eliminarDetalle(arrayJson){
 }
 
 function inicializarStyleTablaDetalle(){
+	 inicializarParametros();
 	 $(tabla+"_wrapper").removeClass("dataTables_wrapper");
 	 $(tabla+"_wrapper div.row-fluid").remove();
 	 $(tabla+" tbody").find("tr.odd").remove();
@@ -114,21 +115,21 @@ function agregarFila(data){
 	$(tabla+' tBody').append(text);
 }
 
-function actualizarDetalleGrabar(arrayJson,index){
-	for (var j = 0; j < arrayJson.length; j++) {
-		if(arrayJson[j].indicadorBD==INDICADOR_ELIMINADO){
-			arrayJson.splice(j,1);
+function actualizarDetalleGrabar(index){
+	for (var j = 0; j < arrayJsonDetalle.length; j++) {
+		if(arrayJsonDetalle[j].indicadorBD==INDICADOR_ELIMINADO){
+			arrayJsonDetalle.splice(j,1);
 			$(tabla+" > tbody").find("tr.hidden").remove();
 		}
 	}
 
-	for (var i = 0; i < arrayJson.length; i++) {
-		if(arrayJson[i].idDetalle==""){
-			arrayJson[i].idDetalle=(index).toString();
-			arrayJson[i].indicadorBD=INDICADOR_CREADO;								
+	for (var i = 0; i < arrayJsonDetalle.length; i++) {
+		if(arrayJsonDetalle[i].idDetalle==""){
+			arrayJsonDetalle[i].idDetalle=(index).toString();
+			arrayJsonDetalle[i].indicadorBD=INDICADOR_CREADO;								
 		}
 	}
-	return (parseInt(arrayJson[arrayJson.length-1].idDetalle)+1).toString();
+	return (parseInt(arrayJsonDetalle[arrayJsonDetalle.length-1].idDetalle)+1).toString();
 }
 
 function showLoading(){
@@ -162,4 +163,15 @@ function limpiarCampos(idFormulario){
 		var id = $(formSelect[index]).attr("id");
 		$("#"+id).val($("#"+id+" option:first").val());
 	});
+}
+
+function setearCampo(clase,data){
+	arrayJsonDetalle[filaIndexDetalle][clase]=data;
+	$("."+clase, $(tabla+' > tbody > tr:eq('+filaIndexDetalle+')')).html(data);
+}
+
+function cambiarIndicadorModificado(){
+	 if(arrayJsonDetalle[filaIndexDetalle].indicadorBD==INDICADOR_CREADO){
+		 arrayJsonDetalle[filaIndexDetalle].indicadorBD=INDICADOR_MODIFICADO; 
+	 }	
 }

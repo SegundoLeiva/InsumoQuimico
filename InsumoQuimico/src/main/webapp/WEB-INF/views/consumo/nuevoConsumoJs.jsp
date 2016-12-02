@@ -4,16 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-var consumoJSONArray = [];
-var filaIndex = 0;
+var consumoJSONArray  = arrayJsonDetalle;
 var index = 1;
 
 $(document).ready(function() {
-	var data = {
-			tabla:"#tablaConsumoDetalle",
-			claseColumna:["idInsumo","descripcion","cantidad","unidadMedida"]
-			};
-	inicializarParametros(data);
+	tabla="#tablaConsumoDetalle";
+	claseColumna=["idUnidadMineraInsumo","descripcion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
 	
 	if($("#flagEditar").val()=="editar"){
@@ -37,11 +33,11 @@ $(document).ready(function() {
 
 $("#btnAgregarDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
- 		 	var data = [$("#idInsumo").val(),$("#idInsumo option:selected").text(),
+ 		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
  		 	var fila = consumoJSONArray.length-1;
- 		 	consumoJSONArray[fila].idUnidadMineraInsumo=$("#idInsumo").val();
+ 		 	consumoJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
 			consumoJSONArray[fila].cantidad=$("#cantidad").val();
 		 	$("#modalDetalleForm").modal("hide");
 	 }
@@ -55,10 +51,10 @@ function agregarDetalle(data){
 
 $("#btnEditarDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoEditar()){	
-		 setearCampo("idInsumo",$("#idInsumo").val());
+		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
 		 setearCampo("descripcion",$("#idInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
-		 consumoJSONArray[filaIndex].indicadorBD=INDICADOR_MODIFICADO;
+		 cambiarIndicadorModificado();
 		 $("#modalDetalleForm").modal("hide");
 	 }
 	
@@ -69,13 +65,13 @@ $("#abrirDetalleEditar").click(function(){
 	$("#btnEditarDetalle").show();
 	var checkDetalle = $('#tablaConsumoDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
-		var idInsumo = checkDetalle.closest("tr").find("td.idInsumo").text();
+		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idInsumo").text();
 		for (var i = 0; i < consumoJSONArray.length; i++) {
 			var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
-			if(idUnidadMineraInsumo==idInsumo){
+			if(idUnidadMineraInsumo==idUnidadMineraInsumoDetalle){
 				$("#idInsumo").val(idInsumo);
 				$("#cantidad").val(consumoJSONArray[i].cantidad);
-				filaIndex = i;
+				filaIndexDetalle = i;
 			}
 		}
 		$("#modalDetalleForm").modal("show");
@@ -88,7 +84,7 @@ function validarInsumoAgregar(){
 	var rpta=true;
 	for (var i = 0; i < consumoJSONArray.length; i++) {
 		var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
-		if(idUnidadMineraInsumo==$("#idInsumo").val()){
+		if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
 			alertify.error("Ya existe un insumo.");
 			rpta=false;
 		}
@@ -103,8 +99,8 @@ function validarInsumoEditar(){
 	var rpta=true;
 	for (var i = 0; i < consumoJSONArray.length; i++) {
 		var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
-		if(i!=filaIndex){
-			if(idUnidadMineraInsumo==$("#idInsumo").val()){
+		if(i!=filaIndexDetalle){
+			if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
 				alertify.error("Ya existe un insumo.");
 				rpta=false;
 			}
@@ -116,22 +112,13 @@ function validarInsumoEditar(){
 function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
 			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
-			    unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
+			    descripcion:'',unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
 	 consumoJSONArray.push(mercaderiaJSON);
 }
 
 $("#eliminarDetalle").click(function(){
-	eliminarDetalle(consumoJSONArray);
+	eliminarDetalle();
 });
-
-function setearCampo(clase,data){
-	if(clase=="idInsumo"){
-		consumoJSONArray[filaIndex].idInsumo=data;
-	}else if(clase=="cantidad"){
-		consumoJSONArray[filaIndex].cantidad=data;
-	}
-	$("."+clase, $('#tablaConsumoDetalle> tbody > tr:eq('+filaIndex+')')).html(data);
-}
 
 $("#guardarConsumo").click(function(){
 	if(fnValidarGuardarConsumo()){
@@ -151,7 +138,7 @@ $("#guardarConsumo").click(function(){
 				url : '${pageContext.request.contextPath}/registrarConsumo/guardarConsumo.htm',
 				success : function(data) {
 					if(data!=""){	
-						index = actualizarDetalleGrabar(consumoJSONArray,index);						
+						index = actualizarDetalleGrabar(index);						
 						$("#idConsumo").val(data);	
 						mensajeTransaccion("guardar");											
 					}else{
