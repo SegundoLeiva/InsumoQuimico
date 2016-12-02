@@ -65,6 +65,7 @@ public class IngresarMercaderiaController {
         model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
         model.addAttribute("fechaInicio", fechaActual);
 		model.addAttribute("fechaFin", fechaActual);
+		sesion.setAttribute("mercaderiaConsulta", mercaderiaConsulta);
 		return "verMercaderias";
 	}
 	

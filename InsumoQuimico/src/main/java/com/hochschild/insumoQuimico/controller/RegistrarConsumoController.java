@@ -67,7 +67,7 @@ public class RegistrarConsumoController {
         model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
         model.addAttribute("fechaInicio", fechaActual);
 		model.addAttribute("fechaFin", fechaActual);
-		
+		sesion.setAttribute("consumoConsulta", consumoConsulta);
 		return "verConsumos";
 	}
 	
