@@ -4,18 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-var mercaderiaJSONArray = [];
-var filaIndex = 0;
+var mercaderiaJSONArray = arrayJsonDetalle;
 var index = 1;
 
 $(document).ready(function() {
-	var data2 = [{ id: -1, text: 'Seleccionar' },{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
-
-	var data = {
-			tabla:"#tablaMercaderiaDetalle",
-			claseColumna:["idInsumo","descripcion","cantidad","unidadMedida"]
-			};
-	inicializarParametros(data);
+// 	var data2 = [{ id: -1, text: 'Seleccionar' },{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
+	tabla="#tablaMercaderiaDetalle";
+	claseColumna=["idUnidadMineraInsumo","descripcion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
 	
 	if($("#flagEditar").val()=="editar"){	
@@ -43,11 +38,11 @@ $(document).ready(function() {
 
 $("#btnAgregarDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
- 		 	var data = [$("#idInsumo").val(),$("#idInsumo option:selected").text(),
+ 		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
  		 	var fila = mercaderiaJSONArray.length-1;
- 		 	mercaderiaJSONArray[fila].idUnidadMineraInsumo=$("#idInsumo").val();
+ 		 	mercaderiaJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
 			mercaderiaJSONArray[fila].cantidad=$("#cantidad").val();
 		 	$("#modalDetalleForm").modal("hide");
 	 }
@@ -61,10 +56,10 @@ function agregarDetalle(data){
 
 $("#btnEditarDetalle").click(function(){
 	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoEditar()){	
-		 setearCampo("idInsumo",$("#idInsumo").val());
-		 setearCampo("descripcion",$("#idInsumo option:selected").text());
+		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
+		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
-		 mercaderiaJSONArray[filaIndex].indicadorBD=INDICADOR_MODIFICADO;
+		 cambiarIndicadorModificado();	 
 		 $("#modalDetalleForm").modal("hide");
 	 }
 	
@@ -73,15 +68,16 @@ $("#btnEditarDetalle").click(function(){
 $("#abrirDetalleEditar").click(function(){
 	$("#btnAgregarDetalle").hide();
 	$("#btnEditarDetalle").show();
+	debugger;
 	var checkDetalle = $('#tablaMercaderiaDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
-		var idInsumo = checkDetalle.closest("tr").find("td.idInsumo").text();
+		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumo").text();
 		for (var i = 0; i < mercaderiaJSONArray.length; i++) {
 			var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-			if(idUnidadMineraInsumo==idInsumo){
-				$("#idInsumo").val(idInsumo);
+			if(idUnidadMineraInsumo==idUnidadMineraInsumoDetalle){
+				$("#idUnidadMineraInsumo").val(idUnidadMineraInsumo);
 				$("#cantidad").val(mercaderiaJSONArray[i].cantidad);
-				filaIndex = i;
+				filaIndexDetalle = i;
 			}
 		}
 		$("#modalDetalleForm").modal("show");
@@ -94,7 +90,7 @@ function validarInsumoAgregar(){
 	var rpta=true;
 	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
 		var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-		if(idUnidadMineraInsumo==$("#idInsumo").val()){
+		if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
 			alertify.error("Ya existe un insumo.");
 			rpta=false;
 		}
@@ -109,8 +105,8 @@ function validarInsumoEditar(){
 	var rpta=true;
 	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
 		var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-		if(i!=filaIndex){
-			if(idUnidadMineraInsumo==$("#idInsumo").val()){
+		if(i!=filaIndexDetalle){
+			if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
 				alertify.error("Ya existe un insumo.");
 				rpta=false;
 			}
@@ -122,22 +118,13 @@ function validarInsumoEditar(){
 function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
 			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
-			    unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
+			    descripcion:'',unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
 	 mercaderiaJSONArray.push(mercaderiaJSON);
 }
 
 $("#eliminarDetalle").click(function(){
-	eliminarDetalle(mercaderiaJSONArray);
+	eliminarDetalle();
 });
-
-function setearCampo(clase,data){
-	if(clase=="idInsumo"){
-		mercaderiaJSONArray[filaIndex].idInsumo=data;
-	}else if(clase=="cantidad"){
-		mercaderiaJSONArray[filaIndex].cantidad=data;
-	}
-	$("."+clase, $('#tablaMercaderiaDetalle> tbody > tr:eq('+filaIndex+')')).html(data);
-}
 
 $("#guardarMercaderia").click(function(){
 	if(fnValidarGuardarMercaderia()){
@@ -164,7 +151,7 @@ $("#guardarMercaderia").click(function(){
 				success : function(data) {
 					hideLoading();
 					if(data!=""){	
-						index = actualizarDetalleGrabar(mercaderiaJSONArray,index);						
+						index = actualizarDetalleGrabar(index);						
 						$("#idMercaderia").val(data);	
 						mensajeTransaccion("guardar");											
 					}else{

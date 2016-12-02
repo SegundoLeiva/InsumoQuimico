@@ -11,7 +11,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idArea">Insumo</label>
 								<div class="controls">
-									<select name="idInsumo" id="idInsumo" required style="width: inherit;"
+									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" required style="width: inherit;"
 										data-msg-required="El campo Área es obligatorio.">
 										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
 											<option value="${item.idUnidadMineraInsumo}">${item.insumo.insumo}</option>
