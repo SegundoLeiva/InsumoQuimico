@@ -37,14 +37,14 @@ $(document).ready(function() {
 } );
 
 $("#btnAgregarDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoAgregar()){			 	
  		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
  		 	var fila = mercaderiaJSONArray.length-1;
  		 	mercaderiaJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
 			mercaderiaJSONArray[fila].cantidad=$("#cantidad").val();
-		 	$("#modalDetalleForm").modal("hide");
+		 	$("#divModalDetalleForm").modal("hide");
 	 }
 	
 });
@@ -55,12 +55,12 @@ function agregarDetalle(data){
 }
 
 $("#btnEditarDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoEditar()){	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoEditar()){	
 		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
 		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
 		 cambiarIndicadorModificado();	 
-		 $("#modalDetalleForm").modal("hide");
+		 $("#divModalDetalleForm").modal("hide");
 	 }
 	
 });
@@ -79,7 +79,7 @@ $("#abrirDetalleEditar").click(function(){
 				filaIndexDetalle = i;
 			}
 		}
-		$("#modalDetalleForm").modal("show");
+		$("#divModalDetalleForm").modal("show");
 	}else{
 		alertify.error("Seleccione un Item.");
 	}	
@@ -165,13 +165,14 @@ $("#guardarMercaderia").click(function(){
 });
 
 function fnValidarGuardarMercaderia(){
-	return validarCamposRequeridos("formMercaderia");
-	if(mercaderiaJSONArray.length==0){
+	if(!validarCamposRequeridos("formMercaderia")){
+		return false;
+	}else if(mercaderiaJSONArray.length==0){
 		alertify.error("Mínimo debe registrar un detalle");
 		return false;
+	}else{
+		return true;
 	}
-	
-	return true;
 }
 
 function getProveedorDescripcion(){

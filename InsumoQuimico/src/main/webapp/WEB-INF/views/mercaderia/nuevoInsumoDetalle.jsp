@@ -1,4 +1,5 @@
-<div id="modalDetalleForm" class="modal hide fade" tabindex="-1"
+<form id="formModalDetalleForm">
+<div id="divModalDetalleForm" class="modal hide fade" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
@@ -43,3 +44,4 @@
 		<button class="btn btn-small btn-primary" data-dismiss="modal" aria-hidden="true">Cancelar</button>
 	</div>
 </div>
+</form>

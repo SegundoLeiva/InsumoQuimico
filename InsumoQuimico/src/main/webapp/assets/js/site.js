@@ -24,7 +24,7 @@ function validarCamposRequeridos(idFormulario){
 
 function camposRequeridos(idFormulario){
 	var rpta = true;
-	var formInput = $("#"+idFormulario);
+	var formInput = $("#"+idFormulario)[0];
 	$.each( formInput, function(index, value ) {
 		  if($(formInput[index]).prop("required")){
 			  if($(this).val()==""){
@@ -151,8 +151,8 @@ function fn_validaEntero(e) {
 $("#abrirDetalleAgregar").click(function(){
 	$("#btnEditarDetalle").hide();
 	$("#btnAgregarDetalle").show();
-	limpiarCampos("modalDetalleForm");
-	$("#modalDetalleForm").modal("show");
+	limpiarCampos("formModalDetalleForm");
+	$("#divModalDetalleForm").modal("show");
 });
 
 function limpiarCampos(idFormulario){

@@ -32,14 +32,14 @@ $(document).ready(function() {
 } );
 
 $("#btnAgregarDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoAgregar()){			 	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoAgregar()){			 	
  		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
  		 	var fila = consumoJSONArray.length-1;
  		 	consumoJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
 			consumoJSONArray[fila].cantidad=$("#cantidad").val();
-		 	$("#modalDetalleForm").modal("hide");
+		 	$("#divModalDetalleForm").modal("hide");
 	 }
 	
 });
@@ -50,12 +50,12 @@ function agregarDetalle(data){
 }
 
 $("#btnEditarDetalle").click(function(){
-	 if(validarCamposRequeridos("modalDetalleForm") && validarInsumoEditar()){	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoEditar()){	
 		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
 		 setearCampo("descripcion",$("#idInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
 		 cambiarIndicadorModificado();
-		 $("#modalDetalleForm").modal("hide");
+		 $("#divModalDetalleForm").modal("hide");
 	 }
 	
 });
@@ -74,7 +74,7 @@ $("#abrirDetalleEditar").click(function(){
 				filaIndexDetalle = i;
 			}
 		}
-		$("#modalDetalleForm").modal("show");
+		$("#divModalDetalleForm").modal("show");
 	}else{
 		alertify.error("Seleccione un Item.");
 	}	
