@@ -71,8 +71,8 @@ public class RegistrarConsumoController {
 		return "verConsumos";
 	}
 	
-	@RequestMapping(value = { "/buscarConsumo.htm" }, method = { RequestMethod.POST })
-	public String buscarConsumo(HttpSession sesion,
+	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
+	public String buscarConsulta(HttpSession sesion,
 			ConsumoConsulta consumoConsulta, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
@@ -123,7 +123,7 @@ public class RegistrarConsumoController {
 			@RequestParam("idConsumo") String idConsumo) throws ServletException, IOException {
 		consumoService.eliminarConsumo(idConsumo);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.buscarConsumo(sesion, (ConsumoConsulta)sesion.getAttribute("consumoConsulta"),req,model);
+		return this.buscarConsulta(sesion, (ConsumoConsulta)sesion.getAttribute("consumoConsulta"),req,model);
 
 	}
 	

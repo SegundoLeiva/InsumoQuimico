@@ -69,8 +69,8 @@ public class IngresarMercaderiaController {
 		return "verMercaderias";
 	}
 	
-	@RequestMapping(value = { "/buscarMercaderia.htm" }, method = { RequestMethod.POST })
-	public String buscarMercaderia(HttpSession sesion,
+	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
+	public String buscarConsulta(HttpSession sesion,
 			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
@@ -117,7 +117,7 @@ public class IngresarMercaderiaController {
 			@RequestParam("idMercaderia") String idMercaderia) throws ServletException, IOException {
 		mercaderiaService.eliminarMercaderia(idMercaderia);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.buscarMercaderia(sesion, (MercaderiaConsulta)sesion.getAttribute("mercaderiaConsulta"),req,model);
+		return this.buscarConsulta(sesion, (MercaderiaConsulta)sesion.getAttribute("mercaderiaConsulta"),req,model);
 	}
 	
 	@RequestMapping(value = { "/modificarMercaderia.htm" }, method = {RequestMethod.POST, RequestMethod.GET })
