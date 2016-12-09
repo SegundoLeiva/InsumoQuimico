@@ -12,9 +12,10 @@ import org.springframework.util.StringUtils;
 import com.hochschild.insumoQuimico.dao.MercaderiaDAO;
 import com.hochschild.insumoQuimico.dao.MercaderiaDetalleDAO;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle.IdMercaderia;
-import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
@@ -142,8 +143,8 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		mercaderia.setFechaCreacion(new Date());
 		mercaderiaDAO.insertarMercaderia(mercaderia);
 	}
-	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsulta mercaderiaConsulta, String fechaInicio, String fechaFin){
-		return mercaderiaDAO.listaMercaderiaConsulta(mercaderiaConsulta, fechaInicio, fechaFin);
+	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsultaModel mercaderiaConsultaEntrada){
+		return mercaderiaDAO.listaMercaderiaConsulta(mercaderiaConsultaEntrada);
 	}
 }
 

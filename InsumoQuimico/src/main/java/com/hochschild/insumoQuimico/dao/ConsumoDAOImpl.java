@@ -1,16 +1,20 @@
 package com.hochschild.insumoQuimico.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hochschild.insumoQuimico.domain.CorrelativoBD;
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
+import com.hochschild.insumoQuimico.domain.CorrelativoBD;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 
 @Repository(value="ConsumoDAO")
 public class ConsumoDAOImpl implements ConsumoDAO {
@@ -33,12 +37,20 @@ public class ConsumoDAOImpl implements ConsumoDAO {
     }
 
     @SuppressWarnings("unchecked")
-	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsulta ConsumoConsulta,String fechaInicio,String fechaFin){		
-        String[] paramNames = {"idUnidadMinera","idConsumo","idUnidadMineraAlmacen","idUnidadMineraArea","fechaInicio","fechaFin","idUsuarioCreacion"};        
-        String[] values = {ConsumoConsulta.getIdUnidadMinera(),ConsumoConsulta.getIdConsumo(),
-        		ConsumoConsulta.getIdUnidadMineraAlmacen(),ConsumoConsulta.getIdUnidadMineraArea(),
-        		fechaInicio,fechaFin, ConsumoConsulta.getIdUsuarioCreacion()};
-        List<ConsumoConsulta> listaConsumoConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaConsumo",paramNames,values);
+	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel consumoConsultaModel){		
+    	List<ConsumoConsulta> listaConsumoConsulta =  new ArrayList<ConsumoConsulta>();
+    	try {
+    		ConsumoConsulta mercaderiaConsulta = new ConsumoConsulta();
+    		BeanUtils.copyProperties(mercaderiaConsulta, consumoConsultaModel);
+    		String[] paramNames = {"idUnidadMinera","idConsumo","idUnidadMineraAlmacen","idUnidadMineraArea","fechaInicio","fechaFin","idUsuarioCreacion"};        
+            String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdConsumo(),
+            		mercaderiaConsulta.getIdUnidadMineraAlmacen(),mercaderiaConsulta.getIdUnidadMineraArea(),
+            		consumoConsultaModel.getFechaInicio(),consumoConsultaModel.getFechaFin(), mercaderiaConsulta.getIdUsuarioCreacion()};
+            listaConsumoConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaConsumo",paramNames,values);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+        
         return listaConsumoConsulta;
     }
     

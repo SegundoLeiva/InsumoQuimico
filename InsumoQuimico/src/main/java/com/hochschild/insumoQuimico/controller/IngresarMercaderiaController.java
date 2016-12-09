@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
@@ -28,7 +29,6 @@ import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.insumoQuimico.util.Constantes;
-import com.hochschild.insumoQuimico.util.FechasUtil;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -51,43 +51,32 @@ public class IngresarMercaderiaController {
 	public String verMercaderias(Model model,HttpSession sesion,HttpServletRequest req) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-		String fechaActual = FechasUtil.getFechaActual();
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
     	
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
-        MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta();
-        mercaderiaConsulta.setIdUnidadMinera(idUnidadMinera);
-        mercaderiaConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
-        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaActual,fechaActual);         
+        MercaderiaConsultaModel mercaderiaConsultaModel = new MercaderiaConsultaModel(sesion,idUnidadMinera);
+        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsultaModel);         
         model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
-        model.addAttribute("fechaInicio", fechaActual);
-		model.addAttribute("fechaFin", fechaActual);
-		sesion.setAttribute("mercaderiaConsulta", mercaderiaConsulta);
+		sesion.setAttribute("mercaderiaConsulta", mercaderiaConsultaModel);
 		return "verMercaderias";
 	}
 	
 	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
 	public String buscarConsulta(HttpSession sesion,
-			MercaderiaConsulta mercaderiaConsulta, HttpServletRequest req, Model model) {
+			MercaderiaConsultaModel mercaderiaConsultaModel, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        sesion.setAttribute("mercaderiaConsulta", mercaderiaConsulta);
-        
-		String fechaInicio = req.getParameter("fechaInicio");
-		String fechaFin = req.getParameter("fechaFin");
 
-        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsulta,fechaInicio,fechaFin);         
+        List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsultaModel);         
 		model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
-		model.addAttribute("mercaderiaConsulta", mercaderiaConsulta);
-		model.addAttribute("fechaInicio", fechaInicio);
-		model.addAttribute("fechaFin", fechaFin);
+		sesion.setAttribute("mercaderiaConsulta", mercaderiaConsultaModel);
 		return "verMercaderias";
 	}
 	
@@ -117,7 +106,7 @@ public class IngresarMercaderiaController {
 			@RequestParam("idMercaderia") String idMercaderia) throws ServletException, IOException {
 		mercaderiaService.eliminarMercaderia(idMercaderia);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.buscarConsulta(sesion, (MercaderiaConsulta)sesion.getAttribute("mercaderiaConsulta"),req,model);
+		return this.buscarConsulta(sesion, (MercaderiaConsultaModel)sesion.getAttribute("mercaderiaConsulta"),req,model);
 	}
 	
 	@RequestMapping(value = { "/modificarMercaderia.htm" }, method = {RequestMethod.POST, RequestMethod.GET })

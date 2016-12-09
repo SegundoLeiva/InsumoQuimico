@@ -1,7 +1,9 @@
 package com.hochschild.insumoQuimico.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hochschild.insumoQuimico.domain.CorrelativoBD;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 
 @Repository(value="MercaderiaDAO")
 public class MercaderiaDAOImpl implements MercaderiaDAO {
@@ -33,13 +36,20 @@ public class MercaderiaDAOImpl implements MercaderiaDAO {
     }
 
     @SuppressWarnings("unchecked")
-	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsulta mercaderiaConsulta,String fechaInicio,String fechaFin){		
-        String[] paramNames = {"idUnidadMinera","idMercaderia","idUnidadMineraAlmacen","rucProveedor","guiaRemision","fechaInicio","fechaFin","idUsuarioCreacion"};        
-        String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdMercaderia(),
-        		mercaderiaConsulta.getIdUnidadMineraAlmacen(),mercaderiaConsulta.getRucProveedor(),
-        		mercaderiaConsulta.getGuiaRemision(),fechaInicio,fechaFin, mercaderiaConsulta.getIdUsuarioCreacion()};
-        List<MercaderiaConsulta> listaMercaderiaConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaMercaderia",paramNames,values);
-        return listaMercaderiaConsulta;
+	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsultaModel mercaderiaConsultaModel){	
+    	List<MercaderiaConsulta> listaMercaderiaConsulta =  new ArrayList<MercaderiaConsulta>();
+    	try {
+    		MercaderiaConsulta mercaderiaConsulta = new MercaderiaConsulta();
+        	BeanUtils.copyProperties(mercaderiaConsulta, mercaderiaConsultaModel);
+            String[] paramNames = {"idUnidadMinera","idMercaderia","idUnidadMineraAlmacen","rucProveedor","guiaRemision","fechaInicio","fechaFin","idUsuarioCreacion"};        
+            String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdMercaderia(),
+            		mercaderiaConsulta.getIdUnidadMineraAlmacen(),mercaderiaConsulta.getRucProveedor(),
+            		mercaderiaConsulta.getGuiaRemision(),mercaderiaConsultaModel.getFechaInicio(),mercaderiaConsultaModel.getFechaFin(), mercaderiaConsulta.getIdUsuarioCreacion()};
+            listaMercaderiaConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaMercaderia",paramNames,values);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	return listaMercaderiaConsulta;
     }
     
 	

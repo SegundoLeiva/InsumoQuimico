@@ -30,7 +30,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${fechaInicio}">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${consumoConsulta.fechaInicio}">
 								</div>
 							</div>
 							
@@ -50,7 +50,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${fechaFin}">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${consumoConsulta.fechaFin}">
 								</div>
 							</div>
 

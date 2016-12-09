@@ -12,9 +12,10 @@ import org.springframework.util.StringUtils;
 import com.hochschild.insumoQuimico.dao.ConsumoDAO;
 import com.hochschild.insumoQuimico.dao.ConsumoDetalleDAO;
 import com.hochschild.insumoQuimico.domain.Consumo;
+import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle.IdConsumo;
-import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
@@ -139,8 +140,8 @@ public class ConsumoServiceImpl implements ConsumoService {
 		Consumo.setFechaCreacion(new Date());
 		ConsumoDAO.insertarConsumo(Consumo);
 	}
-	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsulta ConsumoConsulta, String fechaInicio, String fechaFin){
-		return ConsumoDAO.listaConsumoConsulta(ConsumoConsulta, fechaInicio, fechaFin);
+	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel ConsumoConsultaModel){
+		return ConsumoDAO.listaConsumoConsulta(ConsumoConsultaModel);
 	}
 }
 

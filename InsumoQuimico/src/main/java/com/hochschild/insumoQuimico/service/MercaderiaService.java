@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 
 public interface MercaderiaService {
@@ -12,5 +13,5 @@ public interface MercaderiaService {
 	public String guardarMercaderia(MercaderiaParametrosEntrada Mercaderia);
 	public void eliminarMercaderia(String idMercaderia);
 	public Mercaderia obtieneMercaderiaPorId(String id);
-	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsulta mercaderiaConsulta, String fechaInicio, String fechaFin);
+	public List<MercaderiaConsulta> listaMercaderiaConsulta(MercaderiaConsultaModel mercaderiaConsultaEntrada);
 }

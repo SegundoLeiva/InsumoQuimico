@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 
 public interface ConsumoDAO {
 
@@ -11,6 +12,6 @@ public interface ConsumoDAO {
 	public void actualizarConsumo(Consumo data);
 	public void insertarConsumo(Consumo data);
 	public void eliminarConsumo(String idConsumo);
-	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsulta ConsumoConsulta,String fechaInicio,String fechaFin);
+	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel ConsumoConsultaModel);
 	public String obtenerCorrelativoConsumo(String idUnidadMinera);
 }

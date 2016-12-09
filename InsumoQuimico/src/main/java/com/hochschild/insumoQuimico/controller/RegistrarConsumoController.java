@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
@@ -29,7 +30,6 @@ import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.insumoQuimico.util.Constantes;
-import com.hochschild.insumoQuimico.util.FechasUtil;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -51,7 +51,6 @@ public class RegistrarConsumoController {
 	@RequestMapping(value = "/verConsumos.htm")
 	public String verConsumos(Model model,HttpSession sesion,HttpServletRequest req) {
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-		String fechaActual = FechasUtil.getFechaActual();
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
@@ -60,20 +59,17 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
         
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
-        ConsumoConsulta consumoConsulta = new ConsumoConsulta();
-        consumoConsulta.setIdUnidadMinera(idUnidadMinera);
-        consumoConsulta.setIdUsuarioCreacion(usuarioSession.getIdUsuario());
-        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsulta,fechaActual,fechaActual);         
+        ConsumoConsultaModel consumoConsultaModel = new ConsumoConsultaModel(sesion,idUnidadMinera);
+        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
         model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
-        model.addAttribute("fechaInicio", fechaActual);
-		model.addAttribute("fechaFin", fechaActual);
-		sesion.setAttribute("consumoConsulta", consumoConsulta);
+
+		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
 		return "verConsumos";
 	}
 	
 	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
 	public String buscarConsulta(HttpSession sesion,
-			ConsumoConsulta consumoConsulta, HttpServletRequest req, Model model) {
+			ConsumoConsultaModel consumoConsultaModel, HttpServletRequest req, Model model) {
 
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
@@ -82,16 +78,11 @@ public class RegistrarConsumoController {
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        sesion.setAttribute("consumoConsulta", consumoConsulta);
 
-		String fechaInicio = req.getParameter("fechaInicio");
-		String fechaFin = req.getParameter("fechaFin");
-
-        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsulta,fechaInicio,fechaFin);         
+        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
 		model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
-		model.addAttribute("consumoConsulta", consumoConsulta);
-		model.addAttribute("fechaInicio", fechaInicio);
-		model.addAttribute("fechaFin", fechaFin);
+		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
+
 		return "verConsumos";
 	}
 	
@@ -123,7 +114,7 @@ public class RegistrarConsumoController {
 			@RequestParam("idConsumo") String idConsumo) throws ServletException, IOException {
 		consumoService.eliminarConsumo(idConsumo);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.buscarConsulta(sesion, (ConsumoConsulta)sesion.getAttribute("consumoConsulta"),req,model);
+		return this.buscarConsulta(sesion, (ConsumoConsultaModel)sesion.getAttribute("consumoConsulta"),req,model);
 
 	}
 	
