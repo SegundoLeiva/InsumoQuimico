@@ -18,11 +18,5 @@ public class Constantes {
     public static final String ID_ROL_BASICO = "ID_ROL_BASICO";
     public static final Integer ID_OPCION_LOGISTICA = 4;
     
-    //INDEX PAGINAS ACTIVE
-    public static final String MANTENIMIENTO_AREA = "2";
-    public static final String MANTENIMIENTO_INSUMO = "3";
-    public static final String INGRESAR_MERCADERIA = "5";
-    public static final String REGISTRAR_CONSUMO = "6";
-    
     public static final String SOCIEDAD_PROVEEDOR = "1013";
 }
