@@ -154,3 +154,7 @@
 .page-header .icon-double-angle-right{
 	font-size: 14px
 }
+
+.selectInsumo .select2{
+	width: 200px !important
+}

@@ -161,7 +161,7 @@ function limpiarCampos(idFormulario){
 	var formSelect = $("#"+idFormulario+" select");
 	$.each( formSelect, function(index, value ) {
 		var id = $(formSelect[index]).attr("id");
-		$("#"+id).val($("#"+id+" option:first").val());
+		$("#"+id).val($("#"+id+" option:first").val()).trigger('change');
 	});
 }
 

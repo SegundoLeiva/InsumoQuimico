@@ -1,5 +1,5 @@
 <form id="formModalDetalleForm">	
-<div id="divModalDetalleForm" class="modal hide fade" tabindex="-1"
+<div id="divModalDetalleForm" class="modal hide fade"
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">	
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"
@@ -10,14 +10,9 @@
 				<div class="row-fluid">
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idArea">Insumo</label>
-								<div class="controls">
-									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" required style="width: inherit;"
-										data-msg-required="El campo Área es obligatorio.">
-										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
-											<option value="${item.idUnidadMineraInsumo}">${item.insumo.insumo}</option>
-										</c:forEach>
-									</select>
+								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
+								<div class="controls selectInsumo">
+									<select id="idUnidadMineraInsumo"></select>
 								</div>
 							</div>
 						

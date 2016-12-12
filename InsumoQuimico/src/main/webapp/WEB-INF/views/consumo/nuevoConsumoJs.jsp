@@ -29,6 +29,16 @@ $(document).ready(function() {
 		</c:forEach>
 		index = "${listaConsumoDetalle.get(listaConsumoDetalle.size()-1).id.idConsumoDetalle+1}";
 	}
+	
+	var dataInsumo=[];
+	<c:forEach var="item" items="${listaUnidadMineraInsumo}">
+		var obj = {id:"${item.idUnidadMineraInsumo}",text:"${item.insumo.insumo}"}
+		dataInsumo.push(obj);
+	</c:forEach>
+
+	$("#idUnidadMineraInsumo").select2({
+		  data: dataInsumo
+	});
 } );
 
 $("#btnAgregarDetalle").click(function(){
@@ -52,7 +62,7 @@ function agregarDetalle(data){
 $("#btnEditarDetalle").click(function(){
 	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoEditar()){	
 		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
-		 setearCampo("descripcion",$("#idInsumo option:selected").text());
+		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
 		 cambiarIndicadorModificado();
 		 $("#divModalDetalleForm").modal("hide");
@@ -65,11 +75,11 @@ $("#abrirDetalleEditar").click(function(){
 	$("#btnEditarDetalle").show();
 	var checkDetalle = $('#tablaConsumoDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
-		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idInsumo").text();
+		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumo").text();
 		for (var i = 0; i < consumoJSONArray.length; i++) {
 			var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
 			if(idUnidadMineraInsumo==idUnidadMineraInsumoDetalle){
-				$("#idInsumo").val(idInsumo);
+				$("#idUnidadMineraInsumo").val(idUnidadMineraInsumo).trigger('change');
 				$("#cantidad").val(consumoJSONArray[i].cantidad);
 				filaIndexDetalle = i;
 			}

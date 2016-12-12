@@ -8,7 +8,6 @@ var mercaderiaJSONArray = arrayJsonDetalle;
 var index = 1;
 
 $(document).ready(function() {
-// 	var data2 = [{ id: -1, text: 'Seleccionar' },{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
 	tabla="#tablaMercaderiaDetalle";
 	claseColumna=["idUnidadMineraInsumo","descripcion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
@@ -29,9 +28,16 @@ $(document).ready(function() {
 		</c:forEach>
 		index = "${listaMercaderiaDetalle.get(listaMercaderiaDetalle.size()-1).id.idMercaderiaDetalle+1}";
 	}
-// 	$("#transporte").select2({
-// 		  data: data2
-// 	});
+	
+	var dataInsumo=[];
+	<c:forEach var="item" items="${listaUnidadMineraInsumo}">
+		var obj = {id:"${item.idUnidadMineraInsumo}",text:"${item.insumo.insumo}"}
+		dataInsumo.push(obj);
+	</c:forEach>
+
+	$("#idUnidadMineraInsumo").select2({
+		  data: dataInsumo
+	});
 
 
 } );
@@ -74,7 +80,7 @@ $("#abrirDetalleEditar").click(function(){
 		for (var i = 0; i < mercaderiaJSONArray.length; i++) {
 			var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
 			if(idUnidadMineraInsumo==idUnidadMineraInsumoDetalle){
-				$("#idUnidadMineraInsumo").val(idUnidadMineraInsumo);
+				$("#idUnidadMineraInsumo").val(idUnidadMineraInsumo).trigger('change');
 				$("#cantidad").val(mercaderiaJSONArray[i].cantidad);
 				filaIndexDetalle = i;
 			}
