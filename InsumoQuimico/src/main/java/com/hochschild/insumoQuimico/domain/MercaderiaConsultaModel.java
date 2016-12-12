@@ -21,12 +21,11 @@ public class MercaderiaConsultaModel {
 	private String fechaInicio;
 	private String fechaFin;
 	
-	public MercaderiaConsultaModel(HttpSession sesion,String idUnidadMinera){
-		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+	public MercaderiaConsultaModel(Usuario usuarioSession){
 		this.fechaInicio=FechasUtil.getFechaActual();
 		this.fechaFin=FechasUtil.getFechaActual();
 		this.idUsuarioCreacion=usuarioSession.getIdUsuario();
-		this.idUnidadMinera=idUnidadMinera;
+		this.idUnidadMinera=usuarioSession.getIdUnidadMineraPorDefecto();
 	}
 	
 	public MercaderiaConsultaModel(){

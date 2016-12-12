@@ -164,6 +164,9 @@ public class LoginController {
             }
         }        
         usuario.setLst_valoresOrganizacionales(listaValoresOrganizaciones);
+        List<ValorOrganizacionalSesion> listaUnidadesMinerasGetValoresDescripcion = valorOrganizacionalService.getValoresDescripcion(usuario.getLst_valoresOrganizacionales());
+        usuario.setListaUnidadesMineras(listaUnidadesMinerasGetValoresDescripcion);
+        usuario.setIdUnidadMineraPorDefecto(valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMinerasGetValoresDescripcion));
     }
 	
 	

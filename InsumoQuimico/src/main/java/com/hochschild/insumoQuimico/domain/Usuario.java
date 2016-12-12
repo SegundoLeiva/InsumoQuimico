@@ -28,7 +28,8 @@ public class Usuario {
 
     private Map<Integer, OpcionAccionesSCA> lstOpcionesAutorizadas = new HashMap<Integer, OpcionAccionesSCA>();
     private List<ValorOrganizacionalSesion> lst_valoresOrganizacionales = new ArrayList<ValorOrganizacionalSesion>();
-
+    private List<ValorOrganizacionalSesion> listaUnidadesMineras;
+    private String idUnidadMineraPorDefecto;
     public String getDivisionUsuario() {
         return divisionUsuario;
     }
@@ -130,4 +131,23 @@ public class Usuario {
     public void setSociedadUsuario(String sociedadUsuario) {
         this.sociedadUsuario = sociedadUsuario;
     }
+
+	public List<ValorOrganizacionalSesion> getListaUnidadesMineras() {
+		return listaUnidadesMineras;
+	}
+
+	public void setListaUnidadesMineras(
+			List<ValorOrganizacionalSesion> listaUnidadesMineras) {
+		this.listaUnidadesMineras = listaUnidadesMineras;
+	}
+
+	public String getIdUnidadMineraPorDefecto() {
+		return idUnidadMineraPorDefecto;
+	}
+
+	public void setIdUnidadMineraPorDefecto(String idUnidadMineraPorDefecto) {
+		this.idUnidadMineraPorDefecto = idUnidadMineraPorDefecto;
+	}
+    
+    
 }

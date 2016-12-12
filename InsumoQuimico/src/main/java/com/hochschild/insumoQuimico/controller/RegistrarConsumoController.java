@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
 import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
@@ -32,6 +34,7 @@ import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.insumoQuimico.util.Constantes;
+import com.hochschild.insumoQuimico.util.Util;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -52,42 +55,13 @@ public class RegistrarConsumoController {
 	
 	@RequestMapping(value = "/verConsumos.htm")
 	public String verConsumos(Model model,HttpSession sesion,HttpServletRequest req) {
-		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-        List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
-        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
-        model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
-        model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        
-        String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
-        ConsumoConsultaModel consumoConsultaModel = new ConsumoConsultaModel(sesion,idUnidadMinera);
-        if(!StringUtils.isEmpty(req.getParameter("cod"))){
-        	consumoConsultaModel = (ConsumoConsultaModel) sesion.getAttribute("consumoConsulta");
-        }
-        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
-        model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
-		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
-		return "verConsumos";
+		return listarConsulta(model, sesion, req);
 	}
 	
 	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
-	public String buscarConsulta(HttpSession sesion,
-			ConsumoConsultaModel consumoConsultaModel, HttpServletRequest req, Model model) {
-
-		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-        List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValoresDescripcion(usuarioSession.getLst_valoresOrganizacionales());
-        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
-        model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
-        model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-
-        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
-		model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
-		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
-
-		return "verConsumos";
+	public String buscarConsulta(HttpSession sesion, HttpServletRequest req, Model model) {
+		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_CONSULTAR);
+		return listarConsulta(model, sesion, req);
 	}
 	
 	@RequestMapping(value = "/nuevoConsumo.htm")
@@ -118,7 +92,7 @@ public class RegistrarConsumoController {
 			@RequestParam("idConsumo") String idConsumo) throws ServletException, IOException {
 		consumoService.eliminarConsumo(idConsumo);
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ELIMINAR);
-		return this.buscarConsulta(sesion, (ConsumoConsultaModel)sesion.getAttribute("consumoConsulta"),req,model);
+		return listarConsulta(model, sesion, req);
 
 	}
 	
@@ -144,5 +118,29 @@ public class RegistrarConsumoController {
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);
 
 		return "nuevoConsumo";
+	}
+	
+	public String listarConsulta(Model model, HttpSession sesion,HttpServletRequest req){
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+        model.addAttribute("listaUnidadesMineras", usuarioSession.getListaUnidadesMineras());
+        List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(usuarioSession.getListaUnidadesMineras().get(0).getValorOrganizacional());
+        model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
+        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
+        model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
+        
+        ConsumoConsultaModel consumoConsultaModel = new ConsumoConsultaModel(usuarioSession);
+        
+        if((req.getParameter("cod")!=null) || Util.validFlagTransaccion(req,Constantes.TRANSACCION_ELIMINAR)){
+        	consumoConsultaModel = (ConsumoConsultaModel) sesion.getAttribute("consumoConsulta");
+        }else if(Util.validFlagTransaccion(req,Constantes.TRANSACCION_CONSULTAR)){
+        	try {
+				BeanUtils.populate(consumoConsultaModel, req.getParameterMap());
+			} catch (Exception e) {} 
+        }
+
+        List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
+        model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
+		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
+		return "verConsumos";
 	}
 }

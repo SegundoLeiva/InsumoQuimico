@@ -3,6 +3,8 @@ package com.hochschild.insumoQuimico.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.hochschild.sca.domain.OpcionAccionesSCA;
 
 public class Util {
@@ -35,5 +37,13 @@ public class Util {
         }
         return strOpciones;
     }
+    
+	public static boolean validFlagTransaccion(HttpServletRequest req,String flag){
+		if((String)req.getAttribute(Constantes.FLAG_TRANSACCION)!=null && req.getAttribute(Constantes.FLAG_TRANSACCION).toString().equals(flag)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }
