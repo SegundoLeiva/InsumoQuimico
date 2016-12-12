@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
 import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.Usuario;
@@ -60,9 +62,11 @@ public class RegistrarConsumoController {
         
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
         ConsumoConsultaModel consumoConsultaModel = new ConsumoConsultaModel(sesion,idUnidadMinera);
+        if(!StringUtils.isEmpty(req.getParameter("cod"))){
+        	consumoConsultaModel = (ConsumoConsultaModel) sesion.getAttribute("consumoConsulta");
+        }
         List<ConsumoConsulta> listaConsumoConsulta = consumoService.listaConsumoConsulta(consumoConsultaModel);         
         model.addAttribute("listaConsumoConsulta", listaConsumoConsulta);
-
 		sesion.setAttribute("consumoConsulta", consumoConsultaModel);
 		return "verConsumos";
 	}

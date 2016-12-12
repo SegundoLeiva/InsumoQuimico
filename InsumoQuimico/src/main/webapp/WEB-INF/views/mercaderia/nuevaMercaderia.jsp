@@ -1,13 +1,12 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
-<!-- <script src="../assets/select2/select2.min.js"></script> -->
 
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />
 <div class="page-header">
 	<h1>
 		Registrar Ingreso de Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="javascript:window.history.back();" title="Regresar" style="margin-left: 5px"
+		</span><a href="../ingresarMercaderia/verMercaderias.htm?cod=RE" title="Regresar" style="margin-left: 5px"
 			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i>Regresar</a>
 			<a href="#" id="guardarMercaderia" title="Guardar Mercadería"
 			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>

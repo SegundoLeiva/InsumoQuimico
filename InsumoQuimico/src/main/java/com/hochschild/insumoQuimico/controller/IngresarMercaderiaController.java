@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,6 +59,9 @@ public class IngresarMercaderiaController {
     	
         String idUnidadMinera = valorOrganizacionalService.getIdUnidadMineraPorDefecto(listaUnidadesMineras);      
         MercaderiaConsultaModel mercaderiaConsultaModel = new MercaderiaConsultaModel(sesion,idUnidadMinera);
+        if(!StringUtils.isEmpty(req.getParameter("cod"))){
+        	mercaderiaConsultaModel = (MercaderiaConsultaModel) sesion.getAttribute("mercaderiaConsulta");
+        }
         List<MercaderiaConsulta> listaMercaderiaConsulta = mercaderiaService.listaMercaderiaConsulta(mercaderiaConsultaModel);         
         model.addAttribute("listaMercaderiaConsulta", listaMercaderiaConsulta);
 		sesion.setAttribute("mercaderiaConsulta", mercaderiaConsultaModel);
