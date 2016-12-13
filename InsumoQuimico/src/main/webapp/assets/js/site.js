@@ -14,6 +14,7 @@ $(document).on("ready", function() {
 	});
 	
 	$(".numeroEntero").attr("onkeypress","return fn_validaEntero(event)");
+	$(".numeroDecimal").attr("onkeypress","return fn_validaSoloDecimal(event,this)");
 	inicializarHeader();
 	
 	//SEGMENTO TABLA BUSCAR DEFAULT
@@ -154,6 +155,19 @@ function fn_validaEntero(e) {
     patron = /[0-9]/;
     te = String.fromCharCode(tecla);
     return patron.test(te);
+}
+
+function fn_validaSoloDecimal(evt, obj){
+    
+    var tecla = window.event ? evt.keyCode : evt.which;    
+    if(tecla == 46){
+        if(obj.value.split('.').length == 1){return true;}
+    }
+    if(tecla == 8 || tecla == 13  || tecla == 9  || tecla == 0){return true;}
+    var patron = /[0-9]/;
+    var teclaValue = String.fromCharCode(tecla);
+    var dato = patron.test(teclaValue);
+    return dato;
 }
 
 $("#abrirDetalleAgregar").click(function(){

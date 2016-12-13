@@ -80,7 +80,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));					
 					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
 					
-					mercaderiaDetalle.setCantidad(jsonObj.getInt("cantidad"));
+					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
 					mercaderiaDetalle.setIdUsuarioCreacion(mercaderiaParametrosEntrada.getNombreUsuario());
 					mercaderiaDetalle.setFechaCreacion(new Date());
@@ -96,7 +96,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					
 					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
 					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-					mercaderiaDetalle.setCantidad(jsonObj.getInt("cantidad"));
+					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
 					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
 					mercaderiaDetalle.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());

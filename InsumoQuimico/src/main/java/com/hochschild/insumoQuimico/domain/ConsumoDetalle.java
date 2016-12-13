@@ -48,8 +48,7 @@ public class ConsumoDetalle implements Serializable {
 	@JoinColumn(name = "idUnidadMineraInsumo")
 	private UnidadMineraInsumo unidadMineraInsumo;
 	
-	private Integer cantidad;	
-	private Double precio;
+	private Double cantidad;
 	
 	private String unidadMedida;	
 	
@@ -69,17 +68,12 @@ public class ConsumoDetalle implements Serializable {
 	public void setUnidadMineraInsumo(UnidadMineraInsumo unidadMineraInsumo) {
 		this.unidadMineraInsumo = unidadMineraInsumo;
 	}
-	public Integer getCantidad() {
+	
+	public Double getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(Integer cantidad) {
+	public void setCantidad(Double cantidad) {
 		this.cantidad = cantidad;
-	}
-	public Double getPrecio() {
-		return precio;
-	}
-	public void setPrecio(Double precio) {
-		this.precio = precio;
 	}
 	public String getUnidadMedida() {
 		return unidadMedida;
