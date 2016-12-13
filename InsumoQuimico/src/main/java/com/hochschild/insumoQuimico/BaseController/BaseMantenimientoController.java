@@ -28,7 +28,8 @@ public abstract class BaseMantenimientoController {
 	@RequestMapping(value = { "/modificar.htm" }, method = {RequestMethod.POST, RequestMethod.GET })
 	public String modificar(HttpSession sesion,
 			@RequestParam String id, Model model) throws IOException {
-		
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		this.usuario = usuarioSession;
 		model = this.setModificarAttributes(id,model);
 		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
 
