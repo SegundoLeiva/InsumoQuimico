@@ -1,17 +1,10 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<div class="page-header">
-	<h1>
-		Mantenimiento de Área <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../area/nuevaArea.htm" title="Nueva Área"
-			class="btn btn-success btn-small pull-right"><i class="icon-plus"></i>Agregar</a>
-	</h1>
-</div>
+
 <div class="row-fluid">
 	<div class="span12">
-		<form id="formVerUnidadMineraArea" action="../area/eliminarUnidadMineraArea.htm" method="POST">
-		<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraAreaEliminar">		
-				<table id="tablaArea"
-					class="table table-striped table-bordered table-hover">
+		<form method="POST">
+		<input type="hidden" name="id" id="id">		
+				<table class="tablaSearch table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
@@ -22,12 +15,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="jbean" items="${listaUnidadMineraArea}"
+						<c:forEach var="jbean" items="${listaConsulta}"
 							varStatus="contador">
 							<tr>
 								<td class="center"><c:out value="${contador.count}" /></td>
 								<td class="center"><a
-									href="modificarArea.htm?idUnidadMineraArea=<c:out value="${jbean.idUnidadMineraArea}" />"
+									href="modificar.htm?id=<c:out value="${jbean.idUnidadMineraArea}" />"
 									title="Modificar Área"><c:out value="${jbean.idUnidadMineraArea}"></c:out></a></td>
 								<td class="center"><c:out value="${jbean.area.area}"></c:out></td>
 								<td class="center"><c:choose>
@@ -38,7 +31,7 @@
 											<span class="label label-warning">No Vigente</span>
 										</c:otherwise>
 									</c:choose></td>
-								<td class="center"><a class="red" href="#" onclick="eliminarUnidadMineraArea('${jbean.idUnidadMineraArea}')"> <i
+								<td class="center"><a class="red" href="#" onclick="eliminarSearch('${jbean.idUnidadMineraArea}')"> <i
 										class="icon-trash bigger-130"></i>
 								</a></td>
 

@@ -1,10 +1,5 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<div class="page-header">
-	<h1>
-		Registrar Área <span><i class="icon-double-angle-right"></i>
-		</span>
-	</h1>
-</div>
+
 <div class="page-header position-relative">
 	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
 	<input type="hidden" name="idUnidadMineraArea" id="idUnidadMineraArea" value="${unidadMineraArea.idUnidadMineraArea}">
@@ -58,17 +53,5 @@
 
 		</div>
 
-		<div class="form-actions">
-
-			<a title="Agregar Área" id="agregarArea"
-				class="btn btn-small btn-success">
-				<i class="icon-save bigger-110"></i>${!empty unidadMineraArea.idUnidadMineraArea ? 'Modificar' : 'Agregar'}
-			</a>
-			<a href="../area/verAreas.htm" title="Regresar"
-				class="btn btn-small btn-info"> <i
-				class="icon-undo bigger-110"></i>Regresar
-			</a>
-
-		</div>
 	</form>
 </div>

@@ -12,7 +12,15 @@ $(document).on("ready", function() {
 	$('.date-picker').datepicker({
 	    format: 'dd/mm/yyyy'
 	});
+	
 	$(".numeroEntero").attr("onkeypress","return fn_validaEntero(event)");
+	inicializarHeader();
+	
+	//SEGMENTO TABLA BUSCAR DEFAULT
+	$('.tablaSearch').DataTable({
+	 	"bSort" : false,
+		"columnDefs": [{ className: "center"}]
+ 	});
 });
 
 function validarCamposRequeridos(idFormulario){
@@ -193,4 +201,16 @@ function eliminarSearch(id) {
 				form.submit();
 			 },
 			function(){});
+}
+
+function inicializarHeader(){
+	//SEGMENTO DEL TITULO CABACERA
+	var titulo = $("#sidebar li.active").text();
+	if($("#sidebar").find("li.active").length==1){
+		$("#menuDescripcion").html(titulo);
+		$(".tituloHeader").prepend(titulo);
+	}else{
+		$("#menuDescripcion").html("Bienvenido");
+		$(".tituloHeader").prepend("Bienvenido");
+	}
 }

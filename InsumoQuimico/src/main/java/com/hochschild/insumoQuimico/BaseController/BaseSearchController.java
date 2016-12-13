@@ -46,9 +46,9 @@ public abstract class BaseSearchController {
 	
 	public String listar(Model model,HttpServletRequest req,HttpSession sesion){
 		
-		 this.formBusqueda = obtenerConsulta(req, sesion);
+		 this.formBusqueda = obtenerConsulta(req, sesion);	 
 		 List listBusqueda = this.listarConsulta(model, sesion, req);
-
+		 model=mostrarBotones(model);
 		 model.addAttribute("listaConsulta", listBusqueda);
 		 sesion.setAttribute("beanConsulta", this.formBusqueda);
 		 return this.getPaginaSearch();
@@ -57,8 +57,7 @@ public abstract class BaseSearchController {
 	@RequestMapping(value = "/listar.htm")
 	public String setView(Model model,HttpSession sesion,HttpServletRequest req) {
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-		this.usuario = usuarioSession;
-		model=mostrarBotones(model);
+		this.usuario = usuarioSession;		
 		return listar(model, req, sesion);
 	}
 	

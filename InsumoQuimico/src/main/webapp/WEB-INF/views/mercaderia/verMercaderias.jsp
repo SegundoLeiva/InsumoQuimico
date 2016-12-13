@@ -67,7 +67,7 @@
 
 	</form>
 	<hr>
-	<table id="tablaMercaderia" class="table table-striped table-bordered table-hover">
+	<table class="tablaSearch table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
 						<th class="center" width="5%">Nro</th>

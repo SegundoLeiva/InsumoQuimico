@@ -1,9 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<div class="page-header">
-	<h1>
-		Registrar Insumo <i class="icon-double-angle-right"></i>
-	</h1>
-</div>
 <div class="page-header position-relative">
 	<form id="formUnidadMineraInsumo" method="POST" class="form-horizontal">
 	<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" value="${unidadMineraInsumo.idUnidadMineraInsumo}">
@@ -54,19 +49,6 @@
 					</div>
 				</div>
 			</div>
-
-		</div>
-
-		<div class="form-actions">
-
-			<a title="Agregar Insumo" id="agregarInsumo"
-				class="btn btn-small btn-success">
-				<i class="icon-save bigger-110"></i>${!empty unidadMineraInsumo.idUnidadMineraInsumo ? 'Modificar' : 'Agregar'}
-			</a>
-			<a href="../insumo/verInsumos.htm" title="Regresar"
-				class="btn btn-small btn-info"> <i
-				class="icon-undo bigger-110"></i>Regresar
-			</a>
 
 		</div>
 	</form>

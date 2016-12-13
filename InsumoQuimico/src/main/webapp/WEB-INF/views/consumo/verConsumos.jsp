@@ -3,6 +3,7 @@
 <div class="page-header position-relative">
 	<form method="POST" class="form-horizontal">
 	<input type="hidden" name="id" id="id">	
+	<c:set value="eferf" var="prueba"/>
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -68,8 +69,7 @@
 
 	</form>
 	<hr>
-	<table id="tablaConsumo"
-					class="table table-striped table-bordered table-hover">
+	<table class="tablaSearch table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
@@ -91,7 +91,7 @@
 								<td class="center">${jbean.almacen}</td>
 								<td class="center">${jbean.area}</td>
 								<td class="center">${jbean.cantidad}</td>
-								<td class="center"><a class="red" href="#" onclick="eliminarConsumo('${jbean.idConsumo}')"> <i
+								<td class="center"><a class="red" href="#" onclick="eliminarSearch('${jbean.idConsumo}')"> <i
 										class="icon-trash bigger-130"></i>
 								</a></td>
 

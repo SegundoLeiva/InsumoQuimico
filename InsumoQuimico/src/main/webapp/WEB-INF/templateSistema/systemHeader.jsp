@@ -17,8 +17,7 @@
  		</c:if>
  		<c:if test="${mostrarBotonGuardar}">
  			<a href="#" id="guardar" title="Guardar"
-			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>
+			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>${!empty flagEditar ? 'Modificar' : 'Guardar'}</a>
  		</c:if>
-			
 	</h1>
 </div>

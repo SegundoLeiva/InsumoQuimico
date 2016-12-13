@@ -95,15 +95,18 @@
 	<!-- ############################# END SCRIPT ############################### -->
 
 </body>
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var titulo = $("#sidebar li.active").text();
-	if($("#sidebar").find("li.active").length==1){
-		$("#menuDescripcion").html(titulo);
-	}else{
-		$("#menuDescripcion").html("Bienvenido");
-	}
-	$(".tituloHeader").prepend(titulo);
+
+	//SEGMENTO MENSAJES
+	<c:if test="${flagTransaccion=='eliminar'}">
+		alertify.success("Se eliminó correctamente");
+	</c:if>
+	<c:if test="${flagTransaccion=='error'}">
+		alertify.error("Se produjo un error");
+	</c:if>
 });
 </script>
 </html>
