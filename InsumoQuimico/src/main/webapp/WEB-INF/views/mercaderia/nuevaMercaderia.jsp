@@ -2,7 +2,6 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />
-<%@ include file="/WEB-INF/templateSistema/headerMantenimiento.jsp"%>
 
 <div class="page-header position-relative">
 	<form id="formMercaderia" method="POST" class="form-horizontal">

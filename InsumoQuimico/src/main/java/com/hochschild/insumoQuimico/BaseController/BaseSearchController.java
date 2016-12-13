@@ -21,10 +21,13 @@ public abstract class BaseSearchController {
 	
 	public Object formBusqueda;
 	public Usuario usuario;
+	protected boolean mostrarBotonBuscar = true;
+	protected boolean mostrarBotonNuevo = true;
 	
 	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
 	public String buscarConsulta(HttpSession sesion, HttpServletRequest req, Model model) {
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_CONSULTAR);
+		model=mostrarBotones(model);
 		return this.listar(model, req, sesion);
 	}
 	
@@ -55,6 +58,7 @@ public abstract class BaseSearchController {
 	public String setView(Model model,HttpSession sesion,HttpServletRequest req) {
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
 		this.usuario = usuarioSession;
+		model=mostrarBotones(model);
 		return listar(model, req, sesion);
 	}
 	
@@ -66,7 +70,14 @@ public abstract class BaseSearchController {
 		}else{
 			req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_ERROR);
 		}
+		model=mostrarBotones(model);
 		return listar(model, req, sesion);
+	}
+	
+	public Model mostrarBotones(Model model){
+		model.addAttribute("mostrarBotonBuscar", this.mostrarBotonBuscar);
+		model.addAttribute("mostrarBotonNuevo", this.mostrarBotonNuevo);
+		return model;
 	}
 	
 	public abstract Object getFormBusqueda();
@@ -84,4 +95,21 @@ public abstract class BaseSearchController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public boolean isMostrarBotonBuscar() {
+		return mostrarBotonBuscar;
+	}
+
+	public void setMostrarBotonBuscar(boolean mostrarBotonBuscar) {
+		this.mostrarBotonBuscar = mostrarBotonBuscar;
+	}
+
+	public boolean isMostrarBotonNuevo() {
+		return mostrarBotonNuevo;
+	}
+
+	public void setMostrarBotonNuevo(boolean mostrarBotonNuevo) {
+		this.mostrarBotonNuevo = mostrarBotonNuevo;
+	}
+	
 }

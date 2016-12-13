@@ -11,6 +11,7 @@
 		<put-attribute name="css" value="/WEB-INF/templateSistema/systemCss.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/templateSistema/systemSidebar.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/templateSistema/systemMenu.jsp" />
+		<put-attribute name="header" value="/WEB-INF/templateSistema/systemHeader.jsp" />
 		<put-attribute name="js" value="/WEB-INF/templateSistema/systemJs.jsp" />
 	</definition>
 	

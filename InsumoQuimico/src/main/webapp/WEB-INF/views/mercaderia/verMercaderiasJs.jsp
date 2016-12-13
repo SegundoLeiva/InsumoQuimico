@@ -16,13 +16,4 @@ $(document).ready(function() {
 	
 } );
 
-function eliminarMercaderia(idMercaderia) {
-	$("#id").val(idMercaderia);
-	alertify.confirm("Eliminar","¿Seguro que desea eliminar esta mercadería?",
-			function(){
-				$("#formVerMercaderias").submit();
-			 },
-			function(){});
-}
-
 </script>

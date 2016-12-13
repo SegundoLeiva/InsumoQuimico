@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ include file="/WEB-INF/templateSistema/headerSearch.jsp"%>
+
 <div class="page-header position-relative">
-	<form id="formVerConsumos"  action="<c:url value="eliminar.htm"/>" method="POST" class="form-horizontal">
+	<form method="POST" class="form-horizontal">
 	<input type="hidden" name="id" id="id">	
 		<div class="row-fluid">
 			<div class="page-content">

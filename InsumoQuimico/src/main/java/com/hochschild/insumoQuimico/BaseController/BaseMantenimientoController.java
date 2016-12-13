@@ -16,11 +16,14 @@ import com.hochschild.insumoQuimico.util.Constantes;
 public abstract class BaseMantenimientoController {
 	
 	public Usuario usuario;
+	protected boolean mostrarBotonGuardar = true;
+	protected boolean mostrarBotonRegresar = true;
 	
 	@RequestMapping(value = "/nuevo.htm")
 	public String nuevo(Model model,HttpSession sesion) {
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
 		this.usuario = usuarioSession;
+		model = mostrarBotones(model);
 		model = this.setViewAttributes(model);
 		return this.getPaginaMantenimiento();
 	}
@@ -30,10 +33,17 @@ public abstract class BaseMantenimientoController {
 			@RequestParam String id, Model model) throws IOException {
 		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
 		this.usuario = usuarioSession;
+		model = mostrarBotones(model);
 		model = this.setModificarAttributes(id,model);
 		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
 
 		return this.getPaginaMantenimiento();
+	}
+	
+	public Model mostrarBotones(Model model){
+		model.addAttribute("mostrarBotonGuardar", this.mostrarBotonGuardar);
+		model.addAttribute("mostrarBotonRegresar", this.mostrarBotonRegresar);
+		return model;
 	}
 	
 	public abstract String getPaginaMantenimiento();
@@ -50,4 +60,19 @@ public abstract class BaseMantenimientoController {
 		this.usuario = usuario;
 	}
 
+	public boolean isMostrarBotonGuardar() {
+		return mostrarBotonGuardar;
+	}
+
+	public void setMostrarBotonGuardar(boolean mostrarBotonGuardar) {
+		this.mostrarBotonGuardar = mostrarBotonGuardar;
+	}
+
+	public boolean isMostrarBotonRegresar() {
+		return mostrarBotonRegresar;
+	}
+
+	public void setMostrarBotonRegresar(boolean mostrarBotonRegresar) {
+		this.mostrarBotonRegresar = mostrarBotonRegresar;
+	}
 }

@@ -74,7 +74,7 @@ function eliminarDetalle(){
 	var dimCheck = arrayCheckbox.length;
 	var indexArray=0;
 	if(dimCheck > 0) {
-		alertify.confirm("Eliminar","¿Está seguro en eliminar los items seleccionados?",
+		alertify.confirm("Eliminar","\u00BFEstá seguro en eliminar los items seleccionados?",
 				function(){
 			//Eliminando la fila en vista
   		  		for(var i = 0;i<dimCheck;i++){	  
@@ -182,4 +182,15 @@ function buscarConsulta(){
     form.action="buscarConsulta.htm"
     form.submit();
     form.idUnidadMinera.disabled=true;
+}
+
+function eliminarSearch(id) {
+	$("#id").val(id);
+	var form = document.forms[0];
+	alertify.confirm("Eliminar","\u00BFSeguro que desea eliminar este registro?",
+			function(){
+				form.action="eliminar.htm"
+				form.submit();
+			 },
+			function(){});
 }

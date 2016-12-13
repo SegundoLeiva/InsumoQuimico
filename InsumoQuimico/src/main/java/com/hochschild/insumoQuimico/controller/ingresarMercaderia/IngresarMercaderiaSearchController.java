@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
-import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.sap.FuncionesSAPService;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;

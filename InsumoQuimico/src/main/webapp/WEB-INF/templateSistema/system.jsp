@@ -75,7 +75,7 @@
 			</div>
 
 			<div class="page-content">
-
+				<tiles:insertAttribute name="header"/>
 				<!-- ##########################  CONTENIDO ######################  -->
 				<tiles:insertAttribute name="contenido"/>
 				<!-- ########################  END CONTENIDO ######################  -->

@@ -1,7 +1,6 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%@ include file="/WEB-INF/templateSistema/headerSearch.jsp"%>
 <div class="page-header position-relative">
-	<form id="formVerMercaderias"  action="<c:url value="eliminar.htm"/>" method="POST" class="form-horizontal">
+	<form method="POST" class="form-horizontal">
 		<input type="hidden" name="id" id="id">	
 		<div class="row-fluid">
 			<div class="page-content">
@@ -92,7 +91,7 @@
 								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>
-								<td class="center"><a class="red" href="#" onclick="eliminarMercaderia('${jbean.idMercaderia}')"> <i
+								<td class="center"><a class="red" href="#" onclick="eliminarSearch('${jbean.idMercaderia}')"> <i
 										class="icon-trash bigger-130"></i>
 								</a></td>
 
