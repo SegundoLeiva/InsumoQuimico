@@ -97,11 +97,13 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
+	var titulo = $("#sidebar li.active").text();
 	if($("#sidebar").find("li.active").length==1){
-		$("#menuDescripcion").html($("#sidebar li.active").text());
+		$("#menuDescripcion").html(titulo);
 	}else{
 		$("#menuDescripcion").html("Bienvenido");
 	}
+	$(".tituloHeader").prepend(titulo);
 });
 </script>
 </html>

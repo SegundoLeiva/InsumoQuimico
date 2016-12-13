@@ -17,7 +17,7 @@ $(document).ready(function() {
 } );
 
 function eliminarMercaderia(idMercaderia) {
-	$("#idMercaderia").val(idMercaderia);
+	$("#id").val(idMercaderia);
 	alertify.confirm("Eliminar","¿Seguro que desea eliminar esta mercadería?",
 			function(){
 				$("#formVerMercaderias").submit();

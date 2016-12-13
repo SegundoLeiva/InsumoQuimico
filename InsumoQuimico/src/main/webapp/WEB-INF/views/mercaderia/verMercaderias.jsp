@@ -1,16 +1,8 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<div class="page-header">
-	<h1>
-		Ingresar Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../ingresarMercaderia/nuevaMercaderia.htm" title="Nueva mercadería" style="margin-left: 5px"
-			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i>Nuevo</a>
-			<a href="#" title="Buscar" onclick="buscarConsulta()"
-			class="btn btn-success btn-small pull-right"><i class="icon-search"></i>Buscar</a>
-	</h1>
-</div>
+<%@ include file="/WEB-INF/templateSistema/headerSearch.jsp"%>
 <div class="page-header position-relative">
-	<form id="formVerMercaderias"  action="../ingresarMercaderia/eliminarMercaderia.htm" method="POST" class="form-horizontal">
-		<input type="hidden" name="idMercaderia" id="idMercaderia">	
+	<form id="formVerMercaderias"  action="<c:url value="eliminar.htm"/>" method="POST" class="form-horizontal">
+		<input type="hidden" name="id" id="id">	
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -30,7 +22,7 @@
 							<div class="control-group">
 								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderiaConsulta.guiaRemision}" placeholder="Guía Remisión...">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${beanConsulta.guiaRemision}" placeholder="Guía Remisión...">
 								</div>
 							</div>
 						</div>
@@ -41,7 +33,7 @@
 									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
 										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == mercaderiaConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
+											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == beanConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -49,7 +41,7 @@
 							<div class="control-group">
 								<label class="control-label" for="fechaInicio">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${mercaderiaConsulta.fechaInicio}">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
 								</div>
 							</div>
 
@@ -58,13 +50,13 @@
 						<div class="control-group">
 								<label class="control-label" for="proveedor">Ruc Proveedor</label>
 								<div class="controls">									
-									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${mercaderiaConsulta.rucProveedor}" placeholder="Proveedor...">
+									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${beanConsulta.rucProveedor}" placeholder="Proveedor...">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="fechaFin">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${mercaderiaConsulta.fechaFin}">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
 								</div>
 							</div>
 						</div>
@@ -89,12 +81,12 @@
 				</tr>
 			</thead>
 			<tbody>
-						<c:forEach var="jbean" items="${listaMercaderiaConsulta}"
+						<c:forEach var="jbean" items="${listaConsulta}"
 							varStatus="contador">
 							<tr>
 								<td class="center">${contador.count}</td>
 								<td class="center"><a
-									href="modificarMercaderia.htm?idMercaderia=<c:out value="${jbean.idMercaderia}" />"
+									href="modificar.htm?id=<c:out value="${jbean.idMercaderia}" />"
 									title="Modificar Mercadería">${jbean.idMercaderia}</a></td>
 								<td class="center">${jbean.transporte}</td>
 								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>

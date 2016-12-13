@@ -130,7 +130,7 @@ $("#eliminarDetalle").click(function(){
 	eliminarDetalle();
 });
 
-$("#guardarConsumo").click(function(){
+$("#guardar").click(function(){
 	if(fnValidarGuardarConsumo()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){

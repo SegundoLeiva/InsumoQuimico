@@ -1,17 +1,9 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Calendar" %>
-
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />
-<div class="page-header">
-	<h1>
-		Registrar Ingreso de Mercadería <span> <i class="icon-double-angle-right"></i>
-		</span><a href="../ingresarMercaderia/verMercaderias.htm?cod=RE" title="Regresar" style="margin-left: 5px"
-			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i>Regresar</a>
-			<a href="#" id="guardarMercaderia" title="Guardar Mercadería"
-			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>Guardar</a>
-	</h1>
-</div>
+<%@ include file="/WEB-INF/templateSistema/headerMantenimiento.jsp"%>
+
 <div class="page-header position-relative">
 	<form id="formMercaderia" method="POST" class="form-horizontal">
 	<input type="hidden" value="${flagEditar}" id="flagEditar">

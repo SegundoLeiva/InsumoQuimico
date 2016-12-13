@@ -15,7 +15,7 @@ $(document).ready(function() {
 } );
 
 function eliminarConsumo(idConsumo) {
-	$("#idConsumo").val(idConsumo);
+	$("#id").val(idConsumo);
 	alertify.confirm("Eliminar","¿Seguro que desea eliminar este Consumo?",
 			function(){
 				$("#formVerConsumos").submit();

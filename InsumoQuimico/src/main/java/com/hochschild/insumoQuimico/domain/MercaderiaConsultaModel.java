@@ -1,7 +1,5 @@
 package com.hochschild.insumoQuimico.domain;
 
-import javax.servlet.http.HttpSession;
-
 import com.hochschild.insumoQuimico.util.FechasUtil;
 
 

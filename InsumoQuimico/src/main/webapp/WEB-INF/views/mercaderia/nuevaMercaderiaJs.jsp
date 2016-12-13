@@ -131,7 +131,7 @@ $("#eliminarDetalle").click(function(){
 	eliminarDetalle();
 });
 
-$("#guardarMercaderia").click(function(){
+$("#guardar").click(function(){
 	if(fnValidarGuardarMercaderia()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){
