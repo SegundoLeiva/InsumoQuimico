@@ -19,15 +19,37 @@
 						</div>
 						<div class="span6">
 							<div class="control-group">
+								<label class="control-label" for="idPresentacion">Presentacion</label>
+								<div class="controls selectInsumo">
+									<select id="idPresentacion">
+										<option value="1">Bolsa de 20 Kg</option>
+									</select>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label" for="idConversion">Conversión</label>
+								<div class="controls selectInsumo">
+									<select id="idConversion">
+										<option value="1">conversion 1</option>
+									</select>
+								</div>
+							</div>					
+						</div>
+						<div class="span6">
+							<div class="control-group">
 								<label class="control-label" for="cantidad">Cantidad</label>
-								<div class="controls">
+								<div class="controls selectInsumo">
 									<input type="text" id="cantidad" class="numeroDecimal" required data-msg-required="El campo Cantidad es obligatorio.">
 								</div>
 							</div>
-							
-
 						</div>
 					</div>
+
 	</div>
 	<div class="modal-footer">
 		<a title="Agregar" id="btnAgregarDetalle"

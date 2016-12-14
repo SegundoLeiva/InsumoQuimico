@@ -155,6 +155,8 @@
 	font-size: 14px
 }
 
-.selectInsumo .select2{
+.selectInsumo .select2,
+.selectInsumo select,
+.selectInsumo input{
 	width: 220px !important
 }
