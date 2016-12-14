@@ -1,17 +1,17 @@
 <script type="text/javascript">
 
 $("#guardar").click(function(){
-	if(validarCamposRequeridos("formUnidadMineraInsumo")){
+	if(validarCamposRequeridos("formUnidadMineraArea")){
 		alertify.confirm("Confirmar","¿Esta seguro realizar esta operación?",
 				function(){
-					var url = '${pageContext.request.contextPath}/insumo/agregarInsumo.htm';
+					var url = '${pageContext.request.contextPath}/unidadMineraArea/agregarUnidadMineraArea.htm';
 				    $.ajax({
 				           type: "POST",
 				           url: url,
-				           data: $("#formUnidadMineraInsumo").serialize(),
+				           data: $("#formUnidadMineraArea").serialize(),
 				           success: function(data)
 				           {	
-				        	   if($("#idUnidadMineraInsumo").val()==""){limpiarCampos("formUnidadMineraInsumo")};
+				        	   if($("#idUnidadMineraArea").val()==""){limpiarCampos("formUnidadMineraArea");};
 				        	   mensajeTransaccion(data);
 				           }
 				    });

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
@@ -19,12 +18,10 @@ import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
-import com.hochschild.insumoQuimico.sap.FuncionesSAPService;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
-import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -39,10 +36,7 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
 	@Autowired
     private MercaderiaService mercaderiaService;
 	@Autowired
-    private MercaderiaDetalleService mercaderiaDetalleService;
-	@Autowired
-	private FuncionesSAPService funcionesSAPService;
-	
+    private MercaderiaDetalleService mercaderiaDetalleService;	
 
 	@Override
 	public String getPaginaMantenimiento() {
@@ -84,16 +78,6 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
 		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(id);
 		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
 		return model;
-	}
-	
-	@RequestMapping(value="/getProveedorDescripcion.htm", method = {RequestMethod.POST})
-	@ResponseBody
-	public String getProveedorDescripcion(@RequestParam("rucProveedor") String rucProveedor) {
-		
-		String resultado = funcionesSAPService.getProveedorDescripcion(rucProveedor, Constantes.SOCIEDAD_PROVEEDOR);
-
-		return resultado;
-
 	}
 
 }

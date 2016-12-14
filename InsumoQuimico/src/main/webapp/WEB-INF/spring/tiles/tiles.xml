@@ -48,26 +48,26 @@
 		<put-attribute name="js2" value="/WEB-INF/views/home/panelPrincipalJs.jsp" />
 	</definition>
 	
-	<!-- ################################ REGISTRO DE AREAS ############################## -->
-	<definition name="verAreas" extends="templateSistema">
-	<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
+	<!-- ################################ REGISTRO DE UNIDAD MINERA AREA ############################## -->
+	<definition name="verUnidadMineraAreas" extends="templateSistema">
+	<put-attribute name="js2" value="/WEB-INF/views/unidadMineraArea/unidadMineraAreaJs.jsp" />
 		<put-attribute name="contenido"
-			value="/WEB-INF/views/area/verAreas.jsp" />		
+			value="/WEB-INF/views/unidadMineraArea/verUnidadMineraAreas.jsp" />		
 	</definition>
-	<definition name="nuevaArea" extends="templateSistema">
-		<put-attribute name="contenido" value="/WEB-INF/views/area/nuevaArea.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
+	<definition name="nuevaUnidadMineraArea" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/unidadMineraArea/nuevaUnidadMineraArea.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/unidadMineraArea/unidadMineraAreaJs.jsp" />
 	</definition>
 	
-	<!-- ################################ REGISTRO DE INSUMOS ############################## -->
-	<definition name="verInsumos" extends="templateSistema">
-		<put-attribute name="js2" value="/WEB-INF/views/insumo/insumoJs.jsp" />
+	<!-- ################################ REGISTRO DE UNIDAD MINERA INSUMO ############################## -->
+	<definition name="verUnidadMineraInsumos" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/unidadMineraInsumo/unidadMineraInsumoJs.jsp" />
 		<put-attribute name="contenido"
-			value="/WEB-INF/views/insumo/verInsumos.jsp" />		
+			value="/WEB-INF/views/unidadMineraInsumo/verUnidadMineraInsumos.jsp" />		
 	</definition>
-	<definition name="nuevoInsumo" extends="templateSistema">
-		<put-attribute name="contenido" value="/WEB-INF/views/insumo/nuevoInsumo.jsp" />
-		<put-attribute name="js2" value="/WEB-INF/views/insumo/insumoJs.jsp" />
+	<definition name="nuevoUnidadMineraInsumo" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/unidadMineraInsumo/nuevoUnidadMineraInsumo.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/unidadMineraInsumo/unidadMineraInsumoJs.jsp" />
 	</definition>
 	
 	<!-- ################################ INGRESO DE MERCADERIAS ############################## -->

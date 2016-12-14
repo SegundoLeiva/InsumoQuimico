@@ -1,5 +1,7 @@
 package com.hochschild.insumoQuimico.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import org.springframework.util.StringUtils;
 
 import com.hochschild.insumoQuimico.dao.MercaderiaDAO;
 import com.hochschild.insumoQuimico.dao.MercaderiaDetalleDAO;
+import com.hochschild.insumoQuimico.dao.UnidadMineraMovimientosInsumosDAO;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
@@ -20,6 +23,7 @@ import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraMovimientosInsumos;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
@@ -29,6 +33,8 @@ public class MercaderiaServiceImpl implements MercaderiaService {
     public MercaderiaDAO mercaderiaDAO;
 	@Autowired
     public MercaderiaDetalleDAO mercaderiaDetalleDAO;
+	@Autowired
+	public UnidadMineraMovimientosInsumosDAO unidadMineraMovimientosInsumosDAO;
 
 	public void actualizarMercaderia(Mercaderia Mercaderia) {
 		mercaderiaDAO.actualizarMercaderia(Mercaderia);
@@ -38,14 +44,16 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		Mercaderia mercaderia = new Mercaderia();
 		MercaderiaDetalle mercaderiaDetalle = new MercaderiaDetalle();
 		String idMercaderia = mercaderiaParametrosEntrada.getIdMercaderia();
+		String idUnidadMinera = mercaderiaParametrosEntrada.getIdUnidadMinera();
+		String idUsuarioCreacion = mercaderiaParametrosEntrada.getNombreUsuario();
 		try {
 			if(StringUtils.isEmpty(idMercaderia)){
-				idMercaderia = mercaderiaDAO.obtenerCorrelativoMercaderia(mercaderiaParametrosEntrada.getIdUnidadMinera());
+				idMercaderia = mercaderiaDAO.obtenerCorrelativoMercaderia(idUnidadMinera);
 				insertarMercaderia(mercaderiaParametrosEntrada,idMercaderia);		
 			}else{
 				mercaderia = mercaderiaDAO.obtieneMercaderiaPorId(idMercaderia);
 				UnidadMinera unidadMinera = new UnidadMinera();
-				unidadMinera.setIdUnidadMinera(mercaderiaParametrosEntrada.getIdUnidadMinera());
+				unidadMinera.setIdUnidadMinera(idUnidadMinera);
 				mercaderia.setUnidadMinera(unidadMinera);
 							
 				UnidadMineraAlmacen unidadMineraAlmacen = new UnidadMineraAlmacen();
@@ -58,7 +66,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				mercaderia.setGuiaInterna(mercaderiaParametrosEntrada.getGuiaInterna());
 				mercaderia.setRucProveedor(mercaderiaParametrosEntrada.getRucProveedor());
 				mercaderia.setDescripcionProveedor(mercaderiaParametrosEntrada.getDescripcionProveedor());
-				mercaderia.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());		
+				mercaderia.setIdUsuarioModificacion(idUsuarioCreacion);		
 				mercaderia.setFechaModificacion(new Date());
 				
 				mercaderiaDAO.actualizarMercaderia(mercaderia);
@@ -82,13 +90,25 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					mercaderiaDetalle.setIdUsuarioCreacion(mercaderiaParametrosEntrada.getNombreUsuario());
+					mercaderiaDetalle.setIdUsuarioCreacion(idUsuarioCreacion);
 					mercaderiaDetalle.setFechaCreacion(new Date());
 					mercaderiaDetalleDAO.insertarMercaderiaDetalle(mercaderiaDetalle);
 
+					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos(idUnidadMinera,idUsuarioCreacion);
+					movimiento.setCodigoSolicitud(idMercaderia);
+					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
+					unidadMineraMovimientosInsumosDAO.insertarUnidadMineraMovimientosInsumos(movimiento);
+					
 					index++;
 				}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idDetalle)){//ELIMINA
 					mercaderiaDetalleDAO.eliminarMercaderiaDetalle(Integer.parseInt(idDetalle),mercaderiaParametrosEntrada.getIdMercaderia());
+					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
+					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
+					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+					unidadMineraMovimientosInsumosDAO.eliminarUnidadMineraMovimientosInsumos(movimiento);
 
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
@@ -103,6 +123,13 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					mercaderiaDetalle.setFechaModificacion(new Date());				
 					mercaderiaDetalleDAO.modificarMercaderiaDetalle(mercaderiaDetalle);
 					
+					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
+					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
+					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+					movimiento = unidadMineraMovimientosInsumosDAO.obtienerUnidadMineraMovimientosInsumos(movimiento);
+					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
+					unidadMineraMovimientosInsumosDAO.actualizarUnidadMineraMovimientosInsumos(movimiento);
 				}
 								
 			}

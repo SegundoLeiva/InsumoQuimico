@@ -1,4 +1,4 @@
-package com.hochschild.insumoQuimico.controller.area;
+package com.hochschild.insumoQuimico.controller.unidadMineraInsumo;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,50 +15,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
-import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
+import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
-import com.hochschild.insumoQuimico.service.AreaService;
-import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
+import com.hochschild.insumoQuimico.service.InsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
-@RequestMapping(value = "/area")
-public class AreaMantenimientoController extends BaseMantenimientoController{
+@RequestMapping(value = "/unidadMineraInsumo")
+public class UnidadMineraInsumoMantenimientoController extends BaseMantenimientoController{
 	
 	@Autowired
-	private UnidadMineraAreaService unidadMineraAreaService;
+	private UnidadMineraInsumoService unidadMineraInsumoService;
 	@Autowired
-	private AreaService areaService;
+	private InsumoService insumoService;
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
 
 	@Override
 	public String getPaginaMantenimiento() {
 		// TODO Auto-generated method stub
-		return "nuevaArea";
+		return "nuevoUnidadMineraInsumo";
 	}
 
 	@Override
 	public Model setViewAttributes(Model model) {
 		// TODO Auto-generated method stub
-		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
-	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-		model.addAttribute("listaAreas", this.areaService.listaArea());
+        List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
+        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
+		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
 		return model;
 	}
 	
-	@RequestMapping(value = "/agregarArea.htm", method = RequestMethod.POST)
+	@RequestMapping(value = "/agregarUnidadMineraInsumo.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public String agregarArea(AreaParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
+	public String agregarInsumo(InsumoParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
 		String mensaje = Constantes.TRANSACCION_GUARDAR;
 		try {
 			
-			if(StringUtils.isEmpty(data.getIdUnidadMineraArea())){
-				unidadMineraAreaService.insertarUnidadMineraArea(data);
+			if(StringUtils.isEmpty(data.getIdUnidadMineraInsumo())){
+				unidadMineraInsumoService.insertarUnidadMineraInsumo(data);
 			}else{
-				unidadMineraAreaService.actualizarUnidadMineraArea(data);
+				unidadMineraInsumoService.actualizarUnidadMineraInsumo(data);
 				mensaje = Constantes.TRANSACCION_MODIFICAR;
 			}
 		} catch (Exception e) {
@@ -70,11 +70,11 @@ public class AreaMantenimientoController extends BaseMantenimientoController{
 	@Override
 	public Model setModificarAttributes(String id, Model model) {
 		// TODO Auto-generated method stub
-		UnidadMineraArea unidadMineraArea = unidadMineraAreaService.obtieneUnidadMineraAreaPorId(id);
+		UnidadMineraInsumo unidadMineraInsumo = unidadMineraInsumoService.obtieneUnidadMineraInsumoPorId(id);
 		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
 	    model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-		model.addAttribute("unidadMineraArea", unidadMineraArea);
-		model.addAttribute("listaAreas", this.areaService.listaArea());
+		model.addAttribute("unidadMineraInsumo", unidadMineraInsumo);
+		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
 		return model;
 	}
 

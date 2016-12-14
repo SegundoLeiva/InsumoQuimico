@@ -43,7 +43,7 @@ $(document).ready(function() {
 } );
 
 $("#btnAgregarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoAgregar()){			 	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo()){			 	
  		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
@@ -61,7 +61,7 @@ function agregarDetalle(data){
 }
 
 $("#btnEditarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoEditar()){	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo()){	
 		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
 		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
@@ -91,35 +91,31 @@ $("#abrirDetalleEditar").click(function(){
 	}	
 });
 
-function validarInsumoAgregar(){
+function validarInsumo(){
 	var rpta=true;
+	var cantidad = parseFloat($("#cantidad").val());
+	var idUnidadMineraInsumo = $("#idUnidadMineraInsumo").val();
+	var idUnidadMineraAlmacen = $("#idUnidadMineraAlmacen").val();
 	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
-		var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-		if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
+		var _idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
+		if(_idUnidadMineraInsumo==idUnidadMineraInsumo){
 			alertify.error("Ya existe un insumo.");
 			rpta=false;
 		}
 	}
-	if(parseFloat($("#cantidad").val())==0){
+	
+	if(cantidad==0){
 		alertify.error("La cantidad debe ser mayor a 0.");
+		rpta=false;
+	}
+	if(cantidad>parseFloat(obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen))){
+		alertify.error("No se encuentra dentro del rango de stock del insumo.");
+		$("#cantidad").val("");
 		rpta=false;
 	}
 	return rpta;
 }
-function validarInsumoEditar(){
-	var rpta=true;
-	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
-		var idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-		if(i!=filaIndexDetalle){
-			if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
-				alertify.error("Ya existe un insumo.");
-				rpta=false;
-			}
-		}
 
-	}
-	return rpta;
-}
 function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
 			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
@@ -188,7 +184,7 @@ function getProveedorDescripcion(){
 			$.ajax({
 				type : 'post',
 				data: {'rucProveedor': rucProveedor},
-				url : '${pageContext.request.contextPath}/ingresarMercaderia/getProveedorDescripcion.htm',
+				url : '${pageContext.request.contextPath}/ajax/getProveedorDescripcion.htm',
 				success : function(data) {	
 					hideLoading();
 					if(data==""){
@@ -207,5 +203,23 @@ function getProveedorDescripcion(){
 		$("#spanDescripcionProveedor").html("");
 	}
 		
+}
+
+function obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen){
+	var resultado = 0;
+			$.ajax({
+				type : 'post',
+				data: {
+					'idUnidadMineraInsumo': idUnidadMineraInsumo,
+					'idUnidadMineraAlmacen': idUnidadMineraAlmacen
+				},
+				url : '${pageContext.request.contextPath}/ajax/obtienerStock.htm',
+				async:false,
+				success : function(data) {	
+					resultado=data;
+					
+				}
+			});
+	return resultado;
 }
 </script>

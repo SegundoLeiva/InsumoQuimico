@@ -1,4 +1,4 @@
-package com.hochschild.insumoQuimico.controller.area;
+package com.hochschild.insumoQuimico.controller.unidadMineraInsumo;
 
 import java.util.List;
 
@@ -11,21 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
-import com.hochschild.insumoQuimico.service.AreaService;
-import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
+import com.hochschild.insumoQuimico.service.InsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
-@RequestMapping(value = "/area")
-public class AreaSearchController extends BaseSearchController{
+@RequestMapping(value = "/unidadMineraInsumo")
+public class UnidadMineraInsumoSearchController extends BaseSearchController{
 	
 	@Autowired
-	private UnidadMineraAreaService unidadMineraAreaService;
+	private UnidadMineraInsumoService unidadMineraInsumoService;
 	@Autowired
-	private AreaService areaService;
+	private InsumoService insumoService;
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
-	
 
 	@Override
 	public Object getFormBusqueda() {
@@ -36,7 +35,7 @@ public class AreaSearchController extends BaseSearchController{
 	@Override
 	public String getPaginaSearch() {
 		// TODO Auto-generated method stub
-		return "verAreas";
+		return "verUnidadMineraInsumos";
 	}
 
 	@Override
@@ -44,14 +43,14 @@ public class AreaSearchController extends BaseSearchController{
 			HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		this.mostrarBotonBuscar=false;
-		return this.unidadMineraAreaService.listaUnidadMineraArea();
+		return this.unidadMineraInsumoService.listaUnidadMineraInsumo();
 	}
 
 	@Override
 	public boolean setDeleteAttributes(String id) {
 		// TODO Auto-generated method stub
 		try {
-			unidadMineraAreaService.eliminarUnidadMineraArea(id);
+			unidadMineraInsumoService.eliminarUnidadMineraInsumo(id);
 		} catch (Exception e) {
 			return false;
 		}

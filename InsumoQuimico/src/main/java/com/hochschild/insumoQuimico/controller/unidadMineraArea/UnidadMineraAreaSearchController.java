@@ -1,4 +1,4 @@
-package com.hochschild.insumoQuimico.controller.insumo;
+package com.hochschild.insumoQuimico.controller.unidadMineraArea;
 
 import java.util.List;
 
@@ -11,20 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
-import com.hochschild.insumoQuimico.service.InsumoService;
-import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.service.AreaService;
+import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
-@RequestMapping(value = "/insumo")
-public class InsumoSearchController extends BaseSearchController{
+@RequestMapping(value = "/unidadMineraArea")
+public class UnidadMineraAreaSearchController extends BaseSearchController{
 	
 	@Autowired
-	private UnidadMineraInsumoService unidadMineraInsumoService;
+	private UnidadMineraAreaService unidadMineraAreaService;
 	@Autowired
-	private InsumoService insumoService;
+	private AreaService areaService;
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
+	
 
 	@Override
 	public Object getFormBusqueda() {
@@ -35,7 +36,7 @@ public class InsumoSearchController extends BaseSearchController{
 	@Override
 	public String getPaginaSearch() {
 		// TODO Auto-generated method stub
-		return "verInsumos";
+		return "verUnidadMineraAreas";
 	}
 
 	@Override
@@ -43,14 +44,14 @@ public class InsumoSearchController extends BaseSearchController{
 			HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		this.mostrarBotonBuscar=false;
-		return this.unidadMineraInsumoService.listaUnidadMineraInsumo();
+		return this.unidadMineraAreaService.listaUnidadMineraArea();
 	}
 
 	@Override
 	public boolean setDeleteAttributes(String id) {
 		// TODO Auto-generated method stub
 		try {
-			unidadMineraInsumoService.eliminarUnidadMineraInsumo(id);
+			unidadMineraAreaService.eliminarUnidadMineraArea(id);
 		} catch (Exception e) {
 			return false;
 		}

@@ -42,7 +42,7 @@ $(document).ready(function() {
 } );
 
 $("#btnAgregarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoAgregar()){			 	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo()){			 	
  		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
  		 	         	 $("#cantidad").val(),"Kg"];
  		 	agregarDetalle(data);
@@ -60,7 +60,7 @@ function agregarDetalle(data){
 }
 
 $("#btnEditarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoEditar()){	
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo()){	
 		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
 		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
@@ -90,7 +90,7 @@ $("#abrirDetalleEditar").click(function(){
 	}	
 });
 
-function validarInsumoAgregar(){
+function validarInsumo(){
 	var rpta=true;
 	for (var i = 0; i < consumoJSONArray.length; i++) {
 		var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
@@ -103,22 +103,14 @@ function validarInsumoAgregar(){
 		alertify.error("La cantidad debe ser mayor a 0.");
 		rpta=false;
 	}
-	return rpta;
-}
-function validarInsumoEditar(){
-	var rpta=true;
-	for (var i = 0; i < consumoJSONArray.length; i++) {
-		var idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
-		if(i!=filaIndexDetalle){
-			if(idUnidadMineraInsumo==$("#idUnidadMineraInsumo").val()){
-				alertify.error("Ya existe un insumo.");
-				rpta=false;
-			}
-		}
-
+	if(cantidad<parseFloat(obtienerStock(idUnidadMineraInsumo))){
+		alertify.error("No se encuentra dentro del rango de stock del insumo.");
+		$("#cantidad").val("");
+		rpta=false;
 	}
 	return rpta;
 }
+
 function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
 			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
@@ -169,5 +161,20 @@ function fnValidarGuardarConsumo(){
 	}
 	
 	return true;
+}
+
+function obtienerStock(idUnidadMineraInsumo){
+	var resultado = 0;
+			$.ajax({
+				type : 'post',
+				data: {'idUnidadMineraInsumo': idUnidadMineraInsumo},
+				url : '${pageContext.request.contextPath}/ajax/obtienerStock.htm',
+				async:false,
+				success : function(data) {	
+					resultado=data;
+					
+				}
+			});
+	return resultado;
 }
 </script>

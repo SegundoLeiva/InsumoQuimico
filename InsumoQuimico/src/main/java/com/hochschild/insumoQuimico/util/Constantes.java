@@ -20,4 +20,8 @@ public class Constantes {
     public static final Integer ID_OPCION_LOGISTICA = 4;
     
     public static final String SOCIEDAD_PROVEEDOR = "1013";
+    
+    //Tipo de Movimiento Insumos
+    public static final String TIPO_MOV_ENTRADA = "E";
+    public static final String TIPO_MOV_SALIDA = "S";
 }
