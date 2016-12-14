@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hochschild.insumoQuimico.dao.UnidadMineraAreaDAO;
 import com.hochschild.insumoQuimico.domain.Area;
-import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.UnidadMineraAreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 
 @Service
@@ -27,7 +27,7 @@ public class UnidadMineraAreaServiceImpl implements UnidadMineraAreaService {
     	return unidadMineraAreaDAO.listaUnidadMineraAreaPorUnidadMinera(idUnidadMinera);
     }
 
-	public void insertarUnidadMineraArea(AreaParametrosEntrada data) {
+	public void insertarUnidadMineraArea(UnidadMineraAreaParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		UnidadMineraArea unidadMineraArea = new UnidadMineraArea();
 		unidadMineraArea.setIdUnidadMineraArea(data.getIdUnidadMinera()+"-"+data.getIdArea());
@@ -39,7 +39,7 @@ public class UnidadMineraAreaServiceImpl implements UnidadMineraAreaService {
 		unidadMineraAreaDAO.insertarUnidadMineraArea(unidadMineraArea);		
 	}
 
-	public void actualizarUnidadMineraArea(AreaParametrosEntrada data) {
+	public void actualizarUnidadMineraArea(UnidadMineraAreaParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		UnidadMineraArea unidadMineraArea = unidadMineraAreaDAO.obtieneUnidadMineraAreaPorId(data.getIdUnidadMineraArea());
 		Area area = new Area();

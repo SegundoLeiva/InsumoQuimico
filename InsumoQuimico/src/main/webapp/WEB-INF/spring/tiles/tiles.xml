@@ -48,6 +48,17 @@
 		<put-attribute name="js2" value="/WEB-INF/views/home/panelPrincipalJs.jsp" />
 	</definition>
 	
+	<!-- ################################ REGISTRO DE AREA ############################## -->
+	<definition name="verAreas" extends="templateSistema">
+	<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/area/verAreas.jsp" />		
+	</definition>
+	<definition name="nuevaArea" extends="templateSistema">
+		<put-attribute name="contenido" value="/WEB-INF/views/area/nuevaArea.jsp" />
+		<put-attribute name="js2" value="/WEB-INF/views/area/areaJs.jsp" />
+	</definition>
+	
 	<!-- ################################ REGISTRO DE UNIDAD MINERA AREA ############################## -->
 	<definition name="verUnidadMineraAreas" extends="templateSistema">
 	<put-attribute name="js2" value="/WEB-INF/views/unidadMineraArea/unidadMineraAreaJs.jsp" />

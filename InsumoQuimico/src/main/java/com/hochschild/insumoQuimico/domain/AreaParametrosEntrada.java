@@ -8,22 +8,21 @@ public class AreaParametrosEntrada implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String idUnidadMineraArea;
 	private String idArea;
-	private String idUnidadMinera;
+	private String area;
 	private String vigencia;
-
+	
 	public String getIdArea() {
 		return idArea;
 	}
 	public void setIdArea(String idArea) {
 		this.idArea = idArea;
 	}
-	public String getIdUnidadMinera() {
-		return idUnidadMinera;
+	public String getArea() {
+		return area;
 	}
-	public void setIdUnidadMinera(String idUnidadMinera) {
-		this.idUnidadMinera = idUnidadMinera;
+	public void setArea(String area) {
+		this.area = area;
 	}
 	public String getVigencia() {
 		return vigencia;
@@ -31,11 +30,5 @@ public class AreaParametrosEntrada implements Serializable{
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
-	public String getIdUnidadMineraArea() {
-		return idUnidadMineraArea;
-	}
-	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
-		this.idUnidadMineraArea = idUnidadMineraArea;
-	}
-	
+
 }

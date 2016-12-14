@@ -18,6 +18,8 @@ public class Area implements Serializable{
 	@Id
 	private String idArea;
     private String area;
+    private String vigencia;
+    
 	public String getIdArea() {
 		return idArea;
 	}
@@ -29,6 +31,12 @@ public class Area implements Serializable{
 	}
 	public void setArea(String area) {
 		this.area = area;
+	}
+	public String getVigencia() {
+		return vigencia;
+	}
+	public void setVigencia(String vigencia) {
+		this.vigencia = vigencia;
 	}
     
 }

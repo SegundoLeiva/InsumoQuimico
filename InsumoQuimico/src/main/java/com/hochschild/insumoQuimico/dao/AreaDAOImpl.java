@@ -17,13 +17,38 @@ public class AreaDAOImpl implements AreaDAO {
 
     @SuppressWarnings("unchecked")
 	public List<Area> listaArea() {
-    	String query = "from Area";
+    	String query = "from Area where vigencia!='E'";
     	List<Area> resultado = hibernateTemplate.find(query);
         return  resultado;
     }
    
 	public Area obtieneAreaPorId(String id){
         return hibernateTemplate.get(Area.class, id);
+    }
+
+	public void insertarArea(Area data) {
+		hibernateTemplate.persist(data);
+		
+	}
+
+	public void actualizarArea(Area data) {
+		hibernateTemplate.update(data);
+		
+	}
+
+	public void eliminarArea(String idArea) {
+		Area area = new Area();
+		area = hibernateTemplate.get(Area.class, idArea);
+		area.setVigencia("E");
+		hibernateTemplate.update(area);
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public int obtenerId() {
+    	String query = "from Area order by idArea desc";
+    	List<Area> resultado = hibernateTemplate.find(query);
+        return  Integer.parseInt(resultado.get(0).getIdArea())+1;
     }
 }
 

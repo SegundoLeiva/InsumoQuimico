@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
-import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.UnidadMineraAreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.AreaService;
@@ -51,7 +51,7 @@ public class UnidadMineraAreaMantenimientoController extends BaseMantenimientoCo
 	
 	@RequestMapping(value = "/agregarUnidadMineraArea.htm", method = RequestMethod.POST)
 	@ResponseBody
-	public String agregarArea(AreaParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
+	public String agregarArea(UnidadMineraAreaParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
 		String mensaje = Constantes.TRANSACCION_GUARDAR;
 		try {
 			
