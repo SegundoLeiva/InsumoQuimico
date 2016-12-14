@@ -35,8 +35,8 @@ public class AreaServiceImpl implements AreaService {
 	public void actualizarArea(AreaParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		Area area = areaDAO.obtieneAreaPorId(data.getIdArea());
-		area.setIdArea(data.getIdArea());
 		area.setArea(data.getArea());
+		area.setVigencia(data.getVigencia());
 		areaDAO.actualizarArea(area);
 		
 	}

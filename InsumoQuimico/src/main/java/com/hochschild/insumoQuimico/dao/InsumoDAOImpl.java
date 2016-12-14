@@ -17,7 +17,7 @@ public class InsumoDAOImpl implements InsumoDAO {
 
     @SuppressWarnings("unchecked")
 	public List<Insumo> listaInsumo() {
-    	String query = "from Insumo";
+    	String query = "from Insumo where vigencia!='E'";
     	List<Insumo> resultado = hibernateTemplate.find(query);
         return  resultado;
     }
@@ -25,6 +25,38 @@ public class InsumoDAOImpl implements InsumoDAO {
 	public Insumo obtieneInsumoPorId(String id){
         return hibernateTemplate.get(Insumo.class, id);
     }
+
+	public void insertarInsumo(Insumo data) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.persist(data);
+	}
+
+	public void actualizarInsumo(Insumo data) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(data);
+	}
+
+	public void eliminarInsumo(String idInsumo) {
+		// TODO Auto-generated method stub
+		Insumo insumo = new Insumo();
+		insumo = hibernateTemplate.get(Insumo.class, idInsumo);
+		insumo.setVigencia("E");
+		hibernateTemplate.update(insumo);
+	}
+
+	@SuppressWarnings("unchecked")
+	public int obtenerId() {
+		// TODO Auto-generated method stub
+		try {
+			String query = "from Insumo order by idInsumo desc";
+	    	List<Insumo> resultado = hibernateTemplate.find(query);
+	        return  Integer.parseInt(resultado.get(0).getIdInsumo())+1;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 1;
+		}
+		
+	}
 }
 
 

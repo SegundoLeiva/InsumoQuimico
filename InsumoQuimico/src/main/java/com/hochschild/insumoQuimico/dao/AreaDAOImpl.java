@@ -46,9 +46,15 @@ public class AreaDAOImpl implements AreaDAO {
 	
 	@SuppressWarnings("unchecked")
 	public int obtenerId() {
-    	String query = "from Area order by idArea desc";
-    	List<Area> resultado = hibernateTemplate.find(query);
-        return  Integer.parseInt(resultado.get(0).getIdArea())+1;
+		try {
+			String query = "from Area order by idArea desc";
+	    	List<Area> resultado = hibernateTemplate.find(query);
+	        return  Integer.parseInt(resultado.get(0).getIdArea())+1;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 1;
+		}
+    	
     }
 }
 

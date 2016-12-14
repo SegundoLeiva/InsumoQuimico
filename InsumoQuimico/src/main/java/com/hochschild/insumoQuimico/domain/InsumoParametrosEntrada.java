@@ -8,22 +8,27 @@ public class InsumoParametrosEntrada implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String idUnidadMineraInsumo;
 	private String idInsumo;
-	private String idUnidadMinera;
+	private String insumo;
+	private String unidadMedida;
 	private String vigencia;
-
 	public String getIdInsumo() {
 		return idInsumo;
 	}
 	public void setIdInsumo(String idInsumo) {
 		this.idInsumo = idInsumo;
 	}
-	public String getIdUnidadMinera() {
-		return idUnidadMinera;
+	public String getInsumo() {
+		return insumo;
 	}
-	public void setIdUnidadMinera(String idUnidadMinera) {
-		this.idUnidadMinera = idUnidadMinera;
+	public void setInsumo(String insumo) {
+		this.insumo = insumo;
+	}
+	public String getUnidadMedida() {
+		return unidadMedida;
+	}
+	public void setUnidadMedida(String unidadMedida) {
+		this.unidadMedida = unidadMedida;
 	}
 	public String getVigencia() {
 		return vigencia;
@@ -31,11 +36,5 @@ public class InsumoParametrosEntrada implements Serializable{
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
-	public String getIdUnidadMineraInsumo() {
-		return idUnidadMineraInsumo;
-	}
-	public void setIdUnidadMineraInsumo(String idUnidadMineraInsumo) {
-		this.idUnidadMineraInsumo = idUnidadMineraInsumo;
-	}
-	
+
 }

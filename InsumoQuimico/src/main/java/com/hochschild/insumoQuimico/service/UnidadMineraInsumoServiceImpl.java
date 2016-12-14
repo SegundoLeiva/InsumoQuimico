@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hochschild.insumoQuimico.dao.UnidadMineraInsumoDAO;
 import com.hochschild.insumoQuimico.domain.Insumo;
-import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 
 @Service
@@ -27,7 +27,7 @@ public class UnidadMineraInsumoServiceImpl implements UnidadMineraInsumoService 
     	return unidadMineraInsumoDAO.listaUnidadMineraInsumoPorUnidadMinera(idUnidadMinera);
     }
 
-	public void insertarUnidadMineraInsumo(InsumoParametrosEntrada data) {
+	public void insertarUnidadMineraInsumo(UnidadMineraInsumoParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
 		unidadMineraInsumo.setIdUnidadMineraInsumo(data.getIdUnidadMinera()+"-"+data.getIdInsumo());
@@ -39,7 +39,7 @@ public class UnidadMineraInsumoServiceImpl implements UnidadMineraInsumoService 
 		unidadMineraInsumoDAO.insertarUnidadMineraInsumo(unidadMineraInsumo);		
 	}
 
-	public void actualizarUnidadMineraInsumo(InsumoParametrosEntrada data) {
+	public void actualizarUnidadMineraInsumo(UnidadMineraInsumoParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		UnidadMineraInsumo unidadMineraInsumo = unidadMineraInsumoDAO.obtieneUnidadMineraInsumoPorId(data.getIdUnidadMineraInsumo());
 		Insumo Insumo = new Insumo();

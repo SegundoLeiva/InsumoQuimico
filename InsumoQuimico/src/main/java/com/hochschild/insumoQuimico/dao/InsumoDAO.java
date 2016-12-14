@@ -8,4 +8,8 @@ public interface InsumoDAO {
 
 	List<Insumo> listaInsumo();
 	public Insumo obtieneInsumoPorId(String id);
+	public void insertarInsumo(Insumo data);
+	public void actualizarInsumo(Insumo data);
+	public void eliminarInsumo(String idInsumo);
+	public int obtenerId();
 }
