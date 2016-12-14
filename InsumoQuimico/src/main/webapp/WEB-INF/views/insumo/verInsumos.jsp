@@ -19,9 +19,7 @@
 							varStatus="contador">
 							<tr>
 								<td class="center"><c:out value="${contador.count}" /></td>
-								<td class="center"><a
-									href="modificar.htm?id=<c:out value="${jbean.idInsumo}" />"
-									title="Modificar Insumo"><c:out value="${jbean.idInsumo}"></c:out></a></td>
+								<td class="center">${jbean.idInsumo}</td>
 								<td class="center"><c:out value="${jbean.insumo}"></c:out></td>
 								<td class="center"><c:choose>
 										<c:when test="${jbean.vigencia=='S'}">
@@ -31,9 +29,13 @@
 											<span class="label label-warning">No Vigente</span>
 										</c:otherwise>
 									</c:choose></td>
-								<td class="center"><a class="red" href="#" onclick="eliminarSearch('${jbean.idInsumo}')"> <i
-										class="icon-trash bigger-130"></i>
-								</a></td>
+								<td class="center">
+									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idInsumo}" />"> <i
+											class="icon-edit bigger-130"></i></a>
+									<a class="red" href="#" onclick="eliminarSearch('${jbean.idInsumo}')"> <i
+											class="icon-trash bigger-130"></i>
+									</a>
+								</td>
 
 							</tr>
 						</c:forEach>

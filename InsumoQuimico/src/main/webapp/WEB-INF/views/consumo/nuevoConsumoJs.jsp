@@ -1,5 +1,3 @@
-<script src="../assets/js/jquery.dataTables.1.3.1.min.js"></script>
-<script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
 <script src="../assets/select2/select2.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 

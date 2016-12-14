@@ -84,16 +84,18 @@
 							varStatus="contador">
 							<tr>
 								<td class="center">${contador.count}</td>
-								<td class="center"><a
-									href="modificar.htm?id=<c:out value="${jbean.idMercaderia}" />"
-									title="Modificar Mercadería">${jbean.idMercaderia}</a></td>
+								<td class="center">${jbean.idMercaderia}</td>
 								<td class="center">${jbean.transporte}</td>
 								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>
-								<td class="center"><a class="red" href="#" onclick="eliminarSearch('${jbean.idMercaderia}')"> <i
+								<td class="center">
+								<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idMercaderia}" />"> <i
+										class="icon-edit bigger-130"></i></a>
+								<a class="red" href="#" onclick="eliminarSearch('${jbean.idMercaderia}')"> <i
 										class="icon-trash bigger-130"></i>
-								</a></td>
+								</a>
+								</td>
 
 							</tr>
 						</c:forEach>
