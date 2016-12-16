@@ -1,7 +1,5 @@
 package com.hochschild.insumoQuimico.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +18,10 @@ import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle.IdMercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
-import com.hochschild.insumoQuimico.domain.UnidadMineraMovimientosInsumos;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
@@ -78,58 +76,71 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				JSONObject jsonObj = dataJson.getJSONObject(i);
 				String indicador = jsonObj.getString("indicadorBD");
 				String idDetalle = jsonObj.getString("idDetalle");
+				String idPresentacion = jsonObj.getString("idPresentacion");
 				if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idDetalle)){//NUEVO
 					IdMercaderia id = new IdMercaderia();
 					id.setIdMercaderia(idMercaderia);
 					id.setIdMercaderiaDetalle(new Long(index));
 					mercaderiaDetalle.setId(id);
 					
+					String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
 					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));					
+					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);					
 					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					
+					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+					presentacionInsumo.setIdPresentacionInsumo(idUnidadMineraInsumo.split("-")[1]+"-"+idPresentacion);				
+					mercaderiaDetalle.setPresentacionInsumo(presentacionInsumo);
 					
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
+					mercaderiaDetalle.setFactorConversion(jsonObj.getDouble("factorConversion"));
 					mercaderiaDetalle.setIdUsuarioCreacion(idUsuarioCreacion);
 					mercaderiaDetalle.setFechaCreacion(new Date());
 					mercaderiaDetalleDAO.insertarMercaderiaDetalle(mercaderiaDetalle);
 
-					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos(idUnidadMinera,idUsuarioCreacion);
-					movimiento.setCodigoSolicitud(idMercaderia);
-					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
-					unidadMineraMovimientosInsumosDAO.insertarUnidadMineraMovimientosInsumos(movimiento);
+//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos(idUnidadMinera,idUsuarioCreacion);
+//					movimiento.setCodigoSolicitud(idMercaderia);
+//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+//					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
+//					unidadMineraMovimientosInsumosDAO.insertarUnidadMineraMovimientosInsumos(movimiento);
 					
 					index++;
 				}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idDetalle)){//ELIMINA
-					mercaderiaDetalleDAO.eliminarMercaderiaDetalle(Integer.parseInt(idDetalle),mercaderiaParametrosEntrada.getIdMercaderia());
-					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
-					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
-					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-					unidadMineraMovimientosInsumosDAO.eliminarUnidadMineraMovimientosInsumos(movimiento);
+					mercaderiaDetalleDAO.eliminarMercaderiaDetalle(mercaderiaParametrosEntrada.getIdMercaderia(),Integer.parseInt(idDetalle));
+//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
+//					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
+//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+//					unidadMineraMovimientosInsumosDAO.eliminarUnidadMineraMovimientosInsumos(movimiento);
 
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
-					mercaderiaDetalle = mercaderiaDetalleDAO.obtenerMercaderiaDetalle(mercaderiaParametrosEntrada.getIdMercaderia(), jsonObj.get("idDetalle").toString());
-					
+					mercaderiaDetalle = mercaderiaDetalleDAO.obtenerMercaderiaDetalle(mercaderiaParametrosEntrada.getIdMercaderia(), jsonObj.get("idDetalle").toString());					
+					String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
 					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
 					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
 					mercaderiaDetalle.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());
-					mercaderiaDetalle.setFechaModificacion(new Date());				
+					mercaderiaDetalle.setFechaModificacion(new Date());		
+					mercaderiaDetalle.setFactorConversion(jsonObj.getDouble("factorConversion"));
+					
+					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+					presentacionInsumo.setIdPresentacionInsumo(idUnidadMineraInsumo.split("-")[1]+"-"+idPresentacion);				
+					mercaderiaDetalle.setPresentacionInsumo(presentacionInsumo);
+					
 					mercaderiaDetalleDAO.modificarMercaderiaDetalle(mercaderiaDetalle);
 					
-					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
-					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
-					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-					movimiento = unidadMineraMovimientosInsumosDAO.obtienerUnidadMineraMovimientosInsumos(movimiento);
-					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
-					unidadMineraMovimientosInsumosDAO.actualizarUnidadMineraMovimientosInsumos(movimiento);
+//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
+//					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
+//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
+//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
+//					movimiento = unidadMineraMovimientosInsumosDAO.obtienerUnidadMineraMovimientosInsumos(movimiento);
+//					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
+//					unidadMineraMovimientosInsumosDAO.actualizarUnidadMineraMovimientosInsumos(movimiento);
 				}
 								
 			}

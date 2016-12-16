@@ -101,7 +101,8 @@
 								<span class="lbl"></span></label>
 							</th>
 							<th class="center" width="10%">Código</th>
-							<th class="center" width="50%">Descripcion</th>
+							<th class="center" width="40%">Descripcion</th>
+							<th class="center">Presentación</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Unidad Medida</th>
 						</tr>
@@ -112,4 +113,4 @@
 </div>
 
 
-<%@ include file="/WEB-INF/views/mercaderia/nuevoInsumoDetalle.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/mercaderia/nuevoInsumoDetalle.jsp"%> --%>

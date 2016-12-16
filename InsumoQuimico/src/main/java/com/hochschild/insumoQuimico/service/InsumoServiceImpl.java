@@ -2,18 +2,27 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.hochschild.insumoQuimico.dao.InsumoDAO;
-import com.hochschild.insumoQuimico.domain.Area;
+import com.hochschild.insumoQuimico.dao.PresentacionInsumoDAO;
 import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
 public class InsumoServiceImpl implements InsumoService {
     @Autowired
     public InsumoDAO InsumoDAO;
+    
+    @Autowired
+    public PresentacionInsumoDAO presentacionInsumoDAO;
 
 	public List<Insumo> listaInsumo() {
 		return InsumoDAO.listaInsumo();
@@ -23,14 +32,63 @@ public class InsumoServiceImpl implements InsumoService {
         return InsumoDAO.obtieneInsumoPorId(id);
     }
 
-	public void insertarInsumo(InsumoParametrosEntrada data) {
+	public void insertarInsumo(InsumoParametrosEntrada insumoParametrosEntrada) throws JSONException {
 		// TODO Auto-generated method stub
 		Insumo insumo = new Insumo();
-		insumo.setIdInsumo(String.valueOf(InsumoDAO.obtenerId()));
-		insumo.setInsumo(data.getInsumo());
-		insumo.setUnidadMedida("Kg");
-		insumo.setVigencia(data.getVigencia());
-		InsumoDAO.insertarInsumo(insumo);
+		PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+		int idInsumo;
+		
+		if(StringUtils.isEmpty(insumoParametrosEntrada.getIdInsumo())){
+			insumo = new Insumo();
+			idInsumo = InsumoDAO.obtenerId();
+			insumo.setIdInsumo(String.valueOf(idInsumo));
+			insumo.setInsumo(insumoParametrosEntrada.getInsumo());
+			insumo.setVigencia(insumoParametrosEntrada.getVigencia());
+			InsumoDAO.insertarInsumo(insumo);
+		}else{
+			insumo = InsumoDAO.obtieneInsumoPorId(insumoParametrosEntrada.getIdInsumo());
+			idInsumo = Integer.parseInt(insumo.getIdInsumo());
+			insumo.setInsumo(insumoParametrosEntrada.getInsumo());
+			insumo.setVigencia(insumoParametrosEntrada.getVigencia());
+			InsumoDAO.actualizarInsumo(insumo);
+		}
+		
+		
+		int index = Integer.parseInt(insumoParametrosEntrada.getIndex());
+		JSONArray dataJson = insumoParametrosEntrada.getInsumoJSONArray();
+		for (int i = 0; i < dataJson.length(); i++) {
+			JSONObject jsonObj = dataJson.getJSONObject(i);
+			String indicador = jsonObj.getString("indicadorBD");
+			String idPresentacion= jsonObj.getString("idPresentacion");
+			String idPresentacionInsumo=idInsumo+"-"+idPresentacion;
+			if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idPresentacion)){//NUEVO
+				presentacionInsumo = new PresentacionInsumo();
+				presentacionInsumo.setIdPresentacionInsumo(idInsumo+"-"+String.valueOf(index));
+				presentacionInsumo.setIdInsumo(new Long(idInsumo));
+				presentacionInsumo.setIdPresentacion(new Long(index));
+				presentacionInsumo.setDescripcion(jsonObj.getString("descripcion"));
+				presentacionInsumo.setValor(jsonObj.getDouble("valor"));
+				presentacionInsumo.setVigencia(jsonObj.getString("vigenciaInsumo"));
+				presentacionInsumo.setIdUnidadMedida(jsonObj.getString("unidadMedida"));
+				presentacionInsumoDAO.insertarPresentacionInsumo(presentacionInsumo);
+				
+				index++;
+			}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idPresentacion)){//ELIMINA
+				presentacionInsumoDAO.eliminarPresentacionInsumo(idPresentacionInsumo);
+
+			}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idPresentacion)){//MODIFICA
+
+				presentacionInsumo = presentacionInsumoDAO.obtenerPresentacionInsumo(idPresentacionInsumo);
+
+				presentacionInsumo.setDescripcion(jsonObj.getString("descripcion"));
+				presentacionInsumo.setValor(jsonObj.getDouble("valor"));
+				presentacionInsumo.setVigencia(jsonObj.getString("vigenciaInsumo"));
+				presentacionInsumo.setIdUnidadMedida(jsonObj.getString("unidadMedida"));
+				presentacionInsumoDAO.modificarPresentacionInsumo(presentacionInsumo);
+
+			}
+							
+		}
 	}
 
 	public void actualizarInsumo(InsumoParametrosEntrada data) {

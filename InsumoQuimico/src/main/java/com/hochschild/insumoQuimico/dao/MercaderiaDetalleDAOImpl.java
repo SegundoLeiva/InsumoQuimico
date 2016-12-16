@@ -24,9 +24,9 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
     }
 
     @Transactional
-	public void eliminarMercaderiaDetalle(int idMercaderiaDetalle, String idMercaderia) {
+	public void eliminarMercaderiaDetalle(String idMercaderia, int idMercaderiaDetalle) {
 		// TODO Auto-generated method stub
-    	hibernateTemplate.bulkUpdate("DELETE MercaderiaDetalle where idMercaderiaDetalle=? and idMercaderia=?", idMercaderiaDetalle,idMercaderia);
+    	hibernateTemplate.bulkUpdate("DELETE MercaderiaDetalle where idMercaderia=? and idMercaderiaDetalle=?", idMercaderia,idMercaderiaDetalle);
    	}
     
     @Transactional
@@ -45,7 +45,7 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
 	@SuppressWarnings("unchecked")
 	public MercaderiaDetalle obtenerMercaderiaDetalle(String idMercaderia,String idMercaderiaDetalle){
 		String sql = "from MercaderiaDetalle WHERE idMercaderia = '"+idMercaderia+"' "
-				+ "and idMercaderiaDetalle='"+idMercaderiaDetalle+"'";
+				+ "and idMercaderiaDetalle="+idMercaderiaDetalle;
 		 List<MercaderiaDetalle> resultado= hibernateTemplate.find(sql);
 	      
 	     return resultado.get(0);

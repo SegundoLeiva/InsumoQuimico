@@ -156,7 +156,10 @@
 }
 
 .selectInsumo .select2,
-.selectInsumo select,
-.selectInsumo input{
-	width: 220px !important
+.selectInsumo select{
+	width: 220px !important;
+}
+
+.inputInsumo{
+	width: 206px !important;
 }

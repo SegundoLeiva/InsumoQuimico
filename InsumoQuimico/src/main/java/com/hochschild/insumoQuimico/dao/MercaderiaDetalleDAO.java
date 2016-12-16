@@ -7,8 +7,8 @@ import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 public interface MercaderiaDetalleDAO {
 
 	public void insertarMercaderiaDetalle(MercaderiaDetalle data);
-	public void eliminarMercaderiaDetalle(int idMercaderiaDetalle, String idMercaderia);
+	public void eliminarMercaderiaDetalle(String idMercaderia, int idMercaderiaDetalle);
 	public void modificarMercaderiaDetalle(MercaderiaDetalle data);
 	public List<MercaderiaDetalle> obtenerMercaderiaDetallePorIdMercaderia(String id);
-	public MercaderiaDetalle obtenerMercaderiaDetalle(String idSolPed,String idSolPedDetalle);
+	public MercaderiaDetalle obtenerMercaderiaDetalle(String idMercaderia,String idMercaderiaDetalle);
 }

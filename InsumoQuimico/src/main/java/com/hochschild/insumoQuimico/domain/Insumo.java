@@ -18,7 +18,6 @@ public class Insumo implements Serializable{
 	@Id
 	private String idInsumo;
     private String insumo;
-    private String unidadMedida;
     private String vigencia;
 	public String getIdInsumo() {
 		return idInsumo;
@@ -31,12 +30,6 @@ public class Insumo implements Serializable{
 	}
 	public void setInsumo(String insumo) {
 		this.insumo = insumo;
-	}
-	public String getUnidadMedida() {
-		return unidadMedida;
-	}
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
 	}
 	public String getVigencia() {
 		return vigencia;

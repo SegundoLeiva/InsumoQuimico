@@ -12,7 +12,8 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
 								<div class="controls selectInsumo">
-									<select id="idUnidadMineraInsumo"></select>
+									<select id="idUnidadMineraInsumo" required
+										data-msg-required="El campo Insumo es obligatorio."></select>
 								</div>
 							</div>
 						
@@ -21,33 +22,34 @@
 							<div class="control-group">
 								<label class="control-label" for="idPresentacion">Presentacion</label>
 								<div class="controls selectInsumo">
-									<select id="idPresentacion">
-										<option value="1">Bolsa de 20 Kg</option>
+									<select id="idPresentacion" required
+										data-msg-required="El campo Presentación es obligatorio.">
 									</select>
-								</div>
-							</div>
-						
-						</div>
-					</div>
-					<div class="row-fluid">
-						<div class="span6">
-							<div class="control-group">
-								<label class="control-label" for="idConversion">Conversión</label>
-								<div class="controls selectInsumo">
-									<select id="idConversion">
-										<option value="1">conversion 1</option>
-									</select>
+									<input type="hidden" id="unidadMedida">
 								</div>
 							</div>					
-						</div>
+						</div>	
+						
+						
+					</div>
+					<div class="row-fluid">
+						
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="cantidad">Cantidad</label>
-								<div class="controls selectInsumo">
-									<input type="text" id="cantidad" class="numeroDecimal" required data-msg-required="El campo Cantidad es obligatorio.">
+								<label class="control-label" for="cantidad">Cantidad de Presentación</label>
+								<div class="controls">
+									<input type="text" id="cantidad" class="numeroDecimal inputInsumo" required data-msg-required="El campo Cantidad es obligatorio.">
 								</div>
 							</div>
-						</div>
+						</div>	
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label" for="factorConversion">Factor Conversión</label>
+								<div class="controls">
+									<input type="text" id="factorConversion" disabled="disabled" class="inputInsumo">
+								</div>
+							</div>					
+						</div>									
 					</div>
 
 	</div>

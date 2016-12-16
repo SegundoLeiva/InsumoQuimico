@@ -34,6 +34,7 @@
 			<mvc:mapping  path="/insumo/*"/> 
 			<mvc:mapping  path="/unidadMineraArea/*"/> 
 			<mvc:mapping  path="/unidadMineraInsumo/*"/> 
+			<mvc:mapping  path="/factorConversion/*"/> 
 			<mvc:mapping  path="/home/*"/> 
 			<mvc:exclude-mapping path="/login.htm" />
 			<bean class="com.hochschild.insumoQuimico.session.ApplicationSessionInterceptor" />

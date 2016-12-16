@@ -1,14 +1,13 @@
 package com.hochschild.insumoQuimico.controller.insumo;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
 import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
 import com.hochschild.insumoQuimico.service.InsumoService;
+import com.hochschild.insumoQuimico.service.PresentacionInsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMedidaService;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 @Controller
@@ -25,6 +27,10 @@ public class InsumoMantenimientoController extends BaseMantenimientoController{
 	
 	@Autowired
 	private InsumoService insumoService;
+	@Autowired
+	private UnidadMedidaService unidadMedidaService;
+	@Autowired
+	private PresentacionInsumoService presentacionInsumoService;
 
 	@Override
 	public String getPaginaMantenimiento() {
@@ -35,21 +41,18 @@ public class InsumoMantenimientoController extends BaseMantenimientoController{
 	@Override
 	public Model setViewAttributes(Model model) {
 		// TODO Auto-generated method stub
+		model.addAttribute("listaUnidadMedida", unidadMedidaService.listaUnidadMedida());
 		return model;
 	}
 	
-	@RequestMapping(value = "/agregarInsumo.htm", method = RequestMethod.POST)
-	@ResponseBody
-	public String agregarArea(InsumoParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
+	@RequestMapping(value="/guardarInsumo.htm", method = {RequestMethod.POST})
+    @ResponseBody
+	public String guardarMercaderia(HttpSession sesion,InsumoParametrosEntrada insumoParametrosEntrada) throws IllegalStateException, IOException{
+		
 		String mensaje = Constantes.TRANSACCION_GUARDAR;
 		try {
-			
-			if(StringUtils.isEmpty(data.getIdInsumo())){
-				insumoService.insertarInsumo(data);
-			}else{
-				insumoService.actualizarInsumo(data);
-				mensaje = Constantes.TRANSACCION_MODIFICAR;
-			}
+			insumoService.insertarInsumo(insumoParametrosEntrada);
+
 		} catch (Exception e) {
 			mensaje = Constantes.TRANSACCION_ERROR;
 		}		
@@ -61,6 +64,9 @@ public class InsumoMantenimientoController extends BaseMantenimientoController{
 		// TODO Auto-generated method stub
 		Insumo insumo = insumoService.obtieneInsumoPorId(id);
 		model.addAttribute("insumo", insumo);
+		model.addAttribute("listaUnidadMedida", unidadMedidaService.listaUnidadMedida());
+		List<PresentacionInsumo> listaPresentacionInsumo = presentacionInsumoService.listaPresentacionInsumoPorInsumo(Integer.parseInt(id));
+		if(listaPresentacionInsumo.size()>0)model.addAttribute("listaPresentacionInsumo",listaPresentacionInsumo);
 		return model;
 	}
 

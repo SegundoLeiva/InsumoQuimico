@@ -2,6 +2,8 @@ package com.hochschild.insumoQuimico.domain;
 
 import java.io.Serializable;
 
+import org.json.JSONArray;
+
 public class InsumoParametrosEntrada implements Serializable{
 	/**
 	 * 
@@ -10,8 +12,10 @@ public class InsumoParametrosEntrada implements Serializable{
 
 	private String idInsumo;
 	private String insumo;
-	private String unidadMedida;
 	private String vigencia;
+	private String index;
+	private JSONArray insumoJSONArray;
+	
 	public String getIdInsumo() {
 		return idInsumo;
 	}
@@ -24,11 +28,12 @@ public class InsumoParametrosEntrada implements Serializable{
 	public void setInsumo(String insumo) {
 		this.insumo = insumo;
 	}
-	public String getUnidadMedida() {
-		return unidadMedida;
+
+	public String getIndex() {
+		return index;
 	}
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
+	public void setIndex(String index) {
+		this.index = index;
 	}
 	public String getVigencia() {
 		return vigencia;
@@ -36,5 +41,10 @@ public class InsumoParametrosEntrada implements Serializable{
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
-
+	public JSONArray getInsumoJSONArray() {
+		return insumoJSONArray;
+	}
+	public void setInsumoJSONArray(JSONArray insumoJSONArray) {
+		this.insumoJSONArray = insumoJSONArray;
+	}
 }

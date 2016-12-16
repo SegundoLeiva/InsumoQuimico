@@ -36,7 +36,7 @@ function camposRequeridos(idFormulario){
 	var formInput = $("#"+idFormulario)[0];
 	$.each( formInput, function(index, value ) {
 		  if($(formInput[index]).prop("required")){
-			  if($(this).val()==""){
+			  if($(this).val().trim()==""){
 				 alertify.error($(this).data("msg-required"));
 				 rpta = false;
 				 return false;
