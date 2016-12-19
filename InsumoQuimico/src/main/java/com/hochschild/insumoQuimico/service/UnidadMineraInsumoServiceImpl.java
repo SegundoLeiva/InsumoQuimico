@@ -7,11 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.hochschild.insumoQuimico.dao.UnidadMineraInsumoDAO;
-import com.hochschild.insumoQuimico.domain.Area;
 import com.hochschild.insumoQuimico.domain.Insumo;
-import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
