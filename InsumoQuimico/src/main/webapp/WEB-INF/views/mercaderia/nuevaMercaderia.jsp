@@ -113,4 +113,4 @@
 </div>
 
 
-<%-- <%@ include file="/WEB-INF/views/mercaderia/nuevoInsumoDetalle.jsp"%> --%>
+<%@ include file="/WEB-INF/views/mercaderia/nuevoInsumoDetalle.jsp"%>

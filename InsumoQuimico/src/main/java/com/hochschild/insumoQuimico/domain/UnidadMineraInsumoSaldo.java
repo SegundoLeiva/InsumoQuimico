@@ -46,10 +46,7 @@ public class UnidadMineraInsumoSaldo implements Serializable{
     
 	private Double stock;
 	private String unidadMedida;
-	private String idUsuarioCreacion;
-	private Date fechaCreacion;
-	private String idUsuarioModificacion;
-	private Date fechaModificacion;
+
 	public IdSaldo getId() {
 		return id;
 	}
@@ -68,29 +65,5 @@ public class UnidadMineraInsumoSaldo implements Serializable{
 	public void setUnidadMedida(String unidadMedida) {
 		this.unidadMedida = unidadMedida;
 	}
-	public String getIdUsuarioCreacion() {
-		return idUsuarioCreacion;
-	}
-	public void setIdUsuarioCreacion(String idUsuarioCreacion) {
-		this.idUsuarioCreacion = idUsuarioCreacion;
-	}
-	public Date getFechaCreacion() {
-		return fechaCreacion;
-	}
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-	public String getIdUsuarioModificacion() {
-		return idUsuarioModificacion;
-	}
-	public void setIdUsuarioModificacion(String idUsuarioModificacion) {
-		this.idUsuarioModificacion = idUsuarioModificacion;
-	}
-	public Date getFechaModificacion() {
-		return fechaModificacion;
-	}
-	public void setFechaModificacion(Date fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
-	
+
 }

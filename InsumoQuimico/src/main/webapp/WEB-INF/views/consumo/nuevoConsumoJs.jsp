@@ -16,19 +16,19 @@ $(document).ready(function() {
 		<c:forEach var="jbean" items="${listaConsumoDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
 		             "${jbean.unidadMineraInsumo.insumo.insumo}",
-		             "${jbean.cantidad}","Kg"];
+		             "${jbean.cantidad}","KG"];
 			agregarDetalle(data); 
 			consumoJSONArray[i].idDetalle="${jbean.id.idConsumoDetalle}";
 			consumoJSONArray[i].idUnidadMineraInsumo="${jbean.unidadMineraInsumo.idUnidadMineraInsumo}";
 			consumoJSONArray[i].cantidad="${jbean.cantidad}";
-			consumoJSONArray[i].unidadMedida="Kg";
+			consumoJSONArray[i].unidadMedida="KG";
 			consumoJSONArray[i].indicadorBD=INDICADOR_CREADO;
 			i++;
 		</c:forEach>
 		index = "${listaConsumoDetalle.get(listaConsumoDetalle.size()-1).id.idConsumoDetalle+1}";
 	}
 	
-	var dataInsumo=[];
+	var dataInsumo=[{id:" ",text:"Seleccionar"}];
 	<c:forEach var="item" items="${listaUnidadMineraInsumo}">
 		var obj = {id:"${item.idUnidadMineraInsumo}",text:"${item.insumo.insumo}"}
 		dataInsumo.push(obj);
@@ -42,7 +42,7 @@ $(document).ready(function() {
 $("#btnAgregarDetalle").click(function(){
 	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo()){			 	
  		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
- 		 	         	 $("#cantidad").val(),"Kg"];
+ 		 	         	 $("#cantidad").val(),"KG"];
  		 	agregarDetalle(data);
  		 	var fila = consumoJSONArray.length-1;
  		 	consumoJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
@@ -101,18 +101,18 @@ function validarInsumo(){
 		alertify.error("La cantidad debe ser mayor a 0.");
 		rpta=false;
 	}
-	if(cantidad<parseFloat(obtienerStock(idUnidadMineraInsumo))){
-		alertify.error("No se encuentra dentro del rango de stock del insumo.");
-		$("#cantidad").val("");
-		rpta=false;
-	}
+// 	if(cantidad<parseFloat(obtienerStock(idUnidadMineraInsumo))){
+// 		alertify.error("No se encuentra dentro del rango de stock del insumo.");
+// 		$("#cantidad").val("");
+// 		rpta=false;
+// 	}
 	return rpta;
 }
 
 function agregarJsonDetalle(){
 	 var mercaderiaJSON = {
 			    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',
-			    descripcion:'',unidadMedida:'Kg',indicadorBD: INDICADOR_NUEVO};
+			    descripcion:'',unidadMedida:'KG',indicadorBD: INDICADOR_NUEVO};
 	 consumoJSONArray.push(mercaderiaJSON);
 }
 
@@ -161,11 +161,22 @@ function fnValidarGuardarConsumo(){
 	return true;
 }
 
+$("#idUnidadMineraInsumo").change(function(){
+debugger;
+	if($(this).val().trim()!=""){
+		$("#stock").val(obtienerStock($(this).val()));
+	}else{
+		$("#stock").val("");
+	}
+});
+
 function obtienerStock(idUnidadMineraInsumo){
 	var resultado = 0;
 			$.ajax({
 				type : 'post',
-				data: {'idUnidadMineraInsumo': idUnidadMineraInsumo},
+				data: {'idUnidadMineraInsumo': idUnidadMineraInsumo,
+					   'idUnidadMineraAlmacen': $("#idUnidadMineraAlmacen").val()
+					  },
 				url : '${pageContext.request.contextPath}/ajax/obtienerStock.htm',
 				async:false,
 				success : function(data) {	

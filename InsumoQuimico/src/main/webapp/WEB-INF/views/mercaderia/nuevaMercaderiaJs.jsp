@@ -142,11 +142,7 @@ function validarInsumo(flag){
 		alertify.error("La cantidad debe ser mayor a 0.");
 		rpta=false;
 	}
-// 	if(cantidad>parseFloat(obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen))){
-// 		alertify.error("No se encuentra dentro del rango de stock del insumo.");
-// 		$("#cantidad").val("");
-// 		rpta=false;
-// 	}
+
 	return rpta;
 }
 
@@ -278,21 +274,4 @@ $("#idPresentacion").change(function(){
 	}
 });
 
-// function obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen){
-// 	var resultado = 0;
-// 			$.ajax({
-// 				type : 'post',
-// 				data: {
-// 					'idUnidadMineraInsumo': idUnidadMineraInsumo,
-// 					'idUnidadMineraAlmacen': idUnidadMineraAlmacen
-// 				},
-// 				url : '${pageContext.request.contextPath}/ajax/obtienerStock.htm',
-// 				async:false,
-// 				success : function(data) {	
-// 					resultado=data;
-					
-// 				}
-// 			});
-// 	return resultado;
-// }
 </script>
