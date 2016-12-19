@@ -116,7 +116,6 @@ function validarInsumo(flag){
 	var cantidad = parseFloat($("#cantidad").val());
 	var idUnidadMineraInsumo = $("#idUnidadMineraInsumo").val();
 	var idPresentacion = $("#idPresentacion").val();
-	var idUnidadMineraAlmacen = $("#idUnidadMineraAlmacen").val();
 	var indexEditar = 0;
 
 	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
