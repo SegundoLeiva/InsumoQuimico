@@ -52,19 +52,8 @@ public class UnidadMineraAreaMantenimientoController extends BaseMantenimientoCo
 	@RequestMapping(value = "/agregarUnidadMineraArea.htm", method = RequestMethod.POST)
 	@ResponseBody
 	public String agregarArea(UnidadMineraAreaParametrosEntrada data,Model model,HttpServletRequest req) throws ServletException, IOException {
-		String mensaje = Constantes.TRANSACCION_GUARDAR;
-		try {
-			
-			if(StringUtils.isEmpty(data.getIdUnidadMineraArea())){
-				unidadMineraAreaService.insertarUnidadMineraArea(data);
-			}else{
-				unidadMineraAreaService.actualizarUnidadMineraArea(data);
-				mensaje = Constantes.TRANSACCION_MODIFICAR;
-			}
-		} catch (Exception e) {
-			mensaje = Constantes.TRANSACCION_ERROR;
-		}		
-		return mensaje;
+	
+		return unidadMineraAreaService.insertarUnidadMineraArea(data);
 	}
 
 	@Override

@@ -49,15 +49,14 @@ function camposRequeridos(idFormulario){
 function mensajeTransaccion(respuesta){
 	if(respuesta=='error'){
 		alertify.error("Se produjo un error");
-	}
-	if(respuesta=='eliminar'){
+	}else if(respuesta=='eliminar'){
 		alertify.success("Se elimin\u00f3 correctamente");
-	}
-	if(respuesta=='guardar'){
+	}else if(respuesta=='guardar'){
 		alertify.success("Se guard\u00f3 correctamente");
-	}
-	if(respuesta=='modificar'){
+	}else if(respuesta=='modificar'){
 		alertify.success("Se modific\u00f3 correctamente");
+	}else{
+		alertify.error(respuesta);
 	}
 }
 

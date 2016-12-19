@@ -26,7 +26,9 @@
 										data-msg-required="El campo Área es obligatorio.">
 										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaAreas}">
-											<option value="${item.idArea}" ${item.idArea == unidadMineraArea.area.idArea ? 'selected' : ' '}>${item.area}</option>
+											<c:if test="${item.vigencia=='S'}">
+												<option value="${item.idArea}" ${item.idArea == unidadMineraArea.area.idArea ? 'selected' : ' '}>${item.area}</option>
+											</c:if>
 										</c:forEach>
 									</select>
 								</div>

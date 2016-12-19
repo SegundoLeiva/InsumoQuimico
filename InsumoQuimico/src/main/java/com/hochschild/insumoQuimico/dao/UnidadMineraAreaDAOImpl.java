@@ -41,7 +41,10 @@ public class UnidadMineraAreaDAOImpl implements UnidadMineraAreaDAO {
     }
    
 	public UnidadMineraArea obtieneUnidadMineraAreaPorId(String id){
-    	return hibernateTemplate.get(UnidadMineraArea.class, id);
+
+		UnidadMineraArea unidadMineraArea = hibernateTemplate.get(UnidadMineraArea.class, id);
+		if(unidadMineraArea==null)unidadMineraArea = new UnidadMineraArea();
+    	return unidadMineraArea;
     }
 	
 	@SuppressWarnings("unchecked")

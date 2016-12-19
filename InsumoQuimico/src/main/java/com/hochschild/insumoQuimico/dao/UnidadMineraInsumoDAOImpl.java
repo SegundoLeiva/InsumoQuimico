@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldo.IdSaldo;
@@ -41,20 +42,24 @@ public class UnidadMineraInsumoDAOImpl implements UnidadMineraInsumoDAO {
     }
     
     @Transactional
-	public void eliminarUnidadMineraInsumo(String idUnidadMineraInsumo) {		
-    	hibernateTemplate.bulkUpdate("DELETE UnidadMineraInsumo where "
-    			+ "idUnidadMineraInsumo=? ", idUnidadMineraInsumo);
+	public void eliminarUnidadMineraInsumo(String idUnidadMineraInsumo) {	
+    	UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
+    	unidadMineraInsumo = hibernateTemplate.get(UnidadMineraInsumo.class, idUnidadMineraInsumo);
+    	unidadMineraInsumo.setVigencia(Constantes.ESTADO_ELIMINADO);
+		hibernateTemplate.update(unidadMineraInsumo);
 	}
     
     @SuppressWarnings("unchecked")
 	public List<UnidadMineraInsumo> listaUnidadMineraInsumo() {
-    	String query = "from UnidadMineraInsumo";
+    	String query = "from UnidadMineraInsumo where vigencia!='E'";
     	List<UnidadMineraInsumo> resultado = hibernateTemplate.find(query);
         return  resultado;
     }
    
 	public UnidadMineraInsumo obtieneUnidadMineraInsumoPorId(String id){
-    	return hibernateTemplate.get(UnidadMineraInsumo.class, id);
+		UnidadMineraInsumo unidadMineraInsumo = hibernateTemplate.get(UnidadMineraInsumo.class, id);
+		if(unidadMineraInsumo==null)unidadMineraInsumo=new UnidadMineraInsumo();
+    	return unidadMineraInsumo;
     }
 	
 	@SuppressWarnings("unchecked")

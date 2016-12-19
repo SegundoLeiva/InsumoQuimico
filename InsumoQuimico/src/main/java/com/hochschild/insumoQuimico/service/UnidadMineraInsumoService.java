@@ -10,7 +10,6 @@ public interface UnidadMineraInsumoService {
 	List<UnidadMineraInsumo> listaUnidadMineraInsumo();
 	public UnidadMineraInsumo obtieneUnidadMineraInsumoPorId(String id);
 	public List<UnidadMineraInsumo> listaUnidadMineraInsumoPorUnidadMinera(String idUnidadMinera);
-	public void insertarUnidadMineraInsumo(UnidadMineraInsumoParametrosEntrada data);
-	public void actualizarUnidadMineraInsumo(UnidadMineraInsumoParametrosEntrada data);
+	public String insertarUnidadMineraInsumo(UnidadMineraInsumoParametrosEntrada data);
 	public void eliminarUnidadMineraInsumo(String idUnidadMineraInsumo);
 }

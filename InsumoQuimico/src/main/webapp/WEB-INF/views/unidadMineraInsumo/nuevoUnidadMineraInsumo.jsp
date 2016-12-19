@@ -23,9 +23,11 @@
 								<div class="controls">
 									<select name="idInsumo" id="idInsumo" required
 										data-msg-required="El campo Insumo es obligatorio.">
-										<option value="">Seleccionar</option>
+										<option value="">Seleccionar</option>									
 										<c:forEach var="item" items="${listaInsumos}">
-											<option value="${item.idInsumo}" ${item.idInsumo == unidadMineraInsumo.insumo.idInsumo ? 'selected' : ' '}>${item.insumo}</option>
+											<c:if test="${item.vigencia=='S'}">
+												<option value="${item.idInsumo}" ${item.idInsumo == unidadMineraInsumo.insumo.idInsumo ? 'selected' : ' '}>${item.insumo}</option>
+											</c:if>
 										</c:forEach>
 									</select>
 								</div>
