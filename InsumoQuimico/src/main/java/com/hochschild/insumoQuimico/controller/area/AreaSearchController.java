@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
 import com.hochschild.insumoQuimico.service.AreaService;
-import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
-import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/area")

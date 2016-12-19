@@ -15,13 +15,17 @@ public class Constantes {
     public static final String INDICADOR_MODIFICADO = "2";
     public static final String INDICADOR_ELIMINADO = "3";
     
+    //LOGIN CONTROLLER
     public static final String claveSeguridad = "bandejaunificada";
     public static final String ID_ROL_BASICO = "ID_ROL_BASICO";
     public static final Integer ID_OPCION_LOGISTICA = 4;
     
+    //CODIGOS
     public static final String SOCIEDAD_PROVEEDOR = "1013";
+    public static final String ALMACEN_CENTRAL = "1303-00001";
     
-    //Tipo de Movimiento Insumos
-    public static final String TIPO_MOV_ENTRADA = "E";
-    public static final String TIPO_MOV_SALIDA = "S";
+    //CONSTANTES DE ESTADO DE VIGENCIA
+    public static final String ESTADO_VIGENTE = "S";
+    public static final String ESTADO_NO_VIGENTE = "N";
+    public static final String ESTADO_ELIMINADO = "E";
 }

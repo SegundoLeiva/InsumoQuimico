@@ -59,9 +59,8 @@ public class InsumoServiceImpl implements InsumoService {
 		for (int i = 0; i < dataJson.length(); i++) {
 			JSONObject jsonObj = dataJson.getJSONObject(i);
 			String indicador = jsonObj.getString("indicadorBD");
-			String idPresentacion= jsonObj.getString("idPresentacion");
-			String idPresentacionInsumo=idInsumo+"-"+idPresentacion;
-			if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idPresentacion)){//NUEVO
+			String idPresentacionInsumo= jsonObj.getString("idDetalle");
+			if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idPresentacionInsumo)){//NUEVO
 				presentacionInsumo = new PresentacionInsumo();
 				presentacionInsumo.setIdPresentacionInsumo(idInsumo+"-"+String.valueOf(index));
 				presentacionInsumo.setIdInsumo(new Long(idInsumo));
@@ -73,10 +72,10 @@ public class InsumoServiceImpl implements InsumoService {
 				presentacionInsumoDAO.insertarPresentacionInsumo(presentacionInsumo);
 				
 				index++;
-			}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idPresentacion)){//ELIMINA
+			}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idPresentacionInsumo)){//ELIMINA
 				presentacionInsumoDAO.eliminarPresentacionInsumo(idPresentacionInsumo);
 
-			}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idPresentacion)){//MODIFICA
+			}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idPresentacionInsumo)){//MODIFICA
 
 				presentacionInsumo = presentacionInsumoDAO.obtenerPresentacionInsumo(idPresentacionInsumo);
 

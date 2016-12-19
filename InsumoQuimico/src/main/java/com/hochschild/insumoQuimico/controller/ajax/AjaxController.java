@@ -52,8 +52,12 @@ public class AjaxController {
 	@ResponseBody
 	public String obtienerStock(@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
 			@RequestParam("idUnidadMineraAlmacen") String idUnidadMineraAlmacen) {
-		
-		String resultado = String.valueOf(unidadMineraInsumoSaldoService.obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen).getStock());
+		String resultado = "0";
+		try {
+			resultado = String.valueOf(unidadMineraInsumoSaldoService.obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen).getStock());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		return resultado;
 

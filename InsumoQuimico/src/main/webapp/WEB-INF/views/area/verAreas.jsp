@@ -40,9 +40,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-</form>
-
+		</form>
 	</div>
-	<!--/.span-->
 </div>
-<!--/.row-fluid-->

@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.hochschild.insumoQuimico.domain.Insumo;
+import com.hochschild.insumoQuimico.util.Constantes;
 
 @Repository(value="InsumoDAO")
 public class InsumoDAOImpl implements InsumoDAO {
@@ -40,7 +41,7 @@ public class InsumoDAOImpl implements InsumoDAO {
 		// TODO Auto-generated method stub
 		Insumo insumo = new Insumo();
 		insumo = hibernateTemplate.get(Insumo.class, idInsumo);
-		insumo.setVigencia("E");
+		insumo.setVigencia(Constantes.ESTADO_ELIMINADO);
 		hibernateTemplate.update(insumo);
 	}
 

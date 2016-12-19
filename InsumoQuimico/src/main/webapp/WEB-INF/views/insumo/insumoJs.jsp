@@ -20,6 +20,7 @@ $(document).ready(function() {
 		 	var data = ["${jbean.descripcion}",
 		             "${jbean.valor}","${jbean.idUnidadMedida}",vigencia];
 			agregarDetalle(data); 
+			insumoJSONArray[i].idDetalle="${jbean.idPresentacionInsumo}";
 			insumoJSONArray[i].idPresentacion="${jbean.idPresentacion}";
 			insumoJSONArray[i].descripcion="${jbean.descripcion}";
 			insumoJSONArray[i].valor="${jbean.valor}";
@@ -30,8 +31,7 @@ $(document).ready(function() {
 		</c:forEach>
 		index = "${listaPresentacionInsumo.get(listaPresentacionInsumo.size()-1).idPresentacion+1}";
 	}
-	var data=[];
-	data.push({id:" ",text:"Seleccionar"});
+	var data=[{id:" ",text:"Seleccionar"}];
 	<c:forEach var="item" items="${listaUnidadMedida}">
 		var obj = {id:"${item.idUnidadMedida}",text:"${item.unidadMedida}"}
 		data.push(obj);
@@ -60,7 +60,7 @@ $("#btnAgregarDetalle").click(function(){
 });
 
 function agregarDetalle(data){
-	var insumoJSON = {idPresentacion:'',descripcion:'',
+	var insumoJSON = {idDetalle:'',idPresentacion:'',descripcion:'',
 		    valor:'',unidadMedida:'',indicadorBD: INDICADOR_NUEVO};
 	insumoJSONArray.push(insumoJSON);
 	agregarFila(data);

@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.hochschild.insumoQuimico.domain.Area;
+import com.hochschild.insumoQuimico.util.Constantes;
 
 @Repository(value="AreaDAO")
 public class AreaDAOImpl implements AreaDAO {
@@ -39,7 +40,7 @@ public class AreaDAOImpl implements AreaDAO {
 	public void eliminarArea(String idArea) {
 		Area area = new Area();
 		area = hibernateTemplate.get(Area.class, idArea);
-		area.setVigencia("E");
+		area.setVigencia(Constantes.ESTADO_ELIMINADO);
 		hibernateTemplate.update(area);
 		
 	}
