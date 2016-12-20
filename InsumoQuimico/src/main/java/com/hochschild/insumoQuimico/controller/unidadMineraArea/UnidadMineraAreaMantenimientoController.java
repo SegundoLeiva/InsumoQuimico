@@ -9,18 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
-import com.hochschild.insumoQuimico.domain.UnidadMineraAreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
+import com.hochschild.insumoQuimico.domain.UnidadMineraAreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.AreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
-import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
