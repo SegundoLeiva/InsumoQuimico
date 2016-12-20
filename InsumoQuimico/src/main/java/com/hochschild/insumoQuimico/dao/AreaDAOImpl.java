@@ -24,7 +24,7 @@ public class AreaDAOImpl implements AreaDAO {
     }
    
 	public Area obtieneAreaPorId(String id){
-        return hibernateTemplate.get(Area.class, id);
+        return hibernateTemplate.get(Area.class, new Long(id));
     }
 
 	public void insertarArea(Area data) {
