@@ -11,7 +11,6 @@ import org.springframework.util.StringUtils;
 
 import com.hochschild.insumoQuimico.dao.MercaderiaDAO;
 import com.hochschild.insumoQuimico.dao.MercaderiaDetalleDAO;
-import com.hochschild.insumoQuimico.dao.UnidadMineraMovimientosInsumosDAO;
 import com.hochschild.insumoQuimico.domain.Mercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
@@ -31,8 +30,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
     public MercaderiaDAO mercaderiaDAO;
 	@Autowired
     public MercaderiaDetalleDAO mercaderiaDetalleDAO;
-	@Autowired
-	public UnidadMineraMovimientosInsumosDAO unidadMineraMovimientosInsumosDAO;
 
 	public void actualizarMercaderia(Mercaderia Mercaderia) {
 		mercaderiaDAO.actualizarMercaderia(Mercaderia);
@@ -98,22 +95,10 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					mercaderiaDetalle.setIdUsuarioCreacion(idUsuarioCreacion);
 					mercaderiaDetalle.setFechaCreacion(new Date());
 					mercaderiaDetalleDAO.insertarMercaderiaDetalle(mercaderiaDetalle);
-
-//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos(idUnidadMinera,idUsuarioCreacion);
-//					movimiento.setCodigoSolicitud(idMercaderia);
-//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-//					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
-//					unidadMineraMovimientosInsumosDAO.insertarUnidadMineraMovimientosInsumos(movimiento);
 					
 					index++;
 				}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idDetalle)){//ELIMINA
 					mercaderiaDetalleDAO.eliminarMercaderiaDetalle(mercaderiaParametrosEntrada.getIdMercaderia(),Integer.parseInt(idDetalle));
-//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
-//					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
-//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-//					unidadMineraMovimientosInsumosDAO.eliminarUnidadMineraMovimientosInsumos(movimiento);
 
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
@@ -133,14 +118,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					mercaderiaDetalle.setPresentacionInsumo(presentacionInsumo);
 					
 					mercaderiaDetalleDAO.modificarMercaderiaDetalle(mercaderiaDetalle);
-					
-//					UnidadMineraMovimientosInsumos movimiento = new UnidadMineraMovimientosInsumos();
-//					movimiento.setCodigoSolicitud(mercaderiaParametrosEntrada.getIdMercaderia());
-//					movimiento.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-//					movimiento.setTipoMovimiento(Constantes.TIPO_MOV_ENTRADA);
-//					movimiento = unidadMineraMovimientosInsumosDAO.obtienerUnidadMineraMovimientosInsumos(movimiento);
-//					movimiento.setCantidad(jsonObj.getDouble("cantidad"));
-//					unidadMineraMovimientosInsumosDAO.actualizarUnidadMineraMovimientosInsumos(movimiento);
 				}
 								
 			}
