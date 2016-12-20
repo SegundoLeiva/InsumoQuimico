@@ -11,5 +11,4 @@ public interface AreaDAO {
 	public void insertarArea(Area data);
 	public void actualizarArea(Area data);
 	public void eliminarArea(String idArea);
-	public int obtenerId();
 }

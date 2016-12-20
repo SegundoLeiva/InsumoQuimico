@@ -42,7 +42,7 @@ public class UnidadMineraAreaServiceImpl implements UnidadMineraAreaService {
 					unidadMineraArea.setIdUnidadMineraArea(idUnidadMineraArea);
 					unidadMineraArea.setIdUnidadMinera(data.getIdUnidadMinera());
 					Area area = new Area();
-					area.setIdArea(data.getIdArea());
+					area.setIdArea(new Long(data.getIdArea()));
 					unidadMineraArea.setArea(area);
 					unidadMineraArea.setVigencia(data.getVigencia());
 					unidadMineraAreaDAO.insertarUnidadMineraArea(unidadMineraArea);	
@@ -50,7 +50,7 @@ public class UnidadMineraAreaServiceImpl implements UnidadMineraAreaService {
 			}else{
 				UnidadMineraArea unidadMineraArea = unidadMineraAreaDAO.obtieneUnidadMineraAreaPorId(data.getIdUnidadMineraArea());
 				Area area = new Area();
-				area.setIdArea(data.getIdArea());
+				area.setIdArea(new Long(data.getIdArea()));
 				unidadMineraArea.setArea(area);
 				unidadMineraArea.setVigencia(data.getVigencia());
 				unidadMineraAreaDAO.actualizarUnidadMineraArea(unidadMineraArea);

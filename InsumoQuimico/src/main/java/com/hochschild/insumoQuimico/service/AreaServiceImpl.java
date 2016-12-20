@@ -25,7 +25,6 @@ public class AreaServiceImpl implements AreaService {
 	public void insertarArea(AreaParametrosEntrada data) {
 		// TODO Auto-generated method stub
 		Area area = new Area();
-		area.setIdArea(String.valueOf(areaDAO.obtenerId()));
 		area.setArea(data.getArea());
 		area.setVigencia(data.getVigencia());
 		areaDAO.insertarArea(area);

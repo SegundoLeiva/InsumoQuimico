@@ -3,6 +3,8 @@ package com.hochschild.insumoQuimico.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,14 +18,16 @@ public class Area implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String idArea;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idArea;
     private String area;
     private String vigencia;
     
-	public String getIdArea() {
+	
+	public Long getIdArea() {
 		return idArea;
 	}
-	public void setIdArea(String idArea) {
+	public void setIdArea(Long idArea) {
 		this.idArea = idArea;
 	}
 	public String getArea() {
