@@ -46,7 +46,7 @@
 							<div class="control-group">
 								<label class="control-label" for="factorConversion">Factor Conversión</label>
 								<div class="controls">
-									<input type="text" id="factorConversion" disabled="disabled" class="inputInsumo">
+									<input type="text" id="factorConversion" readonly="readonly" class="inputInsumo factor">
 								</div>
 							</div>					
 						</div>									

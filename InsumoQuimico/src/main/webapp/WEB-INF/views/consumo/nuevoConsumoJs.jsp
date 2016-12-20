@@ -91,6 +91,8 @@ $("#abrirDetalleEditar").click(function(){
 function validarInsumo(flag){
 	var rpta=true;
 	var idUnidadMineraInsumo = $("#idUnidadMineraInsumo").val();
+	var cantidad = parseFloat($("#cantidad").val());
+	
 	for (var i = 0; i < consumoJSONArray.length; i++) {
 		var _idUnidadMineraInsumo = consumoJSONArray[i].idUnidadMineraInsumo;
 		if(flag!="editar"){
@@ -108,15 +110,15 @@ function validarInsumo(flag){
 		}
 
 	}
-	if(parseFloat($("#cantidad").val())==0){
+	if(cantidad==0){
 		alertify.error("La cantidad debe ser mayor a 0.");
 		rpta=false;
 	}
-// 	if(cantidad<parseFloat(obtienerStock(idUnidadMineraInsumo))){
-// 		alertify.error("No se encuentra dentro del rango de stock del insumo.");
-// 		$("#cantidad").val("");
-// 		rpta=false;
-// 	}
+	if(cantidad > parseFloat($("#stock").val())){
+		alertify.error("No se encuentra dentro del rango de stock del insumo.");
+		$("#cantidad").val("");
+		rpta=false;
+	}
 	return rpta;
 }
 
@@ -173,7 +175,6 @@ function fnValidarGuardarConsumo(){
 }
 
 $("#idUnidadMineraInsumo").change(function(){
-debugger;
 	if($(this).val().trim()!=""){
 		$("#stock").val(obtienerStock($(this).val()));
 	}else{

@@ -32,9 +32,9 @@
 						
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="stock">Stock</label>
+								<label class="control-label" for="stock">Stock (Kg)</label>
 								<div class="controls">
-									<input type="text" id="stock" disabled="disabled" class="inputInsumo">
+									<input type="text" id="stock" readonly="readonly" class="stock inputInsumo">
 								</div>
 							</div>					
 						</div>									

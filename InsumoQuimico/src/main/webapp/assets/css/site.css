@@ -163,3 +163,16 @@
 .inputInsumo{
 	width: 206px !important;
 }
+
+.stock,.numeroDecimal,.factor{
+	text-align: right;
+}
+
+.stock,.factor{
+	color: #FF892A!important;
+	font-weight: bold;
+}
+
+.modal-header h3{
+	color:#2679b5;
+}
