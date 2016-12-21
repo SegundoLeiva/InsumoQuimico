@@ -212,17 +212,16 @@ function getProveedorDescripcion(){
 					if(data==""){
 						alertify.error("No existe proveedor.");
 						$("#rucProveedor").val("");
-						$("#spanDescripcionProveedor").html("");
+						$("#descripcionProveedor").val("");
 					}else{
 						$("#descripcionProveedor").val(data);
-						$("#spanDescripcionProveedor").html(data);
 					}
 					
 				}
 			});
 	}else{
 		$("#rucProveedor").val("");
-		$("#spanDescripcionProveedor").html("");
+		$("#descripcionProveedor").val("");
 	}
 		
 }

@@ -176,3 +176,25 @@
 .modal-header h3{
 	color:#2679b5;
 }
+
+#formMercaderia.form-horizontal .control-label{
+	width: 130px !important;
+}
+#formMercaderia.form-horizontal .controls{
+	margin-left: 150px !important;
+}
+
+.tituloFielset{
+	background: white;
+	margin-left: 20px;
+	margin-top:-40px;
+	padding: 7px;
+	color: #69aa46
+}
+
+.agruparFielset{
+	border:1px solid #d2d2d2; 
+	border-radius: 8px;
+	padding: 20px;
+	margin-top: -10px
+}

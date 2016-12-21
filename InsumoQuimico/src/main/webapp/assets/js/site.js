@@ -227,3 +227,31 @@ function inicializarHeader(){
 		$(".tituloHeader").prepend("Bienvenido");
 	}
 }
+
+function guardarMantenimiento(){
+	document.forms[0].action="grabar.htm";
+	var form = document.forms[0];
+	var idForm = form.id;
+	var idModel = $("#"+idForm+" input[data-id]").data("id");
+	if(validarCamposRequeridos(idForm)){
+	
+		alertify.confirm("Confirmar","\u00BFEsta seguro realizar esta operaci\u00f3n?",
+				function(){
+				    $.ajax({
+				           type: "POST",
+				           url: form.action,
+				           data: $(form).serialize(),
+	 			           async:false,
+				           success: function(data)
+				           {
+				        	   var data = JSON.parse(data);
+				        	   if(idModel==""){limpiarCampos(idForm);};
+				        	   mensajeTransaccion(data.mensaje);
+
+				           }
+				    });
+						  },
+				function(){});
+		
+	}
+}

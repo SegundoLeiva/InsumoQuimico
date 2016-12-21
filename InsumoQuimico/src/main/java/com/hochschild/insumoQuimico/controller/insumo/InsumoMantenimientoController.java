@@ -70,4 +70,16 @@ public class InsumoMantenimientoController extends BaseMantenimientoController{
 		return model;
 	}
 
+	@Override
+	public Object getFormMantenimiento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setGrabarAttributes() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

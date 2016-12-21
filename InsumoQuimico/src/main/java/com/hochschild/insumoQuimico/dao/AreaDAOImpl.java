@@ -39,7 +39,7 @@ public class AreaDAOImpl implements AreaDAO {
 
 	public void eliminarArea(String idArea) {
 		Area area = new Area();
-		area = hibernateTemplate.get(Area.class, idArea);
+		area = hibernateTemplate.get(Area.class, new Long(idArea));
 		area.setVigencia(Constantes.ESTADO_ELIMINADO);
 		hibernateTemplate.update(area);
 		

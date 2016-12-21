@@ -2,7 +2,7 @@
 <%@ page import="com.hochschild.insumoQuimico.util.Constantes" %>
 <div class="page-header position-relative">
 	<form id="formArea" method="POST" class="form-horizontal">
-	<input type="hidden" name="idArea" id="idArea" value="${area.idArea}">
+	<input type="hidden" name="idArea" id="idArea" value="${area.idArea}" data-id="${area.idArea}">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span8">

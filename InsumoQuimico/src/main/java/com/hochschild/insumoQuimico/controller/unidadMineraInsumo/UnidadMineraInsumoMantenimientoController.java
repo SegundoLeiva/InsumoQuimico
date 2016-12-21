@@ -9,18 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.InsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
-import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -65,6 +63,18 @@ public class UnidadMineraInsumoMantenimientoController extends BaseMantenimiento
 		model.addAttribute("unidadMineraInsumo", unidadMineraInsumo);
 		model.addAttribute("listaInsumos", this.insumoService.listaInsumo());
 		return model;
+	}
+
+	@Override
+	public Object getFormMantenimiento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setGrabarAttributes() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

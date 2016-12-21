@@ -65,4 +65,16 @@ public class UnidadMineraAreaMantenimientoController extends BaseMantenimientoCo
 		return model;
 	}
 
+	@Override
+	public Object getFormMantenimiento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setGrabarAttributes() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

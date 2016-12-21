@@ -7,11 +7,11 @@
 	<form id="formMercaderia" method="POST" class="form-horizontal">
 	<input type="hidden" value="${flagEditar}" id="flagEditar">
 		<div class="row-fluid">
-			<div class="page-content">
 				<div class="span12">
-
-					<div class="row-fluid">
-						<div class="span4">
+					<div class="span8" >
+					<span class="tituloFielset">Guía Remisión</span>
+					<fieldset class="agruparFielset">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
@@ -23,11 +23,12 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="guiaInterna">Guía Interna</label>
+								<label class="control-label" for="guiaRemision">Guía Remisión</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
 								</div>
-							</div>								
+							</div>		
+														
 							<div class="control-group">
 								<label class="control-label" for="fecha">Código Mercadería</label>
 								<div class="controls codigoDisabled">
@@ -36,7 +37,7 @@
 								</div>
 							</div>					
 						</div>
-						<div class="span4">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idAlmacen">Almacén</label>
 								<div class="controls">									
@@ -48,38 +49,42 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="transporte">Transporte</label>
-								<div class="controls">
-<!-- 									<select id="transporte"></select> -->
-									<input type="text" class="form-control" name="transporte" id="transporte" value="${mercaderia.transporte}" required="required" data-msg-required="El campo Transporte es obligatorio.">
-								</div>
-							</div>	
-							<div class="control-group">
-								<label class="control-label" for="guiaRemision">Guía Remisión</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
-								</div>
-							</div>					
-						</div>
-						<div class="span4">
-							<div class="control-group">
 								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
 								<div class="controls">
 									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
+								</div>
+							</div>	
+																		
+						</div>
+					</fieldset>
+					</div>
+					<div class="span4">
+					<span class="tituloFielset">Datos Proveedor</span>
+					<fieldset class="agruparFielset">
+						<div class="span4">
+							<div class="control-group">
+								<label class="control-label" for="guiaInterna">Guía Interna</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
 								</div>
 							</div>	
 							<div class="control-group">
 								<label class="control-label" for="rucProveedor">Ruc Proveedor</label>
 								<div class="controls">		
 									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" value="${mercaderia.rucProveedor}" required="required" maxlength="11" data-msg-required="El campo Ruc Proveedor es obligatorio." onblur="getProveedorDescripcion();">
-									<input type="hidden" name="descripcionProveedor" id="descripcionProveedor" value="${mercaderia.descripcionProveedor}">								
-									<br><small class="blue" id="spanDescripcionProveedor">${mercaderia.descripcionProveedor}</small>
 								</div>
-							</div>												
+							</div>	
+							<div class="control-group">
+								<label class="control-label" for="descripcionProveedor">Razón Social</label>
+								<div class="controls">		
+									<input type="text" class="form-control" name="descripcionProveedor" id="descripcionProveedor" value="${mercaderia.descripcionProveedor}" readonly="readonly">
+								</div>
+							</div>
+			
 						</div>
+					</fieldset>
 					</div>
 				</div>
-			</div>
 
 		</div>
 

@@ -3,28 +3,19 @@ package com.hochschild.insumoQuimico.controller.registrarConsumo;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
 import com.hochschild.insumoQuimico.domain.Consumo;
-import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
-import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.Mercaderia;
-import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
-import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.Usuario;
@@ -34,8 +25,6 @@ import com.hochschild.insumoQuimico.service.ConsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
-import com.hochschild.insumoQuimico.util.Constantes;
-import com.hochschild.insumoQuimico.util.Util;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
@@ -105,6 +94,18 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);
 		
 		return model;
+	}
+
+	@Override
+	public Object getFormMantenimiento() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setGrabarAttributes() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

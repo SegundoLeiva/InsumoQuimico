@@ -10,6 +10,5 @@ public interface AreaService {
 	List<Area> listaArea();
 	public Area obtieneAreaPorId(String id);
 	public void insertarArea(AreaParametrosEntrada data);
-	public void actualizarArea(AreaParametrosEntrada data);
 	public void eliminarArea(String idArea);
 }
