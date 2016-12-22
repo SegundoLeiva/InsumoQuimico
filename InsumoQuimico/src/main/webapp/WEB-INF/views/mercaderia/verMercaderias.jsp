@@ -75,6 +75,7 @@
 						<th class="center">Proveedor</th>
 						<th class="center">Guía Remisión</th>
 						<th class="center">Comprobante de Venta</th>
+						<th class="center">Fecha Creación</th>
 						<th class="center" width="10%">Opciones</th>
 				</tr>
 			</thead>
@@ -87,6 +88,7 @@
 								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>
+								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
 									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idMercaderia}" />"
 										title="Consultar"> <i
