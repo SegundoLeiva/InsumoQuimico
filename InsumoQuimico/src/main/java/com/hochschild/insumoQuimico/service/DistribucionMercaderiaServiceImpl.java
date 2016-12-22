@@ -1,5 +1,6 @@
 package com.hochschild.insumoQuimico.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaParametrosEntra
 import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.util.FechasUtil;
+import com.hochschild.insumoQuimico.util.Util;
 
 @Service
 public class DistribucionMercaderiaServiceImpl implements DistribucionMercaderiaService {
@@ -46,7 +49,8 @@ public class DistribucionMercaderiaServiceImpl implements DistribucionMercaderia
 		entity.setUnidadMineraArea(unidadMineraArea);
 		
 		entity.setCantidad(Double.parseDouble(data.getCantidad()));
-		
+		entity.setIdUsuarioCreacion(data.getIdUsuarioCreacion());
+		entity.setFechaCreacion(new Date());
 		distribucionMercaderiaDAO.insertarDistribucionMercaderia(entity);
 	}
 

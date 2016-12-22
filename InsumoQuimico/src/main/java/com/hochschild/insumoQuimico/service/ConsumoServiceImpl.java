@@ -17,6 +17,7 @@ import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle.IdConsumo;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
@@ -35,72 +36,82 @@ public class ConsumoServiceImpl implements ConsumoService {
 		ConsumoDAO.actualizarConsumo(Consumo);
 	}
 	
-	public String guardarConsumo(ConsumoParametrosEntrada ConsumoParametrosEntrada) {
+	public String guardarConsumo(ConsumoParametrosEntrada consumoParametrosEntrada) {
 		Consumo Consumo = new Consumo();
-		ConsumoDetalle ConsumoDetalle = new ConsumoDetalle();
-		String idConsumo = ConsumoParametrosEntrada.getIdConsumo();
+		ConsumoDetalle consumoDetalle = new ConsumoDetalle();
+		String idConsumo = consumoParametrosEntrada.getIdConsumo();
 		try {
 			if(StringUtils.isEmpty(idConsumo)){
-				idConsumo = ConsumoDAO.obtenerCorrelativoConsumo(ConsumoParametrosEntrada.getIdUnidadMinera());
-				insertarConsumo(ConsumoParametrosEntrada,idConsumo);		
+				idConsumo = ConsumoDAO.obtenerCorrelativoConsumo(consumoParametrosEntrada.getIdUnidadMinera());
+				insertarConsumo(consumoParametrosEntrada,idConsumo);		
 			}else{
 				Consumo = ConsumoDAO.obtieneConsumoPorId(idConsumo);
 				UnidadMinera unidadMinera = new UnidadMinera();
-				unidadMinera.setIdUnidadMinera(ConsumoParametrosEntrada.getIdUnidadMinera());
+				unidadMinera.setIdUnidadMinera(consumoParametrosEntrada.getIdUnidadMinera());
 				Consumo.setUnidadMinera(unidadMinera);
 							
 				UnidadMineraAlmacen unidadMineraAlmacen = new UnidadMineraAlmacen();
-				unidadMineraAlmacen.setIdUnidadMineraAlmacen(ConsumoParametrosEntrada.getIdUnidadMineraAlmacen());			
+				unidadMineraAlmacen.setIdUnidadMineraAlmacen(consumoParametrosEntrada.getIdUnidadMineraAlmacen());			
 				Consumo.setUnidadMineraAlmacen(unidadMineraAlmacen);
 				
 				UnidadMineraArea unidadMineraArea = new UnidadMineraArea();
-				unidadMineraArea.setIdUnidadMineraArea(ConsumoParametrosEntrada.getIdUnidadMineraArea());	
+				unidadMineraArea.setIdUnidadMineraArea(consumoParametrosEntrada.getIdUnidadMineraArea());	
 				Consumo.setUnidadMineraArea(unidadMineraArea);
 				
-				Consumo.setIdUsuarioModificacion(ConsumoParametrosEntrada.getNombreUsuario());		
+				Consumo.setIdUsuarioModificacion(consumoParametrosEntrada.getNombreUsuario());		
 				Consumo.setFechaModificacion(new Date());
 				
 				ConsumoDAO.actualizarConsumo(Consumo);
 			}
 			
-			int index = Integer.parseInt(ConsumoParametrosEntrada.getIndex());
-			JSONArray dataJson = ConsumoParametrosEntrada.getConsumoJSONArray();
+			int index = Integer.parseInt(consumoParametrosEntrada.getIndex());
+			JSONArray dataJson = consumoParametrosEntrada.getConsumoJSONArray();
 			for (int i = 0; i < dataJson.length(); i++) {
 				JSONObject jsonObj = dataJson.getJSONObject(i);
 				String indicador = jsonObj.getString("indicadorBD");
 				String idDetalle = jsonObj.getString("idDetalle");
+				String idPresentacionInsumo = jsonObj.getString("idPresentacionInsumo");
+				String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
 				if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idDetalle)){//NUEVO
 					IdConsumo id = new IdConsumo();
 					id.setIdConsumo(idConsumo);
 					id.setIdConsumoDetalle(new Long(index));
-					ConsumoDetalle.setId(id);
+					consumoDetalle.setId(id);
 					
 					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));					
-					ConsumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);					
+					consumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
 					
-					ConsumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					ConsumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					ConsumoDetalle.setIdUsuarioCreacion(ConsumoParametrosEntrada.getNombreUsuario());
-					ConsumoDetalle.setFechaCreacion(new Date());
-					ConsumoDetalleDAO.insertarConsumoDetalle(ConsumoDetalle);
+					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+					presentacionInsumo.setIdPresentacionInsumo(idPresentacionInsumo);				
+					consumoDetalle.setPresentacionInsumo(presentacionInsumo);
+					consumoDetalle.setIdUnidadMineraArea(consumoParametrosEntrada.getIdUnidadMineraArea());
+					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
+					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
+					consumoDetalle.setIdUsuarioCreacion(consumoParametrosEntrada.getNombreUsuario());
+					consumoDetalle.setFechaCreacion(new Date());
+					ConsumoDetalleDAO.insertarConsumoDetalle(consumoDetalle);
 
 					index++;
 				}else if(indicador.equals(Constantes.INDICADOR_ELIMINADO) && !StringUtils.isEmpty(idDetalle)){//ELIMINA
-					ConsumoDetalleDAO.eliminarConsumoDetalle(Integer.parseInt(idDetalle),ConsumoParametrosEntrada.getIdConsumo());
+					ConsumoDetalleDAO.eliminarConsumoDetalle(Integer.parseInt(idDetalle),consumoParametrosEntrada.getIdConsumo());
 
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
-					ConsumoDetalle = ConsumoDetalleDAO.obtenerConsumoDetalle(ConsumoParametrosEntrada.getIdConsumo(), jsonObj.get("idDetalle").toString());
-					
+					consumoDetalle = ConsumoDetalleDAO.obtenerConsumoDetalle(consumoParametrosEntrada.getIdConsumo(), jsonObj.get("idDetalle").toString());
 					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(jsonObj.getString("idUnidadMineraInsumo"));
-					ConsumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					ConsumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					ConsumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
-					ConsumoDetalle.setIdUsuarioModificacion(ConsumoParametrosEntrada.getNombreUsuario());
-					ConsumoDetalle.setFechaModificacion(new Date());				
-					ConsumoDetalleDAO.modificarConsumoDetalle(ConsumoDetalle);
+					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);
+					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
+					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
+					consumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					consumoDetalle.setIdUsuarioModificacion(consumoParametrosEntrada.getNombreUsuario());
+					consumoDetalle.setFechaModificacion(new Date());	
+					
+					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+					presentacionInsumo.setIdPresentacionInsumo(idPresentacionInsumo);				
+					consumoDetalle.setPresentacionInsumo(presentacionInsumo);
+					
+					ConsumoDetalleDAO.modificarConsumoDetalle(consumoDetalle);
 					
 				}
 								

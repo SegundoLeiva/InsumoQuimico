@@ -19,17 +19,24 @@
 						</div>	
 						<div class="span6">
 							<div class="control-group">
+								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
+								<div class="controls selectInsumo">
+									<select id="idPresentacionInsumo" required
+										data-msg-required="El campo Presentación es obligatorio.">
+									</select>
+								</div>
+							</div>					
+						</div>	
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="control-group">
 								<label class="control-label" for="cantidad">Cantidad (Kg)</label>
 								<div class="controls">
 									<input type="text" id="cantidad" class="numeroDecimal inputInsumo" required data-msg-required="El campo Cantidad es obligatorio.">
 								</div>
 							</div>
-						</div>			
-						
-					</div>
-					<div class="row-fluid">
-						
-						
+						</div>						
 						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="stock">Stock (Kg)</label>

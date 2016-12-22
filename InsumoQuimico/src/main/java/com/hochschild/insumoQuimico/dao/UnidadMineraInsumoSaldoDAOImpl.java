@@ -17,7 +17,7 @@ public class UnidadMineraInsumoSaldoDAOImpl implements UnidadMineraInsumoSaldoDA
  
 	@SuppressWarnings("unchecked")
 	public UnidadMineraInsumoSaldoArea obtenerStockPorArea(String idUnidadMineraArea,String idUnidadMineraInsumo,String idPresentacionInsumo){
-		String query = "from UnidadMineraInsumoSaldo where "
+		String query = "from UnidadMineraInsumoSaldoArea where "
 				+ "idUnidadMineraArea='"+idUnidadMineraArea+"' "
 				+ "and idUnidadMineraInsumo='"+idUnidadMineraInsumo+"' "
 				+ "and idPresentacionInsumo='"+idPresentacionInsumo+"'";

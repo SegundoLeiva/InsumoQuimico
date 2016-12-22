@@ -27,6 +27,7 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 	public Object getFormMantenimiento() {
 		// TODO Auto-generated method stub
 		DistribucionMercaderiaParametrosEntrada form = new DistribucionMercaderiaParametrosEntrada();
+		form.setIdUsuarioCreacion(this.usuario.getIdUsuario());
 		return form;
 	}
 

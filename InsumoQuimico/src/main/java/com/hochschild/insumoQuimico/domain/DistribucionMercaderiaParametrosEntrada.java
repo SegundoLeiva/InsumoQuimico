@@ -13,6 +13,8 @@ public class DistribucionMercaderiaParametrosEntrada implements Serializable{
 	private String idUnidadMineraInsumo;	
 	private String idPresentacionInsumo;
 	private String cantidad;
+	private String idUsuarioCreacion;
+	
 	public Long getIdDistribucionMercaderia() {
 		return idDistribucionMercaderia;
 	}
@@ -43,6 +45,11 @@ public class DistribucionMercaderiaParametrosEntrada implements Serializable{
 	public void setIdPresentacionInsumo(String idPresentacionInsumo) {
 		this.idPresentacionInsumo = idPresentacionInsumo;
 	}
-	
+	public String getIdUsuarioCreacion() {
+		return idUsuarioCreacion;
+	}
+	public void setIdUsuarioCreacion(String idUsuarioCreacion) {
+		this.idUsuarioCreacion = idUsuarioCreacion;
+	}
 
 }
