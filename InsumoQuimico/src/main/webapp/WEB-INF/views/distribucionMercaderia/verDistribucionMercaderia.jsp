@@ -90,7 +90,7 @@
 								<td class="center">
 									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idDistribucionMercaderia}" />"> <i
 											class="icon-edit bigger-130"></i></a>
-									<a class="red" href="#" onclick="eliminarSearch('${jbean.idDistribucionMercaderiaa}')"> <i
+									<a class="red" href="#" onclick="eliminarSearch('${jbean.idDistribucionMercaderia}')"> <i
 											class="icon-trash bigger-130"></i>
 									</a>
 								</td>

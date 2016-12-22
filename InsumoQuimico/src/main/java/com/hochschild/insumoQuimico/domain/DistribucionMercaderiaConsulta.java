@@ -14,7 +14,13 @@ public class DistribucionMercaderiaConsulta {
     private String cantidad;
     private String fechaCreacion;
 
-    public String getUnidadMineraInsumo() {
+    public Long getIdDistribucionMercaderia() {
+		return idDistribucionMercaderia;
+	}
+	public void setIdDistribucionMercaderia(Long idDistribucionMercaderia) {
+		this.idDistribucionMercaderia = idDistribucionMercaderia;
+	}
+	public String getUnidadMineraInsumo() {
 		return unidadMineraInsumo;
 	}
 	public void setUnidadMineraInsumo(String unidadMineraInsumo) {
