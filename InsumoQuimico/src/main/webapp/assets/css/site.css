@@ -198,3 +198,13 @@
 	padding: 20px;
 	margin-top: -10px
 }
+
+@media (max-width: 1200px){
+	
+	.row-fluid [class*="span"]{
+		width: 100% !important;
+		float: none;
+		display: block;
+		margin-left: 0px
+	}
+}
