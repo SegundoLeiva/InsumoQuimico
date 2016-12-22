@@ -5,7 +5,6 @@
 
 <div class="page-header position-relative">
 	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
-	<input type="hidden" value="${accion}" id="accion">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">

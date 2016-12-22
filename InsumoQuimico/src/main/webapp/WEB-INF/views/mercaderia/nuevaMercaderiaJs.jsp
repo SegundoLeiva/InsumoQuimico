@@ -19,7 +19,7 @@ $(document).ready(function() {
 		listaFactorConversionMedida.push(obj);
 	</c:forEach>
 	
-	if($("#accion").val()=="CONSULTAR"){	
+	if('<c:out value="${accion}"/>'=="CONSULTAR"){	
 		var i=0;
 		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",

@@ -10,7 +10,7 @@ $(document).ready(function() {
 	claseColumna=["descripcion","valor","unidadMedida","vigenciaInsumo"];
 	inicializarStyleTablaDetalle();
 
-	if('<c:out value="${flagEditar}"/>'=="editar"){	
+	if('<c:out value="${accion}"/>'=="EDITAR"){	
 		var i=0;
 		<c:forEach var="jbean" items="${listaPresentacionInsumo}">	
 			var vigencia = "VIGENTE";
