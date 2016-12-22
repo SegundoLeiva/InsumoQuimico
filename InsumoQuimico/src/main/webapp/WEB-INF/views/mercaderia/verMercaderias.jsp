@@ -72,7 +72,6 @@
 				<tr>
 						<th class="center" width="5%">Nro</th>
 						<th class="center">Código</th>
-						<th class="center">Transporte</th>
 						<th class="center">Proveedor</th>
 						<th class="center">Guía Remisión</th>
 						<th class="center">Comprobante de Venta</th>
@@ -85,7 +84,6 @@
 							<tr>
 								<td class="center">${contador.count}</td>
 								<td class="center">${jbean.idMercaderia}</td>
-								<td class="center">${jbean.transporte}</td>
 								<td class="center">${jbean.rucProveedor} - ${jbean.descripcionProveedor}</td>
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>

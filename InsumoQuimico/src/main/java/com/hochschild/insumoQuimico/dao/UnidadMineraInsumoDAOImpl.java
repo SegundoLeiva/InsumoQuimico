@@ -8,10 +8,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldo;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldo.IdSaldo;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 
@@ -24,16 +21,6 @@ public class UnidadMineraInsumoDAOImpl implements UnidadMineraInsumoDAO {
     @Transactional
 	public void insertarUnidadMineraInsumo(UnidadMineraInsumo data){
     	hibernateTemplate.persist(data);   	
-    	
-    	UnidadMineraInsumoSaldo unidadMineraInsumoSaldo = new UnidadMineraInsumoSaldo();
-    	IdSaldo id = new IdSaldo();
-    	id.setIdUnidadMineraInsumo(data.getIdUnidadMineraInsumo());
-    	id.setIdUnidadMineraAlmacen(Constantes.ALMACEN_CENTRAL);
-    	unidadMineraInsumoSaldo.setId(id);
-    	unidadMineraInsumoSaldo.setStock(0.0);
-    	unidadMineraInsumoSaldo.setUnidadMedida("KG");
-    	
-    	hibernateTemplate.persist(unidadMineraInsumoSaldo); 
     }
     
     @Transactional

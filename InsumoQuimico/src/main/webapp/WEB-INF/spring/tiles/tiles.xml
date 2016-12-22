@@ -122,6 +122,18 @@
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/consumo/nuevoConsumo.jsp" />		
 	</definition>
+	
+	<!-- ################################ Distribucion Mercaderia ############################## -->
+	<definition name="verDistribucionMercaderia" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/distribucionMercaderia/distribucionMercaderiaJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/distribucionMercaderia/verDistribucionMercaderia.jsp" />		
+	</definition>
+	<definition name="nuevaDistribucionMercaderia" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/distribucionMercaderia/distribucionMercaderiaJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/distribucionMercaderia/nuevaDistribucionMercaderia.jsp" />		
+	</definition>
 
 </tiles-definitions>
 

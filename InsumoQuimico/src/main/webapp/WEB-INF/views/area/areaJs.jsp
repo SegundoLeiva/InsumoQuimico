@@ -1,8 +1,9 @@
 <script type="text/javascript">
 
 $("#guardar").click(function(){
-	
-	guardarMantenimiento();
+	if(validarCamposRequeridos("formArea")){
+		guardarMantenimiento();
+	}
 	
 });
 

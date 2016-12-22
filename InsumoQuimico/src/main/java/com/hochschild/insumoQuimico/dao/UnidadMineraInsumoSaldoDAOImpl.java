@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldoArea;
 
 @Repository(value="UnidadMineraInsumoSaldoDAO")
 public class UnidadMineraInsumoSaldoDAOImpl implements UnidadMineraInsumoSaldoDAO {
@@ -16,10 +16,12 @@ public class UnidadMineraInsumoSaldoDAOImpl implements UnidadMineraInsumoSaldoDA
     private HibernateTemplate hibernateTemplate;
  
 	@SuppressWarnings("unchecked")
-	public UnidadMineraInsumoSaldo obtienerStock(String idUnidadMineraInsumo,String idUnidadMineraAlmacen){
-		String query = "from UnidadMineraInsumoSaldo where idUnidadMineraInsumo='"+idUnidadMineraInsumo+"' "
-				+ "and idUnidadMineraAlmacen='"+idUnidadMineraAlmacen+"'";
-    	List<UnidadMineraInsumoSaldo> resultado = hibernateTemplate.find(query);
+	public UnidadMineraInsumoSaldoArea obtenerStockPorArea(String idUnidadMineraArea,String idUnidadMineraInsumo,String idPresentacionInsumo){
+		String query = "from UnidadMineraInsumoSaldo where "
+				+ "idUnidadMineraArea='"+idUnidadMineraArea+"' "
+				+ "and idUnidadMineraInsumo='"+idUnidadMineraInsumo+"' "
+				+ "and idPresentacionInsumo='"+idPresentacionInsumo+"'";
+    	List<UnidadMineraInsumoSaldoArea> resultado = hibernateTemplate.find(query);
         return  resultado.get(0);
     }
 

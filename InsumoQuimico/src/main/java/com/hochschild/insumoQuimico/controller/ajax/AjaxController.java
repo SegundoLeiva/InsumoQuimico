@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hochschild.insumoQuimico.sap.FuncionesSAPService;
 import com.hochschild.insumoQuimico.service.PresentacionInsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoSaldoAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoSaldoService;
 import com.hochschild.insumoQuimico.util.Constantes;
 
@@ -21,6 +22,8 @@ public class AjaxController {
 	private FuncionesSAPService funcionesSAPService;
 	@Autowired
 	private UnidadMineraInsumoSaldoService unidadMineraInsumoSaldoService;
+	@Autowired
+	private UnidadMineraInsumoSaldoAlmacenService unidadMineraInsumoSaldoAlmacenService;
 	@Autowired
 	private PresentacionInsumoService presentacionInsumoService;
 	
@@ -48,13 +51,29 @@ public class AjaxController {
 
 	}
 	
-	@RequestMapping(value="/obtienerStock.htm", method = {RequestMethod.POST})
+	@RequestMapping(value="/obtienerStockAlmacen.htm", method = {RequestMethod.POST})
 	@ResponseBody
-	public String obtienerStock(@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
-			@RequestParam("idUnidadMineraAlmacen") String idUnidadMineraAlmacen) {
+	public String obtobtienerStockAlmacenienerStock(@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
+			@RequestParam("idPresentacionInsumo") String idPresentacionInsumo) {
 		String resultado = "0";
 		try {
-			resultado = String.valueOf(unidadMineraInsumoSaldoService.obtienerStock(idUnidadMineraInsumo,idUnidadMineraAlmacen).getStock());
+			resultado = String.valueOf(unidadMineraInsumoSaldoAlmacenService.obtienerStockAlmacen(idUnidadMineraInsumo, idPresentacionInsumo).getStock());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return resultado;
+
+	}
+	
+	@RequestMapping(value="/obtenerStockPorArea.htm", method = {RequestMethod.POST})
+	@ResponseBody
+	public String obtenerStockPorArea(@RequestParam("idUnidadMineraArea") String idUnidadMineraArea,
+			@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
+			@RequestParam("idPresentacionInsumo") String idPresentacionInsumo) {
+		String resultado = "0";
+		try {
+			resultado = String.valueOf(unidadMineraInsumoSaldoService.obtenerStockPorArea(idUnidadMineraArea,idUnidadMineraInsumo,idPresentacionInsumo).getStock());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

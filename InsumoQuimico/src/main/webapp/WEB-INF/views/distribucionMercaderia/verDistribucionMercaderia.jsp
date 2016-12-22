@@ -10,15 +10,16 @@
 					<div class="row-fluid">
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
-								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera">
-										<c:forEach var="item" items="${listaUnidadesMineras}">
-											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+								<label class="control-label" for="idUnidadMineraArea">Área</label>
+								<div class="controls">									
+									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
+										<option value="">Seleccionar</option>
+										<c:forEach var="item" items="${listaUnidadMineraArea}">
+											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == beanConsulta.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
 										</c:forEach>
 									</select>
 								</div>
-							</div>
+							</div>		
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
@@ -29,12 +30,12 @@
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
+								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
 								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
+									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo">						
 										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == beanConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
+										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
+											<option value="${item.idUnidadMineraInsumo}" ${item.idUnidadMineraInsumo == beanConsulta.idUnidadMineraInsumo ? 'selected' : ' '}>${item.insumo.insumo}</option>
 										</c:forEach>
 									</select>
 								</div>
@@ -49,16 +50,12 @@
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraArea">Área</label>
-								<div class="controls">									
-									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == beanConsulta.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
-										</c:forEach>
+								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
+								<div class="controls">
+									<select id="idPresentacionInsumo">
 									</select>
 								</div>
-							</div>				
+							</div>		
 						</div>
 					</div>
 				</div>
@@ -72,10 +69,11 @@
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
-							<th class="center">Código</th>
-							<th class="center">Almacén</th>
+							<th class="center">Insumo</th>
 							<th class="center">Área</th>
-							<th class="center">Cantidad Total</th>
+							<th class="center">Presentación</th>
+							<th class="center">Cantidad</th>
+							<th class="center">Fecha Creación</th>
 							<th class="center" width="10%">Opciones</th>
 						</tr>
 					</thead>
@@ -84,14 +82,15 @@
 							varStatus="contador">
 							<tr>
 								<td class="center">${contador.count}</td>
-								<td class="center">${jbean.idConsumo}</td>
-								<td class="center">${jbean.almacen}</td>
-								<td class="center">${jbean.area}</td>
+								<td class="center">${jbean.unidadMineraInsumo}</td>
+								<td class="center">${jbean.unidadMineraArea}</td>
+								<td class="center">${jbean.presentacionInsumo}</td>
 								<td class="center">${jbean.cantidad}</td>
+								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
-									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idConsumo}" />"> <i
+									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idDistribucionMercaderia}" />"> <i
 											class="icon-edit bigger-130"></i></a>
-									<a class="red" href="#" onclick="eliminarSearch('${jbean.idConsumo}')"> <i
+									<a class="red" href="#" onclick="eliminarSearch('${jbean.idDistribucionMercaderiaa}')"> <i
 											class="icon-trash bigger-130"></i>
 									</a>
 								</td>
