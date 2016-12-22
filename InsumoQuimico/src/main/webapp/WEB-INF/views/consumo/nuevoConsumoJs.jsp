@@ -220,7 +220,7 @@ $("#idPresentacionInsumo").change(function(){
 });
 
 function obtenerStockPorArea(idPresentacionInsumo){
-	debugger;
+
 	var resultado = 0;
 			$.ajax({
 				type : 'post',
