@@ -81,8 +81,8 @@
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
-							<th class="center">Insumo</th>
 							<th class="center">Área</th>
+							<th class="center">Insumo</th>
 							<th class="center">Presentación</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Fecha Creación</th>
@@ -94,14 +94,14 @@
 							varStatus="contador">
 							<tr>
 								<td class="center">${contador.count}</td>
-								<td class="center">${jbean.unidadMineraInsumo}</td>
 								<td class="center">${jbean.unidadMineraArea}</td>
+								<td class="center">${jbean.unidadMineraInsumo}</td>								
 								<td class="center">${jbean.presentacionInsumo}</td>
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
 									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idDistribucionMercaderia}" />"> <i
-											class="icon-align-justify bigger-130"></i></a>
+										title="Consultar" class="icon-align-justify bigger-130"></i></a>
 								</td>
 
 							</tr>
