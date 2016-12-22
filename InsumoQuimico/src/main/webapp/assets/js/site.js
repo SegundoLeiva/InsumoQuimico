@@ -253,3 +253,11 @@ function guardarMantenimiento(){
 				function(){});
 
 }
+
+function bloquearCamposConsultar(){
+	var form = document.forms[0];
+	var idForm = form.id;
+	$(".header").hide();
+	$("#"+idForm+" input").attr("disabled","disabled");
+	$("#"+idForm+" select").attr("disabled","disabled")
+}

@@ -60,6 +60,8 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 	public Model setModificarAttributes(String id, Model model) {
 		// TODO Auto-generated method stub
 		DistribucionMercaderia data = distribucionMercaderiaService.obtieneDistribucionMercaderiaPorId(id);
+		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraArea());
 		model.addAttribute("distribucionMercaderia", data);
 		return model;
 	}

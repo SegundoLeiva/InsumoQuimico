@@ -88,11 +88,10 @@
 								<td class="center">${jbean.guiaRemision}</td>
 								<td class="center">${jbean.comprobanteVenta}</td>
 								<td class="center">
-								<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idMercaderia}" />"> <i
-										class="icon-edit bigger-130"></i></a>
-								<a class="red" href="#" onclick="eliminarSearch('${jbean.idMercaderia}')"> <i
-										class="icon-trash bigger-130"></i>
-								</a>
+									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idMercaderia}" />"
+										title="Consultar"> <i
+											class="icon-align-justify bigger-130"></i>
+									</a>
 								</td>
 
 							</tr>

@@ -9,6 +9,7 @@ public class DistribucionMercaderiaConsultaModel {
     private String idPresentacionInsumo;
 	private String fechaInicio;
 	private String fechaFin;
+	private String idUnidadMinera;
 	
 	public DistribucionMercaderiaConsultaModel(){
 		this.fechaInicio=FechasUtil.getFechaActual();
@@ -53,6 +54,14 @@ public class DistribucionMercaderiaConsultaModel {
 
 	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public String getIdUnidadMinera() {
+		return idUnidadMinera;
+	}
+
+	public void setIdUnidadMinera(String idUnidadMinera) {
+		this.idUnidadMinera = idUnidadMinera;
 	}
 	
 	

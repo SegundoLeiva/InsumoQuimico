@@ -10,7 +10,7 @@ $(document).ready(function() {
 	claseColumna=["idUnidadMineraInsumo","descripcion","descripcionPresentacion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
 	
-	if($("#flagEditar").val()=="editar"){
+	if($("#accion").val()=="CONSULTAR"){
 
 		var i=0;
 		<c:forEach var="jbean" items="${listaConsumoDetalle}">		
@@ -29,6 +29,7 @@ $(document).ready(function() {
 			i++;
 		</c:forEach>
 		index = "${listaConsumoDetalle.get(listaConsumoDetalle.size()-1).id.idConsumoDetalle+1}";
+		bloquearCamposConsultar();
 	}
 	
 	var dataInsumo=[{id:" ",text:"Seleccionar"}];

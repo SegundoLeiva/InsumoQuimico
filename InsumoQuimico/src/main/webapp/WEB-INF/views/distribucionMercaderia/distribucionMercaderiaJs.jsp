@@ -8,7 +8,24 @@ $(document).ready(function() {
 	$("#idPresentacionInsumo").select2({
 		  data: dataPresentacion
 	});
+	var idPresentacionInsumo ="${beanConsulta.idPresentacionInsumo}";
+ 	$("#idUnidadMineraInsumo").change();
+ 	if(idPresentacionInsumo.trim()!=""){
+ 		$("#idPresentacionInsumo").val(idPresentacionInsumo).trigger('change');
+ 	}
+ 	
+ 	if($("#accion").val()=="CONSULTAR"){	
+ 		$("#bloqueStock").hide();
+ 		var idPresentacionInsumo ="${distribucionMercaderia.presentacionInsumo.idPresentacionInsumo}";
+ 	 	$("#idUnidadMineraInsumo").change();
+ 	 	if(idPresentacionInsumo.trim()!=""){
+ 	 		$("#idPresentacionInsumo").val(idPresentacionInsumo).trigger('change');
+ 	 	}
+		bloquearCamposConsultar();
+	}
+	
 });
+
 $("#idUnidadMineraInsumo").change(function(){
 	$('#idPresentacionInsumo').empty();
 	var objArray = [{id:" ",text:"Seleccionar"}];

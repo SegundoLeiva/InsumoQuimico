@@ -2,7 +2,7 @@ package com.hochschild.insumoQuimico.util;
 
 public class Constantes {
 	
-	public static final String FLAG_EDITAR = "editar";
+	public static final String ACCION = "accion";
 	public static final String FLAG_TRANSACCION = "flagTransaccion";
     public static final String TRANSACCION_ERROR = "error";
     public static final String TRANSACCION_GUARDAR = "guardar";

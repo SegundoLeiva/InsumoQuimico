@@ -5,7 +5,7 @@
 
 <div class="page-header position-relative">
 	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
-	<input type="hidden" value="${flagEditar}" id="flagEditar">
+	<input type="hidden" value="${accion}" id="accion">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -57,10 +57,19 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="fecha" id="fecha" 
-									readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
+									<c:choose>
+										<c:when test="${empty accion}">
+											<input type="text" class="form-control" name="fecha" id="fecha" 
+												readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
+										</c:when>
+										<c:otherwise>
+											<input type="text" class="form-control" name="fecha" id="fecha" 
+											readonly="readonly" value="<fmt:formatDate value="${consumo.fechaCreacion}" pattern="dd/MM/yyyy" />">
+										</c:otherwise>
+									</c:choose>
+									
 								</div>
-							</div>
+							</div>		
 						</div>
 					</div>
 				</div>

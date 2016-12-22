@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaConsultaModel;
+import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.DistribucionMercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
@@ -31,6 +32,7 @@ public class DistribucionMercaderiaSearchController extends BaseSearchController
 	public Object getFormBusqueda() {
 		// TODO Auto-generated method stub
 		DistribucionMercaderiaConsultaModel form = new DistribucionMercaderiaConsultaModel();
+		form.setIdUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
 		return form;
 	}
 
@@ -44,6 +46,8 @@ public class DistribucionMercaderiaSearchController extends BaseSearchController
 	public List listarConsulta(Model model, HttpSession sesion,
 			HttpServletRequest req) {
 		// TODO Auto-generated method stub
+		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
+        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
         model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraArea());
 		return distribucionMercaderiaService.listaDistribucionMercaderiaConsulta((DistribucionMercaderiaConsultaModel)this.formBusqueda);

@@ -19,13 +19,18 @@
 										</c:forEach>
 									</select>
 								</div>
-							</div>		
+							</div>	
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Inicio</label>
+								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
+									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
+										<c:forEach var="item" items="${listaUnidadesMineras}">
+											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+										</c:forEach>
+									</select>
 								</div>
-							</div>
+							</div>	
+							
 							
 						</div>
 						<div class="span4">
@@ -41,21 +46,28 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Fin</label>
+								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
+									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
 								</div>
 							</div>
+							
 
 						</div>
 						<div class="span4">
 							<div class="control-group">
 								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
 								<div class="controls">
-									<select id="idPresentacionInsumo">
+									<select id="idPresentacionInsumo" name="idPresentacionInsumo">
 									</select>
 								</div>
-							</div>		
+							</div>	
+							<div class="control-group">
+								<label class="control-label" for="fecha">Fecha Fin</label>
+								<div class="controls">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
+								</div>
+							</div>	
 						</div>
 					</div>
 				</div>
@@ -88,11 +100,8 @@
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
-									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idDistribucionMercaderia}" />"> <i
-											class="icon-edit bigger-130"></i></a>
-									<a class="red" href="#" onclick="eliminarSearch('${jbean.idDistribucionMercaderia}')"> <i
-											class="icon-trash bigger-130"></i>
-									</a>
+									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idDistribucionMercaderia}" />"> <i
+											class="icon-align-justify bigger-130"></i></a>
 								</td>
 
 							</tr>

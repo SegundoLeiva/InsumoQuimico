@@ -6,7 +6,7 @@
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
-
+					<input type="hidden" value="${accion}" id="accion">
 					<div class="row-fluid">
 						<div class="span4">
 							<div class="control-group">
@@ -21,6 +21,16 @@
 								</div>
 							</div>	
 							<div class="control-group">
+								<label class="control-label" for="cantidad">Cantidad</label>
+								<div class="controls">
+									<input type="text" id="cantidad" name="cantidad" class="numeroEntero" required data-msg-required="El campo Cantidad es obligatorio." value="${distribucionMercaderia.cantidad}">
+								</div>
+							</div>
+							
+								
+						</div>
+						<div class="span4">
+							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
 								<div class="controls">									
 									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" required data-msg-required="El campo Insumo es obligatorio.">						
@@ -31,7 +41,12 @@
 									</select>
 								</div>
 							</div>
-								
+							<div class="control-group" id="bloqueStock">
+								<label class="control-label" for="stock">Stock</label>
+								<div class="controls">
+									<input type="text" id="stock" readonly="readonly" class="stock">
+								</div>
+							</div>	
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -41,21 +56,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="cantidad">Cantidad</label>
-								<div class="controls">
-									<input type="text" id="cantidad" name="cantidad" class="numeroEntero" required data-msg-required="El campo Cantidad es obligatorio.">
-								</div>
-							</div>
-
-						</div>
-						<div class="span4">
-							<div class="control-group">
-								<label class="control-label" for="stock">Stock</label>
-								<div class="controls">
-									<input type="text" id="stock" readonly="readonly" class="stock">
-								</div>
-							</div>		
+								
 						</div>
 					</div>
 				</div>

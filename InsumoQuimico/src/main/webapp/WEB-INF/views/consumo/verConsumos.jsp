@@ -89,10 +89,9 @@
 								<td class="center">${jbean.area}</td>
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">
-									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idConsumo}" />"> <i
-											class="icon-edit bigger-130"></i></a>
-									<a class="red" href="#" onclick="eliminarSearch('${jbean.idConsumo}')"> <i
-											class="icon-trash bigger-130"></i>
+									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idConsumo}" />"
+										title="Consultar"> <i
+											class="icon-align-justify bigger-130"></i>
 									</a>
 								</td>
 

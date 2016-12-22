@@ -5,7 +5,7 @@
 
 <div class="page-header position-relative">
 	<form id="formMercaderia" method="POST" class="form-horizontal">
-	<input type="hidden" value="${flagEditar}" id="flagEditar">
+	<input type="hidden" value="${accion}" id="accion">
 		<div class="row-fluid">
 				<div class="span12">
 					<div class="span8" >
@@ -54,7 +54,22 @@
 									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
 								</div>
 							</div>	
-																		
+							<div class="control-group">
+								<label class="control-label" for="fecha">Fecha</label>
+								<div class="controls">
+									<c:choose>
+										<c:when test="${empty accion}">
+											<input type="text" class="form-control" name="fecha" id="fecha" 
+												readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
+										</c:when>
+										<c:otherwise>
+											<input type="text" class="form-control" name="fecha" id="fecha" 
+											readonly="readonly" value="<fmt:formatDate value="${mercaderia.fechaCreacion}" pattern="dd/MM/yyyy" />">
+										</c:otherwise>
+									</c:choose>
+									
+								</div>
+							</div>											
 						</div>
 					</fieldset>
 					</div>

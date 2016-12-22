@@ -3,7 +3,6 @@ package com.hochschild.insumoQuimico.BaseController;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hochschild.insumoQuimico.domain.AreaParametrosEntrada;
 import com.hochschild.insumoQuimico.domain.JsonResult;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.util.Constantes;
@@ -30,6 +28,7 @@ public abstract class BaseMantenimientoController {
 	protected String accion;
 	public static final String ACCION_NUEVO = "NUEVO";
 	public static final String ACCION_EDITAR= "EDITAR";
+	public static final String ACCION_CONSULTAR= "CONSULTAR";
 	
 	@RequestMapping(value = "/nuevo.htm")
 	public String nuevo(Model model,HttpSession sesion) {
@@ -70,7 +69,21 @@ public abstract class BaseMantenimientoController {
 		this.accion = ACCION_EDITAR;
 		model = mostrarBotones(model);
 		model = this.setModificarAttributes(id,model);
-		model.addAttribute("flagEditar", Constantes.FLAG_EDITAR);
+		model.addAttribute(Constantes.ACCION, this.accion);
+
+		return this.getPaginaMantenimiento();
+	}
+	
+	@RequestMapping(value = { "/consultar.htm" }, method = {RequestMethod.POST, RequestMethod.GET })
+	public String consultar(HttpSession sesion,
+			@RequestParam String id, Model model) throws IOException {
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		this.usuario = usuarioSession;
+		this.accion = ACCION_CONSULTAR;
+		model.addAttribute("mostrarBotonGuardar", false);
+		model.addAttribute("mostrarBotonRegresar", this.mostrarBotonRegresar);
+		model = this.setModificarAttributes(id,model);
+		model.addAttribute(Constantes.ACCION, this.accion);
 
 		return this.getPaginaMantenimiento();
 	}

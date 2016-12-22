@@ -19,7 +19,7 @@ $(document).ready(function() {
 		listaFactorConversionMedida.push(obj);
 	</c:forEach>
 	
-	if($("#flagEditar").val()=="editar"){	
+	if($("#accion").val()=="CONSULTAR"){	
 		var i=0;
 		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
@@ -37,6 +37,8 @@ $(document).ready(function() {
 			i++;
 		</c:forEach>
 		index = "${listaMercaderiaDetalle.get(listaMercaderiaDetalle.size()-1).id.idMercaderiaDetalle+1}";
+		
+		bloquearCamposConsultar();
 	}
 	
 	var dataInsumo=[{id:" ",text:"Seleccionar"}];
