@@ -43,7 +43,7 @@ public class UnidadMineraInsumoSearchController extends BaseSearchController{
 			HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		this.mostrarBotonBuscar=false;
-		return this.unidadMineraInsumoService.listaUnidadMineraInsumo();
+		return this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
 	}
 
 	@Override
