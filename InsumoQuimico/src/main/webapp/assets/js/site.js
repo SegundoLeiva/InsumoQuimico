@@ -18,10 +18,13 @@ $(document).on("ready", function() {
 	inicializarHeader();
 	
 	//SEGMENTO TABLA BUSCAR DEFAULT
-	$('.tablaSearch').DataTable({
-	 	"bSort" : false,
-		"columnDefs": [{ className: "center"}]
- 	});
+	if($('.tablaSearch').length==1){
+		$('.tablaSearch').DataTable({
+		 	"bSort" : false,
+			"columnDefs": [{ className: "center"}]
+	 	});	
+	}
+	
 });
 
 function validarCamposRequeridos(idFormulario){

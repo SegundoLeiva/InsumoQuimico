@@ -1,10 +1,4 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-<%-- <%@ taglib uri="http://www.springframework.org/security/tags" --%>
-<%-- 	prefix="security"%> --%>
-
-<%-- <security:authorize access="isAuthenticated()"> --%>
-<%-- 	<c:redirect url="/home/bienvenida.htm" /> --%>
-<%-- </security:authorize> --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,37 +11,20 @@
 
 <!--basic styles-->
 
-<link href="<c:url value="/assets/css/bootstrap.min.css"/>"
-	rel="stylesheet" />
-<link href="<c:url value="/assets/css/bootstrap-responsive.min.css"/>"
-	rel="stylesheet" />
-<link href="<c:url value="/assets/css/font-awesome.min.css"/>"
-	rel="stylesheet" />
+<link href="<c:url value="/assets/css/bootstrap.min.css"/>"	rel="stylesheet" />
+<link href="<c:url value="/assets/css/bootstrap-responsive.min.css"/>"	rel="stylesheet" />
+<link href="<c:url value="/assets/css/font-awesome.min.css"/>"	rel="stylesheet" />
 <link rel="stylesheet" href="<c:url value="/assets/css/alertify/alertify.min.css"/>" />
 <link rel="stylesheet" href="<c:url value="/assets/css/alertify/themes/bootstrap.min.css"/>" />
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
 
-<!--page specific plugin styles-->
-
-<!--fonts-->
-
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
 <!--ace styles-->
 
 <link rel="stylesheet" href="<c:url value="/assets/css/ace.min.css"/>" />
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/ace-responsive.min.css"/>" />
-<link rel="stylesheet"
-	href="<c:url value="/assets/css/ace-skins.min.css"/>" />
-
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-
+<link rel="stylesheet" href="<c:url value="/assets/css/ace-responsive.min.css"/>" />
+<link rel="stylesheet" href="<c:url value="/assets/css/ace-skins.min.css"/>" />
+<link rel="shortcut icon" href="<c:url value="/assets/images/logo.jpg"/>" />
 <!--inline styles related to this page-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
