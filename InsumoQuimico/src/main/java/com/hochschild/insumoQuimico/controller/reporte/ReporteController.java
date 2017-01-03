@@ -72,7 +72,8 @@ public class ReporteController extends BaseReporteController{
 			String cantidadPresentacion = String.valueOf((int)listaMercaderiaDetalle.get(i).getCantidad().doubleValue());
 			String codigoPresentacion = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
 			String guiaInterna = listaMercaderiaDetalle.get(i).getMercaderia().getGuiaInterna();
-			cadena=cadena +tipoOperacion+"|0011|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaInterna+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
+			String idUnidadMinera = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
+			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaInterna+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
 		}
 		
 		for (int i = 0; i < listaConsumoDetalle.size(); i++) {
@@ -83,7 +84,8 @@ public class ReporteController extends BaseReporteController{
 			String fechaConsumo = FechasUtil.dateToString(listaConsumoDetalle.get(i).getConsumo().getFechaConsumo(), "dd/mm/YYYY");
 			String cantidadPresentacion = listaConsumoDetalle.get(i).getCantidadPresentacion().toString();
 			String codigoPresentacion = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
-			cadena=cadena +tipoOperacion+"|0009|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
+			String idUnidadMinera = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
+			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
 		}
 
 		descargarArchivoTxt(response, "reporte_"+FechasUtil.obtenerMesDescripcion(mes)+"_"+anio, cadena);

@@ -1,10 +1,37 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
-
-<div class="row-fluid">
-	<div class="span12">
-		<form method="POST">
+<%@ include file="/WEB-INF/views/include.jsp"%>
+<div class="page-header position-relative">
+	<form method="POST" class="form-horizontal">
 		<input type="hidden" name="id" id="id">		
-				<table class="tablaSearch table table-striped table-bordered table-hover">
+		<div class="row-fluid">
+			<div class="page-content">
+				<div class="span12">
+
+					<div class="row-fluid">
+						<div class="span4">
+							<div class="control-group">
+								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
+								<div class="controls">
+									<select name="idUnidadMinera" id="idUnidadMinera">
+										<c:forEach var="item" items="${listaUnidadesMineras}">
+											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							
+							
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+	<hr>
+<table class="tablaSearch table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 							<th class="center" width="5%">Nro</th>
@@ -41,9 +68,4 @@
 						</c:forEach>
 					</tbody>
 				</table>
-</form>
-
-	</div>
-	<!--/.span-->
 </div>
-<!--/.row-fluid-->
