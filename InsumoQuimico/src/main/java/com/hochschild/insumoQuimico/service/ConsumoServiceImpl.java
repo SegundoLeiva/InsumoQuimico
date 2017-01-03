@@ -49,10 +49,6 @@ public class ConsumoServiceImpl implements ConsumoService {
 				UnidadMinera unidadMinera = new UnidadMinera();
 				unidadMinera.setIdUnidadMinera(consumoParametrosEntrada.getIdUnidadMinera());
 				Consumo.setUnidadMinera(unidadMinera);
-							
-				UnidadMineraAlmacen unidadMineraAlmacen = new UnidadMineraAlmacen();
-				unidadMineraAlmacen.setIdUnidadMineraAlmacen(consumoParametrosEntrada.getIdUnidadMineraAlmacen());			
-				Consumo.setUnidadMineraAlmacen(unidadMineraAlmacen);
 				
 				UnidadMineraArea unidadMineraArea = new UnidadMineraArea();
 				unidadMineraArea.setIdUnidadMineraArea(consumoParametrosEntrada.getIdUnidadMineraArea());	
@@ -138,10 +134,6 @@ public class ConsumoServiceImpl implements ConsumoService {
 		UnidadMinera unidadMinera = new UnidadMinera();
 		unidadMinera.setIdUnidadMinera(data.getIdUnidadMinera());
 		Consumo.setUnidadMinera(unidadMinera);
-					
-		UnidadMineraAlmacen unidadMineraAlmacen = new UnidadMineraAlmacen();
-		unidadMineraAlmacen.setIdUnidadMineraAlmacen(data.getIdUnidadMineraAlmacen());		
-		Consumo.setUnidadMineraAlmacen(unidadMineraAlmacen);	
 		
 		UnidadMineraArea unidadMineraArea = new UnidadMineraArea();
 		unidadMineraArea.setIdUnidadMineraArea(data.getIdUnidadMineraArea());	

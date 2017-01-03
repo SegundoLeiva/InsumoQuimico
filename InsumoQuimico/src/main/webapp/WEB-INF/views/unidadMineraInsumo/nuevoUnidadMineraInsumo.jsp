@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <div class="page-header position-relative">
 	<form id="formUnidadMineraInsumo" method="POST" class="form-horizontal">
-	<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" value="${unidadMineraInsumo.idUnidadMineraInsumo}">
+	<input type="hidden" name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" value="${unidadMineraInsumo.idUnidadMineraInsumo}" data-id="${unidadMineraInsumo.idUnidadMineraInsumo}">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span8">

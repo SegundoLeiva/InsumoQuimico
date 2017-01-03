@@ -4,7 +4,7 @@
 <c:set var="now" value="<%=Calendar.getInstance().getTime()%>" />
 
 <div class="page-header position-relative">
-	<form id="formUnidadMineraArea" method="POST" class="form-horizontal">
+	<form id="formConsumo" method="POST" class="form-horizontal">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -14,7 +14,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
+									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
 										</c:forEach>
@@ -36,16 +36,6 @@
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">
 										<c:forEach var="item" items="${listaUnidadMineraArea}">
 											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == mercaderia.unidadMineraArea.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
-								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
-										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == mercaderia.unidadMineraAlmacen.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
 										</c:forEach>
 									</select>
 								</div>

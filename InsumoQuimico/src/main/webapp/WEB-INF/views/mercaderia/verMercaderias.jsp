@@ -19,22 +19,18 @@
 								</div>
 							</div>
 							<div class="control-group">
-								<label class="control-label" for="guiaRemision">Guía Remisión</label>
+								<label class="control-label" for="idMercaderia">Código Mercadería</label>
 								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${beanConsulta.guiaRemision}" placeholder="Guía Remisión...">
+									<input type="text" class="form-control" name="idMercaderia" id="idMercaderia" value="${beanConsulta.idMercaderia}">
 								</div>
 							</div>
+							
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
-								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == beanConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
-										</c:forEach>
-									</select>
+								<label class="control-label" for="guiaRemision">Guía Remisión</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${beanConsulta.guiaRemision}" placeholder="Guía Remisión...">
 								</div>
 							</div>
 							<div class="control-group">
@@ -43,10 +39,10 @@
 									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
 								</div>
 							</div>
-
+							
 						</div>
 						<div class="span4">
-						<div class="control-group">
+							<div class="control-group">
 								<label class="control-label" for="proveedor">Ruc Proveedor</label>
 								<div class="controls">									
 									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${beanConsulta.rucProveedor}" placeholder="Proveedor...">

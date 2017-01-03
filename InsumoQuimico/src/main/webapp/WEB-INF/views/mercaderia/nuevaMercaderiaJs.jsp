@@ -152,26 +152,18 @@ $("#eliminarDetalle").click(function(){
 });
 
 $("#guardar").click(function(){
+
+	var data = $("#formMercaderia").serializeObject();
+	data.index = index;
+	data.mercaderiaJSONArray = JSON.stringify(mercaderiaJSONArray);
+		
 	if(fnValidarGuardarMercaderia()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){
 			showLoading();
 			$.ajax({
 				type : 'post',
-				data: {
-					idMercaderia:$("#idMercaderia").val(),
-					idUnidadMinera:$("#idUnidadMinera").val(),
-					idUnidadMineraAlmacen:$("#idUnidadMineraAlmacen").val(),
-					transporte:$("#transporte").val(),
-					guiaRemision:$("#guiaRemision").val(),
-					comprobanteVenta:$("#comprobanteVenta").val(),
-					guiaInterna:$("#guiaInterna").val(),
-					rucProveedor:$("#rucProveedor").val(),
-					descripcionProveedor:$("#descripcionProveedor").val(),
-					index:index,
-	 				mercaderiaJSONArray: JSON.stringify(mercaderiaJSONArray)
-					
-				},
+				data: data,
 				url : '${pageContext.request.contextPath}/ingresarMercaderia/guardarMercaderia.htm',
 				success : function(data) {
 					hideLoading();

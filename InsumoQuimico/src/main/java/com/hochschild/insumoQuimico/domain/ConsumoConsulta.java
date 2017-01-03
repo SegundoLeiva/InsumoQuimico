@@ -9,9 +9,7 @@ public class ConsumoConsulta {
 	@Id
 	private String idConsumo;
 	private String idUnidadMinera;
-    private String idUnidadMineraAlmacen;
     private String idUnidadMineraArea;
-    private String almacen;
     private String area;
     private String cantidad;
     private String fechaCreacion;
@@ -34,28 +32,12 @@ public class ConsumoConsulta {
 		this.idUnidadMinera = idUnidadMinera;
 	}
 
-	public String getIdUnidadMineraAlmacen() {
-		return idUnidadMineraAlmacen;
-	}
-
-	public void setIdUnidadMineraAlmacen(String idUnidadMineraAlmacen) {
-		this.idUnidadMineraAlmacen = idUnidadMineraAlmacen;
-	}
-
 	public String getIdUnidadMineraArea() {
 		return idUnidadMineraArea;
 	}
 
 	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
 		this.idUnidadMineraArea = idUnidadMineraArea;
-	}
-
-	public String getAlmacen() {
-		return almacen;
-	}
-
-	public void setAlmacen(String almacen) {
-		this.almacen = almacen;
 	}
 
 	public String getArea() {

@@ -24,28 +24,7 @@
 								<div class="controls">
 									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
 								</div>
-							</div>
-							
-						</div>
-						<div class="span4">
-							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraAlmacen">Almacén</label>
-								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == beanConsulta.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Fin</label>
-								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
-								</div>
-							</div>
-
+							</div>							
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -58,7 +37,21 @@
 										</c:forEach>
 									</select>
 								</div>
-							</div>				
+							</div>	
+							<div class="control-group">
+								<label class="control-label" for="fecha">Fecha Fin</label>
+								<div class="controls">
+									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
+								</div>
+							</div>
+						</div>
+						<div class="span4">
+							<div class="control-group">
+								<label class="control-label" for="idConsumo">Código Consumo</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="idConsumo" id="idConsumo" value="${beanConsulta.idConsumo}">
+								</div>
+							</div>	
 						</div>
 					</div>
 				</div>
@@ -73,7 +66,6 @@
 						<tr>
 							<th class="center" width="5%">Nro</th>
 							<th class="center">Código</th>
-							<th class="center">Almacén</th>
 							<th class="center">Área</th>
 							<th class="center">Cantidad Total</th>
 							<th class="center">Fecha Creación</th>
@@ -86,7 +78,6 @@
 							<tr>
 								<td class="center">${contador.count}</td>
 								<td class="center">${jbean.idConsumo}</td>
-								<td class="center">${jbean.almacen}</td>
 								<td class="center">${jbean.area}</td>
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>

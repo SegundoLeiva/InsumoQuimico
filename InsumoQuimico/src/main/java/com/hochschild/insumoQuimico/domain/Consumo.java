@@ -15,7 +15,7 @@ import org.hibernate.annotations.NamedNativeQuery;
 @NamedNativeQueries({
 @NamedNativeQuery(name = "listaConsumo",
 callable = true,
-query = "{call dbo.stpr_ListaConsumo(:idUnidadMinera,:idConsumo,:idUnidadMineraAlmacen,:idUnidadMineraArea,:fechaInicio,:fechaFin,:idUsuarioCreacion)}",
+query = "{call dbo.stpr_ListaConsumo(:idUnidadMinera,:idConsumo,:idUnidadMineraArea,:fechaInicio,:fechaFin,:idUsuarioCreacion)}",
 readOnly = true,
 cacheable = false,
 resultClass = ConsumoConsulta.class),
@@ -39,10 +39,6 @@ public class Consumo implements Serializable {
     private UnidadMinera unidadMinera;
     
     @ManyToOne
-    @JoinColumn(name="idUnidadMineraAlmacen")
-    private UnidadMineraAlmacen unidadMineraAlmacen;
-    
-    @ManyToOne
     @JoinColumn(name="idUnidadMineraArea")
     private UnidadMineraArea unidadMineraArea;
 
@@ -62,12 +58,7 @@ public class Consumo implements Serializable {
 	public void setUnidadMinera(UnidadMinera unidadMinera) {
 		this.unidadMinera = unidadMinera;
 	}
-	public UnidadMineraAlmacen getUnidadMineraAlmacen() {
-		return unidadMineraAlmacen;
-	}
-	public void setUnidadMineraAlmacen(UnidadMineraAlmacen unidadMineraAlmacen) {
-		this.unidadMineraAlmacen = unidadMineraAlmacen;
-	}
+
 	public UnidadMineraArea getUnidadMineraArea() {
 		return unidadMineraArea;
 	}

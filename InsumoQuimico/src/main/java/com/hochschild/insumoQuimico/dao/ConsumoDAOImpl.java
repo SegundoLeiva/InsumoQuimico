@@ -42,9 +42,9 @@ public class ConsumoDAOImpl implements ConsumoDAO {
     	try {
     		ConsumoConsulta mercaderiaConsulta = new ConsumoConsulta();
     		BeanUtils.copyProperties(mercaderiaConsulta, consumoConsultaModel);
-    		String[] paramNames = {"idUnidadMinera","idConsumo","idUnidadMineraAlmacen","idUnidadMineraArea","fechaInicio","fechaFin","idUsuarioCreacion"};        
+    		String[] paramNames = {"idUnidadMinera","idConsumo","idUnidadMineraArea","fechaInicio","fechaFin","idUsuarioCreacion"};        
             String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdConsumo(),
-            		mercaderiaConsulta.getIdUnidadMineraAlmacen(),mercaderiaConsulta.getIdUnidadMineraArea(),
+            		mercaderiaConsulta.getIdUnidadMineraArea(),
             		consumoConsultaModel.getFechaInicio(),consumoConsultaModel.getFechaFin(), mercaderiaConsulta.getIdUsuarioCreacion()};
             listaConsumoConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaConsumo",paramNames,values);
 		} catch (Exception e) {

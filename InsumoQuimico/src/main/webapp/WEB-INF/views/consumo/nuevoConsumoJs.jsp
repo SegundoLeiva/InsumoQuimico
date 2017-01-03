@@ -142,20 +142,16 @@ $("#eliminarDetalle").click(function(){
 });
 
 $("#guardar").click(function(){
+	var data = $("#formConsumo").serializeObject();
+	data.index = index;
+	data.consumoJSONArray = JSON.stringify(consumoJSONArray);
+	
 	if(fnValidarGuardarConsumo()){
 		alertify.confirm("Guardar","¿Usted está seguro de guardar los registros?",
 				function(){
 			$.ajax({
 				type : 'post',
-				data: {
-					idConsumo:$("#idConsumo").val(),
-					idUnidadMinera:$("#idUnidadMinera").val(),
-					idUnidadMineraAlmacen:$("#idUnidadMineraAlmacen").val(),
-					idUnidadMineraArea:$("#idUnidadMineraArea").val(),
-					index:index,
-	 				consumoJSONArray: JSON.stringify(consumoJSONArray)
-					
-				},
+				data: data,
 				url : '${pageContext.request.contextPath}/registrarConsumo/guardarConsumo.htm',
 				success : function(data) {
 					if(data!=""){	

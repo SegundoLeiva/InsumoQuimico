@@ -1,14 +1,11 @@
 package com.hochschild.insumoQuimico.domain;
 
-import javax.servlet.http.HttpSession;
-
 import com.hochschild.insumoQuimico.util.FechasUtil;
 
 public class ConsumoConsultaModel {
 
 	private String idConsumo;
 	private String idUnidadMinera;
-    private String idUnidadMineraAlmacen;
     private String idUnidadMineraArea;
     private String almacen;
     private String area;
@@ -43,14 +40,6 @@ public class ConsumoConsultaModel {
 
 	public void setIdUnidadMinera(String idUnidadMinera) {
 		this.idUnidadMinera = idUnidadMinera;
-	}
-
-	public String getIdUnidadMineraAlmacen() {
-		return idUnidadMineraAlmacen;
-	}
-
-	public void setIdUnidadMineraAlmacen(String idUnidadMineraAlmacen) {
-		this.idUnidadMineraAlmacen = idUnidadMineraAlmacen;
 	}
 
 	public String getIdUnidadMineraArea() {

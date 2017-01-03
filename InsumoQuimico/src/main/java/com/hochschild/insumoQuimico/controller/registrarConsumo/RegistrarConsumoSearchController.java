@@ -30,8 +30,6 @@ public class RegistrarConsumoSearchController extends BaseSearchController{
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
 	@Autowired
-    private UnidadMineraAlmacenService unidadMineraAlmacenService;
-	@Autowired
     private UnidadMineraAreaService unidadMineraAreaService;
 	@Autowired
     private ConsumoService consumoService;
@@ -56,8 +54,6 @@ public class RegistrarConsumoSearchController extends BaseSearchController{
 
         List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
-        model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
         return consumoService.listaConsumoConsulta((ConsumoConsultaModel)this.formBusqueda);  

@@ -14,7 +14,7 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
+									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
 										</c:forEach>
@@ -38,15 +38,13 @@
 						</div>
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idAlmacen">Almacén</label>
-								<div class="controls">									
-									<select name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen">
-										<c:forEach var="item" items="${listaUnidadMineraAlmacen}">
-											<option value="${item.idUnidadMineraAlmacen}" ${item.idUnidadMineraAlmacen == mercaderia.unidadMineraAlmacen.idUnidadMineraAlmacen ? 'selected' : ' '}>${item.almacen.almacen}</option>
-										</c:forEach>
-									</select>
+								<label class="control-label">Almacén</label>
+								<div class="controls">
+									<input type="text" class="form-control" value="${listaUnidadMineraAlmacen[0].almacen.almacen}" readonly="readonly">
+									<input type="hidden" name="idUnidadMineraAlmacen" id="idUnidadMineraAlmacen" value="${listaUnidadMineraAlmacen[0].idUnidadMineraAlmacen}">
 								</div>
 							</div>
+
 							<div class="control-group">
 								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
 								<div class="controls">
