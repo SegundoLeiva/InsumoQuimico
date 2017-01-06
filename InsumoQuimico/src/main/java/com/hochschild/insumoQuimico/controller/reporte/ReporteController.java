@@ -84,7 +84,7 @@ public class ReporteController extends BaseReporteController{
 			String fechaConsumo = FechasUtil.dateToString(listaConsumoDetalle.get(i).getConsumo().getFechaConsumo(), "dd/mm/YYYY");
 			String cantidadPresentacion = listaConsumoDetalle.get(i).getCantidadPresentacion().toString();
 			String codigoPresentacion = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
-			String idUnidadMinera = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
+			String idUnidadMinera = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
 			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
 		}
 
