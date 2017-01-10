@@ -5,19 +5,19 @@
 		</span>
  		<c:if test="${mostrarBotonNuevo}">
  			<a href="<c:url value="nuevo.htm"/>" title="nuevo" style="margin-left: 5px" 
- 			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i>Nuevo</a> 
+ 			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i><span class="hidden-480">Nuevo</span></a> 
  		</c:if>
  		<c:if test="${mostrarBotonBuscar}">
  			<a href="#" title="Buscar" onclick="buscarConsulta()" class="btn btn-success btn-small pull-right">
- 			<i class="icon-search"></i>Buscar</a>
+ 			<i class="icon-search"></i><span class="hidden-480">Buscar</span></a>
  		</c:if>
  		<c:if test="${mostrarBotonRegresar}">
  			<a href="<c:url value="listar.htm"/>?cod=RE" title="Regresar" style="margin-left: 5px"
-			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i>Regresar</a>
+			class="btn btn-info btn-small pull-right"><i class="icon-undo"></i><span class="hidden-480">Regresar</span></a>
  		</c:if>
  		<c:if test="${mostrarBotonGuardar}">
  			<a href="#" id="guardar" title="Guardar"
-			class="btn btn-success btn-small pull-right"><i class="icon-save"></i>${accion=='EDITAR' ? 'Modificar' : 'Guardar'}</a>
+			class="btn btn-success btn-small pull-right"><i class="icon-save"></i><span class="hidden-480">${accion=='EDITAR' ? 'Modificar' : 'Guardar'}</span></a>
  		</c:if>
 	</h1>
 </div>
