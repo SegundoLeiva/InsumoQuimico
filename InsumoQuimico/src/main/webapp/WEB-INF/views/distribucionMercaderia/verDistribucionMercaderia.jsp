@@ -48,7 +48,9 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaInicio" id="fechaInicio" readonly="readonly" value="${beanConsulta.fechaInicio}">
+									<span class="input-icon input-icon-right"> 
+										<input type="text" name="fechaInicio" id="fechaInicio" class="span12 date-picker" readonly="readonly" value="${beanConsulta.fechaInicio}"> <i class="icon-calendar"></i>
+									</span>
 								</div>
 							</div>
 							
@@ -65,7 +67,9 @@
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Fin</label>
 								<div class="controls">
-									<input type="text" class="form-control date-picker" name="fechaFin" id="fechaFin" readonly="readonly" value="${beanConsulta.fechaFin}">
+									<span class="input-icon input-icon-right"> 
+										<input type="text" name="fechaFin" id="fechaFin" class="span12 date-picker" readonly="readonly" value="${beanConsulta.fechaFin}"> <i class="icon-calendar"></i>
+									</span>
 								</div>
 							</div>	
 						</div>
