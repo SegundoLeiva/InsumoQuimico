@@ -48,6 +48,7 @@ public class Mercaderia implements Serializable {
     private String guiaInterna;
     private String rucProveedor;
     private String descripcionProveedor;
+    private Date fechaMercaderia;
     private String idUsuarioCreacion;
 	private Date fechaCreacion;
 	private String idUsuarioModificacion;
@@ -130,5 +131,11 @@ public class Mercaderia implements Serializable {
 	}
 	public void setDescripcionProveedor(String descripcionProveedor) {
 		this.descripcionProveedor = descripcionProveedor;
+	}
+	public Date getFechaMercaderia() {
+		return fechaMercaderia;
+	}
+	public void setFechaMercaderia(Date fechaMercaderia) {
+		this.fechaMercaderia = fechaMercaderia;
 	}	
 }

@@ -17,6 +17,7 @@ public class ConsumoParametrosEntrada implements Serializable{
 	private JSONArray consumoJSONArray;
 	private String nombreUsuario;
 	private String index;
+	private String fechaConsumo;
 	public String getIdUnidadMinera() {
 		return idUnidadMinera;
 	}
@@ -58,5 +59,11 @@ public class ConsumoParametrosEntrada implements Serializable{
 	}
 	public void setIndex(String index) {
 		this.index = index;
+	}
+	public String getFechaConsumo() {
+		return fechaConsumo;
+	}
+	public void setFechaConsumo(String fechaConsumo) {
+		this.fechaConsumo = fechaConsumo;
 	}
 }

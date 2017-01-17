@@ -22,6 +22,7 @@ import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.util.Constantes;
+import com.hochschild.insumoQuimico.util.FechasUtil;
 
 @Service
 public class MercaderiaServiceImpl implements MercaderiaService {
@@ -63,7 +64,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				mercaderia.setDescripcionProveedor(mercaderiaParametrosEntrada.getDescripcionProveedor());
 				mercaderia.setIdUsuarioModificacion(idUsuarioCreacion);		
 				mercaderia.setFechaModificacion(new Date());
-				
+				mercaderia.setFechaMercaderia(FechasUtil.stringToDate(mercaderiaParametrosEntrada.getFechaMercaderia(), "dd/mm/yyyy"));
 				mercaderiaDAO.actualizarMercaderia(mercaderia);
 			}
 			
@@ -154,7 +155,8 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		mercaderia.setGuiaInterna(data.getGuiaInterna());
 		mercaderia.setRucProveedor(data.getRucProveedor());
 		mercaderia.setDescripcionProveedor(data.getDescripcionProveedor());
-		mercaderia.setIdUsuarioCreacion(data.getNombreUsuario());		
+		mercaderia.setIdUsuarioCreacion(data.getNombreUsuario());	
+		mercaderia.setFechaMercaderia(FechasUtil.stringToDate(data.getFechaMercaderia(), "dd/mm/yyyy"));
 		mercaderia.setFechaCreacion(new Date());
 		mercaderiaDAO.insertarMercaderia(mercaderia);
 	}

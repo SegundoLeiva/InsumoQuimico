@@ -21,6 +21,7 @@ public class MercaderiaParametrosEntrada implements Serializable{
 	private String guiaRemision;
 	private JSONArray mercaderiaJSONArray;
 	private String nombreUsuario;
+	private String fechaMercaderia;
 	private String index;
 	
 	public String getNombreUsuario() {
@@ -94,5 +95,11 @@ public class MercaderiaParametrosEntrada implements Serializable{
 	}
 	public void setMercaderiaJSONArray(JSONArray mercaderiaJSONArray) {
 		this.mercaderiaJSONArray = mercaderiaJSONArray;
+	}
+	public String getFechaMercaderia() {
+		return fechaMercaderia;
+	}
+	public void setFechaMercaderia(String fechaMercaderia) {
+		this.fechaMercaderia = fechaMercaderia;
 	}
 }

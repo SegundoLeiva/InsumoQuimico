@@ -48,12 +48,12 @@
 								<div class="controls">
 									<c:choose>
 										<c:when test="${empty accion}">
-											<input type="text" class="form-control" name="fecha" id="fecha" 
+											<input type="text" class="form-control" name="fechaConsumo" id="fechaConsumo" 
 												readonly="readonly" value="<fmt:formatDate value="${now}" pattern="dd/MM/yyyy" />">
 										</c:when>
 										<c:otherwise>
-											<input type="text" class="form-control" name="fecha" id="fecha" 
-											readonly="readonly" value="<fmt:formatDate value="${consumo.fechaCreacion}" pattern="dd/MM/yyyy" />">
+											<input type="text" class="form-control" name="fechaConsumo" id="fechaConsumo" 
+											readonly="readonly" value="<fmt:formatDate value="${consumo.fechaConsumo}" pattern="dd/MM/yyyy" />">
 										</c:otherwise>
 									</c:choose>
 									

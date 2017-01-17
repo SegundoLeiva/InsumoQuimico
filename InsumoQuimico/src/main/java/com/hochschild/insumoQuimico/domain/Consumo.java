@@ -46,6 +46,8 @@ public class Consumo implements Serializable {
 	private Date fechaCreacion;
 	private String idUsuarioModificacion;
 	private Date fechaModificacion;
+	private Date fechaConsumo;
+	
 	public String getIdConsumo() {
 		return idConsumo;
 	}
@@ -88,5 +90,11 @@ public class Consumo implements Serializable {
 	}
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
+	}
+	public Date getFechaConsumo() {
+		return fechaConsumo;
+	}
+	public void setFechaConsumo(Date fechaConsumo) {
+		this.fechaConsumo = fechaConsumo;
 	}
 }
