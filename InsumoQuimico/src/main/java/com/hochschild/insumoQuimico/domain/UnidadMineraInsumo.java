@@ -23,7 +23,7 @@ public class UnidadMineraInsumo implements Serializable{
 	
     @ManyToOne
     @JoinColumn(name="idInsumo")
-    private Insumo Insumo;
+    private Insumo insumo;
     
     private String vigencia;
 
@@ -44,11 +44,11 @@ public class UnidadMineraInsumo implements Serializable{
 	}
 
 	public Insumo getInsumo() {
-		return Insumo;
+		return insumo;
 	}
 
-	public void setInsumo(Insumo Insumo) {
-		this.Insumo = Insumo;
+	public void setInsumo(Insumo insumo) {
+		this.insumo = insumo;
 	}
 
 	public String getVigencia() {

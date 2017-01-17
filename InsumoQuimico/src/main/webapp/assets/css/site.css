@@ -212,3 +212,11 @@
 span.input-icon{
 	width: 164px !important;
 }
+
+.table tbody td,label,select,input{
+	font-size: 12px !important
+}
+
+.table thead tr th{
+	font-size: 13px !important
+}

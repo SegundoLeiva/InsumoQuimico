@@ -10,6 +10,26 @@
 					<div class="row-fluid">
 						<div class="span4">
 							<div class="control-group">
+								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
+								<div class="controls">
+									<select name="idUnidadMinera" id="idUnidadMinera">
+										<c:forEach var="item" items="${listaUnidadesMineras}">
+											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>	
+							<div class="control-group">
+								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
+								<div class="controls">
+									<select id="idPresentacionInsumo" name="idPresentacionInsumo">
+									</select>
+								</div>
+							</div>	
+
+						</div>
+						<div class="span4">
+							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
@@ -19,32 +39,7 @@
 										</c:forEach>
 									</select>
 								</div>
-							</div>	
-							<div class="control-group">
-								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
-								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
-										<c:forEach var="item" items="${listaUnidadesMineras}">
-											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>	
-							
-							
-						</div>
-						<div class="span4">
-							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
-								<div class="controls">									
-									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
-											<option value="${item.idUnidadMineraInsumo}" ${item.idUnidadMineraInsumo == beanConsulta.idUnidadMineraInsumo ? 'selected' : ' '}>${item.insumo.insumo}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
+							</div>							
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
@@ -58,12 +53,17 @@
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
-								<div class="controls">
-									<select id="idPresentacionInsumo" name="idPresentacionInsumo">
+								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
+								<div class="controls">									
+									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo">						
+										<option value="">Seleccionar</option>
+										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
+											<option value="${item.idUnidadMineraInsumo}" ${item.idUnidadMineraInsumo == beanConsulta.idUnidadMineraInsumo ? 'selected' : ' '}>${item.insumo.insumo}</option>
+										</c:forEach>
 									</select>
 								</div>
-							</div>	
+							</div>
+							
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha Fin</label>
 								<div class="controls">

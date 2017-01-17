@@ -10,8 +10,8 @@ $(document).ready(function() {
 	claseColumna=["idUnidadMineraInsumo","descripcion","descripcionPresentacion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
 	
-	if('<c:out value="${accion}"/>'=="CONSULTAR"){	
-
+	if('<c:out value="${accion}"/>'!=""){	
+		$("#codigoGenerado").html("N° "+$("#idConsumo").val());
 		var i=0;
 		<c:forEach var="jbean" items="${listaConsumoDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
@@ -22,14 +22,17 @@ $(document).ready(function() {
 			consumoJSONArray[i].idDetalle="${jbean.id.idConsumoDetalle}";
 			consumoJSONArray[i].idUnidadMineraInsumo="${jbean.unidadMineraInsumo.idUnidadMineraInsumo}";
 			consumoJSONArray[i].cantidad="${jbean.cantidad}";
-			consumoJSONArray[i].idPresentacionInsumo="${jbean.presentacionInsumo.idPresentacion}";
+			consumoJSONArray[i].idPresentacionInsumo="${jbean.presentacionInsumo.idPresentacionInsumo}";
 			consumoJSONArray[i].descripcionPresentacion="${jbean.presentacionInsumo.descripcion}";
 			consumoJSONArray[i].unidadMedida="KG";
 			consumoJSONArray[i].indicadorBD=INDICADOR_CREADO;
 			i++;
 		</c:forEach>
 		index = "${listaConsumoDetalle.get(listaConsumoDetalle.size()-1).id.idConsumoDetalle+1}";
-		bloquearCamposConsultar();
+		
+		if('<c:out value="${accion}"/>'=="CONSULTAR"){
+			bloquearCamposConsultar();		
+		}
 	}
 	
 	var dataInsumo=[{id:" ",text:"Seleccionar"}];
@@ -92,7 +95,7 @@ $("#abrirDetalleEditar").click(function(){
 		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumo").text();
 		
 		$("#idUnidadMineraInsumo").val(consumoJSONArray[index].idUnidadMineraInsumo).trigger('change');
-		$("#idPresentacionInsumo").val(consumoJSONArray[index].idPresentacionInsumo).trigger('change');
+ 		$("#idPresentacionInsumo").val(consumoJSONArray[index].idPresentacionInsumo).trigger('change');
 		$("#cantidad").val(consumoJSONArray[index].cantidad);
 		filaIndexDetalle = index;
 
@@ -157,6 +160,7 @@ $("#guardar").click(function(){
 					if(data!=""){	
 						index = actualizarDetalleGrabar(index);						
 						$("#idConsumo").val(data);	
+						$("#codigoGenerado").html("N° "+data);
 						mensajeTransaccion("guardar");											
 					}else{
 						mensajeTransaccion("error");

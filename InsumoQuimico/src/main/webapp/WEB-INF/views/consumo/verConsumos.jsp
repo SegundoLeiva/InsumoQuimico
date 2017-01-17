@@ -49,12 +49,12 @@
 							</div>
 						</div>
 						<div class="span4">
-							<div class="control-group">
-								<label class="control-label" for="idConsumo">Código Consumo</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="idConsumo" id="idConsumo" value="${beanConsulta.idConsumo}">
-								</div>
-							</div>	
+<!-- 							<div class="control-group"> -->
+<!-- 								<label class="control-label" for="idConsumo">Código Consumo</label> -->
+<!-- 								<div class="controls"> -->
+<%-- 									<input type="text" class="form-control" name="idConsumo" id="idConsumo" value="${beanConsulta.idConsumo}"> --%>
+<!-- 								</div> -->
+<!-- 							</div>	 -->
 						</div>
 					</div>
 				</div>
@@ -85,6 +85,10 @@
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
+									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idConsumo}" />"
+										title="Modificar"> <i
+											class="icon-edit bigger-130"></i>
+									</a>
 									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idConsumo}" />"
 										title="Consultar"> <i
 											class="icon-align-justify bigger-130"></i>

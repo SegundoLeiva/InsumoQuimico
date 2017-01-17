@@ -50,7 +50,7 @@ public class UnidadMineraAreaDAOImpl implements UnidadMineraAreaDAO {
 	@SuppressWarnings("unchecked")
 	public List<UnidadMineraArea> listaUnidadMineraAreaPorUnidadMinera(String idUnidadMinera){
 		String query = "from UnidadMineraArea uma "
-				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.Area.Area";
+				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.area.area";
     	List<UnidadMineraArea> resultado = hibernateTemplate.find(query);
         return  resultado;
 	}

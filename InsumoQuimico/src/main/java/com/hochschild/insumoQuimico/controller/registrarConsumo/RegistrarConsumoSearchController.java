@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
 import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
-import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.ConsumoDetalleService;
 import com.hochschild.insumoQuimico.service.ConsumoService;
-import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
@@ -54,7 +52,7 @@ public class RegistrarConsumoSearchController extends BaseSearchController{
 
         List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraArea();
+        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
         return consumoService.listaConsumoConsulta((ConsumoConsultaModel)this.formBusqueda);  
        

@@ -11,26 +11,11 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
 								<div class="controls">
-									<select name="idUnidadMinera" id="idUnidadMinera" disabled="disabled">
+									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
 										</c:forEach>
 									</select>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label" for="idMercaderia">Código Mercadería</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="idMercaderia" id="idMercaderia" value="${beanConsulta.idMercaderia}">
-								</div>
-							</div>
-							
-						</div>
-						<div class="span4">
-							<div class="control-group">
-								<label class="control-label" for="guiaRemision">Guía Remisión</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${beanConsulta.guiaRemision}" placeholder="Guía Remisión...">
 								</div>
 							</div>
 							<div class="control-group">
@@ -45,9 +30,9 @@
 						</div>
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="proveedor">Ruc Proveedor</label>
-								<div class="controls">									
-									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${beanConsulta.rucProveedor}" placeholder="Proveedor...">
+								<label class="control-label" for="guiaRemision">Guía Remisión</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${beanConsulta.guiaRemision}" placeholder="Guía Remisión...">
 								</div>
 							</div>
 							<div class="control-group">
@@ -58,6 +43,16 @@
 									</span>
 								</div>
 							</div>
+							
+						</div>
+						<div class="span4">
+							<div class="control-group">
+								<label class="control-label" for="proveedor">Ruc Proveedor</label>
+								<div class="controls">									
+									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" maxlength="11" value="${beanConsulta.rucProveedor}" placeholder="Proveedor...">
+								</div>
+							</div>
+							
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 package com.hochschild.insumoQuimico.controller.distribucionMercaderia;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderia;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaParametrosEntrada;
+import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.DistribucionMercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
@@ -40,8 +43,9 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 	@Override
 	public Model setViewAttributes(Model model) {
 		// TODO Auto-generated method stub
-		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
-        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraArea());
+        model.addAttribute("listaUnidadesMineras", this.usuario.getListaUnidadesMineras());
+		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
 		return model;
 	}
 
@@ -60,8 +64,9 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 	public Model setModificarAttributes(String id, Model model) {
 		// TODO Auto-generated method stub
 		DistribucionMercaderia data = distribucionMercaderiaService.obtieneDistribucionMercaderiaPorId(id);
-		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
-        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraArea());
+		model.addAttribute("listaUnidadesMineras", this.usuario.getListaUnidadesMineras());
+		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
 		model.addAttribute("distribucionMercaderia", data);
 		return model;
 	}

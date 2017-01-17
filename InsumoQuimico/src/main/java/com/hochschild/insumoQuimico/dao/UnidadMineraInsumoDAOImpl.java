@@ -52,7 +52,7 @@ public class UnidadMineraInsumoDAOImpl implements UnidadMineraInsumoDAO {
 	@SuppressWarnings("unchecked")
 	public List<UnidadMineraInsumo> listaUnidadMineraInsumoPorUnidadMinera(String idUnidadMinera){
 		String query = "from UnidadMineraInsumo uma "
-				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.Insumo.Insumo";
+				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.insumo.insumo";
     	List<UnidadMineraInsumo> resultado = hibernateTemplate.find(query);
         return  resultado;
 	}

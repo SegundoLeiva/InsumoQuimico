@@ -5,6 +5,7 @@
 
 <div class="page-header position-relative">
 	<form id="formConsumo" method="POST" class="form-horizontal">
+	<input type="hidden" name="idConsumo" id="idConsumo" value="${consumo.idConsumo}">
 		<div class="row-fluid">
 			<div class="page-content">
 				<div class="span12">
@@ -21,13 +22,6 @@
 									</select>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label" for="idConsumo">Código Consumo</label>
-								<div class="controls codigoDisabled">
-									<input type="text" class="form-control" name="idConsumo" id="idConsumo" 
-									readonly="readonly" value="${consumo.idConsumo}">
-								</div>
-							</div>
 						</div>
 						<div class="span4">
 							<div class="control-group">
@@ -35,7 +29,7 @@
 								<div class="controls">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">
 										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == mercaderia.unidadMineraArea.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
+											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == consumo.unidadMineraArea.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
 										</c:forEach>
 									</select>
 								</div>

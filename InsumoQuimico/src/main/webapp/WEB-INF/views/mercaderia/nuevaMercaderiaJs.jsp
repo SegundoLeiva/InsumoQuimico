@@ -19,7 +19,8 @@ $(document).ready(function() {
 		listaFactorConversionMedida.push(obj);
 	</c:forEach>
 	
-	if('<c:out value="${accion}"/>'=="CONSULTAR"){	
+	if('<c:out value="${accion}"/>'=="CONSULTAR"){
+		$("#codigoGenerado").html("N° "+$("#idMercaderia"));
 		var i=0;
 		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
 		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
@@ -170,6 +171,7 @@ $("#guardar").click(function(){
 					if(data!=""){	
 						index = actualizarDetalleGrabar(index);						
 						$("#idMercaderia").val(data);	
+						$("#codigoGenerado").html("N° "+data);
 						mensajeTransaccion("guardar");											
 					}else{
 						mensajeTransaccion("error");

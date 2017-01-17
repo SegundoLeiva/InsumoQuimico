@@ -5,6 +5,7 @@
 
 <div class="page-header position-relative">
 	<form id="formMercaderia" method="POST" class="form-horizontal">
+	<input type="hidden" name="idMercaderia" id="idMercaderia"  value="${mercaderia.idMercaderia}">
 		<div class="row-fluid">
 				<div class="span12">
 					<div class="span8" >
@@ -26,15 +27,13 @@
 								<div class="controls">
 									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
 								</div>
-							</div>		
-														
+							</div>	
 							<div class="control-group">
-								<label class="control-label" for="fecha">Código Mercadería</label>
-								<div class="controls codigoDisabled">
-									<input type="text" class="form-control" name="idMercaderia" id="idMercaderia" 
-									readonly="readonly" value="${mercaderia.idMercaderia}">
+								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
+								<div class="controls">
+									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
 								</div>
-							</div>					
+							</div>						
 						</div>
 						<div class="span6">
 							<div class="control-group">
@@ -45,12 +44,6 @@
 								</div>
 							</div>
 
-							<div class="control-group">
-								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
-								</div>
-							</div>	
 							<div class="control-group">
 								<label class="control-label" for="fecha">Fecha</label>
 								<div class="controls">
