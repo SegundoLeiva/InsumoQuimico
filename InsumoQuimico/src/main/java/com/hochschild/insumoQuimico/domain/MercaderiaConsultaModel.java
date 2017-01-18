@@ -20,8 +20,8 @@ public class MercaderiaConsultaModel {
 	private String fechaFin;
 	
 	public MercaderiaConsultaModel(Usuario usuarioSession){
-		this.fechaInicio=FechasUtil.getFechaActual();
-		this.fechaFin=FechasUtil.getFechaActual();
+		this.fechaInicio=FechasUtil.getPrimerDiaDelMesActual();
+		this.fechaFin=FechasUtil.getUltimoDiaDelMesActual();
 		this.idUsuarioCreacion=usuarioSession.getIdUsuario();
 		this.idUnidadMinera=usuarioSession.getIdUnidadMineraPorDefecto();
 	}
