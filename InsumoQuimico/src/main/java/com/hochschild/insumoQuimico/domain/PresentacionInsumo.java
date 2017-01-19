@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PresentacionInsumo")
+@Table(name = "InsumoPresentacion")
 public class PresentacionInsumo {
 	
 	@Id
@@ -14,7 +14,10 @@ public class PresentacionInsumo {
     private Long idPresentacion;
     private String descripcion;
     private Double valor;
-    private String idUnidadMedida;
+    private String idUnidadMedidaPresentacion;
+    private Double pesoBruto;
+    private Double pesoNeto;
+    private String idUnidadMedidaConversion;
     private String vigencia;
 	public String getIdPresentacionInsumo() {
 		return idPresentacionInsumo;
@@ -28,6 +31,12 @@ public class PresentacionInsumo {
 	public void setIdInsumo(Long idInsumo) {
 		this.idInsumo = idInsumo;
 	}
+	public Long getIdPresentacion() {
+		return idPresentacion;
+	}
+	public void setIdPresentacion(Long idPresentacion) {
+		this.idPresentacion = idPresentacion;
+	}
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -40,11 +49,29 @@ public class PresentacionInsumo {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public String getIdUnidadMedida() {
-		return idUnidadMedida;
+	public String getIdUnidadMedidaPresentacion() {
+		return idUnidadMedidaPresentacion;
 	}
-	public void setIdUnidadMedida(String idUnidadMedida) {
-		this.idUnidadMedida = idUnidadMedida;
+	public void setIdUnidadMedidaPresentacion(String idUnidadMedidaPresentacion) {
+		this.idUnidadMedidaPresentacion = idUnidadMedidaPresentacion;
+	}
+	public Double getPesoBruto() {
+		return pesoBruto;
+	}
+	public void setPesoBruto(Double pesoBruto) {
+		this.pesoBruto = pesoBruto;
+	}
+	public Double getPesoNeto() {
+		return pesoNeto;
+	}
+	public void setPesoNeto(Double pesoNeto) {
+		this.pesoNeto = pesoNeto;
+	}
+	public String getIdUnidadMedidaConversion() {
+		return idUnidadMedidaConversion;
+	}
+	public void setIdUnidadMedidaConversion(String idUnidadMedidaConversion) {
+		this.idUnidadMedidaConversion = idUnidadMedidaConversion;
 	}
 	public String getVigencia() {
 		return vigencia;
@@ -52,11 +79,4 @@ public class PresentacionInsumo {
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
 	}
-	public Long getIdPresentacion() {
-		return idPresentacion;
-	}
-	public void setIdPresentacion(Long idPresentacion) {
-		this.idPresentacion = idPresentacion;
-	}
-	
 }

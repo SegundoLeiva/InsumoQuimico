@@ -54,7 +54,6 @@ public class MercaderiaDetalle implements Serializable {
 	
 	private Double cantidad;
 	private String unidadMedida;	
-	private Double factorConversion;
 	private String idUsuarioCreacion;	
 	private Date fechaCreacion;	
 	private String idUsuarioModificacion;	
@@ -88,12 +87,6 @@ public class MercaderiaDetalle implements Serializable {
 	}
 	public void setUnidadMedida(String unidadMedida) {
 		this.unidadMedida = unidadMedida;
-	}
-	public Double getFactorConversion() {
-		return factorConversion;
-	}
-	public void setFactorConversion(Double factorConversion) {
-		this.factorConversion = factorConversion;
 	}
 	public String getIdUsuarioCreacion() {
 		return idUsuarioCreacion;

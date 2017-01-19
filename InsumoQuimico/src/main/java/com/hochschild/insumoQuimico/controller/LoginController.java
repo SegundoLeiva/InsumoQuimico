@@ -2,6 +2,8 @@ package com.hochschild.insumoQuimico.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -17,10 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hochschild.insumoQuimico.ad.LdapSeguridad;
+import com.hochschild.insumoQuimico.domain.CalendarioGestion;
 import com.hochschild.insumoQuimico.domain.DivisionesCIA;
 import com.hochschild.insumoQuimico.domain.OpcionApp;
 import com.hochschild.insumoQuimico.domain.Usuario;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
+import com.hochschild.insumoQuimico.service.CalendarioGestionService;
 import com.hochschild.insumoQuimico.service.DivisionesCIAService;
 import com.hochschild.insumoQuimico.service.OpcionesAppService;
 import com.hochschild.insumoQuimico.util.Constantes;
@@ -42,11 +46,9 @@ public class LoginController {
     private ValorOrganizacionalService valorOrganizacionalService;
     @Autowired
     private DivisionesCIAService divisionesCIAService; 
+    @Autowired
+	public CalendarioGestionService calendarioGestionService;
     
-//    @RequestMapping(value="init.htm", method={RequestMethod.GET})
-//    public String init() {
-//        return "login";
-//    }
     
     @RequestMapping(value="/login.htm", method=RequestMethod.POST)
     public ModelAndView login(HttpServletRequest req) {  
@@ -92,6 +94,8 @@ public class LoginController {
                                 cargaValoresOrganizacionales(idAplicacion,usuario,idUnidadMinera);                                                             
                                 session.setAttribute("puestoPorUsuario", puestoPorUsuario);                                
                                 session.setAttribute("session_usuario", usuario);
+                                obtenerFlagCierreMes(session, usuario);
+            					
                                 return new ModelAndView("redirect:/home/bienvenida.htm");
                             }else{
                                 mensaje = "Ud. no tiene acceso al sistema."; 
@@ -198,5 +202,18 @@ public class LoginController {
     	req.setAttribute("expiro", "true");
     	return "templatelogin";
     }
+	
+	public void obtenerFlagCierreMes(HttpSession session, Usuario usuario){
+		   CalendarioGestion calendario = calendarioGestionService.obtieneCalendarioGestionPorIdUnidadMinera(usuario.getIdUnidadMineraPorDefecto());
+           Date date = new Date();
+           
+           Calendar cal = Calendar.getInstance(); 
+           cal.setTime(calendario.getFechaFin()); 
+           cal.add(Calendar.DATE, calendario.getDiasTolerancia());
+           
+			if(!(date.after(calendario.getFechaInicio()) && date.before(cal.getTime()) && calendario.getAperturado().equals("S"))){
+				session.setAttribute("flagCierreMes", "C");
+			}
+	}
     
 }
