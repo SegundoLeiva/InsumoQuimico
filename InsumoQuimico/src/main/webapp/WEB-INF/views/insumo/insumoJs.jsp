@@ -7,7 +7,7 @@ var index = 1;
 
 $(document).ready(function() {
 	tabla="#tablaDetalle";
-	claseColumna=["descripcion","valor","unidadMedida","vigenciaInsumo"];
+	claseColumna=["descripcion","valor","unidadMedida","pesoBruto","pesoNeto","vigenciaInsumo"];
 	inicializarStyleTablaDetalle();
 
 	if('<c:out value="${accion}"/>'=="EDITAR"){	
@@ -18,13 +18,15 @@ $(document).ready(function() {
 				vigencia = "NO VIGENTE"
 			}
 		 	var data = ["${jbean.descripcion}",
-		             "${jbean.valor}","${jbean.idUnidadMedida}",vigencia];
+		             "${jbean.valor}","${jbean.idUnidadMedidaPresentacion}","${jbean.pesoBruto}","${jbean.pesoNeto}",vigencia];
 			agregarDetalle(data); 
 			insumoJSONArray[i].idDetalle="${jbean.idPresentacionInsumo}";
 			insumoJSONArray[i].idPresentacion="${jbean.idPresentacion}";
 			insumoJSONArray[i].descripcion="${jbean.descripcion}";
 			insumoJSONArray[i].valor="${jbean.valor}";
-			insumoJSONArray[i].unidadMedida="${jbean.idUnidadMedida}";
+			insumoJSONArray[i].pesoBruto="${jbean.pesoBruto}";
+			insumoJSONArray[i].pesoNeto="${jbean.pesoNeto}";
+			insumoJSONArray[i].unidadMedida="${jbean.idUnidadMedidaPresentacion}";
 			insumoJSONArray[i].vigenciaInsumo="${jbean.vigencia}";
 			insumoJSONArray[i].indicadorBD=INDICADOR_CREADO;
 			i++;
@@ -47,11 +49,13 @@ $(document).ready(function() {
 $("#btnAgregarDetalle").click(function(){
 	 if(validarCamposRequeridos("formModalDetalleForm") && validarDetalle()){			 	
  		 	var data = [$("#descripcion").val(),$("#valor").val(),$("#unidadMedida").val(),
- 		 	            $("#vigenciaInsumo option:selected").text()];
+ 		 	          $("#pesoBruto").val(),$("#pesoNeto").val(),$("#vigenciaInsumo option:selected").text()];
  		 	agregarDetalle(data);
  		 	var fila = insumoJSONArray.length-1;
   		 	insumoJSONArray[fila].descripcion=$("#descripcion").val();
   		 	insumoJSONArray[fila].valor=$("#valor").val();
+  		 	insumoJSONArray[fila].pesoBruto=$("#pesoBruto").val();
+  		 	insumoJSONArray[fila].pesoNeto=$("#pesoNeto").val();
   		 	insumoJSONArray[fila].unidadMedida=$("#unidadMedida").val();
   		 	insumoJSONArray[fila].vigenciaInsumo=$("#vigenciaInsumo").val();
 		 	$("#divModalDetalleForm").modal("hide");
@@ -61,7 +65,7 @@ $("#btnAgregarDetalle").click(function(){
 
 function agregarDetalle(data){
 	var insumoJSON = {idDetalle:'',idPresentacion:'',descripcion:'',
-		    valor:'',unidadMedida:'',indicadorBD: INDICADOR_NUEVO};
+		    valor:'',unidadMedida:'',pesoBruto:'',pesoNeto:'',indicadorBD: INDICADOR_NUEVO};
 	insumoJSONArray.push(insumoJSON);
 	agregarFila(data);
 }
@@ -71,6 +75,8 @@ $("#btnEditarDetalle").click(function(){
 		 setearCampo("descripcion",$("#descripcion").val());
 		 setearCampo("valor",$("#valor").val());
 		 setearCampo("unidadMedida",$("#unidadMedida").val());
+		 setearCampo("pesoBruto",$("#pesoBruto").val());
+		 setearCampo("pesoNeto",$("#pesoNeto").val());
 		 setearCampo("vigenciaInsumo",$("#vigenciaInsumo option:selected").text());
 		 insumoJSONArray[filaIndexDetalle].vigenciaInsumo=$("#vigenciaInsumo").val();
 		 cambiarIndicadorModificado();	 
@@ -88,6 +94,8 @@ $("#abrirDetalleEditar").click(function(){
 		$("#descripcion").val(insumoJSONArray[index].descripcion);
 		$("#valor").val(insumoJSONArray[index].valor);
 		$("#unidadMedida").val(insumoJSONArray[index].unidadMedida).trigger('change');
+		$("#pesoBruto").val(insumoJSONArray[index].pesoBruto);
+		$("#pesoNeto").val(insumoJSONArray[index].pesoNeto);
 		$("#vigenciaInsumo").val(insumoJSONArray[index].vigenciaInsumo);
 		filaIndexDetalle = index;
 		$("#divModalDetalleForm").modal("show");

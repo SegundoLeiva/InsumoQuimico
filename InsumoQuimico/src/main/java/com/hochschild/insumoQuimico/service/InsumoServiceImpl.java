@@ -67,8 +67,11 @@ public class InsumoServiceImpl implements InsumoService {
 				presentacionInsumo.setIdPresentacion(new Long(index));
 				presentacionInsumo.setDescripcion(jsonObj.getString("descripcion"));
 				presentacionInsumo.setValor(jsonObj.getDouble("valor"));
+				presentacionInsumo.setPesoBruto(jsonObj.getDouble("pesoBruto"));
+				presentacionInsumo.setPesoNeto(jsonObj.getDouble("pesoNeto"));
 				presentacionInsumo.setVigencia(jsonObj.getString("vigenciaInsumo"));
-				presentacionInsumo.setIdUnidadMedida(jsonObj.getString("unidadMedida"));
+				presentacionInsumo.setIdUnidadMedidaPresentacion(jsonObj.getString("unidadMedida"));
+				presentacionInsumo.setIdUnidadMedidaConversion("KG");
 				presentacionInsumoDAO.insertarPresentacionInsumo(presentacionInsumo);
 				
 				index++;
@@ -81,8 +84,10 @@ public class InsumoServiceImpl implements InsumoService {
 
 				presentacionInsumo.setDescripcion(jsonObj.getString("descripcion"));
 				presentacionInsumo.setValor(jsonObj.getDouble("valor"));
+				presentacionInsumo.setPesoBruto(jsonObj.getDouble("pesoBruto"));
+				presentacionInsumo.setPesoNeto(jsonObj.getDouble("pesoNeto"));
 				presentacionInsumo.setVigencia(jsonObj.getString("vigenciaInsumo"));
-				presentacionInsumo.setIdUnidadMedida(jsonObj.getString("unidadMedida"));
+				presentacionInsumo.setIdUnidadMedidaPresentacion(jsonObj.getString("unidadMedida"));
 				presentacionInsumoDAO.modificarPresentacionInsumo(presentacionInsumo);
 
 			}

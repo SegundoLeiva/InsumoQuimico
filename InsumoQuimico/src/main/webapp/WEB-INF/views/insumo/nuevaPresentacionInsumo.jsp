@@ -30,6 +30,26 @@
 					<div class="row-fluid">
 						<div class="span6">
 							<div class="control-group">
+								<label class="control-label" for="pesoBruto">Peso Bruto (Kg)</label>
+								<div class="controls">
+									<input type="text" id="pesoBruto" class="numeroDecimal inputInsumo" required data-msg-required="El campo Peso Bruto es obligatorio.">
+								</div>
+							</div>
+						
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label" for="pesoNeto">Peso Neto (Kg)</label>
+									<div class="controls">
+										<input type="text" id="pesoNeto" class="numeroDecimal inputInsumo" required data-msg-required="El campo Peso Neto es obligatorio.">
+									</div>
+							</div>
+						
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="control-group">
 								<label class="control-label" for="idunidadMedida">Unidad Medida</label>
 								<div class="controls selectInsumo">
 									<select id="unidadMedida" required

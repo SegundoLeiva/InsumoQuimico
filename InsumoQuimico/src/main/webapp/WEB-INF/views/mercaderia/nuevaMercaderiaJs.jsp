@@ -5,19 +5,11 @@
 var mercaderiaJSONArray = arrayJsonDetalle;
 var index = 1;
 var listaPresentacionInsumo;
-var listaFactorConversionMedida=[];
 
 $(document).ready(function() {
 	tabla="#tablaMercaderiaDetalle";
 	claseColumna=["idUnidadMineraInsumo","descripcion","descripcionPresentacion","cantidad","unidadMedida"];
 	inicializarStyleTablaDetalle();
-	
-	//Lista de Factor Conversion
-	<c:forEach var="item" items="${listaFactorConversionMedida}">		
-		var obj = {idUnidadMedidaDe:"${item.id.idUnidadMedidaDe}",
-				factorConversion:"${item.factorConversion}"}
-		listaFactorConversionMedida.push(obj);
-	</c:forEach>
 	
 	if('<c:out value="${accion}"/>'=="CONSULTAR"){
 		$("#codigoGenerado").html("N° "+$("#idMercaderia"));
@@ -66,7 +58,6 @@ $("#btnAgregarDetalle").click(function(){
 			mercaderiaJSONArray[fila].idPresentacion=$("#idPresentacion").val();
 			mercaderiaJSONArray[fila].descripcionPresentacion=$("#idPresentacion option:selected").text();
 			mercaderiaJSONArray[fila].unidadMedida=$("#unidadMedida").val();
-			mercaderiaJSONArray[fila].factorConversion=$("#factorConversion").val();
 		 	$("#divModalDetalleForm").modal("hide");
 	 }
 	
@@ -75,7 +66,7 @@ $("#btnAgregarDetalle").click(function(){
 function agregarDetalle(data){
 	var mercaderiaJSON = {
 		    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',idPresentacion:'',descripcionPresentacion:'',
-		    descripcion:'',unidadMedida:'',factorConversion:'',indicadorBD: INDICADOR_NUEVO};
+		    descripcion:'',unidadMedida:'',indicadorBD: INDICADOR_NUEVO};
 	mercaderiaJSONArray.push(mercaderiaJSON);
 	agregarFila(data);
 }
@@ -89,7 +80,6 @@ $("#btnEditarDetalle").click(function(){
 		 setearCampo("unidadMedida",$("#unidadMedida").val());
 		 cambiarIndicadorModificado();	 
 		 mercaderiaJSONArray[filaIndexDetalle].idPresentacion=$("#idPresentacion").val();
-		 mercaderiaJSONArray[filaIndexDetalle].factorConversion=$("#factorConversion").val();
 		 $("#divModalDetalleForm").modal("hide");
 	 }
 	
@@ -252,19 +242,12 @@ $("#idPresentacion").change(function(){
 	if(idPresentacion.trim()!=""){
 		for (var i = 0; i < listaPresentacionInsumo.length; i++) {
 			if(listaPresentacionInsumo[i].idPresentacion==idPresentacion){
-				unidadMedida = listaPresentacionInsumo[i].idUnidadMedida;
+				unidadMedida = listaPresentacionInsumo[i].idUnidadMedidaPresentacion;
 				$("#unidadMedida").val(unidadMedida);
+				$("#pesoNeto").val(listaPresentacionInsumo[i].pesoNeto);
 				break;
 			}
 		}
-		for (var i = 0; i < listaFactorConversionMedida.length; i++) {
-			if(listaFactorConversionMedida[i].idUnidadMedidaDe==unidadMedida){
-				$("#factorConversion").val(listaFactorConversionMedida[i].factorConversion);
-				break;
-			}
-		}
-	}else{
-		$("#factorConversion").val("");
 	}
 });
 

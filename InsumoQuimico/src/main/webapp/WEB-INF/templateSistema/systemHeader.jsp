@@ -3,7 +3,7 @@
 	<h1 class="tituloHeader">
 		<span> <i class="icon-double-angle-right"></i>
 		</span>
- 		<c:if test="${mostrarBotonNuevo}">
+ 		<c:if test="${mostrarBotonNuevo and cierreMes eq null}">
  			<a href="<c:url value="nuevo.htm"/>" title="nuevo" style="margin-left: 5px" 
  			class="btn btn-info btn-small pull-right"><i class="icon-plus"></i><span class="hidden-480">Nuevo</span></a> 
  		</c:if>
@@ -22,3 +22,8 @@
  		<span class="pull-right orange" style="margin-right: 15px;font-weight: normal;" id="codigoGenerado"></span>
 	</h1>
 </div>
+<c:if test="${cierreMes eq 'C'}">
+<div class="alert alert-error">
+	El período actual se encuentra cerrado.
+</div>
+</c:if>

@@ -85,10 +85,11 @@
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">
-									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idConsumo}" />"
-										title="Modificar"> <i
-											class="icon-edit bigger-130"></i>
-									</a>
+									<c:if test="${cierreMes eq null}">
+										<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idConsumo}" />"
+											title="Modificar"> <i class="icon-edit bigger-130"></i>
+										</a>
+									</c:if>
 									<a class="green" href="consultar.htm?id=<c:out value="${jbean.idConsumo}" />"
 										title="Consultar"> <i
 											class="icon-align-justify bigger-130"></i>

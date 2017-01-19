@@ -60,6 +60,8 @@
 							<th class="center" width="30%">Descripcion</th>
 							<th class="center">Valor</th>
 							<th class="center">Unidad Medida</th>
+							<th class="center">Peso Bruto (Kg)</th>
+							<th class="center">Peso Neto (Kg)</th>
 							<th class="center" width="10%">Estado</th>
 						</tr>
 					</thead>

@@ -16,10 +16,6 @@ public class UnidadMineraAlmacenServiceImpl implements UnidadMineraAlmacenServic
 	public List<UnidadMineraAlmacen> listaUnidadMineraAlmacen() {
 		return unidadMineraAlmacenDAO.listaUnidadMineraAlmacen();
 	}
-	
-    public UnidadMineraAlmacen obtieneUnidadMineraAlmacenPorId(String id) {
-        return unidadMineraAlmacenDAO.obtieneUnidadMineraAlmacenPorId(id);
-    }
     
     public List<UnidadMineraAlmacen> listaUnidadMineraAlmacenPorUnidadMinera(String idUnidadMinera){
     	return unidadMineraAlmacenDAO.listaUnidadMineraAlmacenPorUnidadMinera(idUnidadMinera);

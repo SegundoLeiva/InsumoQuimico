@@ -44,9 +44,9 @@
 						</div>	
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="factorConversion">Factor Conversión</label>
+								<label class="control-label" for="pesoNeto">Peso Neto</label>
 								<div class="controls">
-									<input type="text" id="factorConversion" readonly="readonly" class="inputInsumo factor">
+									<input type="text" id="pesoNeto" readonly="readonly" class="inputInsumo factor">
 								</div>
 							</div>					
 						</div>									

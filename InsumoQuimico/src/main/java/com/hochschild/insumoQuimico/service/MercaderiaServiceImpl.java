@@ -92,7 +92,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
 					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					mercaderiaDetalle.setFactorConversion(jsonObj.getDouble("factorConversion"));
 					mercaderiaDetalle.setIdUsuarioCreacion(idUsuarioCreacion);
 					mercaderiaDetalle.setFechaCreacion(new Date());
 					mercaderiaDetalleDAO.insertarMercaderiaDetalle(mercaderiaDetalle);
@@ -112,7 +111,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
 					mercaderiaDetalle.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());
 					mercaderiaDetalle.setFechaModificacion(new Date());		
-					mercaderiaDetalle.setFactorConversion(jsonObj.getDouble("factorConversion"));
 					
 					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
 					presentacionInsumo.setIdPresentacionInsumo(idUnidadMineraInsumo.split("-")[1]+"-"+idPresentacion);				
