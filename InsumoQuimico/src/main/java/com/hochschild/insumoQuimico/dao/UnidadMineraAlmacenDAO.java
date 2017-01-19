@@ -8,5 +8,4 @@ public interface UnidadMineraAlmacenDAO {
 
 	List<UnidadMineraAlmacen> listaUnidadMineraAlmacen();
 	List<UnidadMineraAlmacen> listaUnidadMineraAlmacenPorUnidadMinera(String idUnidadMinera);
-	public UnidadMineraAlmacen obtieneUnidadMineraAlmacenPorId(String id);
 }

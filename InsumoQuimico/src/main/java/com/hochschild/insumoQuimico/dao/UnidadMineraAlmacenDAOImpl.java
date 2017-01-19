@@ -21,10 +21,6 @@ public class UnidadMineraAlmacenDAOImpl implements UnidadMineraAlmacenDAO {
     	List<UnidadMineraAlmacen> resultado = hibernateTemplate.find(query);
         return  resultado;
     }
-   
-	public UnidadMineraAlmacen obtieneUnidadMineraAlmacenPorId(String id){
-    	return hibernateTemplate.get(UnidadMineraAlmacen.class, id);
-    }
 	
 	@SuppressWarnings("unchecked")
 	public List<UnidadMineraAlmacen> listaUnidadMineraAlmacenPorUnidadMinera(String idUnidadMinera){
