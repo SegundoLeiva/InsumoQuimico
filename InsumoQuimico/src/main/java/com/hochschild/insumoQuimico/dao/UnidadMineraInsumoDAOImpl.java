@@ -8,7 +8,9 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 
@@ -18,9 +20,26 @@ public class UnidadMineraInsumoDAOImpl implements UnidadMineraInsumoDAO {
     @Qualifier(value="hibernateTemplateInsumoQuimico")
     private HibernateTemplate hibernateTemplate;
 
-    @Transactional
+    @SuppressWarnings("unchecked")
+	@Transactional
 	public void insertarUnidadMineraInsumo(UnidadMineraInsumo data){
-    	hibernateTemplate.persist(data);   	
+    	hibernateTemplate.persist(data);  
+    	
+    	String query = "from PresentacionInsumo where idInsumo='"+data.getInsumo().getIdInsumo()+"'";
+    	List<InsumoPresentacion> resultado = hibernateTemplate.find(query);
+    	for (int i = 0; i < resultado.size(); i++) {
+    		UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+    		unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(data.getIdUnidadMinera()+"-"+resultado.get(i).getIdPresentacionInsumo());
+    		unidadMineraInsumoPresentacion.setIdUnidadMinera(data.getIdUnidadMinera());
+    		
+    		InsumoPresentacion presentacionInsumo = new InsumoPresentacion();
+    		presentacionInsumo.setIdPresentacionInsumo(resultado.get(i).getIdPresentacionInsumo());
+    		unidadMineraInsumoPresentacion.setPresentacionInsumo(presentacionInsumo);
+    		unidadMineraInsumoPresentacion.setVigencia(resultado.get(i).getVigencia());
+    		
+    		hibernateTemplate.persist(unidadMineraInsumoPresentacion);  
+		}
+    	
     }
     
     @Transactional

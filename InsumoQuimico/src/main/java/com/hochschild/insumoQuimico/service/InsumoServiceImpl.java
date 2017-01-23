@@ -13,7 +13,7 @@ import com.hochschild.insumoQuimico.dao.InsumoDAO;
 import com.hochschild.insumoQuimico.dao.PresentacionInsumoDAO;
 import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 @Service
@@ -35,7 +35,7 @@ public class InsumoServiceImpl implements InsumoService {
 	public void insertarInsumo(InsumoParametrosEntrada insumoParametrosEntrada) throws JSONException {
 		// TODO Auto-generated method stub
 		Insumo insumo = new Insumo();
-		PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
+		InsumoPresentacion presentacionInsumo = new InsumoPresentacion();
 		int idInsumo;
 		
 		if(StringUtils.isEmpty(insumoParametrosEntrada.getIdInsumo())){
@@ -61,9 +61,12 @@ public class InsumoServiceImpl implements InsumoService {
 			String indicador = jsonObj.getString("indicadorBD");
 			String idPresentacionInsumo= jsonObj.getString("idDetalle");
 			if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idPresentacionInsumo)){//NUEVO
-				presentacionInsumo = new PresentacionInsumo();
+				presentacionInsumo = new InsumoPresentacion();
 				presentacionInsumo.setIdPresentacionInsumo(idInsumo+"-"+String.valueOf(index));
-				presentacionInsumo.setIdInsumo(new Long(idInsumo));
+				
+				insumo = new Insumo();
+				insumo.setIdInsumo(String.valueOf(idInsumo));
+				presentacionInsumo.setInsumo(insumo);
 				presentacionInsumo.setIdPresentacion(new Long(index));
 				presentacionInsumo.setDescripcion(jsonObj.getString("descripcion"));
 				presentacionInsumo.setValor(jsonObj.getDouble("valor"));

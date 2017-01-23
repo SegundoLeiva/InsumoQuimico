@@ -45,15 +45,10 @@ public class MercaderiaDetalle implements Serializable {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "idUnidadMineraInsumo")
-	private UnidadMineraInsumo unidadMineraInsumo;
-	
-	@ManyToOne
-	@JoinColumn(name = "idPresentacionInsumo")
-	private PresentacionInsumo presentacionInsumo;
+	@JoinColumn(name = "idUnidadMineraInsumoPresentacion")
+	private UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion;
 	
 	private Double cantidad;
-	private String unidadMedida;	
 	private String idUsuarioCreacion;	
 	private Date fechaCreacion;	
 	private String idUsuarioModificacion;	
@@ -64,29 +59,18 @@ public class MercaderiaDetalle implements Serializable {
 	public void setId(IdMercaderia id) {
 		this.id = id;
 	}
-	public UnidadMineraInsumo getUnidadMineraInsumo() {
-		return unidadMineraInsumo;
+	public UnidadMineraInsumoPresentacion getUnidadMineraInsumoPresentacion() {
+		return unidadMineraInsumoPresentacion;
 	}
-	public void setUnidadMineraInsumo(UnidadMineraInsumo unidadMineraInsumo) {
-		this.unidadMineraInsumo = unidadMineraInsumo;
-	}
-	public PresentacionInsumo getPresentacionInsumo() {
-		return presentacionInsumo;
-	}
-	public void setPresentacionInsumo(PresentacionInsumo presentacionInsumo) {
-		this.presentacionInsumo = presentacionInsumo;
+	public void setUnidadMineraInsumoPresentacion(
+			UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion) {
+		this.unidadMineraInsumoPresentacion = unidadMineraInsumoPresentacion;
 	}
 	public Double getCantidad() {
 		return cantidad;
 	}
 	public void setCantidad(Double cantidad) {
 		this.cantidad = cantidad;
-	}
-	public String getUnidadMedida() {
-		return unidadMedida;
-	}
-	public void setUnidadMedida(String unidadMedida) {
-		this.unidadMedida = unidadMedida;
 	}
 	public String getIdUsuarioCreacion() {
 		return idUsuarioCreacion;

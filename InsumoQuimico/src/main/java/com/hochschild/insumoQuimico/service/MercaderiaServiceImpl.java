@@ -17,10 +17,11 @@ import com.hochschild.insumoQuimico.domain.MercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle.IdMercaderia;
 import com.hochschild.insumoQuimico.domain.MercaderiaParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraAlmacen;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
 import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.insumoQuimico.util.FechasUtil;
 
@@ -74,24 +75,18 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				JSONObject jsonObj = dataJson.getJSONObject(i);
 				String indicador = jsonObj.getString("indicadorBD");
 				String idDetalle = jsonObj.getString("idDetalle");
-				String idPresentacion = jsonObj.getString("idPresentacion");
 				if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idDetalle)){//NUEVO
 					IdMercaderia id = new IdMercaderia();
 					id.setIdMercaderia(idMercaderia);
 					id.setIdMercaderiaDetalle(new Long(index));
 					mercaderiaDetalle.setId(id);
 					
-					String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
-					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);					
-					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
-					
-					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
-					presentacionInsumo.setIdPresentacionInsumo(idUnidadMineraInsumo.split("-")[1]+"-"+idPresentacion);				
-					mercaderiaDetalle.setPresentacionInsumo(presentacionInsumo);
+					String idUnidadMineraInsumoPresentacion = jsonObj.getString("idUnidadMineraInsumoPresentacion");
+					UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+					unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(idUnidadMineraInsumoPresentacion);					
+					mercaderiaDetalle.setUnidadMineraInsumoPresentacion(unidadMineraInsumoPresentacion);
 					
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
 					mercaderiaDetalle.setIdUsuarioCreacion(idUsuarioCreacion);
 					mercaderiaDetalle.setFechaCreacion(new Date());
 					mercaderiaDetalleDAO.insertarMercaderiaDetalle(mercaderiaDetalle);
@@ -103,18 +98,15 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
 					mercaderiaDetalle = mercaderiaDetalleDAO.obtenerMercaderiaDetalle(mercaderiaParametrosEntrada.getIdMercaderia(), jsonObj.get("idDetalle").toString());					
-					String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
-					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);
 					mercaderiaDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					mercaderiaDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					mercaderiaDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					
+					String idUnidadMineraInsumoPresentacion = jsonObj.getString("idUnidadMineraInsumoPresentacion");
+					UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+					unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(idUnidadMineraInsumoPresentacion);					
+					mercaderiaDetalle.setUnidadMineraInsumoPresentacion(unidadMineraInsumoPresentacion);
+					
 					mercaderiaDetalle.setIdUsuarioModificacion(mercaderiaParametrosEntrada.getNombreUsuario());
 					mercaderiaDetalle.setFechaModificacion(new Date());		
-					
-					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
-					presentacionInsumo.setIdPresentacionInsumo(idUnidadMineraInsumo.split("-")[1]+"-"+idPresentacion);				
-					mercaderiaDetalle.setPresentacionInsumo(presentacionInsumo);
 					
 					mercaderiaDetalleDAO.modificarMercaderiaDetalle(mercaderiaDetalle);
 				}

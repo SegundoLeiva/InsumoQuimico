@@ -16,9 +16,9 @@ public class UnidadMineraInsumoSaldoAlmacenDAOImpl implements UnidadMineraInsumo
     private HibernateTemplate hibernateTemplate;
  
 	@SuppressWarnings("unchecked")
-	public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumo,String idPresentacionInsumo){
-		String query = "from UnidadMineraInsumoSaldoAlmacen where idUnidadMineraInsumo='"+idUnidadMineraInsumo+"' "
-				+ "and idPresentacionInsumo='"+idPresentacionInsumo+"'";
+	public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumoPresentacion){
+		String query = "from UnidadMineraInsumoSaldoAlmacen "
+				+ "where idUnidadMineraInsumoPresentacion='"+idUnidadMineraInsumoPresentacion+"'";
     	List<UnidadMineraInsumoSaldoAlmacen> resultado = hibernateTemplate.find(query);
         return  resultado.get(0);
     }

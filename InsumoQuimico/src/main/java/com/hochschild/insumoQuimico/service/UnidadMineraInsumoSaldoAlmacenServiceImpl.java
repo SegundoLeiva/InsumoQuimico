@@ -11,8 +11,8 @@ public class UnidadMineraInsumoSaldoAlmacenServiceImpl implements UnidadMineraIn
     @Autowired
     public UnidadMineraInsumoSaldoAlmacenDAO unidadMineraInsumoSaldoAlmacenDAO;
 
-    public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumo,String idPresentacionInsumo){
-		return unidadMineraInsumoSaldoAlmacenDAO.obtienerStockAlmacen(idUnidadMineraInsumo, idPresentacionInsumo);
+    public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumoPresentacion){
+		return unidadMineraInsumoSaldoAlmacenDAO.obtienerStockAlmacen(idUnidadMineraInsumoPresentacion);
 	}
 
 }

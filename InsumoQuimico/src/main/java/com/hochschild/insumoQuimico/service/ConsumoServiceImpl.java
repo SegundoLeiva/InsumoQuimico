@@ -17,10 +17,11 @@ import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle.IdConsumo;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
 import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.insumoQuimico.util.FechasUtil;
 
@@ -66,24 +67,20 @@ public class ConsumoServiceImpl implements ConsumoService {
 				JSONObject jsonObj = dataJson.getJSONObject(i);
 				String indicador = jsonObj.getString("indicadorBD");
 				String idDetalle = jsonObj.getString("idDetalle");
-				String idPresentacionInsumo = jsonObj.getString("idPresentacionInsumo");
-				String idUnidadMineraInsumo = jsonObj.getString("idUnidadMineraInsumo");
 				if(indicador.equals(Constantes.INDICADOR_NUEVO) && StringUtils.isEmpty(idDetalle)){//NUEVO
 					IdConsumo id = new IdConsumo();
 					id.setIdConsumo(idConsumo);
 					id.setIdConsumoDetalle(new Long(index));
 					consumoDetalle.setId(id);
 					
-					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);					
-					consumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					String idUnidadMineraInsumoPresentacion = jsonObj.getString("idUnidadMineraInsumoPresentacion");
+					UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+					unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(idUnidadMineraInsumoPresentacion);					
+					consumoDetalle.setUnidadMineraInsumoPresentacion(unidadMineraInsumoPresentacion);
 					
-					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
-					presentacionInsumo.setIdPresentacionInsumo(idPresentacionInsumo);				
-					consumoDetalle.setPresentacionInsumo(presentacionInsumo);
 					consumoDetalle.setIdUnidadMineraArea(consumoParametrosEntrada.getIdUnidadMineraArea());
 					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
+					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedidaPresentacion"));
 					consumoDetalle.setIdUsuarioCreacion(consumoParametrosEntrada.getNombreUsuario());
 					consumoDetalle.setFechaCreacion(new Date());
 					ConsumoDetalleDAO.insertarConsumoDetalle(consumoDetalle);
@@ -95,17 +92,17 @@ public class ConsumoServiceImpl implements ConsumoService {
 				}else if(indicador.equals(Constantes.INDICADOR_MODIFICADO) && !StringUtils.isEmpty(idDetalle)){//MODIFICA
 
 					consumoDetalle = ConsumoDetalleDAO.obtenerConsumoDetalle(consumoParametrosEntrada.getIdConsumo(), jsonObj.get("idDetalle").toString());
-					UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-					unidadMineraInsumo.setIdUnidadMineraInsumo(idUnidadMineraInsumo);
 					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedida"));
-					consumoDetalle.setUnidadMineraInsumo(unidadMineraInsumo);
+					
+					String idUnidadMineraInsumoPresentacion = jsonObj.getString("idUnidadMineraInsumoPresentacion");
+					UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+					unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(idUnidadMineraInsumoPresentacion);					
+					consumoDetalle.setUnidadMineraInsumoPresentacion(unidadMineraInsumoPresentacion);
+					
+					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedidaPresentacion"));
 					consumoDetalle.setIdUsuarioModificacion(consumoParametrosEntrada.getNombreUsuario());
 					consumoDetalle.setFechaModificacion(new Date());	
 					
-					PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
-					presentacionInsumo.setIdPresentacionInsumo(idPresentacionInsumo);				
-					consumoDetalle.setPresentacionInsumo(presentacionInsumo);
 					
 					ConsumoDetalleDAO.modificarConsumoDetalle(consumoDetalle);
 					

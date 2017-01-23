@@ -2,15 +2,21 @@ package com.hochschild.insumoQuimico.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "InsumoPresentacion")
-public class PresentacionInsumo {
+public class InsumoPresentacion {
 	
 	@Id
     private String idPresentacionInsumo;
-    private Long idInsumo;
+
+	@ManyToOne
+    @JoinColumn(name="idInsumo")
+    private Insumo insumo;
+    
     private Long idPresentacion;
     private String descripcion;
     private Double valor;
@@ -25,11 +31,11 @@ public class PresentacionInsumo {
 	public void setIdPresentacionInsumo(String idPresentacionInsumo) {
 		this.idPresentacionInsumo = idPresentacionInsumo;
 	}
-	public Long getIdInsumo() {
-		return idInsumo;
+	public Insumo getInsumo() {
+		return insumo;
 	}
-	public void setIdInsumo(Long idInsumo) {
-		this.idInsumo = idInsumo;
+	public void setInsumo(Insumo insumo) {
+		this.insumo = insumo;
 	}
 	public Long getIdPresentacion() {
 		return idPresentacion;

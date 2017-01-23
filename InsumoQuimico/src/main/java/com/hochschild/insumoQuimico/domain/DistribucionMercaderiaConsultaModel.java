@@ -4,9 +4,8 @@ import com.hochschild.insumoQuimico.util.FechasUtil;
 
 public class DistribucionMercaderiaConsultaModel {
 
-    private String idUnidadMineraInsumo;
+    private String idUnidadMineraInsumoPresentacion;
     private String idUnidadMineraArea;
-    private String idPresentacionInsumo;
 	private String fechaInicio;
 	private String fechaFin;
 	private String idUnidadMinera;
@@ -16,12 +15,13 @@ public class DistribucionMercaderiaConsultaModel {
 		this.fechaFin=FechasUtil.getFechaActual();
 	}
 
-	public String getIdUnidadMineraInsumo() {
-		return idUnidadMineraInsumo;
+	public String getIdUnidadMineraInsumoPresentacion() {
+		return idUnidadMineraInsumoPresentacion;
 	}
 
-	public void setIdUnidadMineraInsumo(String idUnidadMineraInsumo) {
-		this.idUnidadMineraInsumo = idUnidadMineraInsumo;
+	public void setIdUnidadMineraInsumoPresentacion(
+			String idUnidadMineraInsumoPresentacion) {
+		this.idUnidadMineraInsumoPresentacion = idUnidadMineraInsumoPresentacion;
 	}
 
 	public String getIdUnidadMineraArea() {
@@ -30,14 +30,6 @@ public class DistribucionMercaderiaConsultaModel {
 
 	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
 		this.idUnidadMineraArea = idUnidadMineraArea;
-	}
-
-	public String getIdPresentacionInsumo() {
-		return idPresentacionInsumo;
-	}
-
-	public void setIdPresentacionInsumo(String idPresentacionInsumo) {
-		this.idPresentacionInsumo = idPresentacionInsumo;
 	}
 
 	public String getFechaInicio() {
@@ -63,6 +55,5 @@ public class DistribucionMercaderiaConsultaModel {
 	public void setIdUnidadMinera(String idUnidadMinera) {
 		this.idUnidadMinera = idUnidadMinera;
 	}
-	
-	
+
 }

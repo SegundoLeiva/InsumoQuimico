@@ -11,11 +11,8 @@ import com.hochschild.insumoQuimico.domain.DistribucionMercaderia;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaConsulta;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
-import com.hochschild.insumoQuimico.util.FechasUtil;
-import com.hochschild.insumoQuimico.util.Util;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
 
 @Service
 public class DistribucionMercaderiaServiceImpl implements DistribucionMercaderiaService {
@@ -36,13 +33,9 @@ public class DistribucionMercaderiaServiceImpl implements DistribucionMercaderia
 		// TODO Auto-generated method stub
 		DistribucionMercaderia entity = new DistribucionMercaderia();
 		
-		UnidadMineraInsumo unidadMineraInsumo = new UnidadMineraInsumo();
-		unidadMineraInsumo.setIdUnidadMineraInsumo(data.getIdUnidadMineraInsumo());					
-		entity.setUnidadMineraInsumo(unidadMineraInsumo);
-		
-		PresentacionInsumo presentacionInsumo = new PresentacionInsumo();
-		presentacionInsumo.setIdPresentacionInsumo(data.getIdPresentacionInsumo());				
-		entity.setPresentacionInsumo(presentacionInsumo);
+		UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
+		unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(data.getIdUnidadMineraInsumoPresentacion());					
+		entity.setUnidadMineraInsumoPresentacion(unidadMineraInsumoPresentacion);
 		
 		UnidadMineraArea unidadMineraArea = new UnidadMineraArea();
 		unidadMineraArea.setIdUnidadMineraArea(data.getIdUnidadMineraArea());	

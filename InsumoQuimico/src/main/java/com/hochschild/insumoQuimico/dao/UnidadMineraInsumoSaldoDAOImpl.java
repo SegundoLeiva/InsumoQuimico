@@ -16,11 +16,10 @@ public class UnidadMineraInsumoSaldoDAOImpl implements UnidadMineraInsumoSaldoDA
     private HibernateTemplate hibernateTemplate;
  
 	@SuppressWarnings("unchecked")
-	public UnidadMineraInsumoSaldoArea obtenerStockPorArea(String idUnidadMineraArea,String idUnidadMineraInsumo,String idPresentacionInsumo){
+	public UnidadMineraInsumoSaldoArea obtenerStockPorArea(String idUnidadMineraArea,String idUnidadMineraInsumoPresentacion){
 		String query = "from UnidadMineraInsumoSaldoArea where "
 				+ "idUnidadMineraArea='"+idUnidadMineraArea+"' "
-				+ "and idUnidadMineraInsumo='"+idUnidadMineraInsumo+"' "
-				+ "and idPresentacionInsumo='"+idPresentacionInsumo+"'";
+				+ "and idUnidadMineraInsumoPresentacion='"+idUnidadMineraInsumoPresentacion+"' ";
     	List<UnidadMineraInsumoSaldoArea> resultado = hibernateTemplate.find(query);
         return  resultado.get(0);
     }

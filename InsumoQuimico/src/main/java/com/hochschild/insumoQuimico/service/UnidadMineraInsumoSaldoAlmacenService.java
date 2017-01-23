@@ -4,5 +4,5 @@ import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoSaldoAlmacen;
 
 public interface UnidadMineraInsumoSaldoAlmacenService {
 
-	public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumo,String idPresentacionInsumo);
+	public UnidadMineraInsumoSaldoAlmacen obtienerStockAlmacen(String idUnidadMineraInsumoPresentacion);
 }

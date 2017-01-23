@@ -15,14 +15,14 @@ import com.hochschild.insumoQuimico.domain.DistribucionMercaderiaConsultaModel;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.DistribucionMercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
-import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoPresentacionService;
 
 @Controller
 @RequestMapping(value = "/distribucionMercaderia")
 public class DistribucionMercaderiaSearchController extends BaseSearchController{
 
 	@Autowired
-	private UnidadMineraInsumoService unidadMineraInsumoService;
+	private UnidadMineraInsumoPresentacionService unidadMineraInsumoPresentacionService;
 	@Autowired
     private UnidadMineraAreaService unidadMineraAreaService;
 	@Autowired
@@ -48,8 +48,9 @@ public class DistribucionMercaderiaSearchController extends BaseSearchController
 		// TODO Auto-generated method stub
 		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
         model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+
 		return distribucionMercaderiaService.listaDistribucionMercaderiaConsulta((DistribucionMercaderiaConsultaModel)this.formBusqueda);
 	}
 

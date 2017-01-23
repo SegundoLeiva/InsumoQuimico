@@ -2,13 +2,13 @@ package com.hochschild.insumoQuimico.dao;
 
 import java.util.List;
 
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 
 public interface PresentacionInsumoDAO {
 
-	public void insertarPresentacionInsumo(PresentacionInsumo data);
+	public void insertarPresentacionInsumo(InsumoPresentacion data);
 	public void eliminarPresentacionInsumo(String idPresentacionInsumo);
-	public void modificarPresentacionInsumo(PresentacionInsumo data);
-	public List<PresentacionInsumo> listaPresentacionInsumoPorInsumo(int idInsumo);
-	public PresentacionInsumo obtenerPresentacionInsumo(String idPresentacionInsumo);
+	public void modificarPresentacionInsumo(InsumoPresentacion data);
+	public List<InsumoPresentacion> listaPresentacionInsumoPorInsumo(int idInsumo);
+	public InsumoPresentacion obtenerPresentacionInsumo(String idPresentacionInsumo);
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hochschild.insumoQuimico.BaseController.BaseMantenimientoController;
 import com.hochschild.insumoQuimico.domain.Insumo;
 import com.hochschild.insumoQuimico.domain.InsumoParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.service.InsumoService;
 import com.hochschild.insumoQuimico.service.PresentacionInsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMedidaService;
@@ -65,7 +65,7 @@ public class InsumoMantenimientoController extends BaseMantenimientoController{
 		Insumo insumo = insumoService.obtieneInsumoPorId(id);
 		model.addAttribute("insumo", insumo);
 		model.addAttribute("listaUnidadMedida", unidadMedidaService.listaUnidadMedida());
-		List<PresentacionInsumo> listaPresentacionInsumo = presentacionInsumoService.listaPresentacionInsumoPorInsumo(Integer.parseInt(id));
+		List<InsumoPresentacion> listaPresentacionInsumo = presentacionInsumoService.listaPresentacionInsumoPorInsumo(Integer.parseInt(id));
 		if(listaPresentacionInsumo.size()>0)model.addAttribute("listaPresentacionInsumo",listaPresentacionInsumo);
 		return model;
 	}

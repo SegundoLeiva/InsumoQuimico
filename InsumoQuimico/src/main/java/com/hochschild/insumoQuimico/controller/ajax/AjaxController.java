@@ -53,11 +53,10 @@ public class AjaxController {
 	
 	@RequestMapping(value="/obtienerStockAlmacen.htm", method = {RequestMethod.POST})
 	@ResponseBody
-	public String obtobtienerStockAlmacenienerStock(@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
-			@RequestParam("idPresentacionInsumo") String idPresentacionInsumo) {
+	public String obtobtienerStockAlmacenienerStock(@RequestParam("idUnidadMineraInsumoPresentacion") String idUnidadMineraInsumoPresentacion) {
 		String resultado = "0";
 		try {
-			resultado = String.valueOf(unidadMineraInsumoSaldoAlmacenService.obtienerStockAlmacen(idUnidadMineraInsumo, idPresentacionInsumo).getStock());
+			resultado = String.valueOf(unidadMineraInsumoSaldoAlmacenService.obtienerStockAlmacen(idUnidadMineraInsumoPresentacion).getStock());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -69,11 +68,10 @@ public class AjaxController {
 	@RequestMapping(value="/obtenerStockPorArea.htm", method = {RequestMethod.POST})
 	@ResponseBody
 	public String obtenerStockPorArea(@RequestParam("idUnidadMineraArea") String idUnidadMineraArea,
-			@RequestParam("idUnidadMineraInsumo") String idUnidadMineraInsumo,
-			@RequestParam("idPresentacionInsumo") String idPresentacionInsumo) {
+			@RequestParam("idUnidadMineraInsumoPresentacion") String idUnidadMineraInsumoPresentacion) {
 		String resultado = "0";
 		try {
-			resultado = String.valueOf(unidadMineraInsumoSaldoService.obtenerStockPorArea(idUnidadMineraArea,idUnidadMineraInsumo,idPresentacionInsumo).getStock());
+			resultado = String.valueOf(unidadMineraInsumoSaldoService.obtenerStockPorArea(idUnidadMineraArea,idUnidadMineraInsumoPresentacion).getStock());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

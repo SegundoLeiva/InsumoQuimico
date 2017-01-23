@@ -24,14 +24,14 @@ import com.hochschild.insumoQuimico.service.ConsumoDetalleService;
 import com.hochschild.insumoQuimico.service.ConsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAreaService;
-import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoPresentacionService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/registrarConsumo")
 public class RegistrarConsumoMantenimientoController extends BaseMantenimientoController{
 	@Autowired
-	private UnidadMineraInsumoService unidadMineraInsumoService;
+	private UnidadMineraInsumoPresentacionService unidadMineraInsumoPresentacionService;
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
 	@Autowired
@@ -56,11 +56,12 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
 		// TODO Auto-generated method stub
         List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
 		List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+
         return model;
 	}
 	
@@ -88,7 +89,7 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
         
 		Consumo consumo = consumoService.obtieneConsumoPorId(id);
 		model.addAttribute("consumo", consumo);
-		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
 		
 		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetallePorIdConsumo(id);
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);

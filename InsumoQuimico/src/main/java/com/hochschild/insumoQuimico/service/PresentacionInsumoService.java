@@ -2,9 +2,9 @@ package com.hochschild.insumoQuimico.service;
 
 import java.util.List;
 
-import com.hochschild.insumoQuimico.domain.PresentacionInsumo;
+import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 
 public interface PresentacionInsumoService {
 
-	public List<PresentacionInsumo> listaPresentacionInsumoPorInsumo(int idInsumo);
+	public List<InsumoPresentacion> listaPresentacionInsumoPorInsumo(int idInsumo);
 }

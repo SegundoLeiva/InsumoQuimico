@@ -21,14 +21,14 @@ import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaService;
 import com.hochschild.insumoQuimico.service.UnidadMineraAlmacenService;
-import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
+import com.hochschild.insumoQuimico.service.UnidadMineraInsumoPresentacionService;
 import com.hochschild.sca.service.ValorOrganizacionalService;
 
 @Controller
 @RequestMapping(value = "/ingresarMercaderia")
 public class IngresarMercaderiaMantenimientoController extends BaseMantenimientoController{
 	@Autowired
-	private UnidadMineraInsumoService unidadMineraInsumoService;
+	private UnidadMineraInsumoPresentacionService unidadMineraInsumoPresentacionService;
 	@Autowired
     private ValorOrganizacionalService valorOrganizacionalService;
 	@Autowired
@@ -52,7 +52,7 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-		model.addAttribute("listaUnidadMineraInsumo", this.unidadMineraInsumoService.listaUnidadMineraInsumo());
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
 		return model;
 	}
 	
@@ -74,7 +74,7 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
 		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
 		Mercaderia mercaderia = mercaderiaService.obtieneMercaderiaPorId(id);
 		model.addAttribute("mercaderia", mercaderia);
-		model.addAttribute("listaUnidadMineraInsumo",this.unidadMineraInsumoService.listaUnidadMineraInsumo());
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
 		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(id);
 		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
 		return model;

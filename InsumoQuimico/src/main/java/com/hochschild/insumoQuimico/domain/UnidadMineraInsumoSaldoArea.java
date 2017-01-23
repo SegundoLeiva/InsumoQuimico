@@ -21,11 +21,9 @@ public class UnidadMineraInsumoSaldoArea implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUnidadMineraInsumoSaldoArea;
 	private String idUnidadMineraArea;
-	private String idUnidadMineraInsumo;
-	private String idPresentacionInsumo;
+	private String idUnidadMineraInsumoPresentacion;
 	private Double stock;
 	private String unidadMedida;
-	
 	public Long getIdUnidadMineraInsumoSaldoArea() {
 		return idUnidadMineraInsumoSaldoArea;
 	}
@@ -38,17 +36,12 @@ public class UnidadMineraInsumoSaldoArea implements Serializable{
 	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
 		this.idUnidadMineraArea = idUnidadMineraArea;
 	}
-	public String getIdUnidadMineraInsumo() {
-		return idUnidadMineraInsumo;
+	public String getIdUnidadMineraInsumoPresentacion() {
+		return idUnidadMineraInsumoPresentacion;
 	}
-	public void setIdUnidadMineraInsumo(String idUnidadMineraInsumo) {
-		this.idUnidadMineraInsumo = idUnidadMineraInsumo;
-	}
-	public String getIdPresentacionInsumo() {
-		return idPresentacionInsumo;
-	}
-	public void setIdPresentacionInsumo(String idPresentacionInsumo) {
-		this.idPresentacionInsumo = idPresentacionInsumo;
+	public void setIdUnidadMineraInsumoPresentacion(
+			String idUnidadMineraInsumoPresentacion) {
+		this.idUnidadMineraInsumoPresentacion = idUnidadMineraInsumoPresentacion;
 	}
 	public Double getStock() {
 		return stock;
@@ -62,5 +55,4 @@ public class UnidadMineraInsumoSaldoArea implements Serializable{
 	public void setUnidadMedida(String unidadMedida) {
 		this.unidadMedida = unidadMedida;
 	}
-
 }

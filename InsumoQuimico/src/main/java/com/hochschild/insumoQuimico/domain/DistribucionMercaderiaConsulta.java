@@ -8,35 +8,28 @@ public class DistribucionMercaderiaConsulta {
 
 	@Id
 	private Long idDistribucionMercaderia;
-    private String unidadMineraInsumo;
+    private String unidadMineraInsumoPresentacion;
     private String unidadMineraArea;
-    private String presentacionInsumo;
     private String cantidad;
     private String fechaCreacion;
-
-    public Long getIdDistribucionMercaderia() {
+	public Long getIdDistribucionMercaderia() {
 		return idDistribucionMercaderia;
 	}
 	public void setIdDistribucionMercaderia(Long idDistribucionMercaderia) {
 		this.idDistribucionMercaderia = idDistribucionMercaderia;
 	}
-	public String getUnidadMineraInsumo() {
-		return unidadMineraInsumo;
+	public String getUnidadMineraInsumoPresentacion() {
+		return unidadMineraInsumoPresentacion;
 	}
-	public void setUnidadMineraInsumo(String unidadMineraInsumo) {
-		this.unidadMineraInsumo = unidadMineraInsumo;
+	public void setUnidadMineraInsumoPresentacion(
+			String unidadMineraInsumoPresentacion) {
+		this.unidadMineraInsumoPresentacion = unidadMineraInsumoPresentacion;
 	}
 	public String getUnidadMineraArea() {
 		return unidadMineraArea;
 	}
 	public void setUnidadMineraArea(String unidadMineraArea) {
 		this.unidadMineraArea = unidadMineraArea;
-	}
-	public String getPresentacionInsumo() {
-		return presentacionInsumo;
-	}
-	public void setPresentacionInsumo(String presentacionInsumo) {
-		this.presentacionInsumo = presentacionInsumo;
 	}
 	public String getCantidad() {
 		return cantidad;
@@ -50,5 +43,5 @@ public class DistribucionMercaderiaConsulta {
 	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
+
 }

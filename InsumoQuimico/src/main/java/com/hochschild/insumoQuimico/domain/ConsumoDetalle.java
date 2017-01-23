@@ -45,12 +45,9 @@ public class ConsumoDetalle implements Serializable {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "idUnidadMineraInsumo")
-	private UnidadMineraInsumo unidadMineraInsumo;
+	@JoinColumn(name = "idUnidadMineraInsumoPresentacion")
+	private UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion;
 	
-	@ManyToOne
-	@JoinColumn(name = "idPresentacionInsumo")
-	private PresentacionInsumo presentacionInsumo;
 	
 	private String idUnidadMineraArea;
 	private Double cantidad;
@@ -67,13 +64,19 @@ public class ConsumoDetalle implements Serializable {
 	public void setId(IdConsumo id) {
 		this.id = id;
 	}
-	public UnidadMineraInsumo getUnidadMineraInsumo() {
-		return unidadMineraInsumo;
+	public UnidadMineraInsumoPresentacion getUnidadMineraInsumoPresentacion() {
+		return unidadMineraInsumoPresentacion;
 	}
-	public void setUnidadMineraInsumo(UnidadMineraInsumo unidadMineraInsumo) {
-		this.unidadMineraInsumo = unidadMineraInsumo;
+	public void setUnidadMineraInsumoPresentacion(
+			UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion) {
+		this.unidadMineraInsumoPresentacion = unidadMineraInsumoPresentacion;
 	}
-	
+	public String getIdUnidadMineraArea() {
+		return idUnidadMineraArea;
+	}
+	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
+		this.idUnidadMineraArea = idUnidadMineraArea;
+	}
 	public Double getCantidad() {
 		return cantidad;
 	}
@@ -110,17 +113,6 @@ public class ConsumoDetalle implements Serializable {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
-	public PresentacionInsumo getPresentacionInsumo() {
-		return presentacionInsumo;
-	}
-	public void setPresentacionInsumo(PresentacionInsumo presentacionInsumo) {
-		this.presentacionInsumo = presentacionInsumo;
-	}
-	public String getIdUnidadMineraArea() {
-		return idUnidadMineraArea;
-	}
-	public void setIdUnidadMineraArea(String idUnidadMineraArea) {
-		this.idUnidadMineraArea = idUnidadMineraArea;
-	}
+	
 	
 }

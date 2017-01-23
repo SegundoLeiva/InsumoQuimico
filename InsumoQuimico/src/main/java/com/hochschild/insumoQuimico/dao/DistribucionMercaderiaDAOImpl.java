@@ -41,8 +41,8 @@ public class DistribucionMercaderiaDAOImpl implements DistribucionMercaderiaDAO 
     	try {
     		DistribucionMercaderiaConsulta consulta = new DistribucionMercaderiaConsulta();
         	BeanUtils.copyProperties(consulta, model);
-            String[] paramNames = {"idUnidadMineraInsumo","idUnidadMineraArea","idPresentacionInsumo","fechaInicio","fechaFin"};        
-            String[] values = {model.getIdUnidadMineraInsumo(),model.getIdUnidadMineraArea(),model.getIdPresentacionInsumo(),
+            String[] paramNames = {"idUnidadMineraInsumoPresentacion","idUnidadMineraArea","fechaInicio","fechaFin"};        
+            String[] values = {model.getIdUnidadMineraInsumoPresentacion(),model.getIdUnidadMineraArea(),
             			model.getFechaInicio(),model.getFechaFin()};
             listaConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaDistribucionMercaderia",paramNames,values);
 		} catch (Exception e) {
