@@ -4,71 +4,41 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	var dataPresentacion=[{id:" ",text:"Seleccionar"}];
-	$("#idPresentacionInsumo").select2({
-		  data: dataPresentacion
+	var dataInsumoPresentacion = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:""}];
+	<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
+		var obj = {id:"${item.idUnidadMineraInsumoPresentacion}",text:"${item.presentacionInsumo.insumo.insumo}"+" - "+"${item.presentacionInsumo.descripcion}",
+				pesoNeto:"${item.presentacionInsumo.pesoNeto}",unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}"}
+		dataInsumoPresentacion.push(obj);
+	</c:forEach>
+
+	$("#idUnidadMineraInsumoPresentacion").select2({
+		  data: dataInsumoPresentacion
 	});
-	var idPresentacionInsumo ="${beanConsulta.idPresentacionInsumo}";
- 	$("#idUnidadMineraInsumo").change();
- 	if(idPresentacionInsumo.trim()!=""){
- 		$("#idPresentacionInsumo").val(idPresentacionInsumo).trigger('change');
- 	}
+	
  	
  	if($("#accion").val()=="CONSULTAR"){	
  		$("#bloqueStock").hide();
- 		var idPresentacionInsumo ="${distribucionMercaderia.presentacionInsumo.idPresentacionInsumo}";
- 	 	$("#idUnidadMineraInsumo").change();
- 	 	if(idPresentacionInsumo.trim()!=""){
- 	 		$("#idPresentacionInsumo").val(idPresentacionInsumo).trigger('change');
- 	 	}
 		bloquearCamposConsultar();
 	}
 	
 });
 
-$("#idUnidadMineraInsumo").change(function(){
-	$('#idPresentacionInsumo').empty();
-	var objArray = [{id:" ",text:"Seleccionar"}];
+$("#idUnidadMineraInsumoPresentacion").change(function(){
+	debugger;
 	if($(this).val().trim()!=""){
-		var insumo = $(this).val().split("-")[1];
-		$.ajax({
-			type : 'post',
-			data: {'idInsumo': insumo},
-			url : '${pageContext.request.contextPath}/ajax/listaPresentacionInsumoPorInsumo.htm',
-			async:false,
-			success : function(data) {	
-				var listaPresentacionInsumo = JSON.parse(data);
-				for (var i = 0; i < listaPresentacionInsumo.length; i++) {
-					objArray.push({id:listaPresentacionInsumo[i].idPresentacionInsumo,
-						text:listaPresentacionInsumo[i].descripcion});
-				}
-			}
-		});
-	}
-	$("#idPresentacionInsumo").select2({
-		  data: objArray
-	});
-	
-	if($("#idPresentacionInsumo").val().trim()==""){
-		$("#stock").val("");
-	}
-});
-
-$("#idPresentacionInsumo").change(function(){
-	var valor = $(this).val().trim();
-	if(valor!=""){
-		$("#stock").val(obtienerStockAlmacen(valor));
+		$("#stock").val(obtienerStockAlmacen($(this).val));		
 	}else{
 		$("#stock").val("");
 	}
+
 });
 
-function obtienerStockAlmacen(idPresentacionInsumo){
+
+function obtienerStockAlmacen(idUnidadMineraInsumoPresentacion){
 	var resultado = 0;
 			$.ajax({
 				type : 'post',
-				data: {'idUnidadMineraInsumo': $("#idUnidadMineraInsumo").val(),
-					   'idPresentacionInsumo': idPresentacionInsumo
+				data: {'idUnidadMineraInsumoPresentacion': $("#idUnidadMineraInsumoPresentacion").val()
 					  },
 				url : '${pageContext.request.contextPath}/ajax/obtienerStockAlmacen.htm',
 				async:false,
@@ -81,7 +51,6 @@ function obtienerStockAlmacen(idPresentacionInsumo){
 }
 
 $("#guardar").click(function(){
-	var cantidad = parseFloat($("#cantidad").val());
 	if(fnValidarGuardarMercaderia()){
 		guardarMantenimiento();
 	}

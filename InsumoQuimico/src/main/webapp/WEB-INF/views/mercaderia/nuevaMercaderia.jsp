@@ -28,7 +28,7 @@
 									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
 								</div>
 							</div>	
-							<div class="control-group">
+								<div class="control-group">
 								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
 								<div class="controls">
 									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
@@ -112,7 +112,6 @@
 							</th>
 							<th class="center" width="10%">Código</th>
 							<th class="center" width="40%">Descripcion</th>
-							<th class="center">Presentación</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Unidad Medida</th>
 						</tr>

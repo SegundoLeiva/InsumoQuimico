@@ -10,25 +10,23 @@
 				<div class="row-fluid">
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
+								<label class="control-label" for="idUnidadMineraInsumoPresentacion">Insumo Presentación</label>
 								<div class="controls selectInsumo">
-									<select id="idUnidadMineraInsumo" required
-										data-msg-required="El campo Insumo es obligatorio."></select>
+									<select id="idUnidadMineraInsumoPresentacion" required
+										data-msg-required="El campo Insumo Presentación es obligatorio."></select>
 								</div>
 							</div>
 						
 						</div>
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idPresentacion">Presentacion</label>
-								<div class="controls selectInsumo">
-									<select id="idPresentacion" required
-										data-msg-required="El campo Presentación es obligatorio.">
-									</select>
-									<input type="hidden" id="unidadMedida">
+								<label class="control-label" for="pesoNeto">Peso Neto</label>
+								<div class="controls">
+									<input type="text" id="pesoNeto" readonly="readonly" class="inputInsumo factor">
+									<input type="hidden" id="unidadMedidaPresentacion">
 								</div>
 							</div>					
-						</div>	
+						</div>		
 						
 						
 					</div>
@@ -42,14 +40,7 @@
 								</div>
 							</div>
 						</div>	
-						<div class="span6">
-							<div class="control-group">
-								<label class="control-label" for="pesoNeto">Peso Neto</label>
-								<div class="controls">
-									<input type="text" id="pesoNeto" readonly="readonly" class="inputInsumo factor">
-								</div>
-							</div>					
-						</div>									
+													
 					</div>
 
 	</div>

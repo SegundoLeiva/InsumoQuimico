@@ -5,13 +5,14 @@
 	<input type="hidden" name="id" id="id">	
 		<div class="row-fluid">
 			<div class="page-content">
-				<div class="span12">
 
+			<div class="span8">
+					<input type="hidden" value="${accion}" id="accion">
 					<div class="row-fluid">
-						<div class="span4">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
-								<div class="controls">
+								<div class="controls selectInsumo">
 									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
@@ -19,19 +20,11 @@
 									</select>
 								</div>
 							</div>	
-							<div class="control-group">
-								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
-								<div class="controls">
-									<select id="idPresentacionInsumo" name="idPresentacionInsumo">
-									</select>
-								</div>
-							</div>	
-
 						</div>
-						<div class="span4">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
-								<div class="controls">									
+								<div class="controls selectInsumo">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
 										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraArea}">
@@ -39,46 +32,49 @@
 										</c:forEach>
 									</select>
 								</div>
-							</div>							
-							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Inicio</label>
-								<div class="controls">
-									<span class="input-icon input-icon-right"> 
-										<input type="text" name="fechaInicio" id="fechaInicio" class="span12 date-picker" readonly="readonly" value="${beanConsulta.fechaInicio}"> <i class="icon-calendar"></i>
-									</span>
-								</div>
-							</div>
-							
-
+							</div>	
 						</div>
-						<div class="span4">
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
-								<div class="controls">									
-									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo">						
+								<label class="control-label" for="idUnidadMineraInsumoPresentacion">Insumo Presentación</label>
+								<div class="controls selectInsumo">									
+									<select name="idUnidadMineraInsumoPresentacion" id="idUnidadMineraInsumoPresentacion" required data-msg-required="El campo Insumo Presentación es obligatorio.">						
 										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
-											<option value="${item.idUnidadMineraInsumo}" ${item.idUnidadMineraInsumo == beanConsulta.idUnidadMineraInsumo ? 'selected' : ' '}>${item.insumo.insumo}</option>
+										<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
+											<option value="${item.idUnidadMineraInsumoPresentacion}" ${item.idUnidadMineraInsumoPresentacion == beanConsulta.idUnidadMineraInsumoPresentacion ? 'selected' : ' '}>${item.presentacionInsumo.insumo.insumo} - ${item.presentacionInsumo.descripcion}</option>
 										</c:forEach>
 									</select>
 								</div>
 							</div>
-							
+						</div>
+						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha Fin</label>
+								<label class="control-label" for="fecha">Fecha Inicio</label>
 								<div class="controls">
-									<span class="input-icon input-icon-right"> 
-										<input type="text" name="fechaFin" id="fechaFin" class="span12 date-picker" readonly="readonly" value="${beanConsulta.fechaFin}"> <i class="icon-calendar"></i>
-									</span>
+									<input type="text" name="fechaInicio" id="fechaInicio" class="inputInsumo date-picker" readonly="readonly" value="${beanConsulta.fechaInicio}"></i>
 								</div>
-							</div>	
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
+							
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label" for="fecha">Fecha Inicio</label>
+								<div class="controls">
+										<input type="text" name="fechaFin" id="fechaFin" class="inputInsumo date-picker" readonly="readonly" value="${beanConsulta.fechaFin}">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-		</div>
-
+			</div>
 	</form>
 	<hr>
 	<table class="tablaSearch table table-striped table-bordered table-hover">
@@ -86,8 +82,7 @@
 						<tr>
 							<th class="center" width="5%">Nro</th>
 							<th class="center">Área</th>
-							<th class="center">Insumo</th>
-							<th class="center">Presentación</th>
+							<th class="center">Insumo Presentación</th>
 							<th class="center">Cantidad</th>
 							<th class="center">Fecha Creación</th>
 							<th class="center" width="10%">Opciones</th>
@@ -99,8 +94,7 @@
 							<tr>
 								<td class="center">${contador.count}</td>
 								<td class="center">${jbean.unidadMineraArea}</td>
-								<td class="center">${jbean.unidadMineraInsumo}</td>								
-								<td class="center">${jbean.presentacionInsumo}</td>
+								<td class="center">${jbean.unidadMineraInsumoPresentacion}</td>								
 								<td class="center">${jbean.cantidad}</td>
 								<td class="center">${jbean.fechaCreacion}</td>
 								<td class="center">

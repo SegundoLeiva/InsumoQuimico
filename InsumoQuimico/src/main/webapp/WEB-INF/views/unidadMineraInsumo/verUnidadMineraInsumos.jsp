@@ -30,8 +30,8 @@
 										</c:otherwise>
 									</c:choose></td>
 								<td class="center">
-									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idUnidadMineraInsumo}" />"> <i
-													class="icon-edit bigger-130"></i></a>
+<%-- 									<a class="blue" href="modificar.htm?id=<c:out value="${jbean.idUnidadMineraInsumo}" />"> <i --%>
+<!-- 													class="icon-edit bigger-130"></i></a> -->
 									<a class="red" href="#" onclick="eliminarSearch('${jbean.idUnidadMineraInsumo}')"> <i
 											class="icon-trash bigger-130"></i>
 									</a>

@@ -213,7 +213,7 @@ span.input-icon{
 	width: 164px !important;
 }
 
-.table tbody td,label,select,input{
+.table tbody td,label,select,input,.select2-results,.selection{
 	font-size: 12px !important
 }
 

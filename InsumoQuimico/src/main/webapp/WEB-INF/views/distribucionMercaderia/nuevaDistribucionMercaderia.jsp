@@ -5,13 +5,13 @@
 	<input type="hidden" name="idDistribucionMercaderia" id="idDistribucionMercaderia" value="${distribucionMercaderia.idDistribucionMercaderia}" data-id="${distribucionMercaderia.idDistribucionMercaderia}">
 		<div class="row-fluid">
 			<div class="page-content">
-				<div class="span12">
+				<div class="span8">
 					<input type="hidden" value="${accion}" id="accion">
 					<div class="row-fluid">
-						<div class="span4">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMinera">Unidad Minera</label>
-								<div class="controls">
+								<div class="controls selectInsumo">
 									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
 											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
@@ -19,21 +19,11 @@
 									</select>
 								</div>
 							</div>	
-							<div class="control-group">
-								<label class="control-label" for="idPresentacionInsumo">Presentacion</label>
-								<div class="controls">
-									<select id="idPresentacionInsumo" name="idPresentacionInsumo" required data-msg-required="El campo Presentación es obligatorio.">
-									</select>
-								</div>
-							</div>
-						
-							
-								
 						</div>
-						<div class="span4">
+						<div class="span6">
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
-								<div class="controls">									
+								<div class="controls selectInsumo">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea" required data-msg-required="El campo Área es obligatorio.">						
 										<option value="">Seleccionar</option>
 										<c:forEach var="item" items="${listaUnidadMineraArea}">
@@ -42,29 +32,34 @@
 									</select>
 								</div>
 							</div>	
-							<div class="control-group">
-								<label class="control-label" for="cantidad">Cantidad</label>
-								<div class="controls">
-									<input type="text" id="cantidad" name="cantidad" class="numeroEntero" required data-msg-required="El campo Cantidad es obligatorio." value="${distribucionMercaderia.cantidad}">
-								</div>
-							</div>
 						</div>
-						<div class="span4">
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="idUnidadMineraInsumo">Insumo</label>
-								<div class="controls">									
-									<select name="idUnidadMineraInsumo" id="idUnidadMineraInsumo" required data-msg-required="El campo Insumo es obligatorio.">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraInsumo}">
-											<option value="${item.idUnidadMineraInsumo}" ${item.idUnidadMineraInsumo == distribucionMercaderia.unidadMineraInsumo.idUnidadMineraInsumo ? 'selected' : ' '}>${item.insumo.insumo}</option>
-										</c:forEach>
+								<label class="control-label" for="idUnidadMineraInsumoPresentacion">Insumo Presentación</label>
+								<div class="controls selectInsumo">									
+									<select name="idUnidadMineraInsumoPresentacion" id="idUnidadMineraInsumoPresentacion" required data-msg-required="El campo Insumo Presentación es obligatorio.">						
+										
 									</select>
 								</div>
 							</div>
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<label class="control-label" for="cantidad">Cantidad</label>
+								<div class="controls">
+									<input type="text" id="cantidad" name="cantidad" class="numeroEntero inputInsumo" required data-msg-required="El campo Cantidad es obligatorio." value="${distribucionMercaderia.cantidad}">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+						<div class="span6">
 							<div class="control-group" id="bloqueStock">
 								<label class="control-label" for="stock">Stock</label>
 								<div class="controls">
-									<input type="text" id="stock" readonly="readonly" class="stock">
+									<input type="text" id="stock" readonly="readonly" class="stock inputInsumo">
 								</div>
 							</div>	
 						</div>

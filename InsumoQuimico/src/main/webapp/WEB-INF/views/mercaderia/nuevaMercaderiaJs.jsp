@@ -5,27 +5,26 @@
 var mercaderiaJSONArray = arrayJsonDetalle;
 var index = 1;
 var listaPresentacionInsumo;
+var dataInsumo=[];
 
 $(document).ready(function() {
 	tabla="#tablaMercaderiaDetalle";
-	claseColumna=["idUnidadMineraInsumo","descripcion","descripcionPresentacion","cantidad","unidadMedida"];
+	claseColumna=["idUnidadMineraInsumoPresentacion","descripcionPresentacion","cantidad","unidadMedidaPresentacion"];
 	inicializarStyleTablaDetalle();
 	
 	if('<c:out value="${accion}"/>'=="CONSULTAR"){
-		$("#codigoGenerado").html("N° "+$("#idMercaderia"));
+		$("#codigoGenerado").html("N° "+$("#idMercaderia").val());
 		var i=0;
 		<c:forEach var="jbean" items="${listaMercaderiaDetalle}">		
-		 	var data = ["${jbean.unidadMineraInsumo.idUnidadMineraInsumo}",
-		             	"${jbean.unidadMineraInsumo.insumo.insumo}",
-		             	"${jbean.presentacionInsumo.descripcion}",
-		             	"${jbean.cantidad}","${jbean.unidadMedida}"];
+		 	var data = ["${jbean.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}",
+		             	"${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.insumo.insumo}"+" - "+"${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.descripcion}",
+		             	"${jbean.cantidad}","${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.idUnidadMedidaPresentacion}"];
 			agregarDetalle(data); 
 			mercaderiaJSONArray[i].idDetalle="${jbean.id.idMercaderiaDetalle}";
-			mercaderiaJSONArray[i].idUnidadMineraInsumo="${jbean.unidadMineraInsumo.idUnidadMineraInsumo}";
+			mercaderiaJSONArray[i].idUnidadMineraInsumoPresentacion="${jbean.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}";
 			mercaderiaJSONArray[i].cantidad="${jbean.cantidad}";
-			mercaderiaJSONArray[i].idPresentacion="${jbean.presentacionInsumo.idPresentacion}";
-			mercaderiaJSONArray[i].descripcionPresentacion="${jbean.presentacionInsumo.descripcion}";
-			mercaderiaJSONArray[i].unidadMedida="${jbean.unidadMedida}";
+			mercaderiaJSONArray[i].descripcionPresentacion="${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.descripcion}";
+			mercaderiaJSONArray[i].unidadMedidaPresentacion="${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.idUnidadMedidaPresentacion}";
 			mercaderiaJSONArray[i].indicadorBD=INDICADOR_CREADO;
 			i++;
 		</c:forEach>
@@ -34,13 +33,14 @@ $(document).ready(function() {
 		bloquearCamposConsultar();
 	}
 	
-	var dataInsumo=[{id:" ",text:"Seleccionar"}];
-	<c:forEach var="item" items="${listaUnidadMineraInsumo}">
-		var obj = {id:"${item.idUnidadMineraInsumo}",text:"${item.insumo.insumo}"}
+	dataInsumo = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:""}];
+	<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
+		var obj = {id:"${item.idUnidadMineraInsumoPresentacion}",text:"${item.presentacionInsumo.insumo.insumo}"+" - "+"${item.presentacionInsumo.descripcion}",
+				pesoNeto:"${item.presentacionInsumo.pesoNeto}",unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}"}
 		dataInsumo.push(obj);
 	</c:forEach>
 
-	$("#idUnidadMineraInsumo").select2({
+	$("#idUnidadMineraInsumoPresentacion").select2({
 		  data: dataInsumo
 	});
 
@@ -48,38 +48,34 @@ $(document).ready(function() {
 } );
 
 $("#btnAgregarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo("")){			 	
- 		 	var data = [$("#idUnidadMineraInsumo").val(),$("#idUnidadMineraInsumo option:selected").text(),
- 		 	            $("#idPresentacion option:selected").text(),$("#cantidad").val(),$("#unidadMedida").val()];
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoPresentacion("")){			 	
+ 		 	var data = [$("#idUnidadMineraInsumoPresentacion").val(),$("#idUnidadMineraInsumoPresentacion option:selected").text(),
+ 		 	            $("#cantidad").val(),$("#unidadMedidaPresentacion").val()];
  		 	agregarDetalle(data);
  		 	var fila = mercaderiaJSONArray.length-1;
- 		 	mercaderiaJSONArray[fila].idUnidadMineraInsumo=$("#idUnidadMineraInsumo").val();
+ 		 	mercaderiaJSONArray[fila].idUnidadMineraInsumoPresentacion=$("#idUnidadMineraInsumoPresentacion").val();
 			mercaderiaJSONArray[fila].cantidad=$("#cantidad").val();
-			mercaderiaJSONArray[fila].idPresentacion=$("#idPresentacion").val();
-			mercaderiaJSONArray[fila].descripcionPresentacion=$("#idPresentacion option:selected").text();
-			mercaderiaJSONArray[fila].unidadMedida=$("#unidadMedida").val();
+			mercaderiaJSONArray[fila].descripcionPresentacion=$("#idUnidadMineraInsumoPresentacion option:selected").text();
+			mercaderiaJSONArray[fila].unidadMedidaPresentacion=$("#unidadMedidaPresentacion").val();
 		 	$("#divModalDetalleForm").modal("hide");
 	 }
-	
 });
 
 function agregarDetalle(data){
 	var mercaderiaJSON = {
-		    idDetalle:'',idUnidadMineraInsumo:'',cantidad:'',idPresentacion:'',descripcionPresentacion:'',
-		    descripcion:'',unidadMedida:'',indicadorBD: INDICADOR_NUEVO};
+		    idDetalle:'',idUnidadMineraInsumoPresentacion:'',cantidad:'',descripcionPresentacion:'',
+		    unidadMedidaPresentacion:'',indicadorBD: INDICADOR_NUEVO};
 	mercaderiaJSONArray.push(mercaderiaJSON);
 	agregarFila(data);
 }
 
 $("#btnEditarDetalle").click(function(){
-	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumo("editar")){	
-		 setearCampo("idUnidadMineraInsumo",$("#idUnidadMineraInsumo").val());
-		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
+	 if(validarCamposRequeridos("formModalDetalleForm") && validarInsumoPresentacion("editar")){	
+		 setearCampo("idUnidadMineraInsumoPresentacion",$("#idUnidadMineraInsumoPresentacion").val());
+		 setearCampo("descripcionPresentacion",$("#idUnidadMineraInsumoPresentacion option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
-		 setearCampo("descripcionPresentacion",$("#idPresentacion option:selected").text());
-		 setearCampo("unidadMedida",$("#unidadMedida").val());
+		 setearCampo("unidadMedidaPresentacion",$("#unidadMedidaPresentacion").val());
 		 cambiarIndicadorModificado();	 
-		 mercaderiaJSONArray[filaIndexDetalle].idPresentacion=$("#idPresentacion").val();
 		 $("#divModalDetalleForm").modal("hide");
 	 }
 	
@@ -91,10 +87,9 @@ $("#abrirDetalleEditar").click(function(){
 	var checkDetalle = $('#tablaMercaderiaDetalle> tbody .checkDetalle:checked');
 	if(checkDetalle.length==1){
 		var index = checkDetalle.closest("tr").index();
-		var idUnidadMineraInsumoDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumo").text();
+		var idUnidadMineraInsumoPresentacionDetalle = checkDetalle.closest("tr").find("td.idUnidadMineraInsumoPresentacion").text();
 
-		$("#idUnidadMineraInsumo").val(mercaderiaJSONArray[index].idUnidadMineraInsumo).trigger('change');
-		$("#idPresentacion").val(mercaderiaJSONArray[index].idPresentacion).trigger('change');
+		$("#idUnidadMineraInsumoPresentacion").val(mercaderiaJSONArray[index].idUnidadMineraInsumoPresentacion).trigger('change');
 		$("#cantidad").val(mercaderiaJSONArray[index].cantidad);
 		filaIndexDetalle = index;
 
@@ -104,24 +99,22 @@ $("#abrirDetalleEditar").click(function(){
 	}	
 });
 
-function validarInsumo(flag){
+function validarInsumoPresentacion(flag){
 	var rpta=true;
 	var cantidad = parseFloat($("#cantidad").val());
-	var idUnidadMineraInsumo = $("#idUnidadMineraInsumo").val();
-	var idPresentacion = $("#idPresentacion").val();
+	var idUnidadMineraInsumoPresentacion = $("#idUnidadMineraInsumoPresentacion").val();
 	var indexEditar = 0;
 
 	for (var i = 0; i < mercaderiaJSONArray.length; i++) {
-		var _idUnidadMineraInsumo = mercaderiaJSONArray[i].idUnidadMineraInsumo;
-		var _idPresentacion = mercaderiaJSONArray[i].idPresentacion;
+		var _idUnidadMineraInsumoPresentacion = mercaderiaJSONArray[i].idUnidadMineraInsumoPresentacion;
 		if(flag!="editar"){
-			if(_idUnidadMineraInsumo==idUnidadMineraInsumo && _idPresentacion==idPresentacion){
+			if(_idUnidadMineraInsumoPresentacion==idUnidadMineraInsumoPresentacion){
 				alertify.error("Ya existe un insumo con la misma presentación.");
 				rpta=false;
 			}
 		}else{
 			if(i!=filaIndexDetalle){
-				if(_idUnidadMineraInsumo==idUnidadMineraInsumo && _idPresentacion==idPresentacion){
+				if(_idUnidadMineraInsumoPresentacion==idUnidadMineraInsumoPresentacion){
 					alertify.error("Ya existe un insumo con la misma presentación.");
 					rpta=false;
 				}
@@ -212,43 +205,19 @@ function getProveedorDescripcion(){
 		
 }
 
-$("#idUnidadMineraInsumo").change(function(){
-	$('#idPresentacion').empty();
-	var objArray = [{id:" ",text:"Seleccionar"}];
-	if($(this).val().trim()!=""){
-		var insumo = $(this).val().split("-")[1];
-		$.ajax({
-			type : 'post',
-			data: {'idInsumo': insumo},
-			url : '${pageContext.request.contextPath}/ajax/listaPresentacionInsumoPorInsumo.htm',
-			async:false,
-			success : function(data) {	
-				listaPresentacionInsumo = JSON.parse(data);
-				for (var i = 0; i < listaPresentacionInsumo.length; i++) {
-					objArray.push({id:listaPresentacionInsumo[i].idPresentacion,
-						text:listaPresentacionInsumo[i].descripcion});
-				}
-			}
-		});
-	}
-	$("#idPresentacion").select2({
-		  data: objArray
-	});
-});
-
-$("#idPresentacion").change(function(){
-	var idPresentacion = $(this).val().trim();
-	var unidadMedida;
-	if(idPresentacion.trim()!=""){
-		for (var i = 0; i < listaPresentacionInsumo.length; i++) {
-			if(listaPresentacionInsumo[i].idPresentacion==idPresentacion){
-				unidadMedida = listaPresentacionInsumo[i].idUnidadMedidaPresentacion;
-				$("#unidadMedida").val(unidadMedida);
-				$("#pesoNeto").val(listaPresentacionInsumo[i].pesoNeto);
+$("#idUnidadMineraInsumoPresentacion").change(function(){
+	if($(this).val().trim().length>0){
+		for (var i = 0; i < dataInsumo.length; i++) {
+			if(dataInsumo[i].id==$(this).val()){
+				$("#unidadMedidaPresentacion").val(dataInsumo[i].unidadMedidaPresentacion);
+				$("#pesoNeto").val(dataInsumo[i].pesoNeto);
 				break;
 			}
 		}
+	}else{
+		$("#pesoNeto").val("");
 	}
+
 });
 
 </script>
