@@ -35,7 +35,7 @@ public class UnidadMineraInsumoPresentacionDAOImpl implements UnidadMineraInsumo
 	@SuppressWarnings("unchecked")
 	public List<UnidadMineraInsumoPresentacion> listaUnidadMineraInsumoPresentacionPorUnidadMinera(String idUnidadMinera){
 		String query = "from UnidadMineraInsumoPresentacion uma "
-				+ "where uma.idUnidadMinera='"+idUnidadMinera+"'";
+				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.presentacionInsumo.insumo.insumo";
     	List<UnidadMineraInsumoPresentacion> resultado = hibernateTemplate.find(query);
         return  resultado;
 	}

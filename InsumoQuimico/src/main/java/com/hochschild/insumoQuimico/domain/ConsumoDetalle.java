@@ -48,10 +48,13 @@ public class ConsumoDetalle implements Serializable {
 	@JoinColumn(name = "idUnidadMineraInsumoPresentacion")
 	private UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion;
 	
+	@ManyToOne
+	@JoinColumn(name = "idConsumo",referencedColumnName = "idConsumo", insertable=false,updatable = false, nullable=false)
+	private Consumo consumo;
 	
 	private String idUnidadMineraArea;
 	private Double cantidad;
-	
+	private Double cantidadPresentacion;
 	private String unidadMedida;	
 	
 	private String idUsuarioCreacion;	
@@ -113,6 +116,18 @@ public class ConsumoDetalle implements Serializable {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+	public Double getCantidadPresentacion() {
+		return cantidadPresentacion;
+	}
+	public void setCantidadPresentacion(Double cantidadPresentacion) {
+		this.cantidadPresentacion = cantidadPresentacion;
+	}
+	public Consumo getConsumo() {
+		return consumo;
+	}
+	public void setConsumo(Consumo consumo) {
+		this.consumo = consumo;
+	}
 	
-	
+
 }

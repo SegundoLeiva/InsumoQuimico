@@ -25,7 +25,7 @@ public class UnidadMineraInsumoDAOImpl implements UnidadMineraInsumoDAO {
 	public void insertarUnidadMineraInsumo(UnidadMineraInsumo data){
     	hibernateTemplate.persist(data);  
     	
-    	String query = "from PresentacionInsumo where idInsumo='"+data.getInsumo().getIdInsumo()+"'";
+    	String query = "from InsumoPresentacion where idInsumo='"+data.getInsumo().getIdInsumo()+"'";
     	List<InsumoPresentacion> resultado = hibernateTemplate.find(query);
     	for (int i = 0; i < resultado.size(); i++) {
     		UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();

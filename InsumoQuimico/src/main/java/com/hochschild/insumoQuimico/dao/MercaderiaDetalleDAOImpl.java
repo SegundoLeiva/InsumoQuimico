@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
+import com.hochschild.insumoQuimico.util.FechasUtil;
 
 @Repository(value="MercaderiaDetalleDAO")
 public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
@@ -51,6 +52,18 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
 	     return resultado.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<MercaderiaDetalle> obtenerMercaderiaDetalleReporte(String idUnidadMinera,String anio,String mes){
+		
+		String fechaIni = FechasUtil.getPrimerDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
+		String fechaFin = FechasUtil.getUltimoDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
+
+		String sql = "from MercaderiaDetalle WHERE unidadMineraInsumoPresentacion.idUnidadMinera = '"+idUnidadMinera+"' "
+		 		+ "and mercaderia.fechaMercaderia Between '"+fechaIni+"' and '"+fechaFin+"'";
+		List<MercaderiaDetalle> resultado= hibernateTemplate.find(sql);
+	      
+	    return resultado;
+	}
 	 
 }
 

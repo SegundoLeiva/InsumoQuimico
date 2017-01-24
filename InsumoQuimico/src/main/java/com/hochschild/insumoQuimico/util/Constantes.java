@@ -28,4 +28,15 @@ public class Constantes {
     public static final String ESTADO_VIGENTE = "S";
     public static final String ESTADO_NO_VIGENTE = "N";
     public static final String ESTADO_ELIMINADO = "E";
+    
+    //CONSTANTES DE REPORTE TXT
+    public static final String TIPO_OPERACION_INGRESO = "1";
+    public static final String TIPO_OPERACION_CONSUMO = "4";
+    public static final String TIPO_TRANSACCION_INGRESO = "001";
+    public static final String TIPO_TRANSACCION_CONSUMO = "031";
+    public static final String TIPO_DOCUMENTO_TRANSACCION_INGRESO = "09";
+    public static final String TIPO_DOCUMENTO_TRANSACCION_CONSUMO = "99";
+    public static final String TIPO_DOCUMENTO_DESTINATARIO= "6";
+    public static final String TIPO_DOCUMENTO_TRANSFERIR = "6";
+    public static final String TIPO_DOCUMENTO_RELACIONADO_DEL_BIEN = "6";
 }

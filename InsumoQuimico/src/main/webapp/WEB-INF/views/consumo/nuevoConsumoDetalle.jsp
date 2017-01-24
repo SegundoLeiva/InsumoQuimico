@@ -33,6 +33,7 @@
 								<label class="control-label" for="stock">Stock (Kg)</label>
 								<div class="controls">
 									<input type="text" id="stock" readonly="readonly" class="stock inputInsumo">
+									<input type="hidden" id="pesoNeto">
 								</div>
 							</div>					
 						</div>									

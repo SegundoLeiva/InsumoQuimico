@@ -25,6 +25,7 @@ public class InsumoPresentacion {
     private Double pesoNeto;
     private String idUnidadMedidaConversion;
     private String vigencia;
+    private String codigoPresentacion;
 	public String getIdPresentacionInsumo() {
 		return idPresentacionInsumo;
 	}
@@ -84,5 +85,11 @@ public class InsumoPresentacion {
 	}
 	public void setVigencia(String vigencia) {
 		this.vigencia = vigencia;
+	}
+	public String getCodigoPresentacion() {
+		return codigoPresentacion;
+	}
+	public void setCodigoPresentacion(String codigoPresentacion) {
+		this.codigoPresentacion = codigoPresentacion;
 	}
 }

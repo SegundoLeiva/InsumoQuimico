@@ -22,6 +22,7 @@ $(document).ready(function() {
 			consumoJSONArray[i].idDetalle="${jbean.id.idConsumoDetalle}";
 			consumoJSONArray[i].idUnidadMineraInsumoPresentacion="${jbean.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}";
 			consumoJSONArray[i].cantidad="${jbean.cantidad}";
+			consumoJSONArray[i].pesoNeto="${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.pesoNeto}";
 			consumoJSONArray[i].descripcionPresentacion="${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.descripcion}";
 			consumoJSONArray[i].unidadMedidaPresentacion="${jbean.unidadMineraInsumoPresentacion.presentacionInsumo.idUnidadMedidaPresentacion}";
 			consumoJSONArray[i].indicadorBD=INDICADOR_CREADO;
@@ -34,10 +35,10 @@ $(document).ready(function() {
 		}
 	}
 	
-	dataInsumo=[{id:" ",text:"Seleccionar",unidadMedidaPresentacion:""}];
+	dataInsumo=[{id:" ",text:"Seleccionar",unidadMedidaPresentacion:"",pesoNeto:""}];
 	<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
 		var obj = {id:"${item.idUnidadMineraInsumoPresentacion}",text:"${item.presentacionInsumo.insumo.insumo}"+" - "+"${item.presentacionInsumo.descripcion}"
-				,unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}"}
+				,unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}",pesoNeto:"${item.presentacionInsumo.pesoNeto}"}
 		dataInsumo.push(obj);
 	</c:forEach>
 
@@ -54,6 +55,7 @@ $("#btnAgregarDetalle").click(function(){
  		 	var fila = consumoJSONArray.length-1;
  		 	consumoJSONArray[fila].idUnidadMineraInsumoPresentacion=$("#idUnidadMineraInsumoPresentacion").val();
  		 	consumoJSONArray[fila].cantidad=$("#cantidad").val();
+ 		 	consumoJSONArray[fila].pesoNeto=$("#pesoNeto").val();
 			consumoJSONArray[fila].descripcionPresentacion=$("#idUnidadMineraInsumoPresentacion option:selected").text();
 		 	$("#divModalDetalleForm").modal("hide");
 	 }
@@ -62,7 +64,7 @@ $("#btnAgregarDetalle").click(function(){
 
 function agregarDetalle(data){
 	 var mercaderiaJSON = {
-			    idDetalle:'',idUnidadMineraInsumoidPresentacion:'',cantidad:'',descripcionPresentacion:'',
+			    idDetalle:'',idUnidadMineraInsumoidPresentacion:'',cantidad:'',pesoNeto:'',descripcionPresentacion:'',
 			    unidadMedidaPresentacion:'KG',indicadorBD: INDICADOR_NUEVO};
 	consumoJSONArray.push(mercaderiaJSON);	
 	agregarFila(data);
@@ -74,6 +76,7 @@ $("#btnEditarDetalle").click(function(){
 		 setearCampo("descripcion",$("#idUnidadMineraInsumo option:selected").text());
 		 setearCampo("cantidad",$("#cantidad").val());
 		 setearCampo("descripcionPresentacion",$("#idUnidadMineraInsumoPresentacion option:selected").text());
+		 consumoJSONArray[filaIndexDetalle].pesoNeto=$("#pesoNeto").val(); 
 		 cambiarIndicadorModificado();
 		 $("#divModalDetalleForm").modal("hide");
 	 }
@@ -89,6 +92,7 @@ $("#abrirDetalleEditar").click(function(){
 		
 		$("#idUnidadMineraInsumoPresentacion").val(consumoJSONArray[index].idUnidadMineraInsumoPresentacion).trigger('change');
 		$("#cantidad").val(consumoJSONArray[index].cantidad);
+		$("#pesoNeto").val(consumoJSONArray[index].pesoNeto);
 		filaIndexDetalle = index;
 
 		$("#divModalDetalleForm").modal("show");
@@ -179,6 +183,7 @@ $("#idUnidadMineraInsumoPresentacion").change(function(){
 		for (var i = 0; i < dataInsumo.length; i++) {
 			if(dataInsumo[i].id==$(this).val()){
 				$("#unidadMedidaPresentacion").val(dataInsumo[i].unidadMedidaPresentacion);
+				$("#pesoNeto").val(dataInsumo[i].pesoNeto);
 				$("#stock").val(obtenerStockPorArea($(this).val()));
 				break;
 			}

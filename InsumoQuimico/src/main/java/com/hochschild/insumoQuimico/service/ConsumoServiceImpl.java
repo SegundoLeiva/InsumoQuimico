@@ -80,9 +80,12 @@ public class ConsumoServiceImpl implements ConsumoService {
 					
 					consumoDetalle.setIdUnidadMineraArea(consumoParametrosEntrada.getIdUnidadMineraArea());
 					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
+					consumoDetalle.setCantidadPresentacion(jsonObj.getDouble("cantidad")/jsonObj.getDouble("pesoNeto"));
+					
 					consumoDetalle.setUnidadMedida(jsonObj.getString("unidadMedidaPresentacion"));
 					consumoDetalle.setIdUsuarioCreacion(consumoParametrosEntrada.getNombreUsuario());
 					consumoDetalle.setFechaCreacion(new Date());
+
 					ConsumoDetalleDAO.insertarConsumoDetalle(consumoDetalle);
 
 					index++;
@@ -93,7 +96,8 @@ public class ConsumoServiceImpl implements ConsumoService {
 
 					consumoDetalle = ConsumoDetalleDAO.obtenerConsumoDetalle(consumoParametrosEntrada.getIdConsumo(), jsonObj.get("idDetalle").toString());
 					consumoDetalle.setCantidad(jsonObj.getDouble("cantidad"));
-					
+					consumoDetalle.setCantidadPresentacion(jsonObj.getDouble("cantidad")/jsonObj.getDouble("pesoNeto"));
+
 					String idUnidadMineraInsumoPresentacion = jsonObj.getString("idUnidadMineraInsumoPresentacion");
 					UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion = new UnidadMineraInsumoPresentacion();
 					unidadMineraInsumoPresentacion.setIdUnidadMineraInsumoPresentacion(idUnidadMineraInsumoPresentacion);					

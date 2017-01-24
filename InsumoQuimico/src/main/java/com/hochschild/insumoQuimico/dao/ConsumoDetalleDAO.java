@@ -11,4 +11,5 @@ public interface ConsumoDetalleDAO {
 	public void modificarConsumoDetalle(ConsumoDetalle data);
 	public List<ConsumoDetalle> obtenerConsumoDetallePorIdConsumo(String id);
 	public ConsumoDetalle obtenerConsumoDetalle(String idSolPed,String idSolPedDetalle);
+	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(String idUnidadMinera,String anio,String mes);
 }

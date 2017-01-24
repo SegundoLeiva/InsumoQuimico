@@ -43,10 +43,14 @@ public class MercaderiaDetalle implements Serializable {
 			this.idMercaderiaDetalle = idMercaderiaDetalle;
 		}
 	}
-	
+    
 	@ManyToOne
 	@JoinColumn(name = "idUnidadMineraInsumoPresentacion")
 	private UnidadMineraInsumoPresentacion unidadMineraInsumoPresentacion;
+	
+	@ManyToOne
+	@JoinColumn(name = "idMercaderia",referencedColumnName = "idMercaderia", insertable=false,updatable = false, nullable=false)
+	private Mercaderia mercaderia;
 	
 	private Double cantidad;
 	private String idUsuarioCreacion;	
@@ -96,4 +100,11 @@ public class MercaderiaDetalle implements Serializable {
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
+	public Mercaderia getMercaderia() {
+		return mercaderia;
+	}
+	public void setMercaderia(Mercaderia mercaderia) {
+		this.mercaderia = mercaderia;
+	}
+	
 }

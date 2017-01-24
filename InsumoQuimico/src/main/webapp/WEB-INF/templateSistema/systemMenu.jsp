@@ -1,10 +1,7 @@
 <%@ include file="/WEB-INF/views/include.jsp"%>
 <div class="sidebar active open" id="sidebar">
 	<ul class="nav nav-list active open">
-		<li><a href="#"> <i class="menu-icon blue icon-dashboard"></i> <span
-				class="menu-text"> Reportes </span>
-		</a> <b class="arrow"></b></li>
-		<c:forEach  var="obj" varStatus="status" items="${session_usuario.lst_opciones}">
+	<c:forEach  var="obj" varStatus="status" items="${session_usuario.lst_opciones}">
 	  <c:if test="${obj.idPadre == 0}">
 	   <c:set var="idOpcion" value="${obj.idOpcion}" />
 	  		<li>

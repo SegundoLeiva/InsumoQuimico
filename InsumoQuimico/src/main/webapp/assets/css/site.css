@@ -157,11 +157,11 @@
 
 .selectInsumo .select2,
 .selectInsumo select{
-	width: 220px !important;
+	width: 240px !important;
 }
 
 .inputInsumo{
-	width: 206px !important;
+	width: 225px !important;
 }
 
 .stock,.numeroDecimal,.factor{

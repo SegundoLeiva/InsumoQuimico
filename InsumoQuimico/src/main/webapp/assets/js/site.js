@@ -208,6 +208,12 @@ function buscarConsulta(){
     form.idUnidadMinera.disabled=true;
 }
 
+function exportarReporteTxt(){
+	var form = document.forms[0];
+    form.action="generarReporte.htm"
+    form.submit();
+}
+
 function eliminarSearch(id) {
 	$("#id").val(id);
 	var form = document.forms[0];

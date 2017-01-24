@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
+import com.hochschild.insumoQuimico.util.FechasUtil;
 
 @Repository(value="ConsumoDetalleDAO")
 public class ConsumoDetalleDAOImpl implements ConsumoDetalleDAO {
@@ -49,6 +50,19 @@ public class ConsumoDetalleDAOImpl implements ConsumoDetalleDAO {
 		 List<ConsumoDetalle> resultado= hibernateTemplate.find(sql);
 	      
 	     return resultado.get(0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(String idUnidadMinera,String anio,String mes){
+		
+		String fechaIni = FechasUtil.getPrimerDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
+		String fechaFin = FechasUtil.getUltimoDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
+
+		String sql = "from ConsumoDetalle WHERE unidadMineraInsumoPresentacion.idUnidadMinera = '"+idUnidadMinera+"' "
+		 		+ "and consumo.fechaConsumo Between '"+fechaIni+"' and '"+fechaFin+"'";
+		List<ConsumoDetalle> resultado= hibernateTemplate.find(sql);
+	      
+	    return resultado;
 	}
 
 	 

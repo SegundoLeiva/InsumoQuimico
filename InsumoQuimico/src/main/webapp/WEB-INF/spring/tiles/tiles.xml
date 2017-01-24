@@ -92,13 +92,6 @@
 		<put-attribute name="js2" value="/WEB-INF/views/unidadMineraInsumo/unidadMineraInsumoJs.jsp" />
 	</definition>
 	
-	<!-- ################################ REGISTRO DE FACTOR CONVERSION ############################## -->
-	<definition name="verFactorConversion" extends="templateSistema">
-	<put-attribute name="js2" value="/WEB-INF/views/factorConversion/factorConversionJs.jsp" />
-		<put-attribute name="contenido"
-			value="/WEB-INF/views/factorConversion/verFactorConversion.jsp" />		
-	</definition>
-	
 	<!-- ################################ INGRESO DE MERCADERIAS ############################## -->
 	<definition name="verMercaderias" extends="templateSistema">
 		<put-attribute name="js2" value="/WEB-INF/views/mercaderia/nuevaMercaderiaJs.jsp" />
@@ -133,6 +126,13 @@
 		<put-attribute name="js2" value="/WEB-INF/views/distribucionMercaderia/distribucionMercaderiaJs.jsp" />
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/distribucionMercaderia/nuevaDistribucionMercaderia.jsp" />		
+	</definition>
+	
+	<!-- ################################ REPORTE ############################## -->
+	<definition name="verReporte" extends="templateSistema">
+	<put-attribute name="js2" value="/WEB-INF/views/reporte/reporteJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/reporte/verReporte.jsp" />		
 	</definition>
 
 </tiles-definitions>

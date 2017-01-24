@@ -5,7 +5,7 @@
 	<input type="hidden" name="idDistribucionMercaderia" id="idDistribucionMercaderia" value="${distribucionMercaderia.idDistribucionMercaderia}" data-id="${distribucionMercaderia.idDistribucionMercaderia}">
 		<div class="row-fluid">
 			<div class="page-content">
-				<div class="span8">
+				<div class="span10">
 					<input type="hidden" value="${accion}" id="accion">
 					<div class="row-fluid">
 						<div class="span6">
@@ -47,7 +47,7 @@
 						</div>
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="cantidad">Cantidad</label>
+								<label class="control-label" for="cantidad">Cantidad de Distribución</label>
 								<div class="controls">
 									<input type="text" id="cantidad" name="cantidad" class="numeroEntero inputInsumo" required data-msg-required="El campo Cantidad es obligatorio." value="${distribucionMercaderia.cantidad}">
 								</div>
@@ -57,7 +57,7 @@
 					<div class="row-fluid">
 						<div class="span6">
 							<div class="control-group" id="bloqueStock">
-								<label class="control-label" for="stock">Stock</label>
+								<label class="control-label" for="stock">Cantidad Presentación</label>
 								<div class="controls">
 									<input type="text" id="stock" readonly="readonly" class="stock inputInsumo">
 								</div>

@@ -20,7 +20,7 @@
 						</div>
 						<div class="span6">
 							<div class="control-group">
-								<label class="control-label" for="pesoNeto">Peso Neto</label>
+								<label class="control-label" for="pesoNeto">Peso Neto (Kg)</label>
 								<div class="controls">
 									<input type="text" id="pesoNeto" readonly="readonly" class="inputInsumo factor">
 									<input type="hidden" id="unidadMedidaPresentacion">
