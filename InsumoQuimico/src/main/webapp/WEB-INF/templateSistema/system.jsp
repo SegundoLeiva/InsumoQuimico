@@ -107,6 +107,9 @@ $(document).ready(function() {
 	<c:if test="${flagTransaccion=='error'}">
 		alertify.error("Se produjo un error");
 	</c:if>
+	<c:if test="${flagTransaccion=='apertura'}">
+		alertify.success("Se cambió la Apertura correctamente");
+	</c:if>
 });
 </script>
 </html>

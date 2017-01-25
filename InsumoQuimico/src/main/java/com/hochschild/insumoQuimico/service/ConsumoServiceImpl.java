@@ -14,13 +14,12 @@ import com.hochschild.insumoQuimico.dao.ConsumoDetalleDAO;
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
 import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaReporteModel;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle.IdConsumo;
 import com.hochschild.insumoQuimico.domain.ConsumoParametrosEntrada;
-import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.domain.UnidadMinera;
 import com.hochschild.insumoQuimico.domain.UnidadMineraArea;
-import com.hochschild.insumoQuimico.domain.UnidadMineraInsumo;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
 import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.insumoQuimico.util.FechasUtil;
@@ -147,6 +146,10 @@ public class ConsumoServiceImpl implements ConsumoService {
 	}
 	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel consumoConsultaModel){
 		return ConsumoDAO.listaConsumoConsulta(consumoConsultaModel);
+	}
+	
+	public List<ConsumoConsulta> listaConsumoConsultaReporte(ConsumoConsultaReporteModel consumoConsultaReporteModel){
+		return ConsumoDAO.listaConsumoConsultaReporte(consumoConsultaReporteModel);
 	}
 }
 

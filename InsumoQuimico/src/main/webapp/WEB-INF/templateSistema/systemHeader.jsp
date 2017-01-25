@@ -20,9 +20,9 @@
 			class="btn btn-success btn-small pull-right"><i class="icon-save"></i><span class="hidden-480">${accion=='EDITAR' ? 'Modificar' : 'Guardar'}</span></a>
  		</c:if>
  		<c:if test="${mostrarBotonTxt}">
- 			<a href="#" title="Generar Reporte" onclick="exportarReporteTxt()" class="btn btn-success btn-small pull-right">
- 			<i class="icon-search"></i><span class="hidden-480">Exportar TXT</span></a>
+ 			<a href="#" title="Generar Reporte" onclick="exportarReporteTxt()" class="btn btn-success btn-small pull-right">Exportar TXT</a>
  		</c:if>
+ 		
  		<span class="pull-right orange" style="margin-right: 15px;font-weight: normal;" id="codigoGenerado"></span>
 	</h1>
 </div>

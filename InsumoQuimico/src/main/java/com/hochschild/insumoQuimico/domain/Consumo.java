@@ -20,6 +20,12 @@ readOnly = true,
 cacheable = false,
 resultClass = ConsumoConsulta.class),
 
+@NamedNativeQuery(name = "listaConsumoReporte",
+callable = true,
+query = "{call dbo.stpr_ListaConsumoReporte(:idUnidadMinera,:anio,:mes)}",
+readOnly = true,
+cacheable = false,
+resultClass = ConsumoConsulta.class)
 })
 
 @Entity

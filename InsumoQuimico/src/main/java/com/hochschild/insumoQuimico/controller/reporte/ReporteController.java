@@ -15,6 +15,7 @@ import com.hochschild.insumoQuimico.BaseController.BaseReporteController;
 import com.hochschild.insumoQuimico.domain.CatalogoDetalle;
 import com.hochschild.insumoQuimico.domain.ConsumoDetalle;
 import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
+import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.CatalogoDetalleService;
 import com.hochschild.insumoQuimico.service.ConsumoDetalleService;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
@@ -42,6 +43,8 @@ public class ReporteController extends BaseReporteController{
 	public Model setViewAttributes(Model model) {
 		// TODO Auto-generated method stub
 		List<CatalogoDetalle> listRangoAnio = catalogoDetalleService.listaCatalogoDetalleByIdCatalogo(6) ;
+		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
+        model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		model.addAttribute("listRangoAnio", listRangoAnio);
 		model.addAttribute("anioActual", FechasUtil.getAnioActual());
 		model.addAttribute("mesActual", FechasUtil.getMesActual());
@@ -83,7 +86,7 @@ public class ReporteController extends BaseReporteController{
 			cadena=cadena +tipoOperacion+"|0009|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
 		}
 
-		descargarArchivoTxt(response, "archivoTxt", cadena);
+		descargarArchivoTxt(response, "reporte_"+FechasUtil.obtenerMesDescripcion(mes)+"_"+anio, cadena);
 	}
 
 }

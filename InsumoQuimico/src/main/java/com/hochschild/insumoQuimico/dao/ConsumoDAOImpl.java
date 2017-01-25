@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hochschild.insumoQuimico.domain.Consumo;
 import com.hochschild.insumoQuimico.domain.ConsumoConsulta;
 import com.hochschild.insumoQuimico.domain.ConsumoConsultaModel;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaReporteModel;
 import com.hochschild.insumoQuimico.domain.CorrelativoBD;
-import com.hochschild.insumoQuimico.domain.MercaderiaConsulta;
 
 @Repository(value="ConsumoDAO")
 public class ConsumoDAOImpl implements ConsumoDAO {
@@ -40,12 +40,12 @@ public class ConsumoDAOImpl implements ConsumoDAO {
 	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel consumoConsultaModel){		
     	List<ConsumoConsulta> listaConsumoConsulta =  new ArrayList<ConsumoConsulta>();
     	try {
-    		ConsumoConsulta mercaderiaConsulta = new ConsumoConsulta();
-    		BeanUtils.copyProperties(mercaderiaConsulta, consumoConsultaModel);
+    		ConsumoConsulta consultaConsulta = new ConsumoConsulta();
+    		BeanUtils.copyProperties(consultaConsulta, consumoConsultaModel);
     		String[] paramNames = {"idUnidadMinera","idConsumo","idUnidadMineraArea","fechaInicio","fechaFin","idUsuarioCreacion"};        
-            String[] values = {mercaderiaConsulta.getIdUnidadMinera(),mercaderiaConsulta.getIdConsumo(),
-            		mercaderiaConsulta.getIdUnidadMineraArea(),
-            		consumoConsultaModel.getFechaInicio(),consumoConsultaModel.getFechaFin(), mercaderiaConsulta.getIdUsuarioCreacion()};
+            String[] values = {consultaConsulta.getIdUnidadMinera(),consultaConsulta.getIdConsumo(),
+            		consultaConsulta.getIdUnidadMineraArea(),
+            		consumoConsultaModel.getFechaInicio(),consumoConsultaModel.getFechaFin(), consultaConsulta.getIdUsuarioCreacion()};
             listaConsumoConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaConsumo",paramNames,values);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -53,6 +53,22 @@ public class ConsumoDAOImpl implements ConsumoDAO {
         
         return listaConsumoConsulta;
     }
+    
+    @SuppressWarnings("unchecked")
+   	public List<ConsumoConsulta> listaConsumoConsultaReporte(ConsumoConsultaReporteModel consumoConsultaReporteModel){		
+       	List<ConsumoConsulta> listaConsumoConsulta =  new ArrayList<ConsumoConsulta>();
+       	try {
+       		ConsumoConsulta consultaConsulta = new ConsumoConsulta();
+       		BeanUtils.copyProperties(consultaConsulta, consumoConsultaReporteModel);
+       		String[] paramNames = {"idUnidadMinera","anio","mes"};        
+            String[] values = {consumoConsultaReporteModel.getIdUnidadMinera(), consumoConsultaReporteModel.getAnio(), consumoConsultaReporteModel.getMes()};
+            listaConsumoConsulta = hibernateTemplate.findByNamedQueryAndNamedParam("listaConsumoReporte",paramNames,values);
+   		} catch (Exception e) {
+   			// TODO: handle exception
+   		}
+           
+           return listaConsumoConsulta;
+       }
     
 	
 	@Transactional

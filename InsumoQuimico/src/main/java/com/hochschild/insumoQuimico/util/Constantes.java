@@ -9,6 +9,7 @@ public class Constantes {
     public static final String TRANSACCION_MODIFICAR = "modificar";
     public static final String TRANSACCION_ELIMINAR = "eliminar";
     public static final String TRANSACCION_CONSULTAR = "consultar";
+    public static final String TRANSACCION_CAMBIAR_APERTURA = "apertura";
     
     //Constantes Indicadores BD
     public static final String INDICADOR_NUEVO = "0";

@@ -9,6 +9,8 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.hochschild.insumoQuimico.domain.CalendarioGestion;
+import com.hochschild.insumoQuimico.domain.CalendarioGestionModel;
+import com.hochschild.insumoQuimico.domain.ConsumoConsultaReporteModel;
 
 @Repository(value="CalendarioGestionDAO")
 public class CalendarioGestionDAOImpl implements CalendarioGestionDAO {
@@ -28,6 +30,34 @@ public class CalendarioGestionDAOImpl implements CalendarioGestionDAO {
     	List<CalendarioGestion> resultado = hibernateTemplate.find(query);
         return  resultado.get(0);
     }
+
+
+	@SuppressWarnings("unchecked")
+	public CalendarioGestion obtieneCalendarioGestion(
+			CalendarioGestionModel data) {
+		// TODO Auto-generated method stub
+		String query = "from CalendarioGestion where idUnidadMinera='"+data.getIdUnidadMinera()+"' "
+				+ "and idAnioGestion='"+data.getAnio()+"' and idMesGestion='"+data.getMes()+"'";
+    	List<CalendarioGestion> resultado = hibernateTemplate.find(query);
+        return  resultado.get(0);
+	}
+
+
+	public void actualizarCalendarioGestion(CalendarioGestion data) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(data);  
+		
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<CalendarioGestion> listCalendarioGestionPorAnio(CalendarioGestionModel data) {
+		// TODO Auto-generated method stub
+		String query = "from CalendarioGestion where idUnidadMinera='"+data.getIdUnidadMinera()+"' "
+				+ "and idAnioGestion='"+data.getAnio()+"' ";
+    	List<CalendarioGestion> resultado = hibernateTemplate.find(query);
+		return resultado;
+	}
 }
 
 

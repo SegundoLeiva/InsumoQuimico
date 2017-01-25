@@ -134,6 +134,18 @@
 		<put-attribute name="contenido"
 			value="/WEB-INF/views/reporte/verReporte.jsp" />		
 	</definition>
+	
+	<!-- ################################ CERRAR PERIODO ############################## -->
+	<definition name="verCerrarPeriodo" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/cerrarPeriodo/cerrarPeriodoJs.jsp" />
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/cerrarPeriodo/verCerrarPeriodo.jsp" />		
+	</definition>
+	<definition name="consultarCerrarPeriodo" extends="templateSistema">
+		<put-attribute name="js2" value="/WEB-INF/views/cerrarPeriodo/cerrarPeriodoJs.jsp" />		
+		<put-attribute name="contenido"
+			value="/WEB-INF/views/cerrarPeriodo/consultarCerrarPeriodo.jsp" />		
+	</definition>
 
 </tiles-definitions>
 
