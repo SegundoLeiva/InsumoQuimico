@@ -23,7 +23,7 @@ public abstract class BaseSearchController {
 	public Usuario usuario;
 	protected boolean mostrarBotonBuscar = true;
 	protected boolean mostrarBotonNuevo = true;
-	
+
 	@RequestMapping(value = { "/buscarConsulta.htm" }, method = { RequestMethod.POST })
 	public String buscarConsulta(HttpSession sesion, HttpServletRequest req, Model model) {
 		req.setAttribute(Constantes.FLAG_TRANSACCION, Constantes.TRANSACCION_CONSULTAR);
@@ -34,7 +34,7 @@ public abstract class BaseSearchController {
 	public Object obtenerConsulta(HttpServletRequest req,HttpSession sesion){
 		 this.formBusqueda=getFormBusqueda();
 
-	        if((req.getParameter("cod")!=null) || Util.validFlagTransaccion(req,Constantes.TRANSACCION_ELIMINAR)){
+	        if((req.getParameter("cod")!=null) || Util.validFlagTransaccion(req,Constantes.TRANSACCION_ELIMINAR) || Util.validFlagTransaccion(req,Constantes.TRANSACCION_CAMBIAR_APERTURA)){
 	        	this.formBusqueda = (Object) sesion.getAttribute("beanConsulta");
 	        }else if(Util.validFlagTransaccion(req,Constantes.TRANSACCION_CONSULTAR)){
 	        	try {

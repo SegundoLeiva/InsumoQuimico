@@ -19,13 +19,13 @@ import com.hochschild.insumoQuimico.domain.Usuario;
 
 public abstract class BaseReporteController {
 	
-//	public Object formBusqueda;
 	public Usuario usuario;
 	protected boolean mostrarBotonTxt= true;
 	
 	@RequestMapping(value = "/verReporte.htm")
 	public String verReporte(HttpSession sesion, HttpServletRequest req, Model model) {
-
+		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
+		this.usuario = usuarioSession;
 		model.addAttribute("mostrarBotonTxt", this.mostrarBotonTxt);
 		model = this.setViewAttributes(model);
 		return this.getPaginaReporte();
@@ -62,36 +62,17 @@ public abstract class BaseReporteController {
 		}
 
 	}
-//	public String listar(Model model,HttpServletRequest req,HttpSession sesion){
-//		
-//		 this.formBusqueda = obtenerConsulta(req, sesion);	 
-//		 List listBusqueda = this.listarConsulta(model, sesion, req);
-//		 model.addAttribute("mostrarBotonBuscar", this.mostrarBotonTxt);
-//		 model.addAttribute("listaConsulta", listBusqueda);
-//		 sesion.setAttribute("beanConsulta", this.formBusqueda);
-//		 return this.getPaginaSearch();
-//	}
-//	
-//	@RequestMapping(value = "/listar.htm")
-//	public String setView(Model model,HttpSession sesion,HttpServletRequest req) {
-//		Usuario usuarioSession = (Usuario) sesion.getAttribute("session_usuario");
-//		this.usuario = usuarioSession;		
-//		return listar(model, req, sesion);
-//	}
 	
 	public abstract String getPaginaReporte();
 	
 	public abstract Model setViewAttributes(Model model);
-//	
-//
-//	public abstract boolean setDeleteAttributes(String id);
-//	
-//	public Usuario getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 }
