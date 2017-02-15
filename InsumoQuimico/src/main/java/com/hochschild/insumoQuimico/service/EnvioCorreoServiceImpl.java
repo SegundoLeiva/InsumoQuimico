@@ -32,7 +32,7 @@ public class EnvioCorreoServiceImpl implements EnvioCorreoService {
 		cal.setTime(calendario.getFechaFin());
 		cal.add(Calendar.DATE, calendario.getDiasTolerancia());
 
-//		if (date.after(cal.getTime()) && calendario.getAperturado().equals("S")) {
+		if (date.after(cal.getTime()) && calendario.getAperturado().equals("S")) {
 			String cuerpoCorreo = "Estimado Usuario necesita cerrar el periodo enero, por favor ingresar al aplicativo.";
 			String titulo = "Notificacion de Cierre de Periodo";
 			
@@ -52,7 +52,7 @@ public class EnvioCorreoServiceImpl implements EnvioCorreoService {
 			
 			MailUtil.enviarEmail(Constantes.MAIL_HOST, Constantes.MAIL_REMITENTE
 						, correosEncargados,correosCopias, titulo, cuerpoCorreo);
-//		}
+		}
 			
     	
 	}
