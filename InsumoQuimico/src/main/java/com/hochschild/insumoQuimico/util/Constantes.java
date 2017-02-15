@@ -40,4 +40,8 @@ public class Constantes {
     public static final String TIPO_DOCUMENTO_DESTINATARIO= "6";
     public static final String TIPO_DOCUMENTO_TRANSFERIR = "6";
     public static final String TIPO_DOCUMENTO_RELACIONADO_DEL_BIEN = "6";
+    
+    //Parametros Envio Correo
+    public static final String MAIL_HOST = "10.36.2.49";
+    public static final String MAIL_REMITENTE = "servicio.alerta@hocplc.com";
 }
