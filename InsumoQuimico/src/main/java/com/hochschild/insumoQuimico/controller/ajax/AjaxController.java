@@ -2,13 +2,17 @@ package com.hochschild.insumoQuimico.controller.ajax;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.hochschild.insumoQuimico.sap.FuncionesSAPService;
+import com.hochschild.insumoQuimico.service.ConsumoDetalleServiceImpl;
 import com.hochschild.insumoQuimico.service.PresentacionInsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoSaldoAlmacenService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoSaldoService;
@@ -26,6 +30,8 @@ public class AjaxController {
 	private UnidadMineraInsumoSaldoAlmacenService unidadMineraInsumoSaldoAlmacenService;
 	@Autowired
 	private PresentacionInsumoService presentacionInsumoService;
+	@Autowired
+	private ConsumoDetalleServiceImpl consumoDetalleServiceImpl;
 	
 	
 	@RequestMapping(value="/getProveedorDescripcion.htm", method = {RequestMethod.POST})
@@ -79,5 +85,18 @@ public class AjaxController {
 		return resultado;
 
 	}
+	
+	@RequestMapping(value="/obtenerConsumoDetallePorIdConsumo.htm", method = RequestMethod.POST)
+	@ResponseBody
+	public String obtenerConsumoDetallePorIdConsumo(@RequestParam("idConsumo") String idConsumo) {
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.writer().writeValueAsString(consumoDetalleServiceImpl.obtenerConsumoDetallePorIdConsumo(idConsumo));
+		} catch (Exception e) {
+			return "";
+		}
 
+	}
+	
 }
