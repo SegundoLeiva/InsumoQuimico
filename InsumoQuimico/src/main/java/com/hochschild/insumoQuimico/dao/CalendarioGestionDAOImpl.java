@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.hochschild.insumoQuimico.domain.CalendarioGestion;
 import com.hochschild.insumoQuimico.domain.CalendarioGestionModel;
-import com.hochschild.insumoQuimico.domain.ConsumoConsultaReporteModel;
 
 @Repository(value="CalendarioGestionDAO")
 public class CalendarioGestionDAOImpl implements CalendarioGestionDAO {

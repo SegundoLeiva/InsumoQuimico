@@ -47,7 +47,7 @@ public class MailUtil {
 			
 			logger.info("MSJ ENVIADO A :"+to);
 			
-			mensaje = "1";
+			mensaje = "OK";
 		}catch(Exception e){
 			
 			StringWriter errors = new StringWriter();
@@ -56,7 +56,7 @@ public class MailUtil {
 
 			logger.error(strErrores);
 			logger.error("ERROR AL ENVIAR CORREO : "+e.getLocalizedMessage());
-			mensaje = e.getLocalizedMessage();
+			mensaje = "ERROR AL ENVIAR CORREO : "+e.getLocalizedMessage();
 		}
 		
 		return mensaje;
