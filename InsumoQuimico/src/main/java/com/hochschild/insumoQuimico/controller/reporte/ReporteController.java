@@ -56,8 +56,8 @@ public class ReporteController extends BaseReporteController{
 		String mes = req.getParameter("mes");
 		String anio = req.getParameter("anio");
 		String cadena ="";
-		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetalleReporte("1303", anio, mes);
-		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetalleReporte("1303", anio, mes);
+		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetalleReporte(anio, mes);
+		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetalleReporte(anio, mes);
 		CatalogoDetalle catalogo = catalogoDetalleService.obtenerCatalogoDetalleById(2, "1");//RUC COMPAÑIA
 		String rucCompania = catalogo.getDescripcion();
 		
@@ -67,7 +67,7 @@ public class ReporteController extends BaseReporteController{
 			String tipoDocumentoTransaccion = Constantes.TIPO_DOCUMENTO_TRANSACCION_INGRESO;
 			String tipoDocumentoDestinatario = Constantes.TIPO_DOCUMENTO_DESTINATARIO;
 		    String tipoDocumentoTranferir = Constantes.TIPO_DOCUMENTO_TRANSFERIR;
-			String fechaMercaderia = FechasUtil.dateToString(listaMercaderiaDetalle.get(i).getMercaderia().getFechaMercaderia(), "dd/mm/YYYY");
+			String fechaMercaderia = FechasUtil.dateToString(listaMercaderiaDetalle.get(i).getMercaderia().getFechaMercaderia(), "dd/MM/yyyy");
 			String rucProveedor = listaMercaderiaDetalle.get(i).getMercaderia().getRucProveedor();
 			String cantidadPresentacion = String.valueOf((int)listaMercaderiaDetalle.get(i).getCantidad().doubleValue());
 			String codigoPresentacion = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
@@ -81,7 +81,7 @@ public class ReporteController extends BaseReporteController{
 			String tipoTransaccion = Constantes.TIPO_TRANSACCION_CONSUMO;
 			String tipoDocumentoBien = Constantes.TIPO_DOCUMENTO_RELACIONADO_DEL_BIEN;
 			String tipoDocumentoTransaccion = Constantes.TIPO_DOCUMENTO_TRANSACCION_CONSUMO;
-			String fechaConsumo = FechasUtil.dateToString(listaConsumoDetalle.get(i).getConsumo().getFechaConsumo(), "dd/mm/YYYY");
+			String fechaConsumo = FechasUtil.dateToString(listaConsumoDetalle.get(i).getConsumo().getFechaConsumo(), "dd/MM/yyyy");
 			String cantidadPresentacion = listaConsumoDetalle.get(i).getCantidadPresentacion().toString();
 			String codigoPresentacion = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
 			String idUnidadMinera = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();

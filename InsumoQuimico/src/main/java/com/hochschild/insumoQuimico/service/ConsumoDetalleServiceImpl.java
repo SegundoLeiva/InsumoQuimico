@@ -19,10 +19,9 @@ public class ConsumoDetalleServiceImpl implements ConsumoDetalleService {
 		return consumoDetalleDAO.obtenerConsumoDetallePorIdConsumo(id);
 	}
 
-	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(
-			String idUnidadMinera, String anio, String mes) {
+	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(String anio, String mes) {
 		// TODO Auto-generated method stub
-		return consumoDetalleDAO.obtenerConsumoDetalleReporte(idUnidadMinera, anio, mes);
+		return consumoDetalleDAO.obtenerConsumoDetalleReporte(anio, mes);
 	}
 
 }

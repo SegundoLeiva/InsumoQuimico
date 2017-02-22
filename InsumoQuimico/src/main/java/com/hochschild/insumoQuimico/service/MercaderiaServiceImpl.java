@@ -65,7 +65,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 				mercaderia.setDescripcionProveedor(mercaderiaParametrosEntrada.getDescripcionProveedor());
 				mercaderia.setIdUsuarioModificacion(idUsuarioCreacion);		
 				mercaderia.setFechaModificacion(new Date());
-				mercaderia.setFechaMercaderia(FechasUtil.stringToDate(mercaderiaParametrosEntrada.getFechaMercaderia(), "dd/mm/yyyy"));
+				mercaderia.setFechaMercaderia(FechasUtil.stringToDate(mercaderiaParametrosEntrada.getFechaMercaderia(), "dd/MM/yyyy"));
 				mercaderiaDAO.actualizarMercaderia(mercaderia);
 			}
 			
@@ -146,7 +146,7 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		mercaderia.setRucProveedor(data.getRucProveedor());
 		mercaderia.setDescripcionProveedor(data.getDescripcionProveedor());
 		mercaderia.setIdUsuarioCreacion(data.getNombreUsuario());	
-		mercaderia.setFechaMercaderia(FechasUtil.stringToDate(data.getFechaMercaderia(), "dd/mm/yyyy"));
+		mercaderia.setFechaMercaderia(FechasUtil.stringToDate(data.getFechaMercaderia(), "dd/MM/yyyy"));
 		mercaderia.setFechaCreacion(new Date());
 		mercaderiaDAO.insertarMercaderia(mercaderia);
 	}

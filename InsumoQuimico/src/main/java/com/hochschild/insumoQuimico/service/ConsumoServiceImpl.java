@@ -56,7 +56,7 @@ public class ConsumoServiceImpl implements ConsumoService {
 				
 				consumo.setIdUsuarioModificacion(consumoParametrosEntrada.getNombreUsuario());		
 				consumo.setFechaModificacion(new Date());
-				consumo.setFechaConsumo(FechasUtil.stringToDate(consumoParametrosEntrada.getFechaConsumo(), "dd/mm/yyyy"));
+				consumo.setFechaConsumo(FechasUtil.stringToDate(consumoParametrosEntrada.getFechaConsumo(), "dd/MM/yyyy"));
 				ConsumoDAO.actualizarConsumo(consumo);
 			}
 			
@@ -141,7 +141,7 @@ public class ConsumoServiceImpl implements ConsumoService {
 
 		consumo.setIdUsuarioCreacion(data.getNombreUsuario());		
 		consumo.setFechaCreacion(new Date());
-		consumo.setFechaConsumo(FechasUtil.stringToDate(data.getFechaConsumo(), "dd/mm/yyyy"));
+		consumo.setFechaConsumo(FechasUtil.stringToDate(data.getFechaConsumo(), "dd/MM/yyyy"));
 		ConsumoDAO.insertarConsumo(consumo);
 	}
 	public List<ConsumoConsulta> listaConsumoConsulta(ConsumoConsultaModel consumoConsultaModel){

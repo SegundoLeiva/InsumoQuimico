@@ -20,6 +20,11 @@ $(document).ready(function() {
  		$("#bloqueStock").hide();
 		bloquearCamposConsultar();
 	}
+
+ 	var idPresentacionInsumo ="${distribucionMercaderia.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}";
+ 	if(idPresentacionInsumo.trim()!=""){
+ 		$("#idUnidadMineraInsumoPresentacion").val(idPresentacionInsumo).trigger('change');
+ 	}
 	
 });
 
