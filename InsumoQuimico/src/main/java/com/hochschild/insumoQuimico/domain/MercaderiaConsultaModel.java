@@ -11,7 +11,6 @@ public class MercaderiaConsultaModel {
     private String guiaRemision;
     private String idUnidadMineraAlmacen;
     private String almacen;
-    private String comprobanteVenta;
     private String fechaCreacion;
 	private String idUsuarioCreacion;
 	private String rucProveedor;
@@ -89,12 +88,6 @@ public class MercaderiaConsultaModel {
 	}
 	public void setIdUnidadMineraAlmacen(String idUnidadMineraAlmacen) {
 		this.idUnidadMineraAlmacen = idUnidadMineraAlmacen;
-	}
-	public String getComprobanteVenta() {
-		return comprobanteVenta;
-	}
-	public void setComprobanteVenta(String comprobanteVenta) {
-		this.comprobanteVenta = comprobanteVenta;
 	}
 	public String getFechaInicio() {
 		return fechaInicio;

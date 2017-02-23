@@ -55,11 +55,9 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 							
 				UnidadMineraAlmacen unidadMineraAlmacen = new UnidadMineraAlmacen();
 				unidadMineraAlmacen.setIdUnidadMineraAlmacen(mercaderiaParametrosEntrada.getIdUnidadMineraAlmacen());			
-				mercaderia.setUnidadMineraAlmacen(unidadMineraAlmacen);		
-				
+				mercaderia.setUnidadMineraAlmacen(unidadMineraAlmacen);					
 				mercaderia.setTransporte(mercaderiaParametrosEntrada.getTransporte());
 				mercaderia.setGuiaRemision(mercaderiaParametrosEntrada.getGuiaRemision());
-				mercaderia.setComprobanteVenta(mercaderiaParametrosEntrada.getComprobanteVenta());
 				mercaderia.setGuiaInterna(mercaderiaParametrosEntrada.getGuiaInterna());
 				mercaderia.setRucProveedor(mercaderiaParametrosEntrada.getRucProveedor());
 				mercaderia.setDescripcionProveedor(mercaderiaParametrosEntrada.getDescripcionProveedor());
@@ -141,7 +139,6 @@ public class MercaderiaServiceImpl implements MercaderiaService {
 		mercaderia.setUnidadMineraAlmacen(unidadMineraAlmacen);			
 		mercaderia.setTransporte(data.getTransporte());
 		mercaderia.setGuiaRemision(data.getGuiaRemision());
-		mercaderia.setComprobanteVenta(data.getComprobanteVenta());
 		mercaderia.setGuiaInterna(data.getGuiaInterna());
 		mercaderia.setRucProveedor(data.getRucProveedor());
 		mercaderia.setDescripcionProveedor(data.getDescripcionProveedor());

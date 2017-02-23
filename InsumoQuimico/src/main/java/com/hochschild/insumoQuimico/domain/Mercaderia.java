@@ -44,7 +44,6 @@ public class Mercaderia implements Serializable {
 
     private String transporte;
     private String guiaRemision;
-    private String comprobanteVenta;
     private String guiaInterna;
     private String rucProveedor;
     private String descripcionProveedor;
@@ -83,12 +82,6 @@ public class Mercaderia implements Serializable {
 	}
 	public void setGuiaRemision(String guiaRemision) {
 		this.guiaRemision = guiaRemision;
-	}
-	public String getComprobanteVenta() {
-		return comprobanteVenta;
-	}
-	public void setComprobanteVenta(String comprobanteVenta) {
-		this.comprobanteVenta = comprobanteVenta;
 	}
 	public String getGuiaInterna() {
 		return guiaInterna;

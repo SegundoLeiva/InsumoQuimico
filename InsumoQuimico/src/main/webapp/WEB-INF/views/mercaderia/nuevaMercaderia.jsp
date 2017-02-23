@@ -27,12 +27,6 @@
 								<div class="controls">
 									<input type="text" class="form-control" name="guiaRemision" id="guiaRemision" value="${mercaderia.guiaRemision}" required="required" data-msg-required="El campo Guía Remisión es obligatorio.">
 								</div>
-							</div>	
-								<div class="control-group">
-								<label class="control-label" for="comprobanteVenta">Comprobante Venta</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="comprobanteVenta" id="comprobanteVenta" value="${mercaderia.comprobanteVenta}" required="required" data-msg-required="El campo Comprobante de Venta es obligatorio.">
-								</div>
 							</div>						
 						</div>
 						<div class="span6">
@@ -45,7 +39,7 @@
 							</div>
 
 							<div class="control-group">
-								<label class="control-label" for="fecha">Fecha</label>
+								<label class="control-label" for="fecha">Fecha de Despacho</label>
 								<div class="controls">
 									<c:choose>
 										<c:when test="${empty accion}">
