@@ -55,9 +55,10 @@ public class ReporteController extends BaseReporteController{
 	public void generarReporte(HttpServletRequest req,HttpServletResponse response) throws IOException {
 		String mes = req.getParameter("mes");
 		String anio = req.getParameter("anio");
+		String _idUnidadMinera = req.getParameter("idUnidadMinera");
 		String cadena ="";
-		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetalleReporte(anio, mes);
-		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetalleReporte(anio, mes);
+		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetalleReporte(_idUnidadMinera,anio, mes);
+		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetalleReporte(_idUnidadMinera,anio, mes);
 		CatalogoDetalle catalogo = catalogoDetalleService.obtenerCatalogoDetalleById(2, "1");//RUC COMPAÑIA
 		String rucCompania = catalogo.getDescripcion();
 		

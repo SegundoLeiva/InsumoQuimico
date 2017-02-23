@@ -53,12 +53,13 @@ public class ConsumoDetalleDAOImpl implements ConsumoDetalleDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(String anio,String mes){
+	public List<ConsumoDetalle> obtenerConsumoDetalleReporte(String idUnidadMinera,String anio,String mes){
 		
 		String fechaIni = FechasUtil.getPrimerDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
 		String fechaFin = FechasUtil.getUltimoDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
 
-		String sql = "from ConsumoDetalle WHERE consumo.fechaConsumo Between '"+fechaIni+"' and '"+fechaFin+"'";
+		String sql = "from ConsumoDetalle WHERE unidadMineraInsumoPresentacion.idUnidadMinera = '"+idUnidadMinera+"' "
+		 		+ "and consumo.fechaConsumo Between '"+fechaIni+"' and '"+fechaFin+"'";
 		List<ConsumoDetalle> resultado= hibernateTemplate.find(sql);
 	      
 	    return resultado;

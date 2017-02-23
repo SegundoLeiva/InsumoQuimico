@@ -53,13 +53,13 @@ public class MercaderiaDetalleDAOImpl implements MercaderiaDetalleDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MercaderiaDetalle> obtenerMercaderiaDetalleReporte(String anio,String mes){
+	public List<MercaderiaDetalle> obtenerMercaderiaDetalleReporte(String idUnidadMinera,String anio,String mes){
 		
 		String fechaIni = FechasUtil.getPrimerDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
 		String fechaFin = FechasUtil.getUltimoDiaDelMesActualPorAnio(anio, mes,"yyyy-MM-dd");
 
-		String sql = "from MercaderiaDetalle WHERE "
-		 		+ " mercaderia.fechaMercaderia Between '"+fechaIni+"' and '"+fechaFin+"'";
+		String sql = "from MercaderiaDetalle WHERE unidadMineraInsumoPresentacion.idUnidadMinera = '"+idUnidadMinera+"' "
+		 		+ "and mercaderia.fechaMercaderia Between '"+fechaIni+"' and '"+fechaFin+"'";
 		List<MercaderiaDetalle> resultado= hibernateTemplate.find(sql);
 	      
 	    return resultado;

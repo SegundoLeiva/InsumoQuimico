@@ -19,9 +19,9 @@ public class MercaderiaDetalleServiceImpl implements MercaderiaDetalleService {
 		return mercaderiaDetalleDAO.obtenerMercaderiaDetallePorIdMercaderia(id);
 	}
 
-	public List<MercaderiaDetalle> obtenerMercaderiaDetalleReporte(String anio, String mes) {
+	public List<MercaderiaDetalle> obtenerMercaderiaDetalleReporte(String idUnidadMinera,String anio, String mes) {
 		// TODO Auto-generated method stub
-		return mercaderiaDetalleDAO.obtenerMercaderiaDetalleReporte(anio, mes);
+		return mercaderiaDetalleDAO.obtenerMercaderiaDetalleReporte(idUnidadMinera,anio, mes);
 	}
 
 }
