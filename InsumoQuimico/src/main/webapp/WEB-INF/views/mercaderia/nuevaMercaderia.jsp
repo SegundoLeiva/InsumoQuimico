@@ -62,12 +62,6 @@
 					<fieldset class="agruparFielset">
 						<div class="span4">
 							<div class="control-group">
-								<label class="control-label" for="guiaInterna">Guía Interna</label>
-								<div class="controls">
-									<input type="text" class="form-control" name="guiaInterna" id="guiaInterna" value="${mercaderia.guiaInterna}" required="required" data-msg-required="El campo Guía Interna es obligatorio.">
-								</div>
-							</div>	
-							<div class="control-group">
 								<label class="control-label" for="rucProveedor">Ruc Proveedor</label>
 								<div class="controls">		
 									<input type="text" class="form-control numeroEntero" name="rucProveedor" id="rucProveedor" value="${mercaderia.rucProveedor}" required="required" maxlength="11" data-msg-required="El campo Ruc Proveedor es obligatorio." onblur="getProveedorDescripcion();">

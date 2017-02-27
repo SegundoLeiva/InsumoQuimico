@@ -72,9 +72,9 @@ public class ReporteController extends BaseReporteController{
 			String rucProveedor = listaMercaderiaDetalle.get(i).getMercaderia().getRucProveedor();
 			String cantidadPresentacion = String.valueOf((int)listaMercaderiaDetalle.get(i).getCantidad().doubleValue());
 			String codigoPresentacion = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
-			String guiaInterna = listaMercaderiaDetalle.get(i).getMercaderia().getGuiaInterna();
+			String guiaRemision = listaMercaderiaDetalle.get(i).getMercaderia().getGuiaRemision();
 			String idUnidadMinera = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
-			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaInterna+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
+			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaRemision+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
 		}
 		
 		for (int i = 0; i < listaConsumoDetalle.size(); i++) {
