@@ -18,6 +18,7 @@ import com.hochschild.insumoQuimico.domain.MercaderiaDetalle;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.CatalogoDetalleService;
 import com.hochschild.insumoQuimico.service.ConsumoDetalleService;
+import com.hochschild.insumoQuimico.service.EstablecimientosService;
 import com.hochschild.insumoQuimico.service.MercaderiaDetalleService;
 import com.hochschild.insumoQuimico.util.Constantes;
 import com.hochschild.insumoQuimico.util.FechasUtil;
@@ -32,6 +33,8 @@ public class ReporteController extends BaseReporteController{
 	private CatalogoDetalleService catalogoDetalleService;
 	@Autowired
 	private ConsumoDetalleService consumoDetalleService;
+	@Autowired
+	private EstablecimientosService establecimientosService;
 	
 	@Override
 	public String getPaginaReporte() {
@@ -73,8 +76,8 @@ public class ReporteController extends BaseReporteController{
 			String cantidadPresentacion = String.valueOf((int)listaMercaderiaDetalle.get(i).getCantidad().doubleValue());
 			String codigoPresentacion = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
 			String guiaRemision = listaMercaderiaDetalle.get(i).getMercaderia().getGuiaRemision();
-			String idUnidadMinera = listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
-			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaRemision+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
+			String idEstablecimiento = establecimientosService.obtieneEstablecimientosPorIdUnidadMinera(listaMercaderiaDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera()).getIdEstablecimiento();
+			cadena=cadena +tipoOperacion+"|"+idEstablecimiento+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|"+guiaRemision+"|"+fechaMercaderia+"|"+tipoDocumentoDestinatario+"|"+rucCompania+"|"+tipoDocumentoTranferir+"|"+rucProveedor+"||||||||"+"\r\n";
 		}
 		
 		for (int i = 0; i < listaConsumoDetalle.size(); i++) {
@@ -85,8 +88,8 @@ public class ReporteController extends BaseReporteController{
 			String fechaConsumo = FechasUtil.dateToString(listaConsumoDetalle.get(i).getConsumo().getFechaConsumo(), "dd/MM/yyyy");
 			String cantidadPresentacion = listaConsumoDetalle.get(i).getCantidadPresentacion().toString();
 			String codigoPresentacion = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getPresentacionInsumo().getCodigoPresentacion();
-			String idUnidadMinera = listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera();
-			cadena=cadena +tipoOperacion+"|"+idUnidadMinera+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
+			String idEstablecimiento = establecimientosService.obtieneEstablecimientosPorIdUnidadMinera(listaConsumoDetalle.get(i).getUnidadMineraInsumoPresentacion().getIdUnidadMinera()).getIdEstablecimiento();
+			cadena=cadena +tipoOperacion+"|"+idEstablecimiento+"|"+tipoTransaccion+"|"+codigoPresentacion+"|"+cantidadPresentacion+"|"+tipoDocumentoTransaccion+"|KARDEX|"+fechaConsumo+"|"+tipoDocumentoBien+"|"+rucCompania+"|||||||||||"+"\r\n";
 		}
 
 		descargarArchivoTxt(response, "reporte_"+FechasUtil.obtenerMesDescripcion(mes)+"_"+anio, cadena);
