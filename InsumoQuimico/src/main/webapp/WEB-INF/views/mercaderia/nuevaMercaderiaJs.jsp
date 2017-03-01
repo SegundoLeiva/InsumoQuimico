@@ -33,15 +33,22 @@ $(document).ready(function() {
 		bloquearCamposConsultar();
 	}
 	
-	dataInsumo = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:""}];
 	<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
-		var obj = {id:"${item.idUnidadMineraInsumoPresentacion}",text:"${item.presentacionInsumo.insumo.insumo}"+" - "+"${item.presentacionInsumo.descripcion}",
-				pesoNeto:"${item.presentacionInsumo.pesoNeto}",unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}"}
-		dataInsumo.push(obj);
+			var obj = {id:"${item.idUnidadMineraInsumoPresentacion}",text:"${item.presentacionInsumo.insumo.insumo} - ${item.presentacionInsumo.descripcion}",
+					pesoNeto:"${item.presentacionInsumo.pesoNeto}",unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}",idUnidadMinera:"${item.idUnidadMinera}"}
+			dataInsumo.push(obj);
 	</c:forEach>
 
+	var dataInsumoTemp = [];
+	dataInsumoTemp = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:"",idUnidadMinera:""}];
+	for (var i = 0; i < dataInsumo.length; i++) {
+		if($("#idUnidadMinera").val()==dataInsumo[i].idUnidadMinera){
+			dataInsumoTemp.push(dataInsumo[i]);
+		}
+	}
+	
 	$("#idUnidadMineraInsumoPresentacion").select2({
-		  data: dataInsumo
+		  data: dataInsumoTemp
 	});
 
 
@@ -217,6 +224,22 @@ $("#idUnidadMineraInsumoPresentacion").change(function(){
 	}else{
 		$("#pesoNeto").val("");
 	}
+
+});
+
+$("#idUnidadMinera").change(function(){
+	
+	$('#idUnidadMineraInsumoPresentacion').empty();
+	var dataInsumoTemp = [];
+	dataInsumoTemp = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:"",idUnidadMinera:""}];
+	for (var i = 0; i < dataInsumo.length; i++) {
+		if($("#idUnidadMinera").val()==dataInsumo[i].idUnidadMinera){
+			dataInsumoTemp.push(dataInsumo[i]);
+		}
+	}
+	$("#idUnidadMineraInsumoPresentacion").select2({
+		  data: dataInsumoTemp
+	});
 
 });
 

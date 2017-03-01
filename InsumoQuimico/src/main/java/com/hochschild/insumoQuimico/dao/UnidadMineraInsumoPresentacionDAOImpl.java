@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hochschild.insumoQuimico.domain.InsumoPresentacion;
 import com.hochschild.insumoQuimico.domain.UnidadMineraInsumoPresentacion;
+import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.util.Constantes;
 
 
@@ -34,8 +35,24 @@ public class UnidadMineraInsumoPresentacionDAOImpl implements UnidadMineraInsumo
 	
 	@SuppressWarnings("unchecked")
 	public List<UnidadMineraInsumoPresentacion> listaUnidadMineraInsumoPresentacionPorUnidadMinera(String idUnidadMinera){
+
 		String query = "from UnidadMineraInsumoPresentacion uma "
-				+ "where uma.idUnidadMinera='"+idUnidadMinera+"' order by uma.presentacionInsumo.insumo.insumo";
+				+ "where uma.idUnidadMinera = '"+idUnidadMinera+"' order by uma.presentacionInsumo.insumo.insumo";
+    	List<UnidadMineraInsumoPresentacion> resultado = hibernateTemplate.find(query);
+        return  resultado;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UnidadMineraInsumoPresentacion> listaUnidadMineraInsumoPresentacionPorUnidadMinera(List<ValorOrganizacionalSesion> unidadesMineras){
+		String idUnidadMinera = "";
+		for (int i = 0; i < unidadesMineras.size(); i++) {
+			String coma = ",";
+			if(i==unidadesMineras.size()-1)coma="";
+			idUnidadMinera = idUnidadMinera+"'"+unidadesMineras.get(i).getValorOrganizacional()+"'"+coma;
+		}
+//		idUnidadMinera = "'"+1300+"','"+1301+"'";
+		String query = "from UnidadMineraInsumoPresentacion uma "
+				+ "where uma.idUnidadMinera in ("+idUnidadMinera+") order by uma.presentacionInsumo.insumo.insumo";
     	List<UnidadMineraInsumoPresentacion> resultado = hibernateTemplate.find(query);
         return  resultado;
 	}

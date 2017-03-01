@@ -52,7 +52,7 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
         List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(listaUnidadesMineras));
 		return model;
 	}
 	
@@ -74,7 +74,7 @@ public class IngresarMercaderiaMantenimientoController extends BaseMantenimiento
 		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
 		Mercaderia mercaderia = mercaderiaService.obtieneMercaderiaPorId(id);
 		model.addAttribute("mercaderia", mercaderia);
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(mercaderia.getUnidadMinera().getIdUnidadMinera()));
 		List<MercaderiaDetalle> listaMercaderiaDetalle = mercaderiaDetalleService.obtenerMercaderiaDetallePorIdMercaderia(id);
 		if(listaMercaderiaDetalle.size()>0)model.addAttribute("listaMercaderiaDetalle",listaMercaderiaDetalle);
 		return model;

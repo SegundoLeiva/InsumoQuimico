@@ -14,7 +14,7 @@
 								<div class="controls selectInsumo">
 									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
-											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+											<option value="${item.valorOrganizacional}" ${item.valorOrganizacional == distribucionMercaderia.unidadMineraArea.idUnidadMinera ? 'selected' : ' '}>${item.descripcion}</option>
 										</c:forEach>
 									</select>
 								</div>

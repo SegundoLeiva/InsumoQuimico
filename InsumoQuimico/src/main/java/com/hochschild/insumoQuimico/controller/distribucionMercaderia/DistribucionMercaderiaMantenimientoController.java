@@ -42,7 +42,7 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 		// TODO Auto-generated method stub
         model.addAttribute("listaUnidadesMineras", this.usuario.getListaUnidadesMineras());
         model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getListaUnidadesMineras()));
 
 		return model;
 	}
@@ -63,8 +63,8 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 		// TODO Auto-generated method stub
 		DistribucionMercaderia data = distribucionMercaderiaService.obtieneDistribucionMercaderiaPorId(id);
 		model.addAttribute("listaUnidadesMineras", this.usuario.getListaUnidadesMineras());
-        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(data.getUnidadMineraArea().getIdUnidadMinera()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(data.getUnidadMineraArea().getIdUnidadMinera()));
 		model.addAttribute("distribucionMercaderia", data);
 		return model;
 	}

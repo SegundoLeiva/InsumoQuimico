@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hochschild.insumoQuimico.BaseController.BaseSearchController;
+import com.hochschild.insumoQuimico.domain.UnidadMineraAreaConsultaModel;
+import com.hochschild.insumoQuimico.domain.UnidadMineraInsumosConsultaModel;
 import com.hochschild.insumoQuimico.domain.ValorOrganizacionalSesion;
 import com.hochschild.insumoQuimico.service.InsumoService;
 import com.hochschild.insumoQuimico.service.UnidadMineraInsumoService;
@@ -30,7 +32,9 @@ public class UnidadMineraInsumoSearchController extends BaseSearchController{
 	@Override
 	public Object getFormBusqueda() {
 		// TODO Auto-generated method stub
-		return null;
+		UnidadMineraInsumosConsultaModel unidadMineraInsumosConsultaModel = new UnidadMineraInsumosConsultaModel();
+		unidadMineraInsumosConsultaModel.setIdUnidadMinera(usuario.getIdUnidadMineraPorDefecto());
+		return unidadMineraInsumosConsultaModel;
 	}
 
 	@Override
@@ -45,7 +49,7 @@ public class UnidadMineraInsumoSearchController extends BaseSearchController{
 		// TODO Auto-generated method stub
 		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-		return this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
+		return this.unidadMineraInsumoService.listaUnidadMineraInsumoPorUnidadMinera(((UnidadMineraInsumosConsultaModel)this.formBusqueda).getIdUnidadMinera());
 	}
 
 	@Override

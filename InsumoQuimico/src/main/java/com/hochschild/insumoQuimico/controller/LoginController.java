@@ -94,7 +94,7 @@ public class LoginController {
                                 cargaValoresOrganizacionales(idAplicacion,usuario,idUnidadMinera);                                                             
                                 session.setAttribute("puestoPorUsuario", puestoPorUsuario);                                
                                 session.setAttribute("session_usuario", usuario);
-                                obtenerFlagCierreMes(session, usuario);
+//                                obtenerFlagCierreMes(session, usuario);
             					
                                 return new ModelAndView("redirect:/home/bienvenida.htm");
                             }else{
@@ -153,9 +153,9 @@ public class LoginController {
         List<ValorOrganizacionalSesion> listaUnidadesMineras = valorOrganizacionalService.getValores(idAplicacion, usuario.getIdUsuario(), "WERKS");
         if (listaUnidadesMineras != null && listaUnidadesMineras.size() > 0) {            
             for(ValorOrganizacionalSesion vos : listaUnidadesMineras){
-                if(vos.getValorOrganizacional().equals(idUnidadMinera)){
+//                if(vos.getValorOrganizacional().equals(idUnidadMinera)){
                     listaValoresOrganizaciones.add(vos);
-                }
+//                }
             }            
         }else{
             DivisionesCIA divisionesCIA =  divisionesCIAService.obtenerDivisionesCIAPorId(usuario.getSociedadUsuario(), usuario.getDivisionUsuario());

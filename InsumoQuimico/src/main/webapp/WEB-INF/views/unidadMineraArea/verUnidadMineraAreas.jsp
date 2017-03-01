@@ -15,7 +15,7 @@
 								<div class="controls">
 									<select name="idUnidadMinera" id="idUnidadMinera">
 										<c:forEach var="item" items="${listaUnidadesMineras}">
-											<option value="${item.valorOrganizacional}">${item.descripcion}</option>
+											<option value="${item.valorOrganizacional}" ${item.valorOrganizacional == beanConsulta.idUnidadMinera ? 'selected' : ' '}>${item.descripcion}</option>
 										</c:forEach>
 									</select>
 								</div>

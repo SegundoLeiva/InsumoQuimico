@@ -60,7 +60,7 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
         List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(listaUnidadesMineras));
 
         return model;
 	}
@@ -89,7 +89,7 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
         
 		Consumo consumo = consumoService.obtieneConsumoPorId(id);
 		model.addAttribute("consumo", consumo);
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(consumo.getUnidadMinera().getIdUnidadMinera()));
 		
 		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetallePorIdConsumo(id);
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);
