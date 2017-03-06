@@ -11,4 +11,5 @@ public interface UnidadMineraAreaDAO {
 	List<UnidadMineraArea> listaUnidadMineraArea();
 	List<UnidadMineraArea> listaUnidadMineraAreaPorUnidadMinera(String idUnidadMinera);
 	public UnidadMineraArea obtieneUnidadMineraAreaPorId(String id);
+	public List<UnidadMineraArea> listaUnidadMineraAreaVigentes();
 }

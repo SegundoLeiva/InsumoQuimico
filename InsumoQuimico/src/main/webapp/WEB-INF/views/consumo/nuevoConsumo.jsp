@@ -28,9 +28,7 @@
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">
-										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == consumo.unidadMineraArea.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
-										</c:forEach>
+
 									</select>
 								</div>
 							</div>

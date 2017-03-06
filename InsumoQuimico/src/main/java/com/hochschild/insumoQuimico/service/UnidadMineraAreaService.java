@@ -12,4 +12,5 @@ public interface UnidadMineraAreaService {
 	public List<UnidadMineraArea> listaUnidadMineraAreaPorUnidadMinera(String idUnidadMinera);
 	public String insertarUnidadMineraArea(UnidadMineraAreaParametrosEntrada data);
 	public void eliminarUnidadMineraArea(String idUnidadMineraArea);
+	List<UnidadMineraArea> listaUnidadMineraAreaVigentes();
 }

@@ -26,10 +26,7 @@
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls selectInsumo">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == beanConsulta.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
-										</c:forEach>
+	
 									</select>
 								</div>
 							</div>	
@@ -40,11 +37,8 @@
 							<div class="control-group">
 								<label class="control-label" for="idUnidadMineraInsumoPresentacion">Insumo Presentación</label>
 								<div class="controls selectInsumo">									
-									<select name="idUnidadMineraInsumoPresentacion" id="idUnidadMineraInsumoPresentacion" required data-msg-required="El campo Insumo Presentación es obligatorio.">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraInsumoPresentacion}">
-											<option value="${item.idUnidadMineraInsumoPresentacion}" ${item.idUnidadMineraInsumoPresentacion == beanConsulta.idUnidadMineraInsumoPresentacion ? 'selected' : ' '}>${item.presentacionInsumo.insumo.insumo} - ${item.presentacionInsumo.descripcion}</option>
-										</c:forEach>
+									<select name="idUnidadMineraInsumoPresentacion" id="idUnidadMineraInsumoPresentacion">						
+										
 									</select>
 								</div>
 							</div>

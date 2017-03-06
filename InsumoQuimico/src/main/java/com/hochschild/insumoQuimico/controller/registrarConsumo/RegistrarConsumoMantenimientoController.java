@@ -58,7 +58,7 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
 		List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
         model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
-        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
+        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaVigentes();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
 		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(listaUnidadesMineras));
 
@@ -84,13 +84,13 @@ public class RegistrarConsumoMantenimientoController extends BaseMantenimientoCo
 		List<UnidadMineraAlmacen> listaUnidadMineraAlmacen = unidadMineraAlmacenService.listaUnidadMineraAlmacenPorUnidadMinera(listaUnidadesMineras.get(0).getValorOrganizacional());
 		model.addAttribute("listaUnidadMineraAlmacen", listaUnidadMineraAlmacen);
 		
-		List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
-        model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
-        
 		Consumo consumo = consumoService.obtieneConsumoPorId(id);
 		model.addAttribute("consumo", consumo);
 		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(consumo.getUnidadMinera().getIdUnidadMinera()));
 		
+		List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(consumo.getUnidadMinera().getIdUnidadMinera());
+        model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
+        
 		List<ConsumoDetalle> listaConsumoDetalle = consumoDetalleService.obtenerConsumoDetallePorIdConsumo(id);
 		if(listaConsumoDetalle.size()>0)model.addAttribute("listaConsumoDetalle",listaConsumoDetalle);
 		

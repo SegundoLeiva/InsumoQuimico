@@ -68,4 +68,8 @@ public class UnidadMineraAreaServiceImpl implements UnidadMineraAreaService {
 		// TODO Auto-generated method stub
 		unidadMineraAreaDAO.eliminarUnidadMineraArea(idUnidadMineraArea);
 	}
+	
+	public List<UnidadMineraArea> listaUnidadMineraAreaVigentes() {
+		return unidadMineraAreaDAO.listaUnidadMineraAreaVigentes();
+	}
 }

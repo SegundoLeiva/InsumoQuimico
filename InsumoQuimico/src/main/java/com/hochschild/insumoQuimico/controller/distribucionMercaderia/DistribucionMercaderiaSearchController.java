@@ -48,9 +48,8 @@ public class DistribucionMercaderiaSearchController extends BaseSearchController
 		// TODO Auto-generated method stub
 		List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
-		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto()));
-
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaVigentes());
+		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getListaUnidadesMineras()));
 		return distribucionMercaderiaService.listaDistribucionMercaderiaConsulta((DistribucionMercaderiaConsultaModel)this.formBusqueda);
 	}
 

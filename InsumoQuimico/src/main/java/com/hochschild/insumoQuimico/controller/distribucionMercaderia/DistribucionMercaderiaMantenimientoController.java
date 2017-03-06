@@ -41,7 +41,7 @@ public class DistribucionMercaderiaMantenimientoController extends BaseMantenimi
 	public Model setViewAttributes(Model model) {
 		// TODO Auto-generated method stub
         model.addAttribute("listaUnidadesMineras", this.usuario.getListaUnidadesMineras());
-        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(usuario.getIdUnidadMineraPorDefecto()));
+        model.addAttribute("listaUnidadMineraArea", unidadMineraAreaService.listaUnidadMineraAreaVigentes());
 		model.addAttribute("listaUnidadMineraInsumoPresentacion", this.unidadMineraInsumoPresentacionService.listaUnidadMineraInsumoPresentacionPorUnidadMinera(this.usuario.getListaUnidadesMineras()));
 
 		return model;

@@ -4,6 +4,7 @@
 <script type="text/javascript">
 
 var dataInsumo=[];
+var dataAreas=[];
 
 $(document).ready(function() {
 	
@@ -12,29 +13,29 @@ $(document).ready(function() {
 				pesoNeto:"${item.presentacionInsumo.pesoNeto}",unidadMedidaPresentacion:"${item.presentacionInsumo.idUnidadMedidaPresentacion}",idUnidadMinera:"${item.idUnidadMinera}"}
 		dataInsumo.push(obj);
 	</c:forEach>
+	
+	<c:forEach var="item" items="${listaUnidadMineraArea}">
+		var obj = {id:"${item.idUnidadMineraArea}",text:"${item.area.area}",idUnidadMinera:"${item.idUnidadMinera}"}
+		dataAreas.push(obj);
+	</c:forEach>
 
-	var dataInsumoTemp = [];
-	dataInsumoTemp = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:"",idUnidadMinera:""}];
-	for (var i = 0; i < dataInsumo.length; i++) {
-		if($("#idUnidadMinera").val()==dataInsumo[i].idUnidadMinera){
-			dataInsumoTemp.push(dataInsumo[i]);
-		}
-	}
-	
-	$("#idUnidadMineraInsumoPresentacion").select2({
-	  data: dataInsumoTemp
-	});
-	
- 	
+	cargarComboInsumo();
+	cargarComboAreas();
+
+
  	if($("#accion").val()=="CONSULTAR"){	
  		$("#bloqueStock").hide();
 		bloquearCamposConsultar();
 	}
 
- 	var idPresentacionInsumo ="${distribucionMercaderia.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}";
-
- 	if(idPresentacionInsumo.trim()!=""){
- 		$("#idUnidadMineraInsumoPresentacion").val(idPresentacionInsumo).trigger('change');
+ 	var idUnidadMineraInsumoPresentacion ="${distribucionMercaderia.unidadMineraInsumoPresentacion.idUnidadMineraInsumoPresentacion}";
+ 	if(idUnidadMineraInsumoPresentacion.trim()!=""){
+ 		$("#idUnidadMineraInsumoPresentacion").val(idUnidadMineraInsumoPresentacion).trigger('change');
+ 	}
+ 	
+ 	var idUnidadMineraArea = "${distribucionMercaderia.unidadMineraArea.idUnidadMineraArea}";
+ 	if(idUnidadMineraArea.trim()!=""){
+ 		$("#idUnidadMineraArea").val(idUnidadMineraArea).trigger('change');
  	}
 	
 });
@@ -91,6 +92,14 @@ function fnValidarGuardarMercaderia(){
 $("#idUnidadMinera").change(function(){
 	
 	$('#idUnidadMineraInsumoPresentacion').empty();
+	$('#idUnidadMineraArea').empty();
+	
+	cargarComboInsumo();
+	cargarComboAreas();
+
+});
+
+function cargarComboInsumo(){
 	var dataInsumoTemp = [];
 	dataInsumoTemp = [{id:" ",text:"Seleccionar",pesoNeto:"",unidadMedidaPresentacion:"",idUnidadMinera:""}];
 	for (var i = 0; i < dataInsumo.length; i++) {
@@ -98,10 +107,24 @@ $("#idUnidadMinera").change(function(){
 			dataInsumoTemp.push(dataInsumo[i]);
 		}
 	}
+	
 	$("#idUnidadMineraInsumoPresentacion").select2({
 		  data: dataInsumoTemp
 	});
+}
 
-});
+function cargarComboAreas(){
+	var dataAreasTemp=[];
+	dataAreasTemp = [{id:" ",text:"Seleccionar",idUnidadMinera:""}];
+	for (var i = 0; i < dataAreas.length; i++) {
+		if($("#idUnidadMinera").val()==dataAreas[i].idUnidadMinera){
+			dataAreasTemp.push(dataAreas[i]);
+		}
+	}
+	
+	$("#idUnidadMineraArea").select2({
+		  data: dataAreasTemp
+	});
+}
 
 </script>

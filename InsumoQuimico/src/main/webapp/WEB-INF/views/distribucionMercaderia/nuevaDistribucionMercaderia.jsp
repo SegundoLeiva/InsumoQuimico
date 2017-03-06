@@ -25,10 +25,7 @@
 								<label class="control-label" for="idUnidadMineraArea">Área</label>
 								<div class="controls selectInsumo">									
 									<select name="idUnidadMineraArea" id="idUnidadMineraArea" required data-msg-required="El campo Área es obligatorio.">						
-										<option value="">Seleccionar</option>
-										<c:forEach var="item" items="${listaUnidadMineraArea}">
-											<option value="${item.idUnidadMineraArea}" ${item.idUnidadMineraArea == distribucionMercaderia.unidadMineraArea.idUnidadMineraArea ? 'selected' : ' '}>${item.area.area}</option>
-										</c:forEach>
+
 									</select>
 								</div>
 							</div>	

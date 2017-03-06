@@ -52,7 +52,7 @@ public class RegistrarConsumoSearchController extends BaseSearchController{
 
         List<ValorOrganizacionalSesion> listaUnidadesMineras = this.usuario.getListaUnidadesMineras();
         model.addAttribute("listaUnidadesMineras", listaUnidadesMineras);
-        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaPorUnidadMinera(this.usuario.getIdUnidadMineraPorDefecto());
+        List<UnidadMineraArea> listaUnidadMineraArea = unidadMineraAreaService.listaUnidadMineraAreaVigentes();
         model.addAttribute("listaUnidadMineraArea", listaUnidadMineraArea);
         return consumoService.listaConsumoConsulta((ConsumoConsultaModel)this.formBusqueda);  
        

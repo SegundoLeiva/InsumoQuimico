@@ -50,7 +50,6 @@ public class UnidadMineraInsumoPresentacionDAOImpl implements UnidadMineraInsumo
 			if(i==unidadesMineras.size()-1)coma="";
 			idUnidadMinera = idUnidadMinera+"'"+unidadesMineras.get(i).getValorOrganizacional()+"'"+coma;
 		}
-//		idUnidadMinera = "'"+1300+"','"+1301+"'";
 		String query = "from UnidadMineraInsumoPresentacion uma "
 				+ "where uma.idUnidadMinera in ("+idUnidadMinera+") order by uma.presentacionInsumo.insumo.insumo";
     	List<UnidadMineraInsumoPresentacion> resultado = hibernateTemplate.find(query);

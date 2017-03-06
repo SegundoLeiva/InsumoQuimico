@@ -39,6 +39,13 @@ public class UnidadMineraAreaDAOImpl implements UnidadMineraAreaDAO {
     	List<UnidadMineraArea> resultado = hibernateTemplate.find(query);
         return  resultado;
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<UnidadMineraArea> listaUnidadMineraAreaVigentes() {
+    	String query = "from UnidadMineraArea where vigencia='S'";
+    	List<UnidadMineraArea> resultado = hibernateTemplate.find(query);
+        return  resultado;
+    }
    
 	public UnidadMineraArea obtieneUnidadMineraAreaPorId(String id){
 
